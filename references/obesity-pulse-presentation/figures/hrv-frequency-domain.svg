@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="300" viewBox="0 0 640 300" role="img" aria-label="Heart rate variability frequency-domain power spectrum schematic showing LF and HF bands">
+  <!-- HRV frequency-domain (power spectral density) schematic: LF and HF bands.
+       Illustrative curve (not real data), styled to match the pulse-wave diagram. -->
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="4" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="#555555"/>
+    </marker>
+  </defs>
+
+  <!-- frequency bands (behind curve) -->
+  <rect x="119" y="45" width="134" height="205" fill="#6366C7" opacity="0.18"/>
+  <rect x="253" y="45" width="306" height="205" fill="#26A69A" opacity="0.16"/>
+
+  <!-- band boundary guide lines (0.04, 0.15, 0.40 Hz) -->
+  <line x1="119" y1="45" x2="119" y2="250" stroke="#9aa0a6" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="253" y1="45" x2="253" y2="250" stroke="#9aa0a6" stroke-width="1" stroke-dasharray="4 3"/>
+  <line x1="559" y1="45" x2="559" y2="250" stroke="#9aa0a6" stroke-width="1" stroke-dasharray="4 3"/>
+
+  <!-- axes -->
+  <line x1="70" y1="250" x2="628" y2="250" stroke="#555555" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <line x1="70" y1="250" x2="70" y2="32" stroke="#555555" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- power spectral density curve (two peaks: LF, HF) -->
+  <path d="M70 244 C108 240 152 92 180 72 C208 92 238 150 253 168 C300 200 348 128 376 118 C432 110 486 198 524 222 C560 236 596 244 620 247"
+        fill="none" stroke="#14324a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- band labels -->
+  <text x="186" y="66" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="21" font-weight="700" fill="#4245a8">LF</text>
+  <text x="186" y="86" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12.5" fill="#5a5f66">0.04–0.15 Hz</text>
+  <text x="392" y="100" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="21" font-weight="700" fill="#1d7d74">HF</text>
+  <text x="392" y="120" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12.5" fill="#5a5f66">0.15–0.40 Hz</text>
+
+  <!-- x-axis tick labels -->
+  <text x="70"  y="267" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12" fill="#444444">0</text>
+  <text x="119" y="267" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12" fill="#444444">0.04</text>
+  <text x="253" y="267" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12" fill="#444444">0.15</text>
+  <text x="559" y="267" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12" fill="#444444">0.40</text>
+
+  <!-- axis titles -->
+  <text x="349" y="290" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="14" fill="#333333">Frequency (Hz)</text>
+  <text x="22" y="145" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="13" fill="#333333" transform="rotate(-90 22 145)">Power spectral density (ms²/Hz)</text>
+</svg>

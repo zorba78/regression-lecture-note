@@ -1,0 +1,71 @@
+/* Date        : 2026-08-12
+ * Description : Prevent text and figure collisions in the regression lecture deck.
+ * File        : regression-overlap.css
+ */
+
+.reveal .slides section.slide {
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.reveal .slides section h2 {
+  font-size: 48px !important;
+  line-height: 1.15 !important;
+  margin-bottom: 28px !important;
+}
+
+.reveal .slides section h1 {
+  font-size: 64px !important;
+  line-height: 1.15 !important;
+  max-width: 100%;
+}
+
+#title-slide h1 {
+  font-size: 72px !important;
+}
+
+.reveal .slides section h3 {
+  font-size: 32px !important;
+  line-height: 1.2 !important;
+}
+
+.reveal .slides section p,
+.reveal .slides section li,
+.reveal .slides section td,
+.reveal .slides section th {
+  font-size: 26px;
+  line-height: 1.35;
+}
+
+.reveal .slide .columns {
+  align-items: flex-start;
+}
+
+.reveal .slide .column {
+  min-width: 0;
+}
+
+.reveal .slide img {
+  max-width: 100%;
+  max-height: 54vh;
+  object-fit: contain;
+}
+
+.reveal .slide .columns img {
+  max-height: 50vh;
+}
+
+.reveal .slide table {
+  font-size: 24px;
+}
+
+.reveal .slide pre {
+  max-height: 34vh;
+  overflow-y: auto;
+}
+
+.reveal .slide p {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}

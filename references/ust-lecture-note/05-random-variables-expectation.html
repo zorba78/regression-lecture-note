@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Medical Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Boncho Ku, Ph.D. in Statistics" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/tile-view/tile-view.css" rel="stylesheet" />
+    <script src="libs/tile-view/tile-view.js"></script>
+    <script src="libs/xaringanExtra-progressBar/progress-bar.js"></script>
+    <script src="libs/fabric/fabric.min.js"></script>
+    <link href="libs/xaringanExtra-scribble/scribble.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-scribble/scribble.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', function() { window.xeScribble = new Scribble({"pen_color":["#FF0000"],"pen_size":3,"eraser_size":30,"palette":[]}) })</script>
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/footer.css" type="text/css" />
+    <link rel="stylesheet" href="../assets/css/metropolis-ak.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: middle, left, title-slide
+
+.title[
+# Medical Statistics
+]
+.subtitle[
+## Random Variable and Expectation
+]
+.author[
+### <strong>Boncho Ku, Ph.D. in Statistics</strong>
+]
+.institute[
+### <br/> Korea Institute of Oriental Medicine
+]
+.date[
+### <br> 2025/10/02
+]
+
+---
+
+
+
+
+
+
+<style>.xe__progress-bar__container {
+  bottom:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #23373B;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+&lt;!-- class: inverse, center, middle --&gt;
+
+
+# Random Variable `\((X)\)`
+
+---
+
+# Random Variable
+
+#### Warm-Up
+
+&gt; - Are the outcomes of rolling dices determined? `\(\rightarrow\)` **NO**
+&gt; - The outcomes derived from an experiment, measurement, or survey cannot predictable `\(\rightarrow\)` **random data**
+
+
+#### Preview 
+
+&gt; Suppose you are playing a very simple game: rolling three dices
+&gt; - Let `\(X\)` be the sum of three dices 
+&gt;    - `\(X = 18 \rightarrow\)` win **￦50,000**
+&gt;    - `\(14 \leq X \leq 17 \rightarrow\)` win **￦10,000**
+&gt;    - `\(9 \leq X \leq 13 \rightarrow\)` draw
+&gt;    - `\(4 \leq X \leq 8 \rightarrow\)` lose **￦12,000**
+&gt;    - `\(X = 3 \rightarrow\)` lose **￦75,000**
+
+**When you start to play this game, what things do you focus on: chance or prize?**
+
+&gt; - We assign **prizes** to each outcome of rolling dices.
+&gt; - Outcomes from rolling dices are **random** `\(\rightarrow\)` whether winning or lose the prize is **random**
+
+
+???
+
+**Intro**
+
+Let’s start with a simple analogy.  
+Assume you are a doctor. When a patient comes in, you receive two kinds of data.  
+
+The first type is deterministic data—for example, the patient’s date of birth. You only need to ask once, and it will never change.  
+
+The second type is stochastic, or random, data—like blood pressure or body temperature. Every time the patient visits, you need to measure them again, because the values can change.  
+
+Why? Because even if you’ve measured someone’s blood pressure 100 times before, you can’t predict with 100% certainty what it will be the next time. It may vary depending on the patient’s condition, stress level, or even the equipment used.  
+
+But remember: unpredictable doesn’t mean meaningless. If a blood pressure monitor shows 1000 or -10, we immediately know the machine is broken. That means random data still has a range and pattern we can work with.  
+
+Now let’s connect this to probability. Rolling dice is another random process. Each roll produces an unpredictable outcome, but when we assign prizes or values to these outcomes, randomness becomes something we can analyze.  
+
+So here is the key question: when you play this dice game, do you care more about the prize, or the chance of winning it?  
+This tradeoff—between chance and outcome—is exactly why we study random variables. They give us a way to mathematically describe unpredictable events in everyday life.  
+
+
+
+---
+
+# Random Variable 
+
+#### **Definition**
+
+&gt; When conducting a random experiment `\(E\)` and after learning the outcome `\(\omega\)` in `\(S\)`. Let `\(X\)` 
+be a function to convert `\(\omega\)` to the real number `\(\mathbb{R}\)`, that is, 
+&gt; `$$X(\omega) = x,~~ x\in \mathbb{R}$$`
+&gt; A random variable `\(X\)` is a function
+&gt; `$$\omega \in S \xrightarrow{X(\omega)} x \in \mathbb{R}$$`
+
+- Usually denoted by uppercase letters such that `\(X\)`, `\(Y\)`, `\(Z\)`
+- Denote observed values by lowercase letters: `\(x\)`, `\(y\)`, `\(z\)`
+
+
+#### Example 1
+
+&gt; Survey the gender of each child in a three-child household
+&gt; - `\(\omega \in S = \{BBB, GBB, BGB, BBG, GGB, GBG, BGG, GGG\}\)`
+&gt; - \# of Sons: `\(X(BBB)=3\)`, `\(X(GGG)=0\)`, `\(X(GBB)=2\)`
+
+
+**Is it possible to define different random variables in the same `\(S\)`?**
+
+
+???
+
+Now, let’s formalize the idea of a random variable.  
+A random variable is simply a function. It takes an outcome from an experiment and assigns a number to it.  
+
+For example, suppose we survey the genders of children in a three-child family.  
+The possible outcomes, the sample space, include combinations like BBB, GGB, or GGG.  
+
+Now we can define a random variable, say `\(X\)`, as the number of sons in the family.  
+So, if the outcome is BBB, then `\(X = 3\)`. If it’s GGG, then `\(X = 0\)`. If it’s GBB, then `\(X = 2\)`.  
+
+Notice that the sample space is the same, but we can define different random variables.  
+
+For instance, instead of counting the number of sons, we could define a random variable for the number of daughters.  
+
+So, random variables are not the outcomes themselves, but rather a way of translating outcomes into numbers we can work with.  
+
+This is very useful, because once we represent outcomes as numbers, we can apply mathematics and probability theory to analyze them.  
+
+
+---
+
+# Random Variable 
+
+#### Example 2
+
+&gt; Let `\(E\)` be the experiment of flipping a coin twice. Then `\(S=\{HH, HT, TH, TT\}\)`. Define `\(X\)` is 
+the number of heads. Then we can make a table like below: 
+
+
+.panelset[
+.panel[.panel-name[Table]
+&lt;table class=" lightable-paper table" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto; font-size: 16px; color: black; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; `\(\omega \in S\)` &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; HH &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; HT &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; TH &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; TT &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(X(\omega)=x\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.panel[.panel-name[Scheme]
+.center[
+&lt;img src="assets/imgs/rv-scheme.png" width="60%"/&gt;
+]
+]
+
+]
+
+???
+
+Now let’s move to another example: flipping a coin twice.  
+Here, the sample space is simple: **HH, HT, TH, TT**. If we define `\(X\)` as the number of heads, then `\(X\)` can take the values 0, 1, or 2.  
+
+On the left side, you can see the table:  
+- `\(X(HH) = 2\)`  
+- `\(X(HT) = 1\)`  
+- `\(X(TH) = 1\)`  
+- `\(X(TT) = 0\)`  
+
+This is a very clear mapping from outcomes to numbers.  
+
+On the right side, you see a diagram. This figure shows how the sample space, which contains text outcomes like “HH” or “TT,” is mapped into the numerical outcomes of the random variable. So in essence, the random variable is like a function that takes complicated experimental results and converts them into numbers we can analyze.  
+
+Notice something important here: the random variable does not describe the process itself—it only gives us a convenient numerical representation of the outcomes.  
+
+Both this example and the previous one with children’s genders belong to the same category: **discrete random variables**. Why discrete? Because the possible values are separated and countable. You can easily tell the difference between 0, 1, and 2 heads, with no values in between.  
+
+
+--
+
+#### Random variables for Example 1 and 2 `\(\rightarrow\)` **discrete random variable**
+
+&gt; - Show clear distinction between two adjacent values
+&gt; - Countable/Uncountable (e.g. `\(Y\)`=number of tails before the first head)
+
+
+---
+
+# Random Variable 
+
+#### Example 3 (**Continuous Random Variable**)
+
+&gt; Let `\(E\)` be the experiment of tossing a coin in the air, and define the random variable `\(Z\)` is 
+the time until the coin hits the ground (in second). 
+&gt; - Sample space: `\(S = \{z|0 &lt; z &lt; \infty\}\)`
+&gt; - Uncountable `\(\rightarrow\)` usually real numbers
+&gt; - All events in `\(S\)` can be written as the combination of interval events (e.g. `\(1 \leq Z &lt; 2\)`)
+
+#### **Probability Distribution**
+
+&gt; - Assign probabilities coresponding to the possible values of the random variable
+&gt; `$$P(X=x) = f(x)$$`
+&gt; - For Example 1, the probability distribution of `\(X\)` (\# of boys) is 
+
+&lt;table class=" lightable-paper table" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto; font-size: 16px; color: black; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; `\(x \in S_x\)` &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 0 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 2 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 3 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; `\(P(X=x)\)` &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1/8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3/8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3/8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1/8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+???
+
+Now let’s think of a different kind of experiment: tossing a coin in the air and measuring the time until it hits the ground.  
+
+In this case, our random variable `\(Z\)` is the **time**. Unlike the number of heads, which can only take 0, 1, or 2, here `\(Z\)` could be **any positive real number**. For example, 1.3 seconds, 1.31 seconds, or 1.314159… and so on. The possible values are uncountably infinite.  
+
+This is the hallmark of a **continuous random variable**. Instead of counting distinct outcomes, we’re measuring along a scale, and any point on that scale is possible.  
+
+Because there are infinitely many possible values, we can’t simply list probabilities for each exact number. Instead, we describe probabilities over **intervals**. For instance, “What is the probability that the coin takes between 1 and 2 seconds to land?” This interval-based perspective is how we handle continuous random variables.  
+
+This leads naturally to the idea of a **probability distribution**. A distribution assigns probabilities to possible values of a random variable. For discrete random variables, like the number of boys in a household, we can list each probability directly—0 boys, 1 boy, 2 boys, 3 boys. You can see this in the table here.  
+
+So, to summarize:  
+- Discrete random variables take **separated, countable values**, like 0, 1, 2.  
+- Continuous random variables take **uncountably many values** along an interval, like time or height.  
+
+Understanding this difference is crucial because it determines which mathematical tools we use to analyze the data.  
+
+
+---
+
+# Random Variable
+
+#### **Definition of Probability Function (distribution)**
+
+&gt; Let `\(S_X = \{x_1, x_2, \ldots, x_n\}\)` or `\(S_X = \{x_1, x_2, \ldots \}\)` and Let `\(f(x_i)\)` denote 
+the probability of `\(X = x_i\)`, then the probability function (_distribution_) of `\(X\)` can be written as 
+&gt; `$$f_X(x_i) = P(X = x_i), ~~~ x \in S_X$$`
+&gt; - If `\(X\)` is discrete, `\(f_X(x_i)\)` refered as **_probability mass function_ (PMF)**
+&gt; - If `\(X\)` is continuous, `\(f_X(x)\)` refered as **_probability density function_ (PDF)**
+
+
+#### **Properties**
+
+&gt; - `\(f_X(x) \geq 0\)` for `\(x \in S\)` 
+
+.pull-left[
+#### Discrete PMF
+&gt; - `\(\sum_{x\in S}f_X(x) = 1\)`
+&gt; - `\(P(a &lt; X \leq b) = \sum_{a&lt;x\leq b}f_X(x)\)`
+
+]
+.pull-right[
+#### Continuous PDF
+&gt; - `\(\int_{-\infty}^{\infty}f_x(x) = 1\)` 
+&gt; - `\(P(a &lt; X \leq b) = \int_{a}^{b}f_X(x) dx\)`
+&gt; - `\(P(X = a) = 0\)`
+
+]
+
+
+???
+
+Now that we understand discrete and continuous random variables, the next important step is to describe how their probabilities are assigned.  
+
+We call this the **probability function** or **distribution** of a random variable.  
+
+Formally, if `\(X\)` takes values in some set `\(S_X\)`, then we can define `\(f_X(x) = P(X = x)\)`. This simply means, for each possible value of `\(X\)`, we assign a probability.  
+
+If `\(X\)` is **discrete**, we call this a **probability mass function** or PMF. A PMF gives the probability of each individual outcome. For example, the probability that a die roll equals 3.  
+
+If `\(X\)` is **continuous**, we call this a **probability density function** or PDF. But here’s the key: with continuous variables, the probability of any single exact point is **zero**. For instance, the probability that a person’s exact height is **170.000000… cm** is zero. What matters is the probability of being in an **interval**, like between 170 and 171 cm.  
+
+Let’s also check the properties:  
+
+- Probabilities are always nonnegative.  
+- For a discrete random variable, if you add up all probabilities, the total must equal 1.  
+- For a continuous random variable, if you integrate the density over the entire real line, the total must also equal 1.  
+
+This ensures that the distribution is complete and covers every possible outcome.  
+
+So the big takeaway here is: PMF is used for discrete cases like dice rolls, while PDF is used for continuous cases like time or height. Both are different tools but serve the same purpose: to describe how likely outcomes are.  
+
+
+
+---
+
+# Random Variable
+
+#### **Cumulative Dsitribution Function**
+
+&gt; The cumulative distribution function (CDF) of a random variable `\(X\)` is defined as 
+&gt; `$$F_X(x) = P(X\leq x)$$`
+
+
+#### **Properties**
+
+&gt; - `\(F_X\)` is non-decreasing
+&gt; - `\(F_X\)` is right-continuous 
+&gt; `$$\lim_{e\rightarrow 0^+}F_X(x + e) = F_X(x),~~~~\mathrm{for~all~x\in \mathbb{R}}$$`
+&gt; - `\(\lim_{x\rightarrow -\infty}F_X(x) = 0\)` and `\(\lim_{x\rightarrow \infty}F_X(x) = 1\)`
+
+
+- Discrete `\(X\)`: step function
+- Continuous `\(X\)`: monotonic increasing function (continuous)
+
+
+???
+
+Now, let’s move one step further: the **cumulative distribution function**, or CDF.  
+
+The CDF answers the question: *What is the probability that the random variable `\(X\)` is less than or equal to some value `\(x\)`?*  
+Formally, it’s defined as `\(F_X(x) = P(X \leq x)\)`.  
+
+Why is this useful? Because it summarizes the entire distribution in a single function. Once we know the CDF, we can compute probabilities for any interval.  
+
+Some key properties:  
+
+- The CDF is always **non-decreasing**. As `\(x\)` grows larger, the probability of being less than or equal to `\(x\)` can only go up or stay the same.  
+- The CDF is **right-continuous**, meaning it doesn’t jump when we approach from the right.  
+- At the extremes, the CDF starts from 0 when `\(x\)` goes to negative infinity, and it approaches 1 as `\(x\)` goes to positive infinity.  
+
+For **discrete random variables**, the CDF looks like a **step function**—it jumps at each possible value of `\(X\)`.  
+For **continuous random variables**, the CDF is a **smooth, increasing curve**.  
+
+So, the CDF is like a complete summary of the distribution and it tells us everything we need to know about the probabilities of `\(X\)` without listing each probability separately.  
+
+
+---
+
+# Random Variable 
+
+#### **Cumulative Dsitribution Function**
+
+&gt; If `\(X\)` is discrete, the cdf of `\(X\)` is 
+&gt; `$$F_X(x) = P(X\leq x) = \sum_{\{k\leq x; f_X(k)&gt;0\}}P_X(k)$$`
+&gt; If `\(X\)` is continuous
+&gt; `$$F_X(x) = P(X\leq x) = \int_{-\infty}^{x}f_X(t) dt$$`
+
+
+We say that `\(X\)` has the distribution `\(F_X\)`, write `\(X\sim F_X\)`. Similarly, `\(X \sim f_X\)` for the 
+named distributions of pmf of pdf 
+
+
+???
+
+Now, let’s talk about the cumulative distribution function, or CDF, which is one of the most important ways to describe a random variable.
+
+The CDF essentially tells us the probability that a random variable `\(X\)` takes on a value less than or equal to some threshold `\(x\)`. In other words, it accumulates probabilities as we move along the possible values of `\(X\)`.
+
+There are two cases depending on whether `\(X\)` is discrete or continuous.
+
+For a discrete random variable, the CDF is defined as:
+
+`$$F_X(x) = P(X\leq x) = \sum_{\{k\leq x; f_X(k)&gt;0\}}P_X(k)$$`
+
+This means we simply add up the probabilities of all outcomes that are less than or equal to `\(x\)`.
+
+For a continuous random variable, the CDF is:
+
+`$$F_X(x) = P(X\leq x) = \int_{-\infty}^{x}f_X(t) dt$$`
+
+Here, instead of summing, we integrate the probability density function up to `\(x\)`.
+
+Notice that the CDF always increases as `\(x\)` increases, and it approaches 0 as `\(x\)` goes to negative infinity and 1 as `\(x\)` goes to positive infinity.
+
+Finally, we use some common notation: if a random variable `\(X\)` follows a distribution with cumulative distribution function `\(F_X\)`, we write `\(X \sim F_X\)`. Similarly, if it follows a distribution with probability mass function or density function `\(f_X\)`, we write `\(X \sim f_X\)`.
+
+
+In practice, this means whenever you see the CDF of a random variable, you are looking at a complete description of its distribution, because the CDF fully determines how probabilities are assigned across the possible values of `\(X\)`.
+
+Let’s connect this concept with the broader context of data analysis.  
+When you conduct data analysis, the variables you are interested in can be regarded as random variables.  
+Analyzing data under the framework of random variables usually follows these steps:  
+
+1. **Collect data.**  
+2. **Assume that the collected data represents a sample of a probability variable.**  
+3. **Use the data to determine the shape of the probability distribution function of that variable.**  
+4. **Predict future data points or characteristics based on the estimated distribution.**  
+
+Among these steps, the **third step is the most crucial**: reverse-engineering the probability distribution function from the data.  
+
+There are various methods to accomplish this, and one of the simplest is through **descriptive statistics**:  
+
+- First, compute sample statistics such as the **sample mean** and **sample variance** from the observed data.  
+- Next, find a theoretical probability distribution that has the same mean and variance.  
+
+To apply this approach effectively, we need to understand how to calculate the corresponding descriptive statistics (like mean and variance) for a probability distribution even without sample data.  
+
+That’s why in the following section, we will study **the mean and variance of probability distributions**.  
+
+
+---
+
+# Expectation
+
+#### Concept 
+
+&gt; 1. **If the structure of the random variable is revealed, which means that the probability function of 
+the random variable is known, what is the theoretical average of the random variable?**
+&gt; 2. Suppose we could observe how the weather is in Christmas every year repeatedly. Suppose that
+the weather could be snowing (1) or not snowing (0). Each time the observation is repeated,
+we get an outcome for the random variable. We end up with `\(n\)` outcomes. The average of the random
+variable is just summing up all outcomes and dividing it by `\(n\)`. Now imagine that `\(n\)` goes to
+larger and larger without bound?
+
+
+???
+
+Here we are introducing the concept of **expectation**.  
+
+Think about a repeated experiment, like checking the weather on Christmas day every year. If we record "1" when it snows and "0" when it does not, each year gives us a new outcome. When we average these outcomes, for small `\(n\)` the average might jump around — perhaps 0.2, 0.5, or 0.7 depending on the sequence.  
+
+But as `\(n\)` gets larger and larger, this average starts to stabilize. It tends to converge toward a fixed value. That fixed value is what we call the **expectation** of the random variable.  
+
+In other words, expectation is a theoretical average. It tells us what the random variable would “settle down to” if we could repeat the random process infinitely many times.  
+
+
+
+---
+
+# Expectation
+
+
+#### **Definition** 
+
+&gt; Let the pmf of the random variable `\(X\)` be `\(f_X(x)\)`. The expectation of the discrete random variable `\(X\)` is 
+&gt; `$$\mu_X = E(X) = \sum_{x_i \in S}x_i f_X(x)$$`
+&gt; **Weighted Average of `\(x_i\)`** `\(\rightarrow\)` weights = `\(f_X(x_i)\)`
+
+
+#### Example 4: Expectation of Example 1
+
+`$$\mu_X = \sum_{x=0}^{3}xf_X(x)=0\cdot\frac{1}{8} + 1\cdot\frac{3}{8} + 2\cdot\frac{3}{8} + 3\cdot\frac{1}{8} = 1.5$$`
+
+#### Remarks
+
+&gt; Although we say `\(X\)` is 1.5 on the average, the average of `\(X\)` in real world never actually equals to 1.5. 
+
+
+???
+
+Now, let’s formalize the idea.  
+
+If the probability mass function (pmf) of a discrete random variable `\(X\)` is known, the expectation of `\(X\)` is calculated as the **weighted average** of all possible values, where each weight is the probability of that value occurring.  
+
+Take Example 1: the number of boys in three births. The possible values of `\(X\)` are 0, 1, 2, and 3, each with its corresponding probability. Multiplying each outcome by its probability and summing gives us 1.5.  
+
+But notice something important: in reality, the number of boys can only be 0, 1, 2, or 3. You will never see exactly 1.5 boys. The value 1.5 represents the **center of mass** of the distribution — the long-run balance point if we repeated the experiment many times.  
+
+So expectation is not about what happens in a single trial, but rather the fundamental average across infinitely many repetitions.  
+
+We interpret μ = 1.5 by reasoning that if we were to repeat the random experiment many times,
+independently each time, observe many corresponding outcomes of the random variable X, and take the sample mean of the observations, then the calculated value would fall close to 1.5. The
+approximation would get better as we observe more and more values of X (another form of the Law of Large Numbers; see Section 4.3). Another way it is commonly stated is that X is 1.5 “on the average” or “in the long run”.
+
+
+---
+
+# Expectation
+
+#### Recall the formula to calculate a sample mean 
+
+`$$\bar{x} = \frac{1}{N}\sum_{i=1}^{N}x_i$$`
+
+&gt; - The meaning of `\(x_i\)` is different from the definition of the expectation
+&gt; - In the expectation, `\(x_i\)` represents all possible elements from the sample space
+&gt; - In the sample mean, `\(x_i\)` is the realized samples
+
+
+#### Question 
+
+&gt; In the formula for calculating the expectation, the probability roles as a weight. 
+But why is there no probability weight in the formula for calculating the sample mean?
+
+
+???
+
+
+Let’s pause for a moment and compare **expectation** with the **sample mean**.  
+
+First, recall the formula for the sample mean: `\(\bar{x} = \frac{1}{N}\sum_{i=1}^N x_i\)`. Each `\(x_i\)` here is a realized data point — an observation you have actually measured.  
+
+By contrast, in the definition of expectation, the `\(x_i\)` represent all possible outcomes in the sample space, not just the values we happened to observe. And because not all outcomes are equally likely, we must attach probabilities as weights.  
+
+So why don’t we see probabilities in the sample mean formula? The reason is that when we compute the average of actual samples, we are treating each observation equally: each observed value has weight `\(1/N\)`. That’s the role of probability in the empirical world: the observed data themselves implicitly reflect the underlying probabilities.  
+
+In short:  
+- **Expectation** = theoretical average with probability weights.  
+- **Sample mean** = empirical average with equal weights for observed data.  
+
+This distinction helps us understand why the sample mean is often used as an estimator of expectation — because as the number of samples grows, the sample mean converges to the true expectation.  
+
+
+---
+
+# Expectation
+
+#### **General Definition**
+
+&gt; Let the pmf (or pdf) of the random variable `\(X\)` be `\(f_X(x)\)`. The expectation of `\(g(X)\)` is 
+`$$\begin{aligned}
+E[g(X)] &amp;= \sum_{x:f_X(x)&gt;0} g(x)f_X(x)~~~\mathrm{for~pmf} \\
+        &amp;= \int_{-\infty}^{\infty} g(x)f_X(x) dx~~~\mathrm{for~pdf}
+\end{aligned}$$`
+
+
+#### **Properties**
+
+&gt; For any functions `\(g\)` and `\(h\)`, any random variable `\(X\)`, and any constant `\(c\)`: 
+&gt; - `\(E(c) = c\)`
+&gt; - `\(E[cg(X)] = cE[g(X)]\)`
+&gt; - `\(E[g(X) + h(X)] = E[g(X)] + E[h(X)]\)`
+
+
+???
+
+Now let’s extend the concept of expectation.  
+
+Until now, we’ve focused on `\(E(X)\)`, the expectation of the random variable itself. But often, we are interested in functions of the random variable, such as `\(g(X)\)` — for example, `\(X^2\)` when computing variance.  
+
+The general definition is simple: multiply the function value `\(g(x)\)` by the probability of `\(x\)` and then sum (for discrete random variables) or integrate (for continuous random variables).  
+
+Several key properties make expectations very useful:  
+
+1. The expectation of a constant is just the constant itself.  
+2. Constants can be factored out: `\(E[cg(X)] = cE[g(X)]\)`.  
+3. Expectation is linear: `\(E[g(X) + h(X)] = E[g(X)] + E[h(X)]\)`.  
+
+These properties mean that expectation works very similarly to the ordinary arithmetic average, but in the probabilistic setting. In practice, this allows us to manipulate random variables in analysis just as we would manipulate numbers in algebra, which makes expectation a powerful and flexible tool.  
+
+
+
+---
+
+# Expectation
+
+#### **Relationship betwee n the expectation and sample mean**
+
+&lt;!-- &gt; Question 1: Is a sample mean random variable?  --&gt;
+&gt; - Suppose we have a random sample size of `\(N\)`, denoted as `\(\{X_1, X_2, \ldots, X_N\}\)`. Then 
+sample mean of the random variable `\(X\)` is 
+&gt; `$$\bar{X} = \frac{1}{N}\sum_{i=1}^{N}X_i$$`
+&gt; - Since `\(\{X_1, \ldots, X_N\}\)` are randomly selected observations and each `\(X_i\)` has the 
+distribution, `\(\bar{X}\)` is an random variable. 
+
+`$$\begin{aligned}
+E(\bar{X}) &amp;= E\left(\frac{1}{N}\sum_{i=1}^{N}X_i\right) \\
+           &amp;= \frac{1}{N}\sum_{i=1}^{N}E(X_i) = \frac{1}{N}N E(X) \\
+           &amp;= E(X) = \mu_X
+\end{aligned}$$`
+
+
+???
+
+Let's talk about the relationship between expectation and the sample mean.
+
+Suppose we collect a random sample of size N, which we denote as `\(X_1\)` through `\(X_N\)`. The sample mean, written as `\(\bar{X}\)`, is simply the sum of these random observations divided by `\(N\)`.
+
+Notice that since each observation `\(X_1\)` is a random variable, the sample mean itself is also a random variable. It is not fixed; it varies depending on which sample we happen to draw.
+
+If we take the expectation of `\(\bar{X}\)`, by linearity of expectation, it becomes the average of the expectations of the individual `\(X_i\)`. Since each `\(X_i\)` has the same distribution, each expectation is the same, equal to `\(\mu\)`, the population mean.
+
+So, the key result is:
+
+`\(E(\bar{X}) = \mu\)`
+
+This is a very important property in statistics, because it tells us that the sample mean is an unbiased estimator of the population mean. In other words, if we repeat sampling many times, on average, the sample mean will target the true population mean.
+
+---
+
+# Variance 
+
+#### **Variance of Random Variable**
+
+&gt; - The variance of a random variable indicates the shape of the pmf or pdf: whether the probability is 
+dense or spread
+&gt; - Roughly speaking, the expectation is a predicted value from the random variable, while the variance 
+indicates the precision or reliability of the prediction.
+
+
+#### **Definition**
+
+&gt; - Let the pmf (or pdf) of a random variable `\(X\)` be `\(f_X(x)\)`. The operator of the variance for a 
+random variable `\(X\)` is denoted as `\(\mathrm{Var}(X)\)` and its result is written as `\(\sigma^2\)`
+
+`$$\begin{aligned}
+\sigma^2 = \mathrm{Var}(X) &amp;= E[(X - \mu)^2] \\
+                           &amp;= \sum_{x \in S}(x_i - \mu)^2f_X(x_i),~~~\mathrm{discrete} \\
+                           &amp;= \int_{-\infty}^{\infty} (x - \mu)^2f_X(x) dx,~~~\mathrm{continuous}
+\end{aligned}$$`
+
+
+???
+
+
+Next, let’s move on to the concept of variance.
+
+While the expectation represents a predicted or central value of the distribution, the variance tells us how precise or reliable that prediction is. In other words, variance measures the spread of the probability distribution—whether the values are clustered tightly around the mean or widely dispersed.
+
+Formally, the variance of a random variable X is written as Var(X), and the result is denoted σ². It is defined as the expected squared deviation from the mean:
+`\(Var(X) = E[(X – \mu)^2]\)`.
+
+If `\(X\)` is discrete, we calculate this using a summation over all possible values weighted by their probabilities. If X is continuous, we instead compute an integral over the probability density function.
+
+So, variance is essentially a way of quantifying uncertainty. A small variance means most of the probability mass lies close to the mean, while a large variance means the distribution is more spread out.
+
+---
+
+# Variance
+
+#### **Properties**
+
+&gt; For any random variable `\(X\)` and any constant `\(c\)`
+&gt; - `\(\mathrm{Var}(X) \geq 0\)`
+&gt; - `\(\mathrm{Var}(c) = 0\)`, `\(\mathrm{Var}(cX) = c^2\mathrm{Var}(X)\)`
+&gt; - `\(\mathrm{Var(X + c)} = \mathrm{Var(X)}\)`
+&gt; - `\(\mathrm{Var}(X) = E[X^2] - (E[X])^2 = E[X^2] - \mu_X^{2}\)`
+
+
+#### The variance of sum (or difference) of two random variables
+
+&gt; Let `\(X\)` and `\(Y\)` be random variables with the probability distribution, then 
+
+`$$\begin{aligned}
+\mathrm{Var}(X\pm Y) &amp;= E[(X \pm Y - (\mu_X \pm \mu_Y))^2] \\
+                     &amp;= E[((X - \mu_X) \pm (Y - \mu_Y))^2] \\ 
+                     &amp;= E[(X - \mu_X)^2 + (Y - \mu_Y)^2 \pm 2(X-\mu_X)(Y - \mu_Y)] \\
+                     &amp;= E[(X - \mu_X)^2] + E[(Y - \mu_Y)^2] \pm 2E[(X-\mu_X)(Y - \mu_Y)] \\
+                     &amp;= \mathrm{Var}(X) + \mathrm{Var}(Y) \pm 2\mathrm{Cov}(X, Y)
+\end{aligned}$$`
+
+
+???
+
+Let’s discuss the fundamental properties of variance.
+
+First, variance is always non-negative: `\(\mathrm{Var}(X) \ge 0\)`. This makes sense intuitively, because variance measures squared deviations from the mean, and squared quantities can’t be negative.
+
+Second, if we have a constant `\(c\)`, the variance of that constant is zero: `\(\mathrm{Var}(c) = 0\)`. This means that a constant has no variability.
+
+Third, scaling a random variable by a constant `\(c\)` changes the variance by a factor of `\(c^2\)`: `\(\mathrm{Var}(cX) = c^2\mathrm{Var}(X)\)`. This reflects the fact that variance is sensitive to the scale of the variable.
+
+Fourth, adding a constant to a random variable does not change its variance: `\(\mathrm{Var}(X+c) = \mathrm{Var}(X)\)`. The constant shifts the distribution without altering its spread.
+
+Finally, variance can be expressed using expectations:
+$$
+\mathrm{Var}(X) = E[X^2] - (E[X])^2 = E[X^2] - \mu_X^2.
+$$
+This formula is often very useful for computation.
+
+Now, let’s consider the variance of the sum or difference of two random variables, `\(X\)` and `\(Y\)`.  
+The general formula is:
+$$
+\mathrm{Var}(X \pm Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) \pm 2\mathrm{Cov}(X, Y),
+$$
+where `\(\mathrm{Cov}(X,Y)\)` is the covariance between `\(X\)` and `\(Y\)`.  
+If `\(X\)` and `\(Y\)` are independent, the covariance term disappears, and the variance of the sum or difference becomes simply the sum of the variances:
+$$
+\mathrm{Var}(X \pm Y) = \mathrm{Var}(X) + \mathrm{Var}(Y).
+$$
+
+This property is important because it helps us understand how uncertainty propagates when we combine random variables.
+
+---
+
+# Variance 
+
+#### <svg aria-hidden="true" role="img" viewBox="0 0 581 512" style="height:1em;width:1.13em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:black;overflow:visible;position:relative;"><path d="M581 226.6C581 119.1 450.9 32 290.5 32S0 119.1 0 226.6C0 322.4 103.3 402 239.4 418.1V480h99.1v-61.5c24.3-2.7 47.6-7.4 69.4-13.9L448 480h112l-67.4-113.7c54.5-35.4 88.4-84.9 88.4-139.7zm-466.8 14.5c0-73.5 98.9-133 220.8-133s211.9 40.7 211.9 133c0 50.1-26.5 85-70.3 106.4-2.4-1.6-4.7-2.9-6.4-3.7-10.2-5.2-27.8-10.5-27.8-10.5s86.6-6.4 86.6-92.7-90.6-87.9-90.6-87.9h-199V361c-74.1-21.5-125.2-67.1-125.2-119.9zm225.1 38.3v-55.6c57.8 0 87.8-6.8 87.8 27.3 0 36.5-38.2 28.3-87.8 28.3zm-.9 72.5H365c10.8 0 18.9 11.7 24 19.2-16.1 1.9-33 2.8-50.6 2.9v-22.1z"/></svg> Example
+
+&gt; Suppose `\(X \sim N(0, 1)\)` and `\(Y \sim N(2, 4)\)`
+&gt; - Generate 100 random samples corresponding to `\(X\)` and `\(Y\)` 
+&gt; - Let `\(Z = X + Y\)`
+&gt; - Calcuate sample means and variances `\(X\)`, `\(Y\)` and `\(Z\)`
+
+.panelset[
+.panel[.panel-name[R Code]
+
+``` r
+set.seed(123)
+X &lt;- rnorm(100, 0, 1)
+Y &lt;- rnorm(100, 2, 2)
+Z &lt;- X+Y
+mX &lt;- mean(X); mY &lt;- mean(Y)
+mZ &lt;- mean(Z)
+vX &lt;- var(X); vY &lt;- var(Y)
+vZ &lt;- var(Z)
+```
+]
+
+.panel[.panel-name[Results]
+
+``` r
+mX + mY; mZ
+```
+
+```
+[1] 1.875312
+```
+
+```
+[1] 1.875312
+```
+
+``` r
+vX + vY; vZ
+```
+
+```
+[1] 4.573485
+```
+
+```
+[1] 4.398601
+```
+]
+
+]
+
+
+???
+
+Let’s illustrate these concepts with a practical example using simulation in R.
+
+Suppose `\(X\)` follows a standard normal distribution: `\(X \sim N(0,1)\)`, and `\(Y\)` follows a normal distribution with mean 2 and variance 4: `\(Y \sim N(2,4)\)`.  
+
+We generate 100 random samples for both `\(X\)` and `\(Y\)`.  
+Then, we define a new variable `\(Z\)` as the sum: `\(Z = X + Y\)`.  
+
+According to the property we just discussed, the variance of `\(Z\)` should equal:
+$$
+\mathrm{Var}(Z) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y).
+$$
+Since `\(X\)` and `\(Y\)` are generated independently, the covariance term is zero, and so `\(\mathrm{Var}(Z)\)` should be the sum of `\(\mathrm{Var}(X)\)` and `\(\mathrm{Var}(Y)\)`.
+
+Running this simulation in R confirms this property.  
+We see that the sample variance of `\(Z\)` is approximately equal to the sum of the sample variances of `\(X\)` and `\(Y\)`.  
+This example is powerful because it connects the theory with concrete computation and shows how variance behaves under addition of random variables.
+
+
+---
+
+# Variance 
+
+#### **Variance of the Sample Mean**
+
+&gt; Let `\(X_1, \ldots, X_n\)` are random samples from the identical and independent distribution, then 
+&gt; `$$\mathrm{Var}(\bar{X}) = \frac{1}{N}\mathrm{Var}(X) = \frac{\sigma^2}{N}$$`
+
+#### **Proof**
+
+`$$\begin{aligned}
+\mathrm{Var}(\bar{X}) &amp;= \mathrm{Var}\left(\frac{1}{N}\sum_{i=1}^{N}X_i \right) = \frac{1}{N^2}\mathrm{Var(X_1 + \cdots + X_N)} \\ 
+                      &amp;= \frac{1} {N^2}N\mathrm{Var}(X) = \frac{1}{N}\mathrm{Var}(X) = \frac{\sigma^2}{N}
+\end{aligned}$$`
+
+
+???
+
+Let’s now discuss the variance of the sample mean, a concept that is central to statistics.
+
+Suppose we have `\(n\)` independent and identically distributed random samples, `\(X_1, X_2, \ldots, X_n\)`.  
+The variance of the sample mean `\(\bar{X}\)` is given by:
+$$
+\mathrm{Var}(\bar{X}) = \frac{1}{N}\mathrm{Var}(X) = \frac{\sigma^2}{N}.
+$$
+
+This formula is very important because it tells us that as the sample size `\(N\)` increases, the variance of the sample mean decreases.  
+Intuitively, the more samples we take, the more precise our estimate of the mean becomes.
+
+Let’s go through the proof.
+
+We start with the definition of variance for `\(\bar{X}\)`:
+$$
+\mathrm{Var}(\bar{X}) = \mathrm{Var}\left(\frac{1}{N}\sum_{i=1}^N X_i\right).
+$$
+By factoring out `\(\frac{1}{N}\)` and using the properties of variance for independent variables, we have:
+$$
+\mathrm{Var}(\bar{X}) = \frac{1}{N^2} \mathrm{Var}(X_1 + \cdots + X_N) = \frac{1}{N^2} N \mathrm{Var}(X) = \frac{\sigma^2}{N}.
+$$
+
+The takeaway is clear: the variability of the sample mean shrinks proportionally to `\(\frac{1}{N}\)`.
+
+This result is the theoretical foundation for why larger sample sizes yield more reliable estimates of population parameters.
+
+
+
+---
+# Variance 
+
+#### **Expectation of the Sample Variance** 
+&gt; Let `\(\bar{X}\)`, `\(\sigma^2_X\)`, and `\(S^2\)` be the sample mean, variance, and sample variance of a random variable `\(X\)`. 
+Then the expectation of `\(S^2\)` is 
+&gt; `$$E(S^2) = \frac{N-1}{N}\sigma^2_X,~~~S^2 = \frac{1}{N}\sum_{i=1}^{N}(X_i - \bar{X})^2$$`
+
+
+.panelset[
+.panel[.panel-name[Proof: Part I]
+
+`$$\begin{aligned}
+E(S^2) &amp;= E\left[\frac{1}{N}\sum_{i=1}^{N}(X_i - \bar{X})^2 \right] = E\left[\frac{1}{N}\sum_{i=1}^{N}(X^2_i - 2X_i\bar{X} + \bar{X}^2) \right] \\ 
+       &amp;= E\left[\frac{1}{N}\sum_{i=1}^{N}X_i^2 -2\bar{X}\frac{1}{N}\sum_{i=1}^{N}X_i + \frac{1}{N}\sum_{i=1}^{N}\bar{X}^2  \right] \\ 
+       &amp;= \frac{1}{N}\sum_{i=1}^{N}E(X_i^2) - E(\bar{X}^2)
+\end{aligned}$$`
+
+]
+
+.panel[.panel-name[Part II]
+Since `\(\sigma^2_X = E(X^2) - \mu_X^2\)` and `\(\mathrm{Var}(\bar{X}) = E[\bar{X}^2] - \mu_X^2\)`
+
+`$$\begin{aligned}
+E(X^2) &amp;= \sigma^2_X + \mu_X^2 \\
+E[\bar{X}^2] &amp;= \frac{\sigma^2_X}{N} + \mu_X^2 
+\end{aligned}$$`
+]
+
+.panel[.panel-name[Part III]
+Using Part II, 
+
+`$$\begin{aligned}
+E(S^2) &amp;= \frac{1}{N}\sum_{i=1}^{N}E(X_i^2) - E(\bar{X}^2) = \frac{1}{N}\sum_{i=1}^{N}(\sigma_X^2 + \mu_X^2) - E[\bar{X}^2] \\
+       &amp;= \frac{1}{N}N(\sigma^2_X + \mu_X^2) - \left(\frac{\sigma^2_X}{N} + \mu_X^2\right) \\ 
+       &amp; = \frac{N-1}{N}\sigma_X^2
+\end{aligned}$$`
+
+]
+
+.panel[.panel-name[Implication]
+
+&gt; - Unlike the sample mean `\(\bar{X}\)`, the expectation of the sample variance `\(S^2\)` is less than `\(\sigma_X^2\)` (**biased**)
+&gt; - To obtain the unbiased result, therefore, use `\(N-1\)` 
+
+]
+]
+
+
+???
+
+Next, let’s examine the expectation of the sample variance.
+
+Recall that the sample variance `\(S^2\)` is defined as:
+$$
+S^2 = \frac{1}{N} \sum_{i=1}^N (X_i - \bar{X})^2.
+$$
+
+We want to know its expectation, `\(E(S^2)\)`.
+
+Through derivation, we find:
+$$
+E(S^2) = \frac{N-1}{N} \sigma_X^2.
+$$
+
+This is important: `\(E(S^2)\)` is slightly less than `\(\sigma_X^2\)`.  
+In other words, the sample variance calculated using `\(N\)` in the denominator is a **biased estimator** of the true variance.
+
+This bias disappears when we divide by `\(N-1\)` instead of `\(N\)`.  
+That is why the unbiased estimator of variance is:
+
+$$
+S^2_{\text{unbiased}} = \frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2.
+$$
+
+This adjustment is crucial in statistics, especially when sample sizes are small.  
+Using `\(N-1\)` instead of `\(N\)` corrects the bias and gives a more accurate estimate of the population variance.
+
+
+`$$\begin{aligned}
+\sigma^2_X &amp;= \frac{N}{N-1}E(S^2) \\
+           &amp;= \frac{N}{N-1}E\left[\frac{1}{N}\sum_{i=1}^{N}(X_i - \bar{X})^2\right] \\
+           &amp;= E\left[\frac{1}{N-1}\sum_{i=1}^{N}(X_i - \bar{X})^2\right]
+\end{aligned}$$`
+
+
+---
+# Expectation and Variance 
+
+#### **Implication**
+
+&gt; 1. The p.m.f or p.d.f of `\(X\)` shall exist to derive the expectation (or variance) but we don't know 
+the exact formula of p.m.f or p.d.f. 
+&gt; 2. Since `\(E(\bar{X}) = E(X)\)`, the sample mean `\(\bar{x}\)` is approximate to `\(E(X)\)`
+&gt; 3. If `\(N\)` is very large, `\(\bar{x}\)` is nearly or equal to `\(E(X)\)` since the variance of `\(\bar{x}\)` becomes small. 
+&gt; 4. Therefore, `\(\bar{x} \approx E(X)\)` when `\(N\)` is very large
+
+
+???
+
+
+
+
+Let’s wrap up our discussion on expectation and variance with some important implications.
+
+First, to derive the expectation or variance of a random variable `\(X\)`, we need to know its probability mass function (p.m.f) if discrete, or probability density function (p.d.f) if continuous.
+But in reality, the exact formula for the p.m.f or p.d.f is often unknown — we usually estimate it from data.
+
+Second, we have learned that:
+
+`\(E(\bar{X}) = E(X)\)`
+
+which means the expected value of the sample mean equals the expectation of the random variable itself.
+This is a key property — the sample mean is an unbiased estimator of the population mean.
+
+Third, as the sample size `\(N\)` becomes very large, the variance of the sample mean:
+
+`$$\mathrm{Var}(\bar{X}) = \frac{\sigma^2}{N}$$`
+
+gets smaller and smaller.
+This means the sample mean `\(\bar{x}\)` will be very close to the true expectation `\(E(X)\)`.
+
+Therefore, in practice, we often rely on the principle:
+
+`\(\bar{x} \approx E(X)\)`
+
+when N is large.
+
+This result is the foundation of many statistical methods.
+It explains why larger sample sizes improve accuracy and reliability in estimation.
+
+Ultimately, understanding these properties of expectation and variance helps us design better experiments and draw stronger conclusions from data.
+
+---
+
+# Joint and Marginal Distribution 
+
+#### **Joint and Marginal Distribution for Two Categorical Vairables**
+
+&gt; Consider two discrete random variables `\(X\)` and `\(Y\)` with p.m.f `\(f_X\)` and `\(f_Y\)` supporting on the 
+sample space `\(S_X\)` and `\(S_Y\)`, respectively. Let `\(S_{X,Y}\)` denote the set of all possible pairs 
+`\((x, y)\)`. Then the _**joint probability mass function**_ of `\(X\)` and `\(Y\)` is the function `\(f_{X,Y}\)` is
+
+`$$f_{X,Y} = P(X = x, Y = y)~~~~\mathrm{for~(x,y) \in S_{X,Y}}$$`
+
+&gt; For every joint p.m.f 
+
+`$$\begin{aligned}
+f_{X, Y}(x, y) &amp;&gt; 0~~~~\mathrm{for~all~(x,y) \in S_{X,Y}} \\
+\sum_{(x,y)\in S_{X,Y}} f_{X,Y}(x, y) &amp;= \sum_{x\in S_X}\sum_{y \in S_Y} f_{X,Y}(x, y) = 1
+\end{aligned}$$`
+
+
+
+
+???
+
+Let’s begin by exploring the concept of joint and marginal distributions for two categorical variables.
+Imagine we have two discrete random variables, `\(X\)` and `\(Y\)`. Each has its own probability mass function, or p.m.f., which tells us the probability of each possible outcome. These functions are defined over their respective sample spaces, `\(S_X\)` and `\(S_Y\)`.
+Now, when we consider both variables together, we look at all possible pairs of outcomes—this set is called `\(S_{X,Y}\)`. The joint probability mass function, denoted as `\(f_{X,Y}\)`, gives us the probability that X takes a specific value x and Y takes a specific value y at the same time. Mathematically, this is written as:
+
+`$$f_{X,Y}(x, y) = P(X = x, Y = y)$$`
+
+
+This function must satisfy two conditions:
+- The probability for each pair (x, y) must be greater than zero.
+- The sum of all these joint probabilities across the entire sample space must equal 1.
+
+This ensures that we’re working with a valid probability distribution. Think of this as a two-dimensional table where each cell represents the probability of a specific combination of X and Y. It’s a foundational concept for understanding relationships between variables.
+
+
+
+---
+# Joint and Marginal Distribution 
+
+#### **Marginal Distribution**
+
+&gt; The p.m.f's of `\(f_{(X)}\)` and `\(f_{(Y)}\)` are called the _marginal p.m.f of `\(X\)` and `\(Y\)`_, respectively, 
+in the context of the joint probability distribution
+
+`$$\begin{aligned}
+f_X(x) &amp;= P(X = x) \\
+       &amp;= \sum_{y \in S_Y} P(X = x, Y = y) \\
+       &amp;= \sum_{y \in S_Y} f_{X,Y}(x, y)
+\end{aligned}$$`
+
+&gt; Similarly, 
+&gt; `$$f_Y(y) = \sum_{x\in S_X} f_{X,Y}(x,y)$$`
+
+
+#### **Joint Cumulative Distribution Function**
+
+`$$F_{X,Y}(x,y)=P(X\leq x, Y \leq y)~~~~\mathrm{for~all~(x,y)}\in \mathbb{R}^2$$`
+
+???
+
+Now let’s move on to marginal distributions.
+
+When we have a joint distribution of two variables, we can extract the individual distributions of each variable—these are called marginal distributions. They’re derived by summing over the other variable in the joint distribution.
+
+For example, to get the marginal distribution of X, we sum over all possible values of Y:
+
+`$$f_X(x) = ∑_{y ∈ S_Y} f_{X,Y}(x, y)$$`
+
+This gives us the total probability that X equals x, regardless of what value Y takes. Similarly, we can find the marginal distribution of Y by summing over all values of X:
+
+`$$f_Y(y) = ∑_{x ∈ S_X} f_{X,Y}(x, y)$$`
+
+This process helps us understand each variable on its own, even when they’re part of a joint system.
+
+Lastly, we introduce the joint cumulative distribution function, or joint CDF. This function tells us the probability that X is less than or equal to some value x, and Y is less than or equal to some value y:
+
+
+`$$F_{X,Y}(x, y) = P(X ≤ x, Y ≤ y)$$`
+
+
+Given the joint PMF we may recover the marginal PMFs, but the converse is not true. 
+
+**Cumulative probability mass function**
+
+
+`$$P(a\leq X\leq b, c \leq Y \leq d) = \sum_{a\leq X \leq b}\sum_{c\leq X \leq d} f_{X,Y}(x, y)$$`
+
+---
+# Joint and Marginal Distribution 
+
+#### **Example**
+
+&gt; The 50 students at a university take examinations in two subjects `\(X\)` and `\(Y\)`, and results 
+come out with A, B, C, D, E, F grades. 
+
+.panelset[
+.panel[.panel-name[R Code]
+
+``` r
+library(tidyverse)
+
+grades &lt;- LETTERS[1:6]
+dat &lt;- expand_grid(X = grades, Y = grades)
+dat &lt;- dat %&gt;% 
+  mutate(n = c(1,2,1,0,0,0, 
+               0,2,3,1,0,0, 
+               0,4,7,4,1,0, 
+               0,1,4,5,4,0,
+               0,0,1,3,2,0, 
+               0,0,0,1,2,1))
+```
+
+]
+.panel[.panel-name[Table &amp; Joint p.m.f]
+.pull-left[
+
+``` r
+library(questionr)
+t1 &lt;- with(dat, wtd.table(X, Y, 
+           weights = n)); t1
+```
+
+```
+  A B C D E F
+A 1 2 1 0 0 0
+B 0 2 3 1 0 0
+C 0 4 7 4 1 0
+D 0 1 4 5 4 0
+E 0 0 1 3 2 0
+F 0 0 0 1 2 1
+```
+]
+.pull-right[
+
+``` r
+# Joint probability mass function
+t1/sum(t1)
+```
+
+```
+     A    B    C    D    E    F
+A 0.02 0.04 0.02 0.00 0.00 0.00
+B 0.00 0.04 0.06 0.02 0.00 0.00
+C 0.00 0.08 0.14 0.08 0.02 0.00
+D 0.00 0.02 0.08 0.10 0.08 0.00
+E 0.00 0.00 0.02 0.06 0.04 0.00
+F 0.00 0.00 0.00 0.02 0.04 0.02
+```
+]
+]
+
+.panel[.panel-name[Heatmap-Code]
+
+``` r
+library(ggpubr)
+gp1 &lt;- ggplot(data = dat) + 
+  aes(x = X, y = Y, fill = n/60, label = sprintf("%.2f", n/60)) + 
+  geom_tile(color = "white") + 
+  scale_fill_gradient(
+    low = "white", high = "#132B43", limits = c(0, 0.15), 
+    name = "", breaks = c(0, 0.05, 0.10, 0.15)
+  ) +
+  labs(title = "Joint Probabilty Mass Function of X and Y") + 
+  geom_text(color = "black", size = 4) +
+  guides(fill = guide_colorbar(barheight = 25)) + 
+  scale_y_discrete(limits = rev) + 
+  theme_minimal(base_size = 15) + 
+  theme(panel.grid = element_blank(), axis.title = element_blank())
+```
+
+]
+
+.panel[.panel-name[Plot]
+&lt;img src="Figures/pmf-ex-1.png" width="380" height="380" style="display: block; margin: auto;" /&gt;
+
+]
+
+.panel[.panel-name[Marginal Distribution]
+.pull-left[
+
+``` r
+# Marginal pmf of X
+dat %&gt;% 
+  count(X, wt = n) %&gt;% 
+  mutate(n = n/sum(n))
+```
+
+```
+# A tibble: 6 × 2
+  X         n
+  &lt;chr&gt; &lt;dbl&gt;
+1 A      0.08
+2 B      0.12
+3 C      0.32
+4 D      0.28
+5 E      0.12
+6 F      0.08
+```
+
+]
+.pull-right[
+
+``` r
+# Marginal pmf of YY
+dat %&gt;% 
+  count(Y, wt = n) %&gt;% 
+  mutate(n = n/sum(n))
+```
+
+```
+# A tibble: 6 × 2
+  Y         n
+  &lt;chr&gt; &lt;dbl&gt;
+1 A      0.02
+2 B      0.18
+3 C      0.32
+4 D      0.28
+5 E      0.18
+6 F      0.02
+```
+
+]
+]
+
+]
+
+
+???
+
+Now, let’s take a practical example to help us understand joint and marginal distributions for two categorical variables.
+
+Imagine we have 50 students taking exams in two subjects — let’s call them X and Y.
+Each student receives a grade of A, B, C, D, E, or F in both subjects.
+
+In our dataset, we use expand_grid() to create all possible combinations of grades for X and Y — that’s a total of 6 × 6 = 36 pairs. Then, we assign the number of students, denoted as n, who received each combination of grades.
+
+This allows us to build a joint frequency table — a table showing how many students fall into each (X, Y) grade pair.
+
+When we divide each cell count by the total number of students, we obtain the joint probability mass function (p.m.f.), denoted as
+
+`$$F_{X,Y}(x, y) = P(X ≤ x, Y ≤ y)$$`
+Each value tells us the probability that a randomly chosen student received grade `\(x\)` in subject X and grade `\(y\)` in subject Y.
+
+We can visualize this using a heatmap, where darker areas indicate higher joint probabilities. This helps us immediately see patterns — for example, if students who perform well in X tend to also perform well in Y, you’ll see higher probabilities along the diagonal.
+
+Finally, we can compute the marginal distributions of X and Y — these are just the totals for each grade regardless of the other subject. Mathematically,
+
+`$$f_X(x) = ∑_{y ∈ S_Y} f_{X,Y}(x, y)$$`
+
+`$$f_Y(y) = ∑_{x ∈ S_X} f_{X,Y}(x, y)$$`
+
+So in summary, the joint distribution tells us how two variables behave together, while the marginal distributions show us the individual behavior of each variable.
+
+---
+# Joint and Marginal Distribution
+
+#### **Joint and Marginal Distribution for Continuous Variables**
+
+&gt; Given two continuous random variable `\(X\)` and `\(Y\)`, let `\(f_{X,Y}(x, y)\)` be a function associated 
+with `\(X = x\)` and `\(Y = y\)`. Then `\(f\)` is called the _**joint probability density function**_ of 
+`\(X\)` and `\(Y\)` if 
+
+`$$\begin{aligned}
+f_{X,Y}(x,y) &amp;\geq 0~~~~\mathrm{for~all}~(x,y)\in S_{X,Y} \\
+\int_{S_X}\int_{S_Y} f_{X,Y}(x,y)dx dy &amp;= 1
+\end{aligned}$$`
+
+
+&gt; Joint Cumulative Distribution Function 
+
+`$$F_{X,Y}(x, y) = P(X \leq x, Y\leq y) = \int_{-\infty}^{x}\int_{-\infty}^{y} f_{X,Y}(u, v) dv du
+~~~~\mathrm{for~all}~(x,y) \in \mathbb{R}^2$$`
+
+&gt; Marginal PDF of `\(X\)` and `\(Y\)`
+
+`$$\begin{aligned}
+f_X(x) &amp;= \int_{S_Y} f_{X,Y}(x,y) dy,~~~~x \in S_X \\
+f_Y(y) &amp;= \int_{S_X} f_{X,Y}(x,y) dx,~~~~y \in S_Y \\
+\end{aligned}$$`
+
+
+
+???
+
+Now let’s extend this concept from categorical or discrete variables to continuous random variables.
+
+When both `\(X\)` and `\(Y\)` are continuous, we describe their behavior using a joint probability density function, written as `\(f_{X,Y}(x, y)\)`.
+
+This function must satisfy two important conditions:
+
+It can never be negative, that is
+
+`$$f_{X,Y}(x,y) \geq \mathrm{for~all}~(x,y)\in S_{X,Y}$$`
+The total probability over all possible values must equal 1:
+
+`$$\int_{S_X}\int_{S_Y} f_{X,Y}(x,y)dx dy = 1$$`
+From this, we can define the joint cumulative distribution function (CDF), which gives the probability that both `\(X\)` and `\(Y\)` fall below certain values:
+
+`$$F_{X,Y}(x, y) = P(X \leq x, Y\leq y) = \int_{-\infty}^{x}\int_{-\infty}^{y} f_{X,Y}(u, v) dv du
+~~~~\mathrm{for~all}~(x,y) \in \mathbb{R}^2$$`
+
+Just like before, we can also obtain marginal probability density functions (PDFs) by integrating out the other variable:
+
+
+`$$\begin{aligned}
+f_X(x) &amp;= \int_{S_Y} f_{X,Y}(x,y) dy,~~~~x \in S_X \\
+f_Y(y) &amp;= \int_{S_X} f_{X,Y}(x,y) dx,~~~~y \in S_Y \\
+\end{aligned}$$`
+
+
+---
+# Joint and Marginal Distribution
+
+#### **Example**: Joint PDF
+
+&gt; Let the joint PDF of `\((X,Y)\)` be given by 
+&gt; `$$f_{X,Y}(x,y) = \frac{6}{5}(x + y^2), ~~~~0&lt;x&lt;1,~0&lt;y&lt;1$$`
+
+.panelset[
+.panel[.panel-name[Marginal PDF of X]
+`$$\begin{aligned}
+f_X(x) &amp;= \int_0^1 \frac{6}{5}(x + y^2) dy \\
+       &amp;= \frac{6}{5}\left(xy + \frac{y^3}{3}\right) \bigg|_{y=0}^{1} \\
+       &amp;= \frac{6}{5}\left(x + \frac{1}{3}\right)
+\end{aligned}$$`
+]
+.panel[.panel-name[Marginal PDF of Y]
+`$$\begin{aligned}
+f_Y(y) &amp;= \int_0^1 \frac{6}{5}(x + y^2) dx \\
+       &amp;= \frac{6}{5}\left(\frac{x^2}{2} + xy^2\right) \bigg|_{x=0}^{1} \\
+       &amp;= \frac{6}{5}\left(\frac{1}{2} + y^2\right)
+\end{aligned}$$`
+]
+.panel[.panel-name[Probabilty of joint PDF]
+`$$\begin{aligned}
+P(0&lt;x&lt;0.3,~0.1&lt;y&lt;0.3) &amp;= \int_{x=0}^{0.3}\int_{y=0.1}^{0.3}\frac{6}{5}\left(x + y^2\right) dy dx \\
+                      &amp;= \int_{x=0}^{0.3}\frac{6}{5}\left(xy + \frac{y^3}{3}\right)\bigg|_{y=0.1}^{0.3} dx \\
+                      &amp;= \int_{x=0}^{0.3}\frac{6}{5}\left(0.2x + 0.00867\right) dx \\
+                      &amp;= \frac{6}{5}\left(\frac{0.2}{2}x^2 + 0.00867x\right)\bigg |_{x=0}^{0.3} \approx 0.014
+\end{aligned}$$`
+]
+
+]
+
+???
+
+Let’s continue our discussion with an example of a **joint probability density function**, or joint PDF.  
+
+Here, the joint PDF is given as  
+`$$f_{X,Y}(x,y) = \frac{6}{5}(x + y^2),$$`  
+for both `\(x\)` and `\(y\)` ranging from 0 to 1.  
+
+First, remember that for a function to be a valid PDF, it must be **non-negative** and its **total integral must equal 1**.  
+This function satisfies those conditions.  
+
+Now, to find the **marginal PDF of X**, we integrate over all possible values of `\(Y\)`:  
+
+`$$f_X(x) = \int_0^1 f_{X,Y}(x, y) dy = \frac{6}{5}\left(x + \frac{1}{3}\right).$$`  
+This tells us how X behaves on its own, regardless of Y.  
+
+Similarly, to find the **marginal PDF of Y**, we integrate over X:  
+
+`$$f_Y(y) = \int_0^1 f_{X,Y}(x, y) dx = \frac{6}{5}\left(\frac{1}{2} + y^2\right).$$`  
+
+
+Notice how both marginals depend on their own variable but not on the other — this is what “marginalizing” means.  
+
+Finally, if we want the probability that X is between 0 and 0.3, and Y is between 0.1 and 0.3,  
+we compute a **double integral** of the joint PDF over that range.  
+After substituting and integrating, we get approximately **0.014**, or 1.4%.  
+
+This example helps us see how integration extends the concept of summation from the discrete case to the continuous case,  
+and how we can use the joint PDF to calculate both marginal probabilities and specific joint probabilities.  
+
+
+---
+# Joint and Marginal Expectation
+
+&gt; Given a function `\(g\)` with arguments `\((x, y)\)`, The expectation of `\(g(x, y)\)` with respect to the 
+joint PDF (or PMF) is
+
+`$$\begin{aligned}
+E\left[g(X,Y)\right] &amp;= \int_{S_X}\int_{S_Y}g(x,y)f_{X,Y}(x,y) dx dy,~~~~\mathrm{for~the~continuous~case} \\
+E\left[g(X,Y)\right] &amp;= \sum_{x\in S_X}\sum_{y \in S_Y}g(x,y)f_{X,Y}(x,y),~~~~\mathrm{for~the~discrete~case}
+\end{aligned}$$`
+
+#### **Example**
+
+&gt; From the previous example for the joint PDF of `\(X\)` and `\(Y\)`, 
+
+`$$\begin{aligned}
+E[X]  &amp;= \int_{x=0}^{1}\int_{y=0}^{1} x\frac{6}{5}(x + y^2) dy dx = 0.6 \\
+E[XY] &amp;= \int_{x=0}^{1}\int_{y=0}^{1} xy\frac{6}{5}(x + y^2) dy dx = 0.35 \\
+E[X^2] &amp;= \int_{x=0}^{1}\int_{y=0}^{1} x^2\frac{6}{5}(x + y^2) dy dx = 0.43
+\end{aligned}$$`
+
+???
+
+Let’s continue our discussion with an example of a **joint probability density function**, or joint PDF.  
+
+Here, the joint PDF is given as  
+
+`$$f_{X,Y}(x,y) = \frac{6}{5}(x + y^2),$$`  
+
+for both `\(x\)` and `\(y\)` ranging from 0 to 1.  
+
+First, remember that for a function to be a valid PDF, it must be **non-negative** and its **total integral must equal 1**.  
+This function satisfies those conditions.  
+
+Now, to find the **marginal PDF of X**, we integrate over all possible values of `\(Y\)`:  
+
+`$$f_X(x) = \int_0^1 f_{X,Y}(x, y) dy = \frac{6}{5}\left(x + \frac{1}{3}\right).$$`  
+
+This tells us how X behaves on its own, regardless of Y.  
+
+Similarly, to find the **marginal PDF of Y**, we integrate over X:  
+
+`$$f_Y(y) = \int_0^1 f_{X,Y}(x, y) dx = \frac{6}{5}\left(\frac{1}{2} + y^2\right).$$`  
+
+Notice how both marginals depend on their own variable but not on the other — this is what “marginalizing” means.  
+
+Finally, if we want the probability that X is between 0 and 0.3, and Y is between 0.1 and 0.3,  
+we compute a **double integral** of the joint PDF over that range.  
+After substituting and integrating, we get approximately **0.014**, or 1.4%.  
+
+This example helps us see how integration extends the concept of summation from the discrete case to the continuous case,  
+and how we can use the joint PDF to calculate both marginal probabilities and specific joint probabilities.  
+
+
+
+---
+# Joint and Marginal Expectation
+
+#### **Covariance and Correlation**
+
+&gt; Two special cases of joint expectations `\(\rightarrow\)` quantifying the dependence (relationship) between `\(X\)` and `\(Y\)`
+
+#### **Definition: Covariance**
+
+&gt; The _**covariance**_ of `\(X\)` and `\(Y\)` is defined as 
+
+`$$\begin{aligned}
+\mathrm{Cov}(X,Y) = \sigma_{XY}&amp;= E[X - E(X)]E[Y - E(Y)] \\
+                  &amp;= E[XY] - E[X]E[Y]
+\end{aligned}$$`
+
+
+#### **Definition: Correlation**
+
+&gt; The Pearson product moment correlation between `\(X\)` and `\(Y\)` is the covariance between `\(X\)` and
+`\(Y\)` rescaled to fall in the interval [−1, 1]
+
+
+`$$\begin{aligned}
+\mathrm{Corr}(X,Y) = \rho_{XY} &amp;= E\left[\left(\frac{X - \mu_X}{\sigma_X}\right)\left(\frac{X-\mu_Y}{\sigma_Y}\right)\right] \\
+                               &amp;= \frac{E[(X-\mu_X)(Y-\mu_Y)]}{\sigma_X\sigma_Y} = \frac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y}
+\end{aligned}$$`
+
+
+???
+
+Now we’re ready to connect joint expectation to **covariance** and **correlation** —  
+two measures that describe how variables move together.  
+
+First, **covariance** measures the *direction* of the relationship.  
+If `\(X\)` and `\(Y\)` tend to increase together, covariance is positive.  
+If one increases while the other decreases, it’s negative.  
+
+The formula is  
+
+`$$\mathrm{Cov}(X,Y) = E[XY] - E[X]E[Y].$$`  
+
+This tells us how far the joint behavior of `\(X\)` and `\(Y\)` deviates from what would happen if they were independent.  
+
+However, the magnitude of covariance depends on the scales of X and Y, so it’s not directly comparable across variables.  
+
+That’s why we use **correlation**, which standardizes covariance by dividing by the standard deviations of both variables:  
+
+`$$\mathrm{Corr}(X,Y) = \frac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y}.$$`  
+
+Correlation always lies between −1 and +1.  
+
+A value near +1 means strong positive association, near −1 means strong negative association,  
+and near 0 means little to no linear relationship.  
+
+In summary, covariance gives direction, and correlation gives both direction and standardized strength of the relationship —  
+concepts that are central to **regression analysis**, **data modeling**, and **statistical inference**.  
+
+
+
+
+
+
+
+
+
+---
+# Joint and Marginal Expectation
+
+#### **Homework for Practice**
+
+&gt; Let the joint PMF of `\(X\)` and `\(Y\)` be given as
+
+&lt;table class=" lightable-paper" style='color: black; font-family: "Arial Narrow", arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;'&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt;   &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Y=0 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Y=1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Y=2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Y=3 &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X=0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.05 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.05 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X=1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.05 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; X=2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.15 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.10 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.05 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&gt; - Define the marginal PMF of `\(X\)` and `\(Y\)`
+&gt; - Obtain `\(E(X)\)`, `\(E(Y)\)`, `\(Var(X)\)`, `\(Var(Y)\)` for the marginal distribution of `\(X\)` and `\(Y\)`
+&gt; - Obtain `\(E(XY)\)`
+&gt; - Obtain `\(\mathrm{Cov}(X,Y)\)`
+&gt; - Obtain `\(\mathrm{Corr}(X,Y)\)`
+
+
+
+&lt;!-- **End of Slide** --&gt;
+
+&lt;!-- When performing data analysis, variables you are interesting can be regarded as random variables. Analyzing data under the framework of random variable, the analysis typically follows these steps:  --&gt;
+
+&lt;!-- Collect data. --&gt;
+&lt;!-- Assume that the collected data represents a sample of a probability variable. --&gt;
+&lt;!-- Use the data to determine the shape of the probability distribution function of that probability variable. --&gt;
+&lt;!-- Predict the next data points or data characteristics from the determined probability variable. --&gt;
+&lt;!-- Among these steps, the most crucial one is the third step, where you reverse-engineer the probability distribution function from the data. There are various methods to determine the shape of the probability distribution function from data, and one of the simplest ways is to use descriptive statistics as follows: --&gt;
+
+&lt;!-- Calculate descriptive statistics values like sample mean and sample variance from the data distribution. --&gt;
+&lt;!-- Find a probability distribution function that has the same descriptive statistics values. --&gt;
+&lt;!-- To use this approach, you need to know how to calculate descriptive statistics values for a probability distribution without sample data. In the following section, we will study the descriptive statistics values of probability distribution functions, such as the mean and variance. --&gt;
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

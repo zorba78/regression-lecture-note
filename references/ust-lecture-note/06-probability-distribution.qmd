@@ -1,0 +1,2677 @@
+---
+title: "Medical Statistics"
+subtitle: "Important Probability Distributions"
+author: 
+  - name: "Boncho Ku, Ph.D. in Statistics"
+    email: secondmoon@kiom.re.kr
+    orcid: 0000-0001-5520-9782 
+    affiliation: 
+       - name: Korea Institute of Oriental Medicine (KIOM)
+         adress: 대전광역시 유성구 유성대로 1672 
+institute: "Korea Institute of Oriental Medicine"
+format: 
+  revealjs: 
+    logo: assets/ci/UIBS/JPG/UST-UI-SUBSIG-KRV.jpg
+    slide-number: true
+    show-slide-number: all
+    chalkboard: 
+      buttons: true    
+    multiplex: true
+    theme: [simple, assets/quarto-style-example/monash.scss]
+    controls: true
+    width: 1280
+    height: 1024
+    css: [assets/quarto-style-example/syntax-highlight.css, assets/quarto-style-example/custom.css, assets/quarto-style-example/pacman.css]
+    header-includes: |
+      <link rel="stylesheet" href="/assets/fontawesome-free-6.2.0-web/css/font-awesome.min.css">
+      <script defer src="/assets/fontawesome-free-6.2.0-web/js/all.min.js"></script>    
+editor: visual
+editor_options: 
+  chunk_output_type: console
+---
+
+# Important Discrete Distribution
+
+```{r setup-library}
+library(MASS)
+library(reshape2)
+library(plyr)
+library(tidyverse)
+library(lubridate)
+library(readxl)
+library(tidyselect)
+library(tidystats)
+library(glue)
+library(here)
+library(gt)
+library(gtsummary)
+library(kableExtra)
+library(icons)
+
+# xaringanExtra::use_tile_view()
+# xaringanExtra::use_progress_bar(color = "#23373B", location = "bottom")
+# xaringanExtra::use_scribble()
+# xaringanExtra::use_panelset()
+# xaringanExtra::style_panelset_tabs(foreground = "honeydew", background = "seagreen")
+
+```
+
+## Bernoulli Trial
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> A random experiment in which there are only two possible outcomes
+
+::: {.callout-tip appearance="minimal"}
+**Example**
+
+<ul>
+
+<li>Tossing a coin: Head (H) or Tail (T)</li>
+
+<li>Take an exam: Success (S) or Failure (F)</li>
+
+<li>True (T) or False (F)</li>
+
+</ul>
+:::
+
+Let $X:\{S,F\} \rightarrow \{0,1\}$, that is
+
+$$X = \begin{cases}
+1~~~~~\mathrm{if~the~outcome~is~S}\\
+0~~~~~\mathrm{if~the~outcome~is~F}\\
+\end{cases}$$
+
+::: panel-tabset
+### PMF
+
+Let $p$ be the probability of success, then the p.m.f of $X$ is
+
+$$
+f_X(x) = p^x(1-p)^{1-x}, x = \{0, 1\}
+$$
+
+### Expectation
+
+$$
+E(X) = p, ~~ Var(X) = \sigma^2 = p(1-p)
+$$
+:::
+
+::: notes
+Let’s begin with one of the simplest but most fundamental experiments in probability — the **Bernoulli trial**.\
+A Bernoulli trial is a random experiment that has only **two possible outcomes** — success or failure, yes or no, true or false.
+
+Think of tossing a coin. You either get a head or a tail — there’s no middle ground.\
+Or think about taking an exam — you either pass or fail.
+
+We represent the outcomes of this trial using a random variable $X$:\
+$$
+X =
+\begin{cases}
+1 & \text{if success occurs} \\
+0 & \text{if failure occurs}
+\end{cases}
+$$
+
+Now, if the probability of success is $p$, then naturally, the probability of failure is $1-p$.\
+The probability mass function, or **PMF**, of a Bernoulli random variable is:
+
+$$f_X(x) = p^x(1-p)^{1-x}, \quad x = \{0, 1\}.$$
+
+It’s a compact way of saying that $P(X=1) = p$ and $P(X=0) = 1-p$.
+
+From this PMF, we can also find two key characteristics: - The **expected value** (or mean) is $E(X) = p$. - The **variance** is $Var(X) = p(1-p)$.
+
+Intuitively, the expectation represents the long-run proportion of successes.\
+If $p = 0.7$, then in the long run, about 70% of the trials would result in success.\
+And the variance tells us how much uncertainty or variability we can expect around that proportion.
+
+This simple setup — a single Bernoulli trial — becomes the building block for many other distributions we’ll study next, including the **Binomial distribution**.
+:::
+
+## Binomial Distribution
+
+The Binomial distribution has three defining properties:
+
+::: callout-important
+-   Bernoulli trials are conducted $n$ times
+-   The trials are independent
+-   The probability of success $p$ does not change between trials
+:::
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> If $X$ counts the number of successes in the $n$ independent Bernoulli trials, we say that $X$ has a binomial distribution with the p.m.f
+
+$$
+P(X = x) = f_X(x) = \binom{n}{k} p^x (1-p)^{n-x}, x=\{0, 1, \ldots, n\}
+$$
+
+> We write
+
+$$
+X \sim \mathrm{binom}(\mathrm{size} = n,~~\mathrm{prob} = p)
+$$
+
+::: notes
+Now, let’s move from a single Bernoulli trial to **repeating it multiple times**.\
+The **Binomial distribution** describes the number of successes in $n$ independent Bernoulli trials, where each trial has the same probability of success, $p$.
+
+For example, if you flip a fair coin 10 times, the number of heads you get follows a binomial distribution with $n=10$ and $p=0.5$.
+
+We write this as: $$
+X \sim \text{Binomial}(n, p)
+$$ Its probability mass function is: $$
+P(X = x) = \binom{n}{x}p^x(1-p)^{n-x}, \quad x = 0, 1, \ldots, n.
+$$
+
+Each component has a meaning: - $\binom{n}{x}$ counts how many ways you can have $x$ successes in $n$ trials. - $p^x$ is the probability of those $x$ successes. - $(1-p)^{n-x}$ is the probability of the remaining failures.
+
+The three conditions for the binomial model are: 1. Each trial has only two possible outcomes. 2. The trials are independent. 3. The probability of success $p$ is constant across trials.
+:::
+
+## Binomial Distribution
+
+::: callout-important
+The total number of successes is identical to the sum of $n$ Bernoulli trials.
+:::
+
+::: panel-tabset
+### PMF Prop
+
+$$\sum_{x=0}^{n}\binom{n}{x} p^x (1-p)^{n-x} = [p + (1-p)]^{n} = 1$$
+
+### Expectation
+
+$$\begin{aligned}
+\mu & = \sum_{x=0}^{n}x\binom{n}{x}p^{x}(1-p)^{n-x} \\
+    & = \sum_{x=1}^{n}x\frac{n!}{x!(n-x)!}p^{x}(1-p)^{n-x} \\
+    & = n\cdot p\sum_{x=1}^{n}\frac{(n-1)!}{(x-1)!(n-x)!}p^{x-1}(1-p)^{n-x} \\
+    & = n\cdot p\sum_{x-1=0}^{n-1}\binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)} \\
+    & = np
+\end{aligned}$$
+
+### Variance (1)
+
+$$\begin{aligned}
+\sigma^2 &= E[X^2] - [E(X)]^2 \\
+         &= \sum_{x=0}^{n}x^2\binom{n}{x}p^{x}(1-p)^{n-x} - (np)^2 \\
+         &= \sum_{x=1}^{n}x^2\binom{n}{x}p^{x}(1-p)^{n-x} - (np)^2 \\
+         &= \sum_{x=1}^{n}x\cdot x \frac{n(n-1)!}{x(x-1)!(n-x)!}p^{x}(1-p)^{n-x} -(np)^2 \\
+         &= np\sum_{x-1=0}^{n-1}x\binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)} - (np)^2
+\end{aligned}$$
+
+### Variance (2)
+
+Continued from (1)
+
+Let $y=x-1$ and $m=n-1$, then
+
+$$\begin{aligned}
+\sigma^2 &= np\sum_{y=0}^{n-1}(y+1)\binom{m}{y}p^{x-1}(1-p)^{m-y} -(np)^2\\
+         &= np\{(n-1)p + 1\} - (np)^2 = (np)^2 + np(1-p) - (np)^2 \\
+         &= np(1-p)
+\end{aligned}$$
+
+### Easy Proof
+
+Let $X_{i} \sim Bernoulli(p)$ then $Y=\sum_{i=1}^{n}X_i \sim \mathrm{binom}(n, p)$. Therefore,
+
+$$\begin{aligned}
+\mu_{Y} &= E(Y) = E\left(\sum_{i=1}^{n}X_{i}\right) = \sum_{i=1}^{n}E(X_i) = \sum_{i=1}^{n}p = np \\
+\sigma_{Y}^{2} &= Var(Y)=Var\left(\sum_{i=1}^{n}X_{i}\right) = \sum_{i=1}^{n}Var(X_i) \\
+               &= \sum_{i=1}^{n}p(1-p) = np(1-p)~\because~X_{i} \perp X_{j}
+\end{aligned}$$
+:::
+
+::: notes
+The **expectation** and **variance** are given by: $$
+E(X) = np, \quad Var(X) = np(1-p).
+$$
+
+This means the average number of successes is proportional to both the number of trials and the chance of success in each trial.
+
+You can think of the binomial distribution as the **sum of** $n$ independent Bernoulli trials.\
+Each $X_i$ represents success or failure in one trial, and $X = \sum X_i$.\
+This perspective helps us understand its mean and variance directly — they just add up because of independence.
+
+In practice, this distribution is incredibly common — from counting the number of defective items in a batch, to the number of patients responding to a treatment, or even the number of emails you get in your inbox that are spam (though with some conditions that lead to a Poisson model later).
+:::
+
+## Binomial Distribution
+
+### Example
+
+::: {.callout-tip appearance="minimal"}
+Roll 12 dice simultaneously, and let $X$ denote the number of `r icons::fontawesome("dice-six", style = "solid")`s appear. We wish to find the probability of getting seven, eight, or nine `r icons::fontawesome("dice-six", style = "solid")`s.
+
+Let $S$ be an event that we get a `r icons::fontawesome("dice-six", style = "solid")` on one roll. Then $P(S)=1/6$ and the rolls constitute Bernoulli trials; $X \sim \mathrm{binom}(\mathrm{size}=12, \mathrm{prob} = 1/6)$ and we are asking to find $P(7\leq X\leq 9)$. That is,
+
+$$P(7\leq X\leq 9) = \sum_{x=7}^{9}\binom{12}{x}\left(\frac{1}{6}\right)^x\left(\frac{5}{6}\right)^{12-x}$$
+
+**Alternative**
+
+$$P(7\leq X\leq 9) = P(X \leq 9) - P(X \leq 6) = F_X(9) - F_X(6)$$
+
+where $F_X(x)$ is the CDF of $X$.
+:::
+
+::: panel-tabset
+### `r fontawesome::fa("r-project")` solution: 1
+
+```{r, echo=TRUE, prompt=TRUE}
+dbinom(7, 12, 1/6) + dbinom(8, 12, 1/6) + dbinom(9, 12, 1/6)
+```
+
+### `r fontawesome::fa("r-project")` solution: 2
+
+```{r, echo=TRUE, prompt=TRUE}
+pbinom(9, 12, 1/6) - pbinom(6, 12, 1/6)
+
+```
+:::
+
+::: notes
+Let’s look at a concrete example to make this idea more tangible.
+
+Suppose we roll **12 dice at once**, and we’re interested in how many of them show a six.\
+Here, each die roll is a Bernoulli trial — success means rolling a six, failure means not rolling a six.
+
+The probability of success on one roll is $p = 1/6$.\
+We repeat this trial $n = 12$ times.\
+So, the total number of sixes, $X$, follows a binomial distribution:
+
+$$X \sim \text{Binomial}(n=12, p=1/6)$$
+
+Now, suppose we want to find the probability of getting **seven, eight, or nine sixes**.\
+We can express this as:
+
+$$P(7 \le X \le 9) = \sum_{x=7}^{9} \binom{12}{x} \left(\frac{1}{6}\right)^x \left(\frac{5}{6}\right)^{12-x}.$$
+
+Alternatively, using the **cumulative distribution function (CDF)**:
+
+$$P(7 \le X \le 9) = P(X \le 9) - P(X \le 6).$$
+:::
+
+## Binomial Distribution
+
+### Example (CDF)
+
+::: {.callout-tip appearance="minimal"}
+Toss a coin 3 times and let $X$ be the number of Heads observed. Then
+
+$$X \sim \mathrm{binom}(\mathrm{size} = 3, \mathrm{prob} = 1/2)$$
+
+The PMF:
+
+| $x=\#~\mathrm{of~Heads}$ | 0   | 1   | 2   | 3   |
+|--------------------------|-----|-----|-----|-----|
+| $f(x)=P(X=x)$            | 1/8 | 3/8 | 3/8 | 1/8 |
+:::
+
+::: panel-tabset
+### CDF
+
+$$F_{X}(x) = P(X \leq x) = \begin{cases}
+0, ~~~~~~~~~~~~~~~~~~~~~~x < 0\\
+\frac{1}{8},~~~~~~~~~~~~~~~~~~~~~ 0\leq x < 1\\
+\frac{1}{8} + \frac{3}{8} = \frac{4}{8},~~~~~ 1\leq x < 2\\
+\frac{4}{8} + \frac{3}{8} = \frac{7}{8},~~~~~ 2\leq x < 3\\
+1  ~~~~~~~~~~~~~~~~~~~~~~~~x \geq 3\\
+\end{cases}$$
+
+### `r fontawesome::fa("r-project")` CDF Plot: Code
+
+```{r, eval=FALSE, echo=TRUE}
+n <- 3; p <- 0.5
+x <- -1:(n+1)
+y <- pbinom(x, size = n, p = p)
+
+plot(x, y, type = "n", 
+     xlab = "number of successes", 
+     ylab = "cumulative probability")
+abline(h=1, lty=2, col = "darkgray")
+abline(h=0, lty=2, col = "darkgray")
+points(x[2:5], y[2:5], pch=16, cex = 2)
+points(x[2:5], y[1:4], pch=21, cex = 2)
+segments(
+  x0 = c(-2, 0, 1, 2, 3), 
+  x1 = c( 0, 1, 2, 3, 5), 
+  y0 = c(y[1], y[2], y[3], y[4], y[5]), 
+  y1 = c(y[1], y[2], y[3], y[4], y[5])
+)
+
+```
+
+### `r fontawesome::fa("r-project")` CDF Plot: Plot
+
+```{r, fig.height=5, fig.width=8, fig.align='center'}
+n <- 3; p <- 0.5
+x <- -1:(n+1)
+y <- pbinom(x, size = n, prob = p)
+
+plot(x, y, type = "n", 
+     xlab = "number of successes", 
+     ylab = "cumulative probability")
+abline(h=1, lty=2, col = "darkgray")
+abline(h=0, lty=2, col = "darkgray")
+points(x[2:5], y[2:5], pch=16, cex = 2)
+points(x[2:5], y[1:4], pch=21, cex = 2)
+segments(
+  x0 = c(-2, 0, 1, 2, 3), 
+  x1 = c( 0, 1, 2, 3, 5), 
+  y0 = c(y[1], y[2], y[3], y[4], y[5]), 
+  y1 = c(y[1], y[2], y[3], y[4], y[5])
+)
+
+```
+:::
+
+::: notes
+Finally, let’s consider another example using the cumulative distribution function (CDF) of the binomial distribution.
+
+Suppose you toss a fair coin three times.
+
+Let $X$ be the number of heads you get. Then,
+
+Now, the CDF accumulates these probabilities step by step:
+
+Graphically, the CDF looks like a step function that jumps at each integer value of $x$. It shows how the cumulative probability increases as the number of heads grows.
+
+In R, we can visualize this with the pbinom() function, which computes the CDF for any value of $x$. By plotting $x$ on the horizontal axis and $F_X(x)$ on the vertical axis, we can clearly see that the total probability eventually reaches 1 as all outcomes are accounted for.
+:::
+
+## Hypergeometric Distribution
+
+::: {.callout-tip appearance="minimal"}
+**Example**
+
+Suppose that an urn contains 7 white balls and 5 black balls. Let our random experiment be to randomly select 4 balls, **without replacement**, from the urn. Then the probability of observing 3 white balls(and thus 1 black ball) is
+
+$$P(3W, 1B) = \frac{\binom{7}{3}\binom{5}{1}}{\binom{12}{4}}$$
+
+-   Sample 4 times ($=K$) without replacement $\rightarrow$ a sample from POPULATION
+-   From where?? $\rightarrow$ an urn with 7 white balls ($=M$) and 5 black balls ($=N$)
+:::
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> Let $X$ be the number of success in $K$ samples obtained from a total of $N$ successes and $M$ failures, the PMF of $X$ is
+
+$$P(X=x) = f_{X}(x) = \frac{\binom{M}{x}\binom{N}{K-x}}{\binom{M+N}{K}}, ~~~0\leq x \leq M,~0\leq K-x \leq N$$
+
+::: notes
+Now that we’ve covered the Binomial distribution, let’s move to a very similar—but slightly different—distribution: the **Hypergeometric distribution**.
+
+Both describe the number of successes in a series of trials, but the **key difference** is whether the trials are performed **with or without replacement**.\
+- In the Binomial case, each trial is independent because we replace the item after each draw.\
+- In the Hypergeometric case, we **do not replace** what we’ve drawn.
+
+So, the trials are **dependent**, and the probabilities change slightly with each draw.
+
+Let’s define it more formally.\
+Suppose we have a finite population of size $N$ that contains: - $K$ items labeled as “successes,” and\
+- $N - K$ items labeled as “failures.”
+
+We draw $n$ samples **without replacement**, and let $X$ be the number of successes observed in our sample.\
+Then $X$ follows a **Hypergeometric distribution**, written as:
+
+$$X \sim \text{Hypergeometric}(N, K, n)$$
+
+and the probability mass function (PMF) is:
+
+$$P(X = x) = \frac{\binom{K}{x}\binom{N - K}{n - x}}{\binom{N}{n}}, \quad \max(0, n - (N-K)) \le x \le \min(n, K).$$
+
+This formula might look complicated, but the logic is simple:
+
+-   $\binom{K}{x}$ counts the ways to choose $x$ successes from $K$ available.
+-   $\binom{N-K}{n-x}$ counts the ways to choose the remaining $n-x$ failures.
+-   $\binom{N}{n}$ counts all possible ways to draw $n$ samples.
+
+So, this ratio gives the probability of observing exactly $x$ successes in the sample.
+:::
+
+## Hypergeometric Distribution
+
+::: {.callout-note appearance="simple" icon="false"}
+**Expectation**
+
+$$\mu_X=E(X)=K\frac{M}{M+N} $$
+
+**Variance**
+
+$$\sigma_{X}^2=Var(X)=K\frac{MN}{(M+N)^2}\frac{M+N-K}{M+N-1} $$
+:::
+
+::: {.callout-note appearance="simple" icon="true"}
+### Example
+
+Suppose that a city with $N$ women and $M$ men.
+
+-   $X$: the number of women infected with the disease
+-   $Y$: the number ofmen infected with the disease
+
+Our goal is to estimate the probability that a person infected with the disease is women. Let $p_X$ and $p_Y$ denote probabilities of infection. Assume that $p = p_X = p_Y$
+
+|                    | Women |  Men  |     Total     |
+|--------------------|:-----:|:-----:|:-------------:|
+| **Infection: Yes** |  $X$  |  $Y$  |     $X+Y$     |
+| **Infection: No**  | $N-X$ | $M-Y$ | $(N+M)-(X+Y)$ |
+| **Total**          |  $N$  |  $M$  |     $N+M$     |
+:::
+
+::: notes
+The expectation and variance of a Hypergeometric random variable $X$ are given by:
+
+$$E(X) = K\frac{M}{M+N}, \quad Var(X) = K\frac{MN}{(M+N)^2}\frac{M+N-K}{M+N-1}.$$
+
+Here’s what each term represents:\
+- $M$: the number of men (or one subgroup in the population)\
+- $N$: the number of women (the other subgroup)\
+- $K$: the number of total infected individuals (sample size)
+
+So, the expectation represents the expected number of “successes” (in this case, women infected),\
+and the variance measures how much that number fluctuates across repeated samples.
+
+Now, let’s use a real-world context to make this more concrete.\
+Imagine a city with $N$ women and $M$ men.\
+We’re studying a disease, and we observe:\
+- $X$: number of women infected\
+- $Y$: number of men infected
+
+We want to know:\
+\> *Given that someone is infected, what is the probability that the person is a woman?*
+
+This scenario fits naturally into a **contingency table** framework:
+
+|                    | Women |  Men  |     Total     |
+|--------------------|:-----:|:-----:|:-------------:|
+| **Infection: Yes** |  $X$  |  $Y$  |     $X+Y$     |
+| **Infection: No**  | $N-X$ | $M-Y$ | $(N+M)-(X+Y)$ |
+| **Total**          |  $N$  |  $M$  |     $N+M$     |
+
+Here, the population is finite — we’re sampling from it *without replacement*.\
+That’s exactly the condition under which the Hypergeometric model applies.
+
+The Hypergeometric distribution allows us to calculate probabilities such as:\
+\> “If $K$ people are infected, what is the probability that exactly $x$ of them are women?”
+:::
+
+## Hypergeometric Distribution
+
+::: {.callout-note appearance="simple" icon="true"}
+### Example (*continued*)
+
+Then $X\sim \mathrm{binom}(\mathrm{size}=N, \mathrm{prob}=p)$, $Y\sim \mathrm{binom}(\mathrm{size}=M, \mathrm{prob}=p)$. Thus,
+
+$$(X+Y) \sim \mathrm{binom}(\mathrm{size}=N+M, \mathrm{prob} = p)~~\because X\perp Y$$
+
+Our purpose is to find
+
+$$P(X=x|X+Y) = \frac{P(X+Y|X=x)P(X=x)}{P(X+Y)}~~\because \mathrm{Bayes~Theorem}
+$$ Let $X+Y=K$
+
+$$\begin{aligned}
+P(X=x|X+Y) &= \frac{P(Y=K-X|X=x)P(X=x)}{P(X+Y=K)} \\
+           &= \frac{P(Y=K-X)P(X=x)}{P(X+Y=K)}~~\because X\perp Y \\
+           &= \frac{\binom{M}{K-X}p^{K-X}(1-p)^{M-K+X} \binom{N}{X}p^X(1-p)^{N-X}}{\binom{N+M}{K} p^K(1-p)^{N+M-K}} \\
+           &= \frac{\binom{M}{K-X}\binom{N}{X}}{\binom{N+M}{K}} \sim \mathrm{Hyper}(M, N, K)
+\end{aligned}$$
+:::
+
+::: notes
+Let’s continue the example and build toward the mathematical form of the Hypergeometric distribution.
+
+We assume that infections occur independently within each gender group:
+
+$$X \sim \text{Binomial}(N, p), \quad Y \sim \text{Binomial}(M, p)$$
+
+where $p$ is the common probability of infection.
+
+The total number of infected individuals, $X + Y$, then follows:
+
+$$(X + Y) \sim \text{Binomial}(N + M, p)$$
+
+because $X$ and $Y$ are independent.
+
+Now, let’s say we know that exactly $K$ people are infected in total.\
+We want to find the conditional probability distribution of $X$ given that $X + Y = K$.
+
+By Bayes’ theorem:
+
+$$P(X=x \mid X+Y=K) = \frac{P(Y=K-X)P(X=x)}{P(X+Y=K)}$$
+
+Substituting in the Binomial forms gives:
+
+$$P(X=x \mid X+Y=K) = \frac{\binom{M}{K-X}\binom{N}{X}}{\binom{N+M}{K}}$$
+
+And that’s exactly the **Hypergeometric distribution**:
+
+$$X \sim \text{Hypergeometric}(M, N, K)$$
+
+This derivation is quite elegant: it shows that the Hypergeometric distribution can be viewed as the **conditional distribution** of two independent Binomial variables, given their sum.
+
+In other words: - If we know the total number of infections $K$,\
+- and we want to know how many came from the female subgroup ($X$),\
+the conditional distribution follows a Hypergeometric law.
+:::
+
+## Hypergeometric Distribution
+
+### Relationship to Binomial Distribution
+
+1.  The conditional distribution of $X$ given $X+Y=K$ is identical to hypergeometric distribution.
+
+2.  When $N \rightarrow \infty$, the hypergeometric distribution converges to the binomial distribution.
+
+::: callout-note
+### Important
+
+-   Binomial distribution $\rightarrow$ **with replacement**
+
+-   Hypergeometric distribution $\rightarrow$ **without replacement**
+:::
+
+![](assets/imgs/ust-lecture-bin-hyper-rel.png){fig-align="center" width="1024"}
+
+::: notes
+Let’s conclude our discussion of the Hypergeometric distribution by summarizing its **relationship to the Binomial distribution**.
+
+1.  The **conditional distribution** of $X$ given $X + Y = K$ is *identical* to a Hypergeometric distribution. This means that whenever we know the total number of successes from two independent Binomial groups, the distribution of successes in one group — given the total — follows a Hypergeometric law.
+
+2.  When the population size becomes very large, that is, $N \to \infty$, the sampling *without replacement* becomes almost the same as *sampling with replacement*. In this limit, the Hypergeometric distribution **converges to the Binomial distribution**.
+
+In simple terms:
+
+-   The **Binomial distribution** applies to *independent* trials (sampling with replacement).\
+-   The **Hypergeometric distribution** applies to *dependent* trials (sampling without replacement).
+
+This distinction is crucial in real applications.
+
+For example:
+
+-   If you draw cards from a deck and replace each one after drawing, use the Binomial.\
+-   If you draw cards and **don’t** replace them, use the Hypergeometric.
+:::
+
+## Poisson Distribution
+
+::: callout-note
+### Motivation
+
+How do we measure the probability of a given number of events occurring in a fixed interval of time or space?
+
+### Examples
+
+-   Call center: number of calls per hour within a day
+-   Traffic accident: number of traffic accidents during 7:00 AM to 10:00 AM per day
+-   Number of customers arriving in a bank between 9:00 AM and 11:00 AM
+
+### Assumption
+
+-   The events occurs independently (**independence**)
+-   The events occurs with a known constant mean rate (**consistency**)
+-   The probability of two events occurring in a very short time and very small space is 0 (**non-clustering**)
+:::
+
+::: notes
+Let’s now discuss the **Poisson distribution**, which is one of the most widely used probability models for describing *counts of events over time or space*.
+
+The Poisson distribution is a discrete probability distribution that expresses the probability of a given number of events occurring in a fixed interval of time or space if these events occur with a known constant mean rate and independently of the time since the last event.
+
+The question we’re trying to answer is:\
+\> “What is the probability of observing a certain number of events within a fixed time or space interval?”
+
+Let’s look at a few examples:
+
+-   The number of calls received at a call center per hour.
+-   The number of car accidents occurring on a highway between 7 AM and 10 AM.
+-   The number of customers arriving at a bank between 9 AM and 11 AM.
+
+All these situations involve **counting events** that occur randomly over time, and we often find that the counts follow a Poisson process — provided certain assumptions are satisfied.
+
+The **three key assumptions** of the Poisson process are:
+
+**Independence**: The results occurring in a particular unit of time or space are independent of the results that occur in other non-overlapping units of time or space. For example, the number of customers who visited Bank A from 9:00 to 10:00 and the number of customers who visited Bank B during the same time are independent of each other. Furthermore, the number of customers who visited Bank A until 10:00 and the number of customers who visited Bank C from 10:00 to 11:00 are also independent of each other.
+
+**Consistency**: If an event occurs with mean rate of 2 within a minute, it implies 6 events will occur during 3 minutes.
+
+**Non-clustering**: The probability of two events occurring in a very short time and very small space is 0. For example, the probability of two customers arriving at the bank at the same time is 0.
+:::
+
+## Poisson Distribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> Let $\lambda$ ($\lambda > 0$) be the average number of events in the time interval $[0,1]$. Let the discrete random variable $X$ count the number of events occuring in the interval.
+
+$$f_X(x) = P(X=x) = \frac{\lambda^x\exp(-\lambda)}{x!}, ~~~x = 0,1,2,\ldots$$
+
+We write $X \sim \mathrm{pois}(\mathrm{lambda} = \lambda)$
+
+> If $X$ counts the number of events in the interval $[0, t]$ and $\lambda$ is the average number of occurance in unit time,
+
+$$f_X(x) = P(X=x) = \frac{(\lambda t)^x\exp(-\lambda t)}{x!}, ~~~x = 0,1,2,\ldots$$
+
+::: notes
+Under these assumptions, the number of events $X$ that occur in a given time interval follows the **Poisson distribution**:
+
+$$P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}, \quad x = 0, 1, 2, \ldots$$
+
+Here, $\lambda$ represents the *average number of events per unit time*.
+
+We write:
+
+$$X \sim \text{Poisson}(\lambda)$$
+
+If we’re counting events over a longer time interval $t$, then the mean becomes $\lambda t$, and the probability function becomes:
+
+$$P(X = x) = \frac{(\lambda t)^x e^{-\lambda t}}{x!}$$
+
+So, the parameter $\lambda t$ can be interpreted as the **expected number of events** over the entire observation period.
+
+This distribution is incredibly powerful for modeling real-world processes where events occur at random but with a stable average rate.
+:::
+
+## Poisson Distribution
+
+::: panel-tabset
+### Expectation
+
+$$E(X) = \sum_{x=0}^{\infty}x  \frac{\lambda^x\exp(-\lambda)}{x!} = \sum_{x=0}^{\infty} \lambda \frac{\lambda^{(x-1)}\exp(-\lambda)}{(x-1)!} = \lambda$$
+
+### Variance
+
+$$Var(X) = \sum_{x=0}^{\infty}x^2 \frac{\lambda^x\exp(-\lambda)}{x!} = 
+\sum_{x=0}^{\infty} \lambda^2 \frac{\lambda^{(x-2)}\exp(-\lambda)}{(x-2)!} = \lambda^2$$
+:::
+
+### Shapes of Poisson Distribution according to $\lambda$
+
+```{r fig.height=8, fig.width=12, fig.align='center'}
+k <- seq(1, 20, by = 1)
+lambdas <- c(1, 2, 4, 8, 10)
+y <- 
+  mapply(
+    dpois, 
+    list(k, k, k, k, k), 
+    lambdas
+  )
+
+plot(k, y[,1], type="n", bty = "n", 
+     xlim = c(0, 20), 
+     ylim = c(0, 0.4), 
+     main = "Poisson Distribution", 
+     xlab = "x", 
+     ylab = "P(X = x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+for (i in 1:5) {
+  points(k, y[,i], col = i, cex = 2.2, pch=16)
+  lines(k, y[,i], col = i, lwd = 1)
+}
+text(1.2, y[1,1], expression(paste(lambda == 1)), pos = 4, cex = 1.5)
+text(2.2, y[2,2], expression(paste(lambda == 2)), pos = 4, cex = 1.5, col = "red")
+text(4.2, y[4,3], expression(paste(lambda == 4)), pos = 4, cex = 1.5, col = "green")
+text(8.1, y[8,4], expression(paste(lambda == 8)), pos = 3, cex = 1.5, col = "blue")
+text(10.5, y[10,5], expression(paste(lambda == 10)), pos = 3, cex = 1.5, col = "cyan")
+
+```
+
+::: notes
+Let’s explore some key mathematical properties of the Poisson distribution.
+
+The **expected value** of a Poisson random variable $X$ is equal to its rate parameter $\lambda$:
+
+$$E(X) = \lambda.$$
+
+Interestingly, its **variance** is also equal to $\lambda$:
+
+$$Var(X) = \lambda$$
+
+This one-to-one relationship between the mean and variance is unique to the Poisson distribution.
+
+In practice, this property helps identify whether data may be modeled as Poisson — if the sample mean and variance are roughly equal, it’s a good indicator.
+
+Now, let’s visualize how the Poisson distribution changes depending on the value of $\lambda$.
+
+When $\lambda$ is small (say, 1 or 2), the distribution is highly **skewed to the right** — most of the probability mass is concentrated near zero.\
+As $\lambda$ increases, the distribution becomes more **symmetric** and starts resembling the **Normal distribution**.
+
+For instance:
+
+-   With $\lambda = 1$, events are rare.
+-   With $\lambda = 8$ or $\lambda = 10$, the distribution becomes bell-shaped.
+
+This connection between Poisson and Normal distributions is important — for large $\lambda$, we can use a Normal approximation to simplify calculations.
+:::
+
+## Poisson Distribution
+
+::: {.callout-tip appearance="minimal"}
+**Example 1**
+
+On the average, 5 cars arrive at a particular car wash every hour. Let $X$ count the number of cars that arrive from 10 AM to 11 AM. What is the probability that no car arrives during this period?
+
+**Example 2**
+
+Suppose the car wash above is in operation from 8 AM to 6 PM, and we let $Y$ be the number of customers that appear in this period. What is the probability that there are between 48 and 50 customers, inclusive?
+:::
+
+::: panel-tabset
+### Sol: Ex 1
+
+Since $X \sim \mathrm{pois}(\lambda = 5)$, the probability that no car arrives is
+
+$$P(X = 0) = \frac{5^0\exp(-5)}{0!} = \exp(-5) \approx 0.0067$$
+
+`r fontawesome::fa("r-project")` scripts for the solution
+
+```{r, echo=TRUE, prompt=TRUE}
+dpois(0, lambda = 5)
+```
+
+### Sol: Ex 2
+
+The average car arrivals during 8 AM to 6 PM is $\lambda'=5\times10=50$, $Y\sim \mathrm{pois}(\lambda = \lambda'=50)$. The probability between 48 to 50 customers:
+
+$$
+P(48 \leq Y \leq 50) =  \sum_{y=0}^{50}\frac{50^{y}\exp(-50)}{y!} - \sum_{y=0}^{47}\frac{50^{y}\exp(-50)}{y!} \approx 0.168
+$$
+
+`r fontawesome::fa("r-project")` scripts for the solution
+
+```{r, echo=TRUE, prompt=TRUE}
+ppois(50, lambda = 50) - ppois(47, lambda = 50)
+```
+:::
+
+::: notes
+Let’s go through two practical examples to see how to apply the Poisson distribution.
+
+**Example 1:**
+
+A car wash receives, on average, 5 cars per hour.\
+Let $X$ represent the number of cars arriving between 10 AM and 11 AM.\
+What is the probability that *no* cars arrive during that hour?
+
+Since $X \sim \text{Poisson}(\lambda = 5)$, we compute:
+
+$$P(X = 0) = \frac{5^0 e^{-5}}{0!} = e^{-5} \approx 0.0067$$
+
+So, there’s only about a **0.67% chance** that no cars arrive in an hour.
+
+**Example 2:**
+
+Suppose the car wash operates from 8 AM to 6 PM — that’s 10 hours. The expected number of cars in this entire period is $\lambda' = 5 \times 10 = 50$. So $Y \sim \text{Poisson}(\lambda = 50)$.
+
+We now want the probability that between 48 and 50 cars arrive:
+
+The result is approximately 0.168, or 16.8%. This means there’s about a 17% chance that the number of cars arriving is between 48 and 50.
+:::
+
+## Poisson Distribution
+
+### Relationship to Binomial Distribution
+
+> Suppose $X$ and $Y$ are Poisson random variables: $X\sim \mathrm{pois}(\lambda_1)$, $Y\sim \mathrm{pois}(\lambda_2)$ and $X$ and $Y$ are independent, then $(X+Y)\sim \mathrm{pois}(\lambda_{1} + \lambda_{2})$. The conditional distribution of $X$ given with $(X+Y) = N$ is identical to the binomial distribution with size of $N$ and probability of $p=\lambda_1/(\lambda_1 + \lambda_2)$.
+
+::: callout-note
+### Proof
+
+By using Bayes Theorem,
+
+$$
+P(X|X+Y = N) = \frac{P(X+Y=N|X=x)P(X=x)}{P(X+Y = N)}
+$$
+
+Since $X \perp Y$, $Y=X-N$,
+
+$$
+P(X|X+Y = N) = \frac{P(Y=N-X)P(X=x)}{P(X+Y = N)}=\frac{\frac{\exp(-\lambda_2)\lambda_2^{N-x}}{(N-x)!}\frac{\exp{(-\lambda_1)}\lambda_1^{x}}{x!}}{\frac{\exp[-(\lambda_1+\lambda_2)](\lambda_1+\lambda_2)^N}{N!}}
+$$
+:::
+
+::: notes
+Now, let’s explore a fascinating connection between the Poisson and Binomial distributions.
+
+Suppose $X$ and $Y$ are independent Poisson random variables:
+
+$$
+X \sim \text{Poisson}(\lambda_1), \quad Y \sim \text{Poisson}(\lambda_2).
+$$
+
+Then, the sum $X + Y$ also follows a Poisson distribution with parameter $\lambda_1 + \lambda_2$:
+
+$$
+X + Y \sim \text{Poisson}(\lambda_1 + \lambda_2).
+$$
+
+Moreover, the **conditional distribution** of $X$ given that $X + Y = N$ is identical to a Binomial distribution with parameters $N$ and $p = \frac{\lambda_1}{\lambda_1 + \lambda_2}$.
+
+$$X|(X+Y=N) \sim \text{Binomial}(N, \frac{\lambda_1}{\lambda_1 + \lambda_2})$$
+
+This result is quite powerful because it shows how the Poisson distribution can be decomposed into Binomial components under certain conditions.
+
+To prove this, we start with Bayes’ theorem:
+
+$$
+P(X \mid X + Y = N) = \frac{P(X + Y = N \mid X = x) P(X = x)}{P(X + Y = N)}
+$$
+:::
+
+## Poisson Distribution
+
+::: callout-note
+### Proof (*continued*)
+
+$$\begin{aligned}
+P(X|X+Y = N) &= \frac{N!}{x!(N-x)!}\frac{\exp{[-(\lambda_1+\lambda_2)]}\lambda_1^x\lambda_2^{N-x}}{\exp{[-(\lambda_1+\lambda_2)]}(\lambda_1+\lambda_2)^N} \\
+             &= \binom{N}{x}\frac{\lambda_1^x\lambda_2^{N-x}}{(\lambda_1 + \lambda_2)^N} = \binom{N}{x}\frac{\lambda_1^x\lambda_2^{N-x}}{(\lambda_1 + \lambda_2)^x(\lambda_1 + \lambda_2)^{N-x}} \\
+             &= \binom{N}{x}\left(\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^x\left(1-\frac{\lambda_1}{\lambda_1+\lambda_2}\right)^{N-x} \\
+             &= \mathrm{binom}\left(\mathrm{size}=N, \mathrm{prob}=\frac{\lambda_1}{\lambda_1+\lambda_2}\right)
+\end{aligned}$$
+:::
+
+::: callout-note
+### Important
+
+-   The conditional distribution of $X$ given $X+Y$ is identical to the binomial distribution, where $X\sim \mathrm{pois}(\lambda_1)$ and $Y\sim \mathrm{pois}(\lambda_2)$
+
+-   (**Check**) The binomial distribution is converge to the poisson distribution when $N\rightarrow \infty$
+:::
+
+::: notes
+By substituting the Poisson forms and simplifying, we arrive at:
+
+$$
+P(X \mid X + Y = N) = \binom{N}{x} \left(\frac{\lambda_1}{\lambda_1 + \lambda_2}\right)^x \left(1 - \frac{\lambda_1}{\lambda_1 + \lambda_2}\right)^{N - x}
+$$
+
+This result shows that the Binomial distribution is essentially embedded within the Poisson framework.
+
+And in the other direction, when the number of trials $N$ is large and the probability $p$ is small — such that $Np = \lambda$ is fixed — the Binomial distribution converges to the Poisson distribution.
+
+So, in summary:
+
+-   The Poisson can be viewed as the limit of the Binomial.
+-   And, conditionally, the Poisson can generate a Binomial.
+:::
+
+# Important Continuous Distributions
+
+## Uniform Distribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> When a random variable $X$ with **identical probability over every interval** on $[a,b]$, it is called a **uniform distribution**
+
+We write $X \sim U(a, b)$ or $X\sim \mathrm{unif}(\mathrm{min} = a, \mathrm{max}=b)$
+
+::: panel-tabset
+### PDF
+
+$$f_X(x) = \begin{cases}
+\frac{1}{b-a},~~ a\leq x \leq b \\
+0, ~~~~~~~ \mathrm{otherwise}
+\end{cases}$$
+
+### Shape
+
+```{r, fig.align='center'}
+library(scales)
+x <- seq(1,2, length=100)
+y <- dunif(x, min = 1, max = 2)
+
+plot(x, y, type="n", bty = "n", 
+     xlim = c(0.5, 2.5), 
+     ylim = c(0, 1.2),
+     main = "Uniform Distribution: U(1, 2)", 
+     xlab = "x", 
+     ylab = "f(x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+polygon(c(1,x,2), c(0,y, 0), col = alpha("blue", 0.2), border = alpha("blue", 0.2))
+lines(x, y, lty=1, lwd=2, col = "blue")
+abline(h = 1, lty = 2, col = "blue")
+abline(v = 1, lty = 2, col = "blue")
+abline(v = 2, lty = 2, col = "blue")
+text(1.5, 0.5, "Area = 1", cex = 2)
+
+
+```
+
+### CDF
+
+$$F_X(x) = \begin{cases}
+0, ~~~~~~~ x < a\\
+\frac{x-a}{b-a}, ~~ a\leq x \leq b\\
+1, ~~~~~~~ x > b
+\end{cases}$$
+
+### Expectation
+
+$$\begin{aligned}
+\mu_X = E(X) &= \int_{-\infty}^{\infty} x f_X(x) dx \\
+             &= \int_{a}^{b} x \frac{1}{b-a} dx \\
+             &= \frac{1}{b-a}\frac{x^2}{2} \bigg|_{x=a}^{b} \\
+             &= \frac{b+a}{2}
+\end{aligned}$$
+
+### Variance
+
+$$\begin{aligned}
+\sigma^2_X &= Var(X) = E\left[(X - E(X))^2\right] = E(X^2) - \left[E(X)\right]^2 \\
+           &= \int_{a}^{b} x^2 \frac{1}{b-a} dx - \left(\frac{b+a}{2}\right)^2 \\
+           &= \frac{1}{b-a}\frac{x^3}{3}\bigg|_{x=a}^{b} - \left(\frac{b+a}{2}\right)^2 = \frac{b^3-a^3}{3(b-a)} - \left(\frac{b+a}{2}\right)^2\\
+           &= \frac{(b-a)^2}{12}
+\end{aligned}$$
+:::
+
+::: notes
+Let’s now talk about one of the simplest continuous distributions — the **Uniform Distribution**.
+
+Imagine that a random variable has equal likelihood to take on any value within a given range.\
+That’s exactly what we call a *uniform* distribution — because the probability is “evenly spread out.”
+
+Mathematically, we write:
+
+$$X \sim U(a, b)$$
+
+or equivalently,
+
+$$X \sim \text{unif}(\text{min}=a, \text{max}=b)$$
+
+The **probability density function (PDF)** is constant between $a$ and $b$:
+
+$$
+f_X(x) =
+\begin{cases}
+\frac{1}{b-a}, & a \le x \le b,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+
+This means that any interval of equal length within $[a,b]$ has the same probability of occurring.
+
+If we plot this, it’s just a *flat rectangle*. The total area under the curve must always equal 1, since it represents a complete probability space.\
+So, height times width equals one:
+
+$$
+(b - a) \times \frac{1}{b - a} = 1.
+$$
+
+The **cumulative distribution function (CDF)** increases linearly between $a$ and $b$:
+
+$$
+F_X(x) =
+\begin{cases}
+0, & x < a,\\
+\frac{x - a}{b - a}, & a \le x \le b,\\
+1, & x > b.
+\end{cases}
+$$
+
+So the CDF looks like a straight line rising from 0 to 1.
+
+This is intuitive: the probability that $X$ is less than or equal to a value $x$ simply depends on how far $x$ is from the lower bound $a$ relative to the total interval width $(b - a)$.
+
+The **expected value** and **variance** of a uniform random variable are simple to compute:
+
+$$E(X) = \frac{a + b}{2}, \quad Var(X) = \frac{(b - a)^2}{12}.$$
+
+That means the mean is exactly at the midpoint, and the spread depends on the square of the interval width — the wider the range, the higher the variability.
+:::
+
+## Uniform Distribution
+
+::: {.callout-tip appearance="minimal"}
+**Example**
+
+Suppose that buses arrive at a bus stop every 10 minutes and that the waiting time of a person who arrives at the stop is uniformly distributed. We want to find the probability that a person waits less than 5 minutes.
+:::
+
+::: callout-note
+### Solution
+
+Let the waiting time for bus be a random variable $X$, then $X$ follows the uniform distribution with interval $[0, 10]$, Therefore,
+
+$$
+f_X(x) = P(X = x) =\frac{1}{10}, ~~ 0\leq x \leq 10
+$$
+
+The probability that a person waits less tan 5 minutes can be obtained
+
+$$
+P(X\leq 5) = \int_{0}^{5}\frac{1}{10} dx = \frac{1}{10}x\bigg|_{x=0}^{5} = 0.5
+$$
+:::
+
+`r fontawesome::fa("r-project")` Check
+
+```{r, echo=TRUE}
+punif(5, min=0, max=10) - punif(0, min=0, max=10)
+```
+
+::: notes
+Let’s see how the uniform distribution applies in a real-life context.
+
+Suppose buses arrive at a stop every 10 minutes.\
+A person arrives at a random time, and we’re interested in their **waiting time** until the next bus.
+
+If buses are perfectly spaced, and the person’s arrival time is completely random, then the waiting time $X$ follows a uniform distribution:
+
+$$X \sim U(0, 10)$$
+
+That means every waiting time between 0 and 10 minutes is equally likely.
+
+Let’s calculate the probability that the person waits less than 5 minutes:
+
+$$P(X \le 5) = \int_0^5 \frac{1}{10} dx = 0.5$$
+
+So, there’s a 50% chance that someone waits less than 5 minutes — and, naturally, a 50% chance they wait longer than 5 minutes.
+
+Uniform distributions also appear frequently in computer simulations and random sampling, where we start from uniformly distributed random numbers and transform them into other distributions. It often serves as the basis for random number generators and Monte Carlo simulations.
+:::
+
+## Normal Distribution
+
+-   The most **IMPORTANT** probability distribution in statistics
+
+-   a.k.a Gaussian Distribution
+
+-   Widely used to represent real-valued random variables whose distributions are unknown
+
+-   Particularly, the normal distribution is a backbone of the central limit theorem (CLT)
+
+::: panel-tabset
+### PDF
+
+$$
+f_X(x; \mu, \sigma^2)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},~~ -\infty < x < \infty
+$$
+
+$$
+\int_{-\infty}^{\infty} \frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\} = 1
+$$
+
+### Expectation and Variance
+
+$$\begin{aligned}
+\mu_X &=E(X) = \mu \\
+\sigma^2_X &= Var(X) = \sigma^2
+\end{aligned}$$
+:::
+
+::: notes
+**Big picture.** The Normal (Gaussian) distribution models many naturally occurring measurements (heights, test scores, errors) because of *aggregation of many small, independent influences*. Its graph is the familiar **bell curve**. Two parameters determine its shape:
+
+The normal distribution, also known as the Gaussian distribution, is one of the most widely used probability distributions in statistics. It is known for its bell-shaped curve and plays a key role in various statistical methods, thanks to the central limit theorem, which states that under certain conditions, the sum of a large number of random variables will tend to follow a normal distribution.
+
+he normal distribution was originally motivated by the need to model natural phenomena that exhibit randomness and uncertainty. Many real-world quantities, such as people's heights, test scores, and measurement errors, tend to cluster around a central value with smaller deviations from the average.
+
+For example, if we were to measure the heights of thousands of people, most heights would fall near the average, with fewer people being extremely short or extremely tall. This kind of distribution pattern is observed in a wide variety of fields, from biology to finance. The **normal distribution** is thus crucial for modeling random variables that are influenced by many small, independent factors.
+
+Furthermore, the central limit theorem shows that when the sum of a large number of independent and identically distributed (i.i.d.) random variables is considered, the distribution of the sum tends toward a normal distribution, regardless of the original distribution of the variables. This makes the normal distribution a cornerstone of inferential statistics.
+
+-   **Location (mean,** $\mu$): where the bell is centered.
+-   **Scale (standard deviation,** $\sigma$): how spread out (wide) the bell is.
+
+**Why it matters.** Interpreting $\mu$ and $\sigma$ is essential for:
+
+-   “How unusual is this observation?” (distance from $\mu$ in units of $\sigma$),
+-   Comparing individuals/groups on different scales (via standardization),
+-   Approximations in sampling theory (Central Limit Theorem).
+:::
+
+## Normal Distribution
+
+### Shapes
+
+-   Bell shaped curve and symmetric around the $\mu$
+-   mean = median = mode
+-   Depends on $\mu$ and $\sigma$
+
+::: panel-tabset
+### Basic shape
+
+```{r, fig.height=5, fig.width=10, fig.align='center'}
+x <- seq(-5, 5, 0.01)
+y <- dnorm(x)
+
+plot(x, y,
+     type = "n",
+     bty = "n",
+     yaxt = "n",
+     xaxt = "n",
+     ann = FALSE,
+     xlim = c(-5, 5))
+lines(c(0, 0), c(0.02, max(y)), lty = 2, col = "darkgray")
+lines(x, y, lty = 1, lwd = 2.2,
+      col = "black")
+arrows(0, y[601], 1, y[601], lty = 2, col = "darkgray", length=0.1, angle=30, code =3)
+text(0, 0.05, expression(mu), pos=1, cex = 1.5)
+text(0.5, y[601], expression(sigma), pos=1, cex = 1.5)
+
+```
+
+### $\mu_1=\mu_2$, $\sigma_1 < \sigma_2$
+
+```{r, fig.height=5, fig.width=10, fig.align='center'}
+par(mar = c(3, 0, 3, 0))
+x <- seq(-5, 5, 0.01)
+y <- mapply(dnorm,
+            list(x, x, x),
+            c(0, 0),
+            c(1, sqrt(3)))
+
+
+plot(x, y[,1],
+     type = "n",
+     bty = "n",
+     yaxt = "n",
+     ann = FALSE,
+     xlim = c(-5, 5))
+lines(c(0, 0), c(0, max(y[,1])), lty = 2, col = "lightgray")
+lines(x, y[,1], lty = 1, lwd = 2,
+      col = "black")
+lines(c(0.3, 2), rep(max(y[,1]), 2), lty = 1, col = "gray")
+text(2.1, max(y[,1]),
+     expression(paste(mu == 0, "," ~~ sigma == 1)), # 수식 표현
+     cex = 1.5, 
+     adj = 0)
+
+lines(x, y[,2], lty = 2, lwd = 2, col = "blue")
+lines(c(0.3, 2), rep(max(y[, 2]), 2), lty = 1, col = "gray")
+text(2.1, max(y[,2]),
+     expression(paste(mu == 0, "," ~~ sigma == 3)), # 수식 표현
+     cex = 1.5, 
+     adj = 0)
+
+
+```
+
+### $\mu_1<\mu_2$, $\sigma_1 = \sigma_2$
+
+```{r, fig.height=5, fig.width=10, fig.align='center'}
+par(mar = c(3, 0, 3, 0))
+x <- seq(-7, 7, 0.01)
+y <- mapply(dnorm,
+            list(x, x, x),
+            c(-1, 2),
+            c(1, 1))
+
+plot(x, y[,1],
+     type = "n",
+     bty = "n",
+     yaxt = "n",
+     ann = FALSE,
+     xlim = c(-7, 7))
+lines(c(-1, -1), c(0, max(y[,1])), lty = 2, col = "lightgray")
+lines(c(2, 2), c(0, max(y[,2])), lty = 2, col = "lightgray")
+lines(x, y[,1], lty = 1, lwd = 2,
+      col = "black")
+# lines(c(0.3, 2), rep(max(y[,1]), 2), lty = 1, col = "gray")
+text(-0.8, max(y[,1]),
+     expression(paste(mu == -1, "," ~~ sigma == 1)), # 수식 표현
+     cex = 1.5, 
+     pos = 4)
+
+lines(x, y[,2], lty = 1, lwd = 2, col = "blue")
+text(2.1, max(y[,2]),
+     expression(paste(mu == 2, "," ~~ sigma == 1)), # 수식 표현
+     cex = 1.5, 
+     pos = 4)
+
+
+
+
+```
+
+### $\mu_1<\mu_2$, $\sigma_1 < \sigma_2$
+
+```{r, fig.height=5, fig.width=10, fig.align='center'}
+par(mar = c(3, 0, 3, 0))
+x <- seq(-7, 7, 0.01)
+y <- mapply(dnorm,
+            list(x, x),
+            c(-1, 2),
+            c(1, sqrt(3)))
+
+
+plot(x, y[,1],
+     type = "n",
+     bty = "n",
+     yaxt = "n",
+     ann = FALSE,
+     xlim = c(-7, 7))
+lines(c(-1, -1), c(0, max(y[,1])), lty = 2, col = "lightgray")
+lines(c(2, 2), c(0, max(y[,2])), lty = 2, col = "lightgray")
+lines(x, y[,1], lty = 1, lwd = 2,
+      col = "black")
+# lines(c(0.3, 2), rep(max(y[,1]), 2), lty = 1, col = "gray")
+text(-0.8, max(y[,1]),
+     expression(paste(mu == -1, "," ~~ sigma == 1)), # 수식 표현
+     cex = 1.5, 
+     pos = 4)
+
+lines(x, y[,2], lty = 1, lwd = 2, col = "blue")
+text(2.3, max(y[,2]),
+     expression(paste(mu == 2, "," ~~ sigma == sqrt(3))), # 수식 표현
+     cex = 1.5, 
+     pos = 4)
+
+
+```
+:::
+
+::: notes
+**Key geometric facts.**
+
+-   The curve is **perfectly symmetric** about $x=\mu$.
+-   **Mean = Median = Mode =** $\mu$ (because of symmetry and unimodality).
+-   The total area under the curve is **1** (it’s a probability density).
+
+**Reading the panel tabs (what to notice).**
+
+-   *Basic shape*: The peak is at $\mu$. A larger $\sigma$ pushes probability mass away from the center, lowering the peak but widening the tails. The dashed arrow in the figure marks $\sigma$ as a horizontal “scale” measure—double $\sigma$ ≈ \~double the spread.
+-   *Same mean, different* $\sigma$: When $\mu_1=\mu_2$, the curve with **larger** $\sigma$ is **flatter and wider**; the one with **smaller** $\sigma$ is **taller and narrower**.
+-   *Different means, same* $\sigma$: Shifting $\mu$ slides the whole bell left or right **without changing its shape**.
+-   *Different means and* $\sigma$: You see both translation (horizontal shift) and dilation (wider/narrower).
+:::
+
+## Normal Distribution
+
+### Standard Normal Distribution (PDF)
+
+When $\mu = 0$ and $\sigma = 1$, the normal distribution is called the standard normal distribution
+
+$$
+\phi(z) = \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}, ~~~ -\infty < z < \infty
+$$ CDF of the standard normal distribution: $\Phi(z)$
+
+$$
+\Phi(z) = \int_{-\infty}^{z} \phi(t)dt
+$$
+
+### Proposition
+
+$$
+Z = \frac{X - \mu}{\sigma} \sim N(0, 1)
+$$
+
+::: notes
+**Standard Normal: the common reference.**
+
+When $\mu=0$ and $\sigma=1$, we obtain the **standard normal**:
+
+$$\phi(z) = \frac{1}{\sqrt{2\pi}}\, e^{-z^2/2}, \qquad -\infty<z<\infty$$
+
+Its **CDF** is
+
+$$\Phi(z)=\int_{-\infty}^{z}\phi(t)\,dt,$$ which has **no closed form**; we use software or tables.
+
+**Standardization (z-scores).**\
+Any $X\sim N(\mu,\sigma^2)$ can be transformed to $Z$:
+
+$$Z=\frac{X-\mu}{\sigma}\ \sim\ N(0,1)$$
+
+Interpretation: $Z$ counts how many **standard deviations** an observation $X$ is from the mean. This lets us reuse the *same* $\Phi(\cdot)$ for *every* normal problem.
+
+**Practical workflow.**
+
+1)  Translate the probability statement about $X$ into one about $Z$ using $Z=(X-\mu)/\sigma$.\
+2)  Evaluate with $\Phi$: e.g. $P(X\le a)=\Phi\!\left(\frac{a-\mu}{\sigma}\right)$,\
+    $$P(a\le X\le b)=\Phi\!\left(\frac{b-\mu}{\sigma}\right)-\Phi\!\left(\frac{a-\mu}{\sigma}\right)$$
+
+**Symmetry & tails.**
+
+-   $\phi(z)$ and $\Phi(z)$ satisfy: $\phi(-z)=\phi(z)$ and $\Phi(-z)=1-\Phi(z)$.\
+-   These identities halve your work for two-sided probabilities.
+
+**Cautions.**
+
+-   The normal model is **continuous**: $P(X=a)=0$.\
+-   Real data may be skewed/heavy-tailed; check assumptions (histogram/QQ-plot) before using normal-based inferences.
+:::
+
+## Normal Distribution
+
+::: {.callout-tip appearance="minimal"}
+**68-95-99 Rule**
+
+Approximately 68% of the data falls within 1 standard deviation of the mean, 95% within 2 standard deviations, and 99.7% within 3 standard deviations.
+:::
+
+`r fontawesome::fa("r-project")` **Check**
+
+```{r, echo=TRUE}
+pnorm(1:3) - pnorm(-c(1:3))
+```
+
+::: {.callout-tip appearance="minimal"}
+**Example**
+
+Let the random experiment consist of a person taking an IQ test, and let $X$ be the score on the test. The scores on such a test are typically standardized to have a mean of 100 and a standard deviation of 15. What is the probability $P(85\leq X \leq 115)$?
+:::
+
+::: panel-tabset
+### Manual Solution
+
+$$
+\begin{aligned}
+P(85\leq X \leq 115) &= P\left(\frac{85-115}{15} \leq \frac{X-100}{15} \leq \frac{100-115}{15}\right)\\
+&= P\left(-1 \leq Z \leq 1\right) \\
+&= \Phi(1) - \Phi(-1) = 0.6827
+\end{aligned}
+$$
+
+### `r fontawesome::fa("r-project")` Check
+
+```{r, echo=TRUE}
+zl <- (85 - 100)/15
+zu <- (115 - 100)/15
+pnorm(zu) - pnorm(zl)
+
+```
+:::
+
+::: notes
+**The 68–95–99.7 rule.**
+
+For $X\sim N(\mu,\sigma^2)$:
+
+-   About **68%** of observations lie within $\mu \pm 1\sigma$,
+-   About **95%** lie within $\mu \pm 2\sigma$,
+-   About **99.7%** lie within $\mu \pm 3\sigma$.
+
+These are approximations but extremely useful for quick, back-of-the-envelope reasoning about typical vs. unusual observations.
+
+**R check**: `pnorm(1:3) - pnorm(-c(1:3))` reproduces these proportions for the standard normal.
+
+**Worked example (IQ scores).**\
+Let $X$ be an IQ score with $\mu=100$ and $\sigma=15$. Find
+
+$$P(85\le X\le 115)$$
+
+**Step 1 (standardize):**
+
+$$Z=\frac{X-100}{15},\quad\frac{85-100}{15}=-1,\quad \frac{115-100}{15}=1.
+$$
+
+**Step 2 (use** $\Phi$):
+
+$$P(85\le X\le 115)=P(-1\le Z\le 1)=\Phi(1)-\Phi(-1)\approx 0.6827$$
+
+Interpretation: IQs are constructed to be roughly normal with mean 100, sd 15; **about two-thirds** of people score between 85 and 115.
+
+**General insights to carry forward.**
+
+-   “Within 1 sd” ≈ typical; “beyond 2 sd” ≈ unusual; “beyond 3 sd” ≈ very rare.\
+-   Standardization allows cross-scale comparison (e.g., test scores from different exams) by translating all to the same $Z$-scale.
+-   In sampling, the **Central Limit Theorem** implies many averages are *approximately normal*, which is foundational for confidence intervals and hypothesis tests.
+
+**Common pitfalls.**
+
+-   Mixing up units: always divide by $\sigma$ (not variance) when forming $Z$.\
+-   Forgetting continuity: $P(X=a)=0$. Use intervals.\
+-   Overusing normality: check data shape before applying normal-based tools; consider transformations or robust methods when needed.
+:::
+
+# Other Continuous Distributions
+
+## Exponential Distribution
+
+::: callout-note
+### Motivation
+
+How to model the time between events that occur continuously and independently at a constant average rate (**waiting time**)?
+
+### Examples
+
+-   Call center: time between message transmission
+-   Finance: time between market price change
+-   Manufacturing: time between machine failure
+
+### What we need?
+
+-   Capture the uncertainty and randomness of the event occurance
+-   Assumption of memoryless property: the probability of the event occurring in the next time interval is independent of the past
+:::
+
+::: notes
+The exponential distribution is widely used to model the time between events that occur continuously and independently at a constant average rate. This distribution is closely linked with the Poisson process, where the focus is on modeling the occurrence of rare events over time.
+
+The exponential distribution was developed in response to the need to model situations where we are interested in the **waiting time** until the next event occurs. For example, consider the problem of predicting how long you will wait for a bus to arrive, assuming the buses arrive randomly. If we know that the buses come on average every 10 minutes, but we have no further information about the schedule, how can we model the waiting time for the next bus?
+
+This kind of problem also appears in various fields such as telecommunications (time between message transmissions), finance (time between price changes), and reliability engineering (time until a product fails). In each of these cases, we are interested in understanding the distribution of time intervals between consecutive occurrences of events.
+
+Such a situation demands a probability distribution that: 1. Captures the uncertainty and randomness of the event occurrence. 2. Does not "remember" how much time has already passed, meaning that the probability of an event happening in the future is independent of the past.
+
+The exponential distribution satisfies both of these requirements and is particularly useful for modeling these scenarios. It provides a mathematically simple yet powerful model for describing the **time between events** in a wide range of processes.
+:::
+
+## Exponential DIstribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> A random variable $X$ has an exponential distribution and write $X \sim \exp(\lambda)$
+
+::: panel-tabset
+### PDF
+
+$$
+f_X(x) = \lambda \exp(-\lambda x),~~~~x\geq0
+$$ where
+
+-   $x$: The time until the next event occurs;
+-   $\lambda$: The rate at which events occur
+
+### CDF
+
+$$
+F_X(x) = 1 - \exp(-\lambda x),~~~~x\geq0
+$$
+
+### Expectation and Variance
+
+$$\begin{aligned}
+\mu_X &=E(X) = \frac{1}{\lambda} \\
+\sigma^2_X &= Var(X) = \frac{1}{\lambda^{2}}
+\end{aligned}$$
+
+### Shape
+
+```{r, fig.align='center'}
+library(scales)
+lambda <- 1/5
+x <- seq(0, 50, length=300)
+y <- dexp(x, rate = lambda)
+
+plot(x, y, type="n", bty = "n", 
+     # xlim = c(0.5, 2.5), 
+     # ylim = c(0, 1.2),
+     main = expression(paste("Exponential Distribution: ", 
+                             "exp(", ~lambda == 1/5, ")")),
+     xlab = "x", 
+     ylab = "f(x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+# polygon(c(1,x,2), c(0,y, 0), col = alpha("blue", 0.2), border = alpha("blue", 0.2))
+lines(x, y, lty=1, lwd=2, col = "blue")
+# abline(h = 1, lty = 2, col = "blue")
+abline(v = 1/lambda, lty = 2, col = "gray")
+# abline(v = 2, lty = 2, col = "blue")
+text(1/lambda + 7, 0.1, expression({mu == frac(1, lambda)} == 5), cex = 2)
+
+
+```
+:::
+
+::: notes
+**Key assumptions (connect to Poisson process).**
+
+1)  **Events occur independently** of one another.\
+2)  **Stationary rate**: on average, $\lambda$ events per unit time.\
+3)  **No clumping in infinitesimal intervals** (probability of two or more events in an instant is negligible).
+
+nder these assumptions, the interarrival time $X$ follows $X\sim \mathrm{Exp}(\lambda)$ with **PDF**
+
+$$f_X(x)=\lambda e^{-\lambda x},\quad x\ge 0$$
+
+and **CDF**
+
+$$F_X(x)=P(X\le x)=1-e^{-\lambda x},\quad x\ge 0$$ **Interpretation of** $\lambda$.
+
+-   $\lambda$ is a **rate** (events per unit time).\
+-   The **mean waiting time** is $E[X]=1/\lambda$; the **variance** is $1/\lambda^2$.
+-   So, if on average 0.2 failures per hour ($\lambda=0.2$), then the mean time to failure is $1/0.2=5$ hours.
+
+**Memoryless property (defining hallmark).**
+
+For $s,t\ge 0$,
+
+$$P(X> s+t\mid X> s)=P(X> t)$$
+
+The “clock” **forgets the past**: after waiting $s$ with no event, the distribution of additional waiting time is the same as at time 0. This property *uniquely* characterizes the Exponential among continuous distributions.
+
+**Reading the shape plot.**
+
+-   The density starts at its maximum when $x=0$ and decays exponentially.\
+-   Larger $\lambda$ = **steeper decay** (shorter waits, smaller mean).\
+-   The dashed vertical line at $x=1/\lambda$ marks the **mean** (and also the scale of the plot).\
+-   The **median** is $m=\frac{\ln 2}{\lambda}$ (always less than the mean because of the right tail).
+
+**Quick checks / mental math.**
+
+-   Survival function $P(X> x)=e^{-\lambda x}$. Very handy for reliability questions.
+-   Quantiles: $x_p = F^{-1}(p) = -\frac{1}{\lambda}\ln(1-p)$; e.g., 90th percentile is $-\ln(0.1)/\lambda$.
+
+**Mini-exercise for the class.**
+
+If calls arrive at rate $\lambda=12$ per hour (i.e., one every 5 minutes on average), what’s the probability the next call arrives **within 2 minutes**?\
+Convert units: $\lambda=12/\text{hour}=0.2/\text{min}$. Then
+
+$$P(X\le 2)=1-e^{-\lambda\cdot 2}=1-e^{-0.4}\approx 0.33$$
+:::
+
+## Exponential Distribution
+
+### Relationship to Poisson Distribution
+
+::: {.callout-tip appearance="minimal"}
+**Poisson process**: Events occurring randomly in time or space at a constant average rate $\lambda$.
+
+-   **Poisson distribution**: **how many events** occur in a given interval.
+
+-   **Exponential distribution**: **time** between consecutive events in this process.
+
+**Example**
+
+> Suppose that customers arrive at a store according to a Poisson process with rate $\lambda$.
+
+-   $Y$: a random variable representing the number of customers arriving in a given time interval $[0,t)$ $\rightarrow$ $Y \sim \text{Pois}(\lambda t)$
+
+-   $X$: a random variable representing the length of time interval $\rightarrow$ $X \sim \exp(\lambda)$
+:::
+
+::: notes
+The exponential distribution is intimately connected to the Poisson process, which models events occurring randomly over time or space at a constant average rate $\lambda$.
+
+**Link to the Poisson process (why Exponential shows up).**
+
+If arrivals follow a **Poisson process** with rate $\lambda$:
+
+-   $N(t)\sim \text{Poisson}(\lambda t)$ counts **how many** events occur in $[0,t)$; - The **waiting time to the next event** $X$ has **Exponential**$(\lambda)$.
+
+Two sides of the same coin:
+
+-   **Counts in fixed time** $\Rightarrow$ Poisson.\
+-   **Time between events** $\Rightarrow$ Exponential.
+
+**Equivalences to remember.**
+
+-   $P(N(t)=0)=e^{-\lambda t}$ equals $P(\text{no event by }t)=P(X>t)$, the **survival** function of $X$.\
+-   Interarrival times in a Poisson process are **i.i.d. Exponential**$(\lambda)$.
+
+**Reliability / queueing interpretations.**
+
+-   In reliability: with constant **hazard rate** $h(x)=\frac{f(x)}{1-F(x)}=\lambda$, the Exponential models components whose instantaneous failure risk is constant over time (no aging).\
+-   In queues: interarrival times or service times are often modeled as Exponential for analytic tractability (e.g., the $M/M/1$ queue).
+
+**Worked examples (tie back to practice).**
+
+1)  *Store arrivals at rate* $\lambda=3$ per hour.
+    -   Probability the next customer arrives **within 10 minutes** ($1/6$ hour):
+
+$$P(X\le 1/6)=1-e^{-3\cdot(1/6)}=1-e^{-0.5}\approx 0.393$$
+
+-   Probability you wait **more than 30 minutes** ($0.5$ hour):
+
+$$P(X>0.5)=e^{-3\cdot 0.5}=e^{-1.5}\approx 0.223$$
+
+2)  *Median vs mean.*
+
+If $\lambda=0.5$ per hour (mean wait $=2$ hours), the **median** wait is $m=\ln(2)/0.5\approx 1.386$ hours, less than the mean—reflecting the right tail.
+
+**Common pitfalls.**
+
+-   Using Exponential when the hazard isn’t constant (e.g., machines that wear out). Consider Weibull or Gamma in that case.\
+-   Mixing up **rate** ($\lambda$) and **mean** ($1/\lambda$). Always label units explicitly.
+
+**Takeaway.**
+
+When events occur at a constant average rate and independently, **interarrival times are Exponential**. This gives you a compact toolkit:
+
+-   $F(x)=1-e^{-\lambda x}$, $S(x)=e^{-\lambda x}$, $E[X]=1/\lambda$, memoryless, and easy quantiles.
+
+From there, you can transition smoothly to more general lifetime models when assumptions fail.
+:::
+
+## Gamma Distribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> A generalization of the exponential distribution. A random variable $X$ is said to have a gamma distribution with shape parameter $\alpha$ and inverse scale parameter (shape) $\lambda = 1/\theta$, denoted as $X \sim \mathrm{gamma}(\alpha, \lambda)$
+
+::: panel-tabset
+### PDF (1)
+
+#### Parameterized by shape $\alpha$ and inverse scale $\lambda$
+
+$$
+f_X(x; \alpha, \lambda) = \frac{\lambda^\alpha}{\Gamma(\alpha)}x^{\alpha - 1}\exp(-\lambda x),~~ x>0
+$$ where
+
+-   $\Gamma(\alpha)$ is the gamma function defined as $\Gamma(\alpha) = (\alpha - 1)!$
+
+### PDF (2)
+
+#### Parameterized by shape $\alpha$ and scale $\theta$
+
+$$
+f_X(x; \alpha, \theta) = \frac{1}{\Gamma(\alpha)\theta^\alpha}x^{\alpha - 1}\exp\left(-\frac{x}{\theta}\right),~~ x>0
+$$
+
+### Expectation and Variance
+
+#### Parameterized by shape $\alpha$ and inverse scale $\lambda$
+
+$$\begin{aligned}
+\mu_X &=E(X) = \frac{\alpha}{\lambda} \\
+\sigma^2_X &= Var(X) = \frac{\alpha}{\lambda^{2}}
+\end{aligned}$$
+
+#### Parameterized by shape $\alpha$ and scale $\theta$
+
+$$\begin{aligned}
+\mu_X &=E(X) = \alpha \theta \\
+\sigma^2_X &= Var(X) = \alpha \theta^{2}
+\end{aligned}$$
+
+### Shape
+
+```{r, fig.align='center'}
+alpha <- 3
+lambda <- c(1/2, 1/3, 1/4, 1/5)
+
+x <- seq(0, 50, length=300)
+y <- mapply(
+  dgamma, 
+  list(x, x, x, x), 
+  alpha, 
+  lambda
+)
+
+plot(x, y[,1], type="n", bty = "n", 
+     # xlim = c(0.5, 2.5), 
+     # ylim = c(0, 1.2),
+     # main = expression(paste("Gamma Distribution: ", 
+     #                         "gamma(", ~alpha == 3, ",", ~lambda == 1/5, ")")),
+     main = expression(paste("Gamma Distribution: ", 
+                             "gamma(", ~alpha == 3, ",", ~lambda, ")")),
+     xlab = "x", 
+     ylab = "f(x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+
+for (i in 1:4) {
+  # points(k, y[,i], col = i, cex = 2.2, pch=16)
+  lines(x, y[,i], col = i, lwd = 1)
+}
+
+text(5, 0.13, expression(paste(lambda == 1/2)), pos = 4, cex = 1.5, col = "black")
+text(9, 0.09, expression(paste(lambda == 1/3)), pos = 4, cex = 1.5, col = "red")
+text(13, 0.06, expression(paste(lambda == 1/4)), pos = 4, cex = 1.5, col = "green")
+text(18, 0.04, expression(paste(lambda == 1/5)), pos = 4, cex = 1.5, col = "blue")
+
+
+
+```
+:::
+
+::: notes
+Let’s now discuss the **Gamma distribution**, a key generalization of the Exponential distribution.
+
+It’s one of the most important continuous probability distributions in statistics, especially for modeling *waiting times* and *nonnegative quantities*.
+
+### 1. Intuitive background
+
+Imagine a **Poisson process** where events occur at a constant rate $\lambda$.
+
+-   The **Exponential distribution** gives the waiting time until the **first** event occurs.
+
+-   The **Gamma distribution** extends this idea: it gives the waiting time until the $\alpha$-th event occurs.
+
+If you sum $\alpha$ independent Exponential($\lambda$) random variables:
+
+$$Y = X_1 + X_2 + \cdots + X_\alpha, \quad X_i \sim \exp(\lambda)$$
+
+then
+
+$$Y \sim \text{Gamma}(\alpha, \lambda)$$
+
+Thus, **Gamma is a sum of exponentials**, where:
+
+-   $\alpha$ (the *shape* parameter) corresponds to the number of events we’re waiting for,
+-   $\lambda=1/\theta$ (the **rate**, **inverse scale**) controls how fast events occur.
+
+### 2. Probability Density Function (PDF)
+
+There are two parameterizations used in practice:
+
+**(1) Using rate parameter λ:**
+
+$$f_X(x; \alpha, \lambda) =
+\frac{\lambda^{\alpha}}{\Gamma(\alpha)}
+x^{\alpha - 1} e^{-\lambda x}, \quad x>0$$
+
+**(2) Using scale parameter θ:**
+
+$$f_X(x; \alpha, \theta) =
+\frac{1}{\Gamma(\alpha)\theta^{\alpha}}
+x^{\alpha - 1} e^{-x/\theta}, \quad x>0$$
+
+Here, $\Gamma(\alpha)$ generalizes the factorial function, with
+
+$$\Gamma(\alpha) = (\alpha-1)! \text{ for integer }\alpha.$$
+
+These two forms are mathematically equivalent because λ = 1/θ.\
+The distinction simply depends on whether you think of “rate” (λ) or “average time per event” (θ).
+
+### 3. Expectation and variance
+
+Under the **rate parameterization**:
+
+$$E[X] = \frac{\alpha}{\lambda}, \quad Var(X) = \frac{\alpha}{\lambda^2}$$
+
+Under the **scale parameterization**:
+
+$$E[X] = \alpha\theta, \quad Var(X) = \alpha\theta^2$$
+
+Interpretation: - Increasing **α** shifts the distribution to the right (longer waiting times). - Increasing **λ** compresses it horizontally (events happen faster).
+
+### 4. Shape interpretation
+
+In the slide, α is fixed at 3 while λ varies from 1/2 to 1/5.\
+Here’s what happens visually:
+
+-   For **larger λ (1/2)**, events occur more frequently → the distribution peaks closer to 0.\
+-   For **smaller λ (1/5)**, events are rarer → the distribution stretches to the right, with a longer tail.
+
+This illustrates the trade-off between **rate** and **spread**.
+
+The Gamma distribution becomes:
+
+-   **Exponential** when α = 1\
+-   **Chi-squared** when α = ν/2 and λ = 1/2
+
+Thus, it connects several major distributions through simple parameter changes.
+
+### 5. Conceptual understanding
+
+The Gamma distribution can be thought of as the sum of α independent exponential random variables:
+
+$$Y = X_1 + X_2 + \dots + X_\alpha, \quad X_i \sim \exp(\lambda)$$
+
+which gives
+
+$$Y \sim \mathrm{Gamma}(\alpha, \lambda)$$
+
+This additive property makes Gamma useful for modeling *aggregated waiting times* or *the time until the α-th event* in many real-world systems.
+
+### 6. Applications
+
+Gamma distributions appear in:
+
+-   **Reliability engineering** – time to failure for systems requiring several components to fail,\
+-   **Queueing theory** – total waiting time until α customers are served,\
+-   **Bayesian inference** – conjugate prior for exponential and Poisson likelihoods, - **Hydrology & meteorology** – rainfall intensity modeling.
+
+In short, the Gamma distribution provides a flexible framework for positive, right-skewed data where the exponential assumption (α=1) may be too restrictive.
+
+### 7. Key takeaway
+
+The Gamma distribution generalizes the exponential by introducing an extra parameter (α) that controls shape.
+
+It unifies several key probability models and connects beautifully to the Poisson process interpretation — modeling the time until the α-th event occurs.
+:::
+
+## Gamma Distribution
+
+::: callout-note
+### Relationship to Exponential Distribution
+
+If $X$ measures the length of time until the first event occurs in a Poisson process with rate $\lambda$, then $X \sim \exp(\lambda)$
+
+Let $Y$ be the length of time until the second event occurs, then $Y$ can be expressed as the sum of two independent exponential random variables with parameter $\lambda$: $Y = X_1 + X_2$, where $X_1, X_2 \sim \exp(\lambda)$ then $Y \sim \mathrm{gamma}(\alpha=2, \lambda)$
+:::
+
+::: {.callout-tip appearance="minimal"}
+**Example**
+
+Suppose that customers arrive at a store according to a Poisson process with rate $\lambda = 1/3$. We decide to measure the length of time until the 4th customer arrives. What is the distribution of this waiting time?
+
+**Answer**
+
+$$Y \sim \mathrm{gamma}(\alpha = 4, \lambda = 1/3)$$
+:::
+
+::: notes
+Let’s revisit how the **Gamma** and **Exponential** distributions are connected through the **Poisson process**.
+
+### 1. Exponential as a special case
+
+If $X$ measures the time until the **first** event occurs in a Poisson process with rate λ,
+
+then:
+
+$$X \sim \mathrm{Exp}(\lambda)$$
+
+This exponential waiting time describes the interval between successive events.
+
+------------------------------------------------------------------------
+
+### 2. Gamma as a sum of exponentials
+
+Now consider the time until the **second event** occurs.\
+Let $X_1$ and $X_2$ be two independent exponential waiting times:
+
+$$X_1, X_2 \sim \mathrm{Exp}(\lambda)$$
+
+Then their sum gives the total waiting time for two arrivals:
+
+$$Y = X_1 + X_2$$
+
+Mathematically, this follows:
+
+$$Y \sim \mathrm{Gamma}(\alpha = 2, \lambda)$$
+
+By extension, the waiting time for the **k-th event** is Gamma with α = k:
+
+$$Y_k \sim \mathrm{Gamma}(\alpha = k, \lambda)$$
+
+### 3. Example interpretation
+
+In the example from the slide:\
+Customers arrive at a store according to a Poisson process with rate $\lambda = 1/3$.\
+If we measure the waiting time until the **4th customer arrives**, that waiting time follows:
+
+$$Y \sim \mathrm{Gamma}(\alpha = 4, \lambda = 1/3)$$
+
+Here:
+
+-   The expected waiting time is $E[Y] = \frac{\alpha}{\lambda} = 12$ minutes.
+-   The variance is $Var[Y] = \frac{\alpha}{\lambda^2} = 108$ minutes².
+
+This aligns perfectly with the “sum of four exponential intervals” interpretation.
+
+### 4. Memoryless property (contrast)
+
+It’s worth noting that while **each Exponential** random variable is *memoryless*,\
+the **Gamma distribution (α \> 1)** loses this property because it represents the *accumulation* of multiple independent waiting times.
+
+Hence, the Gamma distribution captures *history* — it models processes where multiple sequential events must occur before completion.
+
+### 5. Summary points
+
+-   Exponential: waiting time until *first* event.\
+-   Gamma: waiting time until *α-th* event.\
+-   Both arise naturally from the Poisson process, differing only by how many events we’re counting.\
+-   The exponential is therefore a **special case** of the Gamma when α = 1.
+:::
+
+## $\chi^2$ Distribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> A random variable $X$ is said to have a chi-square distribution with $\nu$ degrees of freedom, denoted as $X \sim \chi^2(\nu)$
+
+::: panel-tabset
+### PDF
+
+$$f_X(x; \nu) = 
+\frac{1}{\Gamma\left(\nu/2\right)2^{\nu/2}}x^{\nu/2-1}\exp[-x/2],~~x\geq 0$$
+
+where $\nu > 0$ is the degrees of freedom (integer),
+
+$$
+\Gamma(\nu/2) = \int_{0}^{\infty} t^{\nu/2-1}\exp(-t) dt,~~ z>0
+$$
+
+### Expectation and Variance
+
+$$\begin{aligned}
+\mu_X &=E(X) = \nu \\
+\sigma^2_X &= Var(X) = 2\nu
+\end{aligned}$$
+
+### Shape
+
+```{r, fig.align='center'}
+nu <- c(1, 2, 3, 5, 10)
+x <- seq(0, 20, length=300)
+y <- mapply(
+  dchisq, 
+  list(x, x, x, x, x), 
+  nu
+)
+
+plot(x, y[,1], type="n", bty = "n", 
+     # xlim = c(0.5, 2.5), 
+     ylim = c(0, 0.4),
+     # main = expression(paste("Chi-Square Distribution: ", 
+     #                         "chi^2(", ~nu == 5, ")")),
+     main = expression(paste("Chi-Squared Distribution: ", 
+                             ~chi^2,"(", nu, ")")),
+     xlab = "x", 
+     ylab = "f(x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+
+for (i in 1:5) {
+  # points(k, y[,i], col = i, cex = 2.2, pch=16)
+  lines(x, y[,i], col = i, lwd = 1)
+}
+
+text(1, 0.38, expression(nu == 1), pos = 4, cex = 1.5, col = "black")
+text(1.5, 0.25, expression(nu == 2), pos = 4, cex = 1.5, col = "red")
+text(3, 0.2, expression(nu == 3), pos = 4, cex = 1.5, col = "green")
+text(5, 0.15, expression(nu == 5), pos = 4, cex = 1.5, col = "blue")
+text(10, 0.1, expression(nu == 10), pos = 4, cex = 1.5, col = "purple")
+
+```
+:::
+
+::: notes
+Let’s take a closer look at the **Chi-Square distribution**, which plays a fundamental role in inferential statistics—especially in variance estimation and hypothesis testing.
+
+### 1. Definition and connection to other distributions
+
+A random variable $X$ is said to follow a **Chi-Square distribution** with $\nu$ degrees of freedom if:
+
+$$X \sim \chi^2(\nu)$$
+
+### 2. PDF and parameters
+
+The probability density function is:
+
+$$f_X(x; \nu) = \frac{1}{2^{\nu/2}\Gamma(\nu/2)} x^{\nu/2 - 1} e^{-x/2}, \quad x \ge 0$$
+
+The key parameter here is **ν (nu)**, the *degrees of freedom*.\
+It determines both the *shape* and *spread* of the distribution.
+
+-   When $\nu$ is small, the distribution is **highly skewed right**.\
+-   As $\nu$ increases, it becomes **more symmetric** and approaches a **Normal** distribution.
+
+The mean and variance are given by:
+
+$$E[X] = \nu, \quad Var[X] = 2\nu.$$
+
+So as degrees of freedom increase, the distribution spreads out but also centers more around its mean.
+
+### 3. Visual interpretation
+
+In the plot shown on your slide:
+
+-   The black curve (ν = 1) is sharply right-skewed.\
+-   As ν increases (e.g., ν = 5, 10), the curve flattens and shifts right.\
+-   For large ν, it closely resembles a normal bell shape.
+
+This is because the Chi-Square distribution is essentially a **sum of squared normal random variables**, and by the central limit theorem, sums of random variables tend to normality as ν grows large.
+
+------------------------------------------------------------------------
+
+### 6. Intuitive example
+
+Imagine you take ν independent standard normal observations. Each $Z_i^2$ represents a squared standardized deviation. Summing them gives you the total "variation" in your sample — that’s what the Chi-Square captures.
+
+So, χ² measures how much total variation is observed relative to what’s expected under a normal model.
+:::
+
+## $\chi^2$ Distribution
+
+::: callout-note
+### Properties
+
+1.  Specific case of the gamma distribution: If $X \sim \chi^2(\nu)$, then $X \sim \mathrm{gamma}(\alpha = \nu/2, \lambda = 1/2)$
+
+2.  A random variable $Z \sim N(0, 1)$, then $X = Z^2 \sim \chi^2(1)$
+
+3.  If $Z_1, Z_2, \ldots, Z_{\nu}$ are independent standard normal random variables, then the sum of their squares follows a chi-square distribution with $\nu$ degrees of freedom:
+
+$$X = \sum_{i=1}^{\nu} Z_i^2 \sim \chi^2(\nu)$$ 4. Additivity property: If $X_1 \sim \chi^2(\nu_1)$ and $X_2 \sim \chi^2(\nu_2)$ are independent chi-square random variables, then their sum follows a chi-square distribution with degrees of freedom equal to the sum of their individual degrees of freedom:
+
+$$
+X_1 + X_2 \sim \chi^2(\nu_1 + \nu_2)
+$$
+:::
+
+::: notes
+The Chi-Square distribution is actually a **special case of the Gamma distribution**, where
+
+$$X \sim \text{Gamma}\left(\alpha = \frac{\nu}{2}, \lambda = \frac{1}{2}\right)$$
+
+This means that all the properties of the Gamma distribution—its shape, positivity, and skewness—carry over here.
+
+### 2. Relationship to the standard normal
+
+If $Z \sim N(0,1)$, then:
+
+$$Z^2 \sim \chi^2(1)$$
+
+That is, the square of a standard normal variable follows a Chi-Square distribution with 1 degree of freedom.
+
+And more generally, if we have independent standard normals:
+
+$$Z_1, Z_2, \ldots, Z_\nu \sim N(0,1)$$
+
+then their sum of squares:
+
+$$X = \sum_{i=1}^{\nu} Z_i^2$$
+
+follows a Chi-Square distribution with ν degrees of freedom:
+
+$$X \sim \chi^2(\nu)$$
+
+This interpretation provides a geometric intuition—χ² represents the *sum of squared standardized deviations*.
+
+### 4. Additivity property
+
+Another powerful property is **additivity**:
+
+If $X_1 \sim \chi^2(\nu_1)$ and $X_2 \sim \chi^2(\nu_2)$ are independent,\
+then:
+
+$$X_1 + X_2 \sim \chi^2(\nu_1 + \nu_2)$$
+
+This property is extremely useful in combining independent variance estimates, such as in regression and ANOVA.
+:::
+
+## $\chi^2$ Distribution
+
+::: callout-note
+### Properties (Continued)
+
+4.  Application:
+    -   Chi-square distribution is widely used in hypothesis testing, particularly in tests of independence and goodness-of-fit tests.
+    -   It is also used in hypothesis test for population variance when the underlying distribution is normal.
+5.  $X_1, \ldots X_n \overset{i.i.d}{\sim} N(0,1)$ and sample variance $S^2=\sum_{i=1}^{n}(X_i - \bar{X})^2/(n-1)$, then
+
+$$
+\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)
+$$
+:::
+
+::: notes
+The Chi-Square distribution is used extensively in hypothesis testing:
+
+1.  **Goodness-of-fit test** – to assess how well observed data fit an expected distribution.
+    -   Example: testing if dice are fair or if genotype frequencies match Hardy-Weinberg equilibrium.
+2.  **Test of independence** – to determine whether two categorical variables are independent in a contingency table.
+    -   Example: testing if smoking status is related to disease incidence.
+
+Suppose we have a sample $X_1, \ldots, X_n$ drawn independently from a normal population $N(\mu, \sigma^2)$.
+
+The sample variance is: $$S^2 = \frac{1}{n-1} \sum_{i=1}^{n}(X_i - \bar{X})^2$$
+
+Then, a fundamental result in statistics states:
+
+$$\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$$
+
+This relationship forms the foundation of:
+
+-   Confidence intervals for variance,
+-   Hypothesis tests about population variance,
+-   The derivation of *t* and *F* distributions.
+
+Each of these applications relies on the χ² statistic, which quantifies *how much observed frequencies deviate from expected ones*.
+
+### 4. Practical insights
+
+-   **Shape**: Skewed right for small ν, approximately symmetric for ν \> 30.\
+-   **Expected value**: equal to the degrees of freedom (E\[X\] = ν).\
+-   **Variance**: grows linearly with ν (Var\[X\] = 2ν).\
+-   **Usage**: Mostly as a test statistic rather than a modeling distribution.
+
+### 5. Summary takeaways
+
+-   The Chi-Square distribution arises naturally from the **sum of squared standard normals**.\
+-   It forms the mathematical backbone of **many inferential techniques**, including ANOVA, regression diagnostics, and goodness-of-fit tests.\
+-   It’s also a **special case of the Gamma distribution**, showing how fundamental and interconnected these distributions are in probability theory.
+:::
+
+## t Distribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> A random variable $X$ is said to have a $t$ distribution with $\nu$ degrees of freedom, denoted as $X \sim t(\nu)$
+
+::: panel-tabset
+### PDF
+
+$$f_X(x; \nu) = \frac{\Gamma\left[ (r+1)/2 \right ]}{\sqrt{\nu\pi}\Gamma(\nu/2)} \left (1 + \frac{x^2}{r} \right )^{-(\nu+1)/2}, ~~~~~ -\infty < x < \infty$$
+
+where $\nu > 1$ is the degrees of freedom (integer) and $\Gamma(\cdot)$ is the gamma function.
+
+### Expectation and Variance
+
+$$\begin{aligned}
+\mu_X &=E(X) = 0, ~~ \nu > 1 \\
+\sigma^2_X &= Var(X) = \frac{\nu}{\nu - 2}, ~~ \nu > 2
+\end{aligned}$$
+
+### Shape
+
+```{r, fig.align='center'}
+nu <- c(1, 2, 5, 30)
+x <- seq(-5, 5, length=300)
+y <- mapply(
+  dt,
+  list(x, x, x, x),
+  nu
+)
+ 
+plot(x, y[,4], type="n", bty = "n", 
+     # xlim = c(0.5, 2.5), 
+     # ylim = c(0, 0.4),
+     # main = expression(paste("t Distribution: ", 
+     #                         "t(", ~nu == 5, ")")),
+     main = expression(paste("t Distribution: ", 
+                             ~t,"(",nu,")")),
+     xlab = "x", 
+     ylab = "f(x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+
+for (i in 1:4) {
+  # points(k, y[,i], col = i, cex = 2.2, pch=16)
+  lines(x, y[,i], col = i, lwd = 1.2)
+} 
+
+legend(
+ 3, 0.4,
+  legend = c(expression(nu == 1),
+             expression(nu == 2),
+             expression(nu == 5),
+             expression(nu == 30)),
+  col = 1:4,
+  lwd = 2,
+  cex = 1.2
+)
+
+
+```
+:::
+
+::: notes
+Let’s now discuss the **Student’s t distribution**, a cornerstone of inferential statistics — particularly in small-sample hypothesis testing and confidence interval estimation.
+
+### 1. Definition and context
+
+A random variable $X$ is said to have a **t distribution** with $\nu$ degrees of freedom if:
+
+$$X \sim t(\nu)$$
+
+The t distribution arises naturally when we estimate a population mean but the population variance is **unknown** and must be estimated from the data.
+
+It was first introduced by **William Gosset**, who published under the pseudonym “Student” — hence the name *Student’s t distribution*.
+
+### 2. Probability density function (PDF)
+
+The PDF of the t distribution is:
+
+$$f_X(x; \nu) =
+\frac{\Gamma\left( \frac{\nu + 1}{2} \right)}{\sqrt{\nu \pi}\Gamma(\nu/2)}
+\left( 1 + \frac{x^2}{\nu} \right)^{-\frac{\nu + 1}{2}},
+\quad -\infty < x < \infty$$
+
+Here:
+
+-   $\nu$ controls how “heavy” the tails are.
+-   $\Gamma(\cdot)$ is the gamma function, generalizing the factorial.
+
+### 3. Mean and variance
+
+$$E[X] = 0 \quad \text{for } \nu > 1,
+\quad Var(X) = \frac{\nu}{\nu - 2} \quad \text{for } \nu > 2$$
+
+That is:
+
+-   The mean exists only if $\nu > 1$.
+-   The variance exists only if $\nu > 2$, and decreases toward 1 as $\nu$ grows.
+
+### 4. Shape intuition
+
+In the slide’s plot, we compare t distributions for $\nu = 1, 2, 5, 30$:
+
+-   **ν = 1**: This is the *Cauchy distribution* — very heavy tails, undefined mean and variance.\
+-   **ν = 2 or 5**: Still quite heavy-tailed but beginning to resemble the normal.\
+-   **ν = 30**: Nearly identical to $N(0,1)$.
+
+The smaller the degrees of freedom, the heavier the tails — reflecting greater uncertainty when estimating variance from small samples.
+
+### 5. Interpretation
+
+Think of the t distribution as a “fatter-tailed” version of the normal distribution.
+
+Those heavier tails protect against underestimating variability when sample sizes are small, making it more conservative in inference.
+:::
+
+## t Distribution
+
+::: callout-note
+### Properties
+
+1.  Symmetry around 0, tails heavier than normal distribution
+
+2.  As $\nu \to \infty$, the $t$ distribution approaches the standard normal distribution:
+
+$$t(\nu) \to N(0, 1)$$
+
+3.  Relationship to normal and chi-square distributions: If $Z \sim N(0, 1)$ and $V \sim \chi^2(\nu)$ are independent random variables, then the random variable
+
+$$T = \frac{Z}{\sqrt{V/\nu}} \sim t(\nu)$$
+
+4.  Application:
+    -   The $t$ distribution is commonly used in hypothesis testing and confidence interval estimation when the population standard deviation is unknown and the sample size is small.
+    -   It is particularly useful in the context of the one-sample and two-sample $t$ tests.
+
+$$
+T = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)
+$$
+:::
+
+::: notes
+Now let’s explore the **key properties** and **practical applications** of the t distribution.
+
+### 1. Symmetry and shape
+
+The t distribution is **symmetric about 0**, just like the standard normal.\
+However, it has **heavier tails**, meaning there’s a higher probability of extreme values. This accounts for the extra uncertainty introduced by using the sample standard deviation instead of the true σ.
+
+### 2. Limiting behavior
+
+As $\nu \to \infty$, the t distribution converges to the standard normal:
+
+$$t(\nu) \to N(0, 1)$$
+
+This is because as sample size grows, our estimate of σ becomes more accurate, and the additional uncertainty vanishes.
+
+So, for small samples → t distribution, for large samples → normal distribution.
+
+### 2. Relationship to other distributions
+
+The t distribution is derived from the **normal** and **chi-square** distributions.
+
+If:
+
+$$Z \sim N(0, 1) \quad \text{and} \quad V \sim \chi^2(\nu)$$
+
+are independent, then the ratio:
+
+$$T = \frac{Z}{\sqrt{V / \nu}} \sim t(\nu)$$
+
+This ratio form gives intuition:
+
+-   The numerator ($Z$) provides **standardized deviation**.
+-   The denominator ($\sqrt{V / \nu}$) introduces uncertainty from estimating variance.
+
+When the variance is known (so $V$ is fixed), $T$ reduces to $Z$.
+
+That’s why, as the degrees of freedom $\nu$ increase, $t(\nu)$ approaches $N(0,1)$.
+
+### 4. Application in hypothesis testing
+
+The t distribution is crucial when performing tests about means with **unknown population variance**.
+
+For a single sample, the test statistic is:
+
+$$T = \frac{\bar{X} - \mu}{S / \sqrt{n}} \sim t(n - 1)$$
+
+Here:
+
+-   $\bar{X}$ is the sample mean,\
+-   $S$ is the sample standard deviation,\
+-   $n$ is the sample size,\
+-   $\mu$ is the hypothesized population mean.
+
+This statistic is used in:
+
+-   **One-sample t-test**: testing if the mean differs from a known value.\
+-   **Two-sample t-test**: comparing means of two independent groups.\
+-   **Paired t-test**: comparing before-and-after measurements on the same subjects.
+
+### 5. Confidence intervals
+
+The same distribution is used for confidence intervals for the population mean when σ is unknown:
+
+$$\bar{X} \pm t_{\alpha/2, \, n-1} \frac{S}{\sqrt{n}}$$
+
+where $t_{\alpha/2, n-1}$ is the critical value from the t distribution with $n-1$ degrees of freedom.
+
+This ensures the correct coverage probability — especially for small $n$ — where using the z distribution would underestimate uncertainty.
+
+### 6. Key takeaways
+
+-   The t distribution models sampling variability when σ is **unknown**.\
+-   Heavier tails mean greater protection against underestimating variance.\
+-   As sample size increases, it approaches the normal distribution.\
+-   It underpins the t-tests and confidence intervals used daily in statistical analysis.
+:::
+
+## F Distribution
+
+### `r icons::fontawesome("bullseye", style = "solid")` Definition
+
+> A random variable $X$ is said to have a $F$ distribution with $(\nu_1, \nu_2)$ degrees of freedom, denoted as $X \sim F(\nu_1, \nu_2)$
+
+::: panel-tabset
+### PDF
+
+$$f_X(x; \nu_1, \nu_2) = \frac{\Gamma\left(\frac{\nu_1 + \nu_2}{2}\right)}{\Gamma\left(\frac{\nu_1}{2}\right)\Gamma\left(\frac{\nu_2}{2}\right)}\left(\frac{\nu_1}{\nu_2}\right)^{\nu_1/2} \frac{x^{\nu_1/2 - 1}}{\left(1 + \frac{\nu_1}{\nu_2}x\right)^{(\nu_1 + \nu_2)/2}},~~ x\geq 0$$
+
+where $\nu_1$ and $\nu_2$ are the degrees of freedom (integers) and $\Gamma(\cdot)$ is the gamma function.
+
+### Expectation and Variance
+
+$$\begin{aligned}
+\mu_X &=E(X) = \frac{\nu_2}{\nu_2 - 2}, ~~ \nu_2 > 2 \\
+\sigma^2_X &= Var(X) = \frac{2\nu_2^2(\nu_1 + \nu_2 - 2)}{\nu_1(\nu_2 - 2)^2(\nu_2 - 4)}, ~~ \nu_2 > 4
+\end{aligned}$$
+
+### Shape
+
+```{r, fig.align='center'}
+nu1 <- c(1, 3, 5, 10)
+nu2 <- c(2, 5, 10, 20)
+x <- seq(0, 5, length=300)
+y <- mapply(
+  df,
+  list(x, x, x, x),
+  nu1,
+  nu2
+)
+
+plot(x, y[,4], type="n", bty = "n", 
+     # xlim = c(0.5, 2.5), 
+     # ylim = c(0, 0.4),
+     # main = expression(paste("F Distribution: ", 
+     #                         "F(", ~nu1 == 5, ",", ~nu2 == 10, ")")),
+     main = expression(paste("F Distribution: ", 
+                             "F(", nu[1], ",", ~nu[2], ")")),
+     xlab = "x", 
+     ylab = "f(x)", 
+     cex.main = 2, cex.lab = 1.5
+     )
+
+for (i in 1:4) {
+  # points(k, y[,i], col = i, cex = 2.2, pch=16)
+  lines(x, y[,i], col = i, lwd = 1.5)
+}
+
+legend(
+ "topright",
+  # legend = c(expression(nu[1] == 1, ~nu[2] == 2),
+  #            expression(nu[1] == 3, ~nu[2] == 5),
+  #            expression(nu[1] == 5, ~nu[2] == 10),
+  #            expression(nu[1] == 10, ~nu[2] == 20)),
+ legend = c(
+   expression(paste(nu[1] == 1, ",", ~nu[2] == 2)),
+   expression(paste(nu[1] == 3, ",", ~nu[2] == 5)),
+   expression(paste(nu[1] == 5, ",", ~nu[2] == 10)),
+   expression(paste(nu[1] == 10, ",", ~nu[2] == 20))
+ ), 
+ col = 1:4, 
+ lwd = 2,
+ cex = 1.2
+)
+  
+
+```
+:::
+
+::: notes
+Let’s turn to the **F distribution**, a fundamental distribution used primarily in comparing **variances** across samples — especially in **ANOVA** and **regression analysis**.
+
+### 1. Definition and context
+
+A random variable $X$ is said to follow an **F distribution** with $(\nu_1, \nu_2)$ degrees of freedom if:
+
+$$X \sim F(\nu_1, \nu_2)$$
+
+where $\nu_1$ and $\nu_2$ are the *numerator* and *denominator degrees of freedom*, respectively.
+
+The F distribution is a **ratio of two scaled chi-square variables**, and it measures how much one sample variance deviates from another, relative to what’s expected under the null hypothesis of equal variances.
+
+### 2. Probability density function (PDF)
+
+The PDF is given by:
+
+$$f_X(x; \nu_1, \nu_2) =
+\frac{\Gamma\left(\frac{\nu_1 + \nu_2}{2}\right)}
+{\Gamma\left(\frac{\nu_1}{2}\right)\Gamma\left(\frac{\nu_2}{2}\right)}
+\left(\frac{\nu_1}{\nu_2}\right)^{\nu_1/2}
+\frac{x^{\nu_1/2 - 1}}{\left(1 + \frac{\nu_1}{\nu_2}x\right)^{(\nu_1 + \nu_2)/2}}, \quad x \ge 0$$
+
+It’s defined only for **nonnegative** x-values and depends on both degrees of freedom.
+
+The gamma functions here act as normalizing constants to ensure the total area equals 1
+
+### 3. Mean and variance
+
+The mean exists when $\nu_2 > 2$ and is given by:
+
+$$E[X] = \frac{\nu_2}{\nu_2 - 2}$$
+
+The variance exists only when $\nu_2 > 4$:
+
+$$Var[X] = \frac{2\nu_2^2(\nu_1 + \nu_2 - 2)}{\nu_1(\nu_2 - 2)^2(\nu_2 - 4)}$$
+
+As $\nu_1$ and $\nu_2$ increase, both mean and variance stabilize, and the distribution becomes less skewed.
+
+### 4. Shape and interpretation
+
+In the plot shown: - With small $(\nu_1, \nu_2)$, the distribution is **highly right-skewed**. - As degrees of freedom increase, the curve flattens and becomes more symmetric.
+
+For example: - $(\nu_1=1, \nu_2=2)$ gives a sharply declining shape. - $(\nu_1=10, \nu_2=20)$ produces a much smoother, nearly symmetric curve.
+
+Intuitively, smaller degrees of freedom correspond to smaller sample sizes — hence more uncertainty and more skewness.
+:::
+
+## F Distribution
+
+::: callout-note
+### Properties
+
+1.  Non-negativity: The F-distribution is defined only for non-negative values, i.e., $X \geq 0$.
+
+2.  Asymmetry: The F-distribution is right-skewed, especially for small degrees of freedom. As the degrees of freedom increase, the distribution becomes more symmetric.
+
+3.  $F \sim F(\nu_1, \nu_2)$ implies that $\frac{1}{F} \sim F(\nu_2, \nu_1)$
+
+4.  $X \sim t(\nu)$ implies that $X^2 \sim F(1, \nu)$
+
+5.  Relationship to chi-square distributions: If $X_1 \sim \chi^2(\nu_1)$ and $X_2 \sim \chi^2(\nu_2)$ are independent chi-square random variables, then the random variable
+
+$$F = \frac{(X_1/\nu_1)}{(X_2/\nu_2)} \sim F(\nu_1, \nu_2)$$
+:::
+
+::: notes
+6.  Key properties
+
+-   The F distribution is **nonnegative**: ( X \ge 0 ).\
+-   It is **right-skewed**, especially for small degrees of freedom.\
+-   If $F \sim F(\nu_1, \nu_2$, then its reciprocal follows another F distribution:
+
+$$\frac{1}{F} \sim F(\nu_2, \nu_1)$$
+
+Connection to t distribution:
+
+$$t^2(\nu) \sim F(1, \nu)$$
+
+This interconnection shows how the F, t, and chi-square distributions form a unified statistical family.
+
+Since $t^2 \sim F(1, \nu)$, the t-distribution is a special case of the F. The chi-square is a special case when $\nu_2 \to \infty$.
+
+If we have two independent chi-square random variables:
+
+$$X_1 \sim \chi^2(\nu_1), \quad X_2 \sim \chi^2(\nu_2)$$
+
+then the ratio:
+
+$$F = \frac{(X_1 / \nu_1)}{(X_2 / \nu_2)} \sim F(\nu_1, \nu_2)$$
+
+This construction directly links the F distribution to the **chi-square** and **t distributions**:
+:::
+
+## F Distribution
+
+::: callout-note
+### Properties (Continued)
+
+4.  Application:
+    -   The F-distribution is commonly used in analysis of variance (ANOVA) to compare the variances of two or more groups.
+    -   It is also used in regression analysis to test the overall significance of a regression model.
+
+Let $X_1\ldots X_n \overset{i.i.d}{\sim} N(\mu_1, \sigma^2_1)$, $Y_1\ldots Y_m \overset{i.i.d}{\sim} N(\mu_2, \sigma^2_2)$, and sample variances $S^2_X=\sum_{i=1}^{n}(X_i - \bar{X})^2/(n-1)$, $S^2_Y=\sum_{j=1}^{m}(Y_j - \bar{Y})^2/(m-1)$, then
+
+$$
+\frac{S^2_X/\sigma^2_1}{S^2_Y/\sigma^2_2} \sim F(n-1, m-1)
+$$
+:::
+
+::: notes
+Now, let’s discuss **how the F distribution is used** in practical statistical applications.
+
+### 1. F test for equality of variances
+
+The F statistic fundamentally measures a **ratio of variances**. If the two population variances are equal, the expected F value is near 1. The further it deviates from 1, the stronger the evidence that variances differ — forming the basis for variance-based hypothesis tests.
+
+Suppose we have two independent normal samples:
+
+$$X_1, \dots, X_n \sim N(\mu_1, \sigma_1^2), \quad
+Y_1, \dots, Y_m \sim N(\mu_2, \sigma_2^2)$$
+
+Let:
+
+$$S_X^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2, \quad
+S_Y^2 = \frac{1}{m-1} \sum_{j=1}^{m} (Y_j - \bar{Y})^2$$
+
+Then the statistic:
+
+$$\frac{S_X^2 / \sigma_1^2}{S_Y^2 / \sigma_2^2} \sim F(n - 1, m - 1)$$
+
+This allows us to test:
+
+$$H_0: \sigma_1^2 = \sigma_2^2 \quad \text{vs.} \quad H_1: \sigma_1^2 \ne \sigma_2^2$$
+
+by comparing the observed ratio of sample variances to an $F$ critical value.
+
+### 2. Role in ANOVA
+
+In **Analysis of Variance (ANOVA)**, the F statistic compares:
+
+$$\text{Between-group variance} \quad \text{vs.} \quad \text{Within-group variance}$$
+
+Formally:
+
+$$F = \frac{MS_{Between}}{MS_{Within}} \sim F(\nu_1, \nu_2)$$
+
+If the between-group variance is significantly larger than the within-group variance, it indicates at least one group mean differs from the others.
+
+This forms the backbone of **one-way and two-way ANOVA**, widely used in experimental design.
+
+### 3. Role in regression analysis
+
+In **multiple regression**, the F statistic tests the null hypothesis:
+
+$$H_0: \beta_1 = \beta_2 = \dots = \beta_k = 0$$
+
+That is, it checks whether the explanatory variables collectively have any predictive power.
+
+The test statistic:
+
+$$F = \frac{(SSR / k)}{(SSE / (n - k - 1))} \sim F(k, n - k - 1)$$
+
+compares the explained variance (SSR) to the unexplained variance (SSE).
+
+A large F value suggests that the model explains a significant portion of variability in the outcome.
+
+### 4. Relationship to other distributions
+
+-   **Chi-square connection:** Both numerator and denominator variances come from chi-square distributions.\
+-   **t connection:** The square of a t variable is an F variable with (1, ν) degrees of freedom.\
+-   **Reciprocal property:** $1/F \sim F(\nu_2, \nu_1)$.
+
+These relationships make F a central component in the broader theory of sampling distributions.
+
+### 5. Practical interpretation
+
+In practice: - F \> 1 indicates that the numerator variance is larger than the denominator variance.\
+- The further F moves from 1, the more evidence against equal variances.\
+- Because the F distribution is asymmetric, we often use one-sided or right-tail tests.
+
+### 6. Key takeaways
+
+-   The F distribution models **ratios of independent variances**.\
+-   It is **right-skewed**, especially for small degrees of freedom.\
+-   It underlies essential tools in **ANOVA, regression, and variance comparison**.\
+-   It unites the **t** and **chi-square** distributions through elegant mathematical relationships.
+
+Ultimately, the F distribution quantifies how much *relative variability* exists between groups — a concept at the heart of nearly all inferential statistics.
+:::
+
+<!-- ::: notes -->
+
+<!-- ### 1. **포아송 분포** -->
+
+<!-- 포아송 분포는 일정한 시간 또는 공간 내에서 발생하는 사건의 수를 모델링합니다. 사건이 독립적으로 발생하며, 일정한 평균 속도 $\lambda$로 발생한다고 가정합니다. 포아송 분포의 확률 질량 함수(PMF)는 다음과 같습니다: -->
+
+<!-- $P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0, 1, 2, \dots$ -->
+
+<!-- 여기서 $X$는 주어진 구간에서 발생하는 사건의 수입니다. - $\lambda$는 사건이 발생하는 평균 속도(단위 시간당 사건 수)를 나타냅니다. -->
+
+<!-- ### 1.2 **지수분포** -->
+
+<!-- 지수분포는 포아송 과정에서 연속된 사건 사이의 시간을 모델링합니다. 사건들이 일정한 속도 $\lambda$로 발생한다고 가정할 때, 다음 사건이 발생하기까지의 시간을 설명하는 분포입니다. 지수분포의 확률 밀도 함수(PDF)는 다음과 같습니다: -->
+
+<!-- $$f(x; \lambda) = \lambda e^{-\lambda x}, \quad x \geq 0$$ -->
+
+<!-- 여기서: - $X$는 다음 사건이 발생할 때까지의 시간입니다. - $\lambda$는 사건이 발생하는 속도(rate)입니다. -->
+
+<!-- ### 2. **지수분포와 포아송 분포의 관계** -->
+
+<!-- 지수분포와 포아송 분포 간의 관계는 **포아송 과정**을 통해 자연스럽게 도출됩니다. 핵심 내용은 다음과 같습니다: -->
+
+<!-- 1.  **포아송 과정**: -->
+
+<!--     -   포아송 과정은 사건들이 시간 또는 공간 내에서 일정한 평균 속도 $\lambda$로 무작위로 발생하는 과정을 설명합니다. -->
+
+<!--     -   포아송 분포는 주어진 구간에서 발생하는 사건의 수를 설명합니다. -->
+
+<!--     -   지수분포는 연속된 사건 사이의 시간을 설명합니다. -->
+
+<!-- 2.  **연결**: -->
+
+<!--     -   주어진 시간 구간에서 발생하는 사건 수가 포아송 분포를 따른다면, 연속된 사건들 사이의 시간(즉, **도착 간격**)은 지수분포를 따릅니다. -->
+
+<!--     -   반대로, 사건들 간의 도착 간격이 지수분포를 따른다면, 주어진 구간에서 발생하는 사건 수는 포아송 분포를 따릅니다. -->
+
+<!-- ### 3. **예시: 고객 도착** -->
+
+<!-- 은행에 도착하는 고객을 예로 들어보겠습니다. -->
+
+<!-- -   **포아송 분포**: 고객들이 은행에 평균적으로 시간당 3명($\lambda = 3$)씩 도착한다고 가정합니다. 이때 1시간 동안 도착하는 고객 수는 속도 $\lambda = 3$인 포아송 분포를 따릅니다. -->
+
+<!-- $$P(X = k) = \frac{3^k e^{-3}}{k!}, \quad k = 0, 1, 2, \dots$$ -->
+
+<!-- 여기서 $P(X = k)$는 정확히 $k$명의 고객이 1시간 동안 도착할 확률을 나타냅니다. -->
+
+<!-- -   **지수분포**: 연속된 두 고객의 도착 시간 간격은 속도 $\lambda = 3$인 지수분포를 따릅니다. 두 고객의 도착 시간 간격 $T$에 대한 확률 밀도 함수(PDF)는 다음과 같습니다: -->
+
+<!-- $$f(t) = 3 e^{-3t}, \quad t \geq 0$$ -->
+
+<!-- 여기서 $f(t)$는 두 고객 사이의 도착 시간 간격이 $t$일 확률을 나타냅니다. -->
+
+<!-- ### 4. **두 분포의 연결**: -->
+
+<!-- -   **포아송 과정**에서는 고객이 독립적으로 도착하며, 두 도착 시간 사이의 간격은 **기억 없음**(memoryless) 속성을 갖습니다. 이 속성은 지수분포의 특징입니다. -->
+
+<!-- -   **지수분포**는 포아송 과정에서 다음 사건(고객 도착)까지의 대기 시간을 설명합니다. 반면, **포아송 분포**는 일정한 시간 내에 발생하는 사건(고객 도착)의 수를 설명합니다. -->
+
+<!-- ### 5. **수학적 연결** -->
+
+<!-- 이벤트 사이의 시간이 지수분포를 따른다면, 주어진 시간 구간 $t$내에 적어도 하나의 사건이 발생할 확률은 지수분포의 누적 분포 함수(CDF)로 표현됩니다: -->
+
+<!-- $$P(T \leq t) = 1 - e^{-\lambda t}$$ -->
+
+<!-- 이 식은 대기 시간 $T$가 \$t \$이하일 확률을 의미합니다. 반면, 포아송 분포는 주어진 시간 구간 \$t \$내에 $k$개의 사건이 발생할 확률을 다음과 같이 나타냅니다: -->
+
+<!-- $$P(N(t) = k) = \frac{(\lambda t)^k e^{-\lambda t}}{k!}$$ -->
+
+<!-- 따라서, 사건 간 대기 시간이 지수분포를 따른다면, 시간 구간 $t$내의 사건 수는 평균 $\lambda t$를 따르는 포아송 분포를 따릅니다. -->
+
+<!-- ::: -->

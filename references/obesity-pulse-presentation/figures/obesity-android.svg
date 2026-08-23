@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="360" viewBox="0 0 240 360" role="img" aria-label="Android apple-type obesity body silhouette with upper-body abdominal fat">
+  <!-- Android (apple type): broad upper body, widest at the abdomen, tapering hips, thin legs. -->
+  <defs>
+    <linearGradient id="gA" gradientUnits="userSpaceOnUse" x1="120" y1="20" x2="120" y2="345">
+      <stop offset="0" stop-color="#FF4A2B"/>
+      <stop offset="1" stop-color="#D81500"/>
+    </linearGradient>
+  </defs>
+  <!-- soft ground shadow -->
+  <ellipse cx="120" cy="350" rx="66" ry="10" fill="#000000" opacity="0.10"/>
+  <!-- feet -->
+  <ellipse cx="103" cy="340" rx="18" ry="9" fill="url(#gA)"/>
+  <ellipse cx="137" cy="340" rx="18" ry="9" fill="url(#gA)"/>
+  <!-- thin legs -->
+  <rect x="93" y="250" width="22" height="90" rx="11" fill="url(#gA)"/>
+  <rect x="125" y="250" width="22" height="90" rx="11" fill="url(#gA)"/>
+  <!-- arms held slightly away from the belly (wider arm-to-torso gap) -->
+  <path d="M81 109 C40 120 22 164 26 189 C29 215 46 235 68 245" fill="none" stroke="url(#gA)" stroke-width="22" stroke-linecap="round"/>
+  <path d="M159 109 C200 120 218 164 214 189 C211 215 194 235 172 245" fill="none" stroke="url(#gA)" stroke-width="22" stroke-linecap="round"/>
+  <!-- torso: single smooth curve, widest at the abdomen (apple) -->
+  <path d="M120 82 C138 82 149 92 153 108 C166 115 178 120 180 140 C193 158 194 178 190 196 C186 216 178 235 162 245 C149 253 136 257 120 257 C104 257 91 253 78 245 C62 235 54 216 50 196 C46 178 47 158 60 140 C62 120 74 115 87 108 C91 92 102 82 120 82 Z" fill="url(#gA)"/>
+  <!-- head -->
+  <circle cx="120" cy="52" r="32" fill="url(#gA)"/>
+</svg>

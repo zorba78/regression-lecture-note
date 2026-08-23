@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="360" viewBox="0 0 240 360" role="img" aria-label="Gynoid pear-type obesity body silhouette with lower-body gluteofemoral fat">
+  <!-- Gynoid (pear type): narrow shoulders, widest at the hips, thick thighs. -->
+  <defs>
+    <linearGradient id="gG" gradientUnits="userSpaceOnUse" x1="120" y1="20" x2="120" y2="348">
+      <stop offset="0" stop-color="#C9A81E"/>
+      <stop offset="1" stop-color="#9C7C00"/>
+    </linearGradient>
+  </defs>
+  <!-- soft ground shadow -->
+  <ellipse cx="120" cy="352" rx="70" ry="10" fill="#000000" opacity="0.10"/>
+  <!-- feet -->
+  <ellipse cx="97" cy="342" rx="18" ry="9" fill="url(#gG)"/>
+  <ellipse cx="143" cy="342" rx="18" ry="9" fill="url(#gG)"/>
+  <!-- thick thighs -->
+  <rect x="78" y="288" width="36" height="56" rx="17" fill="url(#gG)"/>
+  <rect x="126" y="288" width="36" height="56" rx="17" fill="url(#gG)"/>
+  <!-- arms along the sides -->
+  <path d="M84 108 C64 124 58 162 60 192 C61 210 68 222 82 228" fill="none" stroke="url(#gG)" stroke-width="20" stroke-linecap="round"/>
+  <path d="M156 108 C176 124 182 162 180 192 C179 210 172 222 158 228" fill="none" stroke="url(#gG)" stroke-width="20" stroke-linecap="round"/>
+  <!-- torso: single smooth curve, narrow shoulders widening to the hips (pear) -->
+  <path d="M120 82 C136 82 147 92 150 106 C159 115 164 120 164 140 C164 158 162 174 166 194 C178 218 202 230 204 250 C205 267 196 281 175 287 C159 291 140 292 120 292 C100 292 81 291 65 287 C44 281 35 267 36 250 C38 230 62 218 74 194 C78 174 76 158 76 140 C76 120 81 115 90 106 C93 92 104 82 120 82 Z" fill="url(#gG)"/>
+  <!-- head -->
+  <circle cx="120" cy="52" r="32" fill="url(#gG)"/>
+</svg>

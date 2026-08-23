@@ -1,0 +1,73 @@
+/* Date        : 2026-08-12
+ * Description : Compact Quarto revealjs styling adapted from the project's UST lecture presentation.
+ * File        : regression-reference.css
+ */
+
+/* Use a denser lecture-note scale on the 1280 x 1024 canvas. */
+.reveal {
+  font-size: 25px;
+  line-height: 1.22;
+}
+
+.reveal h1 {
+  font-size: 1.85em;
+  margin-bottom: 0.35em;
+}
+
+.reveal h2 {
+  font-size: 1.35em;
+  margin-bottom: 0.35em;
+}
+
+.reveal h3 {
+  font-size: 1.05em;
+  margin-bottom: 0.25em;
+}
+
+.reveal p,
+.reveal ul,
+.reveal ol {
+  margin-top: 0.25em;
+  margin-bottom: 0.35em;
+}
+
+.reveal li {
+  margin-bottom: 0.12em;
+}
+
+/* Preserve readable figures while keeping text and figures on the same slide. */
+.reveal section img {
+  max-width: 92%;
+  max-height: 62vh;
+  object-fit: contain;
+}
+
+.reveal table {
+  font-size: 0.78em;
+}
+
+.reveal pre {
+  font-size: 0.62em;
+  line-height: 1.15;
+}
+
+.reveal code {
+  font-size: 0.9em;
+}
+
+.reveal .smaller {
+  font-size: 0.82em;
+}
+
+.reveal .notes {
+  font-size: 1em;
+}
+
+.reveal blockquote {
+  width: 90%;
+  padding: 0.35em 0.65em;
+}
+
+.reveal .slide-number {
+  font-size: 0.65em;
+}

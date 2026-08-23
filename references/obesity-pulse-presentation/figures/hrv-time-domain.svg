@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="210" viewBox="0 0 640 210" role="img" aria-label="Heart rate variability time-domain schematic: ECG with successive R-R (NN) intervals">
+  <!-- HRV time-domain schematic: ECG trace with successive R peaks and varying R-R (NN) intervals.
+       Illustrative (not real data); styled to match the pulse-wave and HRV frequency diagrams. -->
+  <defs>
+    <marker id="rrah" markerWidth="8" markerHeight="8" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#5a636b"/></marker>
+  </defs>
+
+  <!-- vertical guides dropping from each R peak -->
+  <line x1="90"  y1="50" x2="90"  y2="180" stroke="#b3b9bf" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="210" y1="50" x2="210" y2="180" stroke="#b3b9bf" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="335" y1="50" x2="335" y2="180" stroke="#b3b9bf" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="445" y1="50" x2="445" y2="180" stroke="#b3b9bf" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="570" y1="50" x2="570" y2="180" stroke="#b3b9bf" stroke-width="1" stroke-dasharray="3 3"/>
+
+  <!-- ECG trace (P-QRS-T x5, slightly varying R-R spacing) -->
+  <path d="M52 125 L59 117 L70 125 L80 125 L85 133 L90 46 L95 141 L101 125 L117 114 L134 125 L168 125 L179 117 L190 125 L200 125 L205 133 L210 46 L215 141 L221 125 L237 114 L254 125 L293 125 L304 117 L315 125 L325 125 L330 133 L335 46 L340 141 L346 125 L362 114 L379 125 L403 125 L414 117 L425 125 L435 125 L440 133 L445 46 L450 141 L456 125 L472 114 L489 125 L528 125 L539 117 L550 125 L560 125 L565 133 L570 46 L575 141 L581 125 L597 114 L614 125 L628 125"
+        fill="none" stroke="#14324a" stroke-width="2.3" stroke-linejoin="round" stroke-linecap="round"/>
+
+  <!-- R peak labels -->
+  <g font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="14" font-weight="700" fill="#14324a" text-anchor="middle">
+    <text x="90" y="40">R</text><text x="210" y="40">R</text><text x="335" y="40">R</text><text x="445" y="40">R</text><text x="570" y="40">R</text>
+  </g>
+
+  <!-- R-R (NN) interval double arrows -->
+  <g stroke="#5a636b" stroke-width="1.4">
+    <line x1="92"  y1="172" x2="208" y2="172" marker-start="url(#rrah)" marker-end="url(#rrah)"/>
+    <line x1="212" y1="172" x2="333" y2="172" marker-start="url(#rrah)" marker-end="url(#rrah)"/>
+    <line x1="337" y1="172" x2="443" y2="172" marker-start="url(#rrah)" marker-end="url(#rrah)"/>
+    <line x1="447" y1="172" x2="568" y2="172" marker-start="url(#rrah)" marker-end="url(#rrah)"/>
+  </g>
+  <g font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12.5" fill="#40474e" text-anchor="middle">
+    <text x="150" y="193">RR₁</text><text x="272" y="193">RR₂</text><text x="390" y="193">RR₃</text><text x="507" y="193">RR₄</text>
+  </g>
+
+  <!-- axis label -->
+  <text x="16" y="108" text-anchor="middle" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="13" fill="#333333" transform="rotate(-90 16 108)">ECG</text>
+  <text x="612" y="150" text-anchor="end" font-family="'Noto Sans KR','Malgun Gothic',sans-serif" font-size="12" fill="#7a828a">Time →</text>
+</svg>

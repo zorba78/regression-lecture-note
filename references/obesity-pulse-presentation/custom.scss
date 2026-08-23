@@ -1,0 +1,255 @@
+/*-- scss:defaults --*/
+
+// ============================================================================
+// Date: 2026-07-02
+// Summary: Custom revealjs SCSS theme for the obesity-phenotype radial pulse
+//          presentation. Provides Korean-capable fonts, group color classes
+//          (Control / Gynoid / Android), confirmed vs hypothesis-generating
+//          badges, and compact table + callout styling for a dense 1280x720
+//          deck.
+// File name: custom.scss
+// ============================================================================
+
+// Korean-capable sans-serif stack (Noto Sans KR first, Malgun Gothic fallback)
+$font-family-sans-serif: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif !default;
+
+// Moderate sizing so dense content fits 1280x720 without overflow
+$presentation-font-size-root: 26px !default;
+$presentation-h1-font-size: 1.7em !default;
+$presentation-h2-font-size: 1.25em !default;
+$presentation-h3-font-size: 1.05em !default;
+$presentation-heading-font: $font-family-sans-serif !default;
+$presentation-heading-font-weight: 700 !default;
+$presentation-line-height: 1.28 !default;
+
+$body-color: #1c2733 !default;
+$link-color: #2a6f8f !default;
+$selection-bg: #EBCC2A !default;
+
+/*-- scss:rules --*/
+
+.reveal {
+  font-size: 26px;
+}
+
+// Slide titles: professional academic blue underline
+.reveal h2 {
+  color: #14324a;
+  border-bottom: 3px solid #3B9AB2;
+  padding-bottom: 0.15em;
+  margin-bottom: 0.4em;
+  line-height: 1.2;
+}
+
+.reveal .slides section {
+  text-align: left;
+}
+
+// Title slide centered
+.reveal .title-slide,
+.reveal section.center {
+  text-align: center;
+}
+
+// ---- Group color classes (consistent across the whole deck) ----
+.ctrl { color: #3B9AB2; font-weight: 700; }   // Control  = blue
+.gyn  { color: #B7960B; font-weight: 700; }   // Gynoid   = darker gold for contrast
+.andr { color: #F21A00; font-weight: 700; }   // Android  = red
+
+// Background tints for group cards
+.ctrl-bg { background: rgba(59, 154, 178, 0.14); border-left: 6px solid #3B9AB2; }
+.gyn-bg  { background: rgba(235, 204, 42, 0.20);  border-left: 6px solid #EBCC2A; }
+.andr-bg { background: rgba(242, 26, 0, 0.10);    border-left: 6px solid #F21A00; }
+
+// Generic card block
+.card {
+  padding: 0.5em 0.7em;
+  border-radius: 6px;
+  margin: 0.25em 0;
+  font-size: 0.9em;
+}
+
+// ---- Confirmed vs hypothesis-generating badges ----
+.badge {
+  display: inline-block;
+  padding: 0.12em 0.6em;
+  border-radius: 12px;
+  font-size: 0.62em;
+  font-weight: 700;
+  vertical-align: middle;
+  letter-spacing: 0.02em;
+}
+.badge-confirmed {
+  background: #14532d;
+  color: #ffffff;
+  border: 2px solid #14532d;
+}
+.badge-hypothesis {
+  background: #e9e9e9;
+  color: #555555;
+  border: 2px solid #bbbbbb;
+}
+
+// Full-width banner variants
+.banner {
+  padding: 0.35em 0.8em;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.8em;
+  margin: 0.2em 0 0.5em 0;
+}
+.banner-confirmed { background: #14532d; color: #fff; }
+.banner-hypothesis {
+  background: #fdf6d0;
+  color: #665500;
+  border: 2px dashed #c9a800;
+}
+
+// Emphasis box (concept highlight)
+.highlight-box {
+  background: #eef6f9;
+  border: 2px solid #3B9AB2;
+  border-radius: 8px;
+  padding: 0.5em 0.8em;
+  margin: 0.4em 0;
+  font-weight: 600;
+}
+
+// Big callout number
+.bignum {
+  font-size: 1.6em;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+// ---- Visual tone: confirmed (solid dark border) vs hypothesis (grey) ----
+.tone-confirmed {
+  border: 3px solid #14532d;
+  border-radius: 8px;
+  padding: 0.4em 0.7em;
+  background: rgba(20, 83, 45, 0.05);
+}
+.tone-hypothesis {
+  border: 2px dashed #999;
+  border-radius: 8px;
+  padding: 0.4em 0.7em;
+  background: rgba(150, 150, 150, 0.08);
+  color: #444;
+}
+
+// ---- Tables (tidy academic style) ----
+.reveal table {
+  font-size: 0.66em;
+  border-collapse: collapse;
+  margin: 0.3em auto;
+  width: 100%;
+}
+.reveal table th {
+  background: #14324a;
+  color: #ffffff;
+  padding: 0.3em 0.5em;
+  border: 1px solid #cfd8dd;
+  text-align: center;
+}
+.reveal table td {
+  padding: 0.28em 0.5em;
+  border: 1px solid #d7dee2;
+  vertical-align: middle;
+}
+.reveal table tbody tr:nth-child(even) {
+  background: #f4f7f9;
+}
+
+// Group-colored table header cells
+.reveal table th.th-ctrl { background: #3B9AB2; }
+.reveal table th.th-gyn  { background: #B7960B; }
+.reveal table th.th-andr { background: #F21A00; }
+
+// Significant / non-significant cell tints
+.sig    { background: rgba(20, 83, 45, 0.10); font-weight: 600; }
+.nonsig { background: rgba(150, 150, 150, 0.10); color: #555; }
+
+// ---- Callout sizing (keep compact for dense deck) ----
+.reveal .callout {
+  font-size: 0.82em;
+  margin: 0.4em 0;
+}
+.reveal .callout-title {
+  font-size: 0.95em;
+}
+
+// ---- Color legend chips (title slide) ----
+.legend-bar {
+  display: flex;
+  justify-content: center;
+  gap: 1.2em;
+  margin-top: 1.2em;
+}
+.chip {
+  display: inline-block;
+  padding: 0.3em 1.1em;
+  border-radius: 18px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85em;
+}
+.chip-ctrl { background: #3B9AB2; }
+.chip-gyn  { background: #EBCC2A; color: #4a3d00; }
+.chip-andr { background: #F21A00; }
+
+// Utility
+.small   { font-size: 0.78em; }
+.smaller { font-size: 0.68em; }
+.muted   { color: #667; }
+.center-text { text-align: center; }
+
+// Two-column spacing
+.reveal .columns { gap: 1.2em; }
+
+// ---- Phenotype body-type illustration cards (Background slide) ----
+.phenotype-card { text-align: center; }
+.phenotype-card p { margin: 0.15em 0 0 0; }
+.ptype-head {
+  font-size: 1.15em;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.ptype-sub {
+  font-size: 0.72em;
+  color: #55606a;
+  font-weight: 600;
+  margin-bottom: 0.15em;
+}
+// ---- Outcome-variable characteristic figures (results-variables slide) ----
+.col-head { font-size: 1.0em; font-weight: 700; color: #14324a; text-align: center;
+  border-bottom: 2px solid #cdd6db; padding-bottom: 0.08em; margin-bottom: 0.25em; }
+.col-head .col-sub { font-size: 0.6em; font-weight: 600; color: #6a737b; }
+.panel { text-align: center; margin-bottom: 0.3em; }
+.var-cap2 { font-size: 0.72em; font-weight: 700; color: #33414d; margin-bottom: 0.1em; }
+.dnum { color: #3B9AB2; font-weight: 800; margin-right: 0.1em; }
+.var-desc { font-size: 0.66em; color: #33414d; margin-top: 0.15em; }
+
+// Apple- vs pear-type body silhouettes (centered SVG asset in figures/)
+.body-fig {
+  text-align: center;
+  margin: 0.3em 0 0.35em 0;
+}
+.body-fig img {
+  height: 230px;
+  width: auto;
+}
+// Small apple/pear fruit glyph beside the phenotype label
+.fruit-icon {
+  height: 1.05em;
+  width: auto;
+  vertical-align: -0.16em;
+  margin-left: 0.35em;
+}
+
+// Figure captions
+.reveal figure figcaption,
+.reveal .fig-cap {
+  font-size: 0.6em;
+  color: #556;
+  font-style: italic;
+}

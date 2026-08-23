@@ -1,0 +1,114 @@
+/* Date: 2026-08-13 | Lecture-specific overrides on top of the reference deck's
+   simple + monash theme. Only what this deck needs: the reference deck's slides
+   are mostly text, whereas this one carries wide result tables, four-panel
+   diagnostic figures, and long display equations. */
+
+/* Slide title / subtitle scale. The H3 subheading is the reference deck's
+   signature element, so keep it clearly subordinate to the H2 but still large. */
+.reveal h2 {
+  font-size: 1.55em;
+  margin-bottom: 0.15em;
+}
+.reveal h3 {
+  font-size: 1.05em;
+  color: #27374a;
+  margin-top: 0.15em;
+  margin-bottom: 0.45em;
+}
+
+/* Font Awesome glyphs sit slightly high next to Korean text at this size. */
+.reveal h3 i.fa-solid {
+  font-size: 0.85em;
+  margin-right: 0.25em;
+  vertical-align: 0.02em;
+}
+
+/* Figures must never push the slide into vertical overflow. */
+.reveal .slide img {
+  max-height: 60vh;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Result tables are the densest content in this deck. They are centred and
+   allowed to breathe: at 1280px the default width left them huddled in the
+   middle of the slide with the caption wrapping inside the table's own width. */
+.reveal table {
+  font-size: 0.72em;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 60%;
+}
+.reveal table th,
+.reveal table td {
+  padding: 0.25em 0.75em;
+}
+
+/* Markdown writes the caption after the table, so render it there too:
+   an HTML <caption> otherwise jumps above the table. `caption-side` sizes the
+   caption to the table, so the table minimum width above also keeps the
+   caption from wrapping into a narrow column. */
+.reveal table caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 0.5em;
+}
+.reveal table caption,
+.reveal figcaption {
+  font-size: 0.8em;
+  color: #52514e;
+}
+
+/* Display equations: the reference deck rarely stacks several per slide,
+   this one does (variance derivation, Gauss-Markov, WLS/GLS). */
+.reveal .slide .MathJax_Display,
+.reveal mjx-container[display="true"] {
+  margin: 0.5em 0 !important;
+}
+
+/* Safety net for equations wider than the slide. Display math does not wrap,
+   so an over-long line is silently clipped at the right edge; this makes it
+   scroll instead of disappear. Long equations should still be stacked with
+   an aligned environment in the source: this only stops silent data loss. */
+.reveal .slides section .MathJax_Display,
+.reveal .slides section mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Same guard for wide tables and columns. */
+.reveal .slides section .column {
+  min-width: 0;
+}
+
+/* Callout boxes carry definitions and proofs here, so tighten their padding
+   to leave room for the equations inside them. */
+.reveal div.callout {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.reveal div.callout .callout-body,
+.reveal div.callout div.callout-body-container {
+  font-size: 0.92em;
+}
+
+/* Blockquote = formal definition/proposition, following the reference deck. */
+.reveal blockquote {
+  font-size: 0.95em;
+  width: 100%;
+  margin: 0.4em 0;
+}
+
+/* Code blocks are illustrative, not the focus. */
+.reveal pre code {
+  font-size: 0.72em;
+  max-height: 46vh;
+}
+
+/* Aside = provenance line ("Computed by ..."). Keep it quiet. */
+.reveal .aside,
+.reveal div.aside {
+  font-size: 0.62em;
+  color: #6b6a66;
+}

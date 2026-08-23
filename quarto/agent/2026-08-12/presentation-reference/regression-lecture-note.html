@@ -1,0 +1,3134 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<script src="regression-lecture-note_files/libs/clipboard/clipboard.min.js"></script>
+<script src="regression-lecture-note_files/libs/quarto-html/tabby.min.js"></script>
+<script src="regression-lecture-note_files/libs/quarto-html/popper.min.js"></script>
+<script src="regression-lecture-note_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="regression-lecture-note_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="regression-lecture-note_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="regression-lecture-note_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <meta name="author" content="원자력안전기술원 연구원 대상 회귀분석 특강">
+  <meta name="dcterms.date" content="2026-08-12">
+  <title>회귀분석의 이해</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="regression-lecture-note_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="regression-lecture-note_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="regression-lecture-note_files/libs/revealjs/dist/theme/quarto-6c5cdbc7871e98d6918456d032080db0.css">
+  <link rel="stylesheet" href="../../../references/ust-lecture-note/assets/quarto-style-example/syntax-highlight.css">
+  <link rel="stylesheet" href="../../../references/ust-lecture-note/assets/quarto-style-example/custom.css">
+  <link rel="stylesheet" href="../../../references/ust-lecture-note/assets/quarto-style-example/pacman.css">
+  <link href="regression-lecture-note_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="regression-lecture-note_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="regression-lecture-note_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="regression-lecture-note_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="regression-lecture-note_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="regression-lecture-note_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">회귀분석의 이해</h1>
+  <p class="subtitle">데이터에 가장 좋은 선 긋기 — 원자력 안전기술원 특강</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+원자력안전기술원 연구원 대상 회귀분석 특강 
+</div>
+        <p class="quarto-title-affiliation">
+            Korea Institute of Nuclear Safety
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-08-12</p>
+</section>
+<section class="slide level2">
+
+<!-- Date: 2026-08-12 | Purpose: Regression lecture notes for doctoral researchers at the Korea Institute of Nuclear Safety | File: regression-lecture-note.qmd -->
+</section>
+<section id="왜-내가-회귀분석을-알아야-할까요" class="slide level2">
+<h2>왜 ‘내가’ 회귀분석을 알아야 할까요?</h2>
+<p>연구 현장에서 매일 만나는 세 장면:</p>
+<ul>
+<li><strong>장면 1 — 계측기 검교정</strong>: 기준값과 계측기 읽음값을 나란히 놓고 <strong>보정 곡선</strong>을 긋는 일</li>
+<li><strong>장면 2 — 용량-반응 관계</strong>: 노출량이 변할 때 반응이 <strong>어떻게, 얼마나</strong> 변하는지 정리하는 일</li>
+<li><strong>장면 3 — 성능 저하 추세</strong>: 시간에 따른 설비·재료의 열화를 선으로 요약해 <strong>앞날을 내다보는</strong> 일</li>
+<li>세 장면의 공통점: <strong>변수 사이의 관계를 선으로 요약</strong>하는 것 — 이것이 바로 회귀분석입니다</li>
+</ul>
+<aside class="notes">
+<p>안녕하세요. 본격적인 첫 장에 들어가기 전에, “왜 통계학자가 아닌 내가 회귀분석을 알아야 하나”라는 질문부터 짚고 가겠습니다. 화면의 세 장면은 여러분의 실험실과 사무실에서 늘 일어나는 일입니다. 첫 번째 장면, 계측기 검교정을 보시죠. 기준값을 가로축에, 계측기 읽음값을 세로축에 놓고 보정 곡선을 긋는 순간, 여러분은 이미 회귀분석을 하고 계신 겁니다. 두 번째 장면, 노출량이 늘어날 때 반응이 얼마나 변하는지 정리하는 용량-반응 관계도 마찬가지고, 세 번째 장면, 설비 성능이 세월에 따라 떨어지는 추세를 선으로 그려 앞날을 가늠하는 일도 결국 같은 도구입니다. 여기서 “소프트웨어가 버튼 한 번이면 다 해 주지 않나요?”라고 물으실 수 있습니다. 맞습니다, 계산은 컴퓨터가 합니다. 하지만 그 직선을 믿어도 되는지, 어디까지 믿어야 하는지 판단하는 눈은 사람의 몫입니다. 오늘 강의의 목표가 바로 그 눈을 만들어 드리는 것입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="오늘의-여정-아홉-개의-정거장" class="slide level2">
+<h2>오늘의 여정 — 아홉 개의 정거장</h2>
+<table class="caption-top">
+<caption>Nine chapters in one view: today’s lecture roadmap</caption>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Stage</th>
+<th>Ch.</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>기초 다지기</td>
+<td>1–2</td>
+<td>회귀분석이란 무엇인가 / 기초 행렬 이론</td>
+</tr>
+<tr class="even">
+<td>직선 긋기</td>
+<td>3–4</td>
+<td>단순선형회귀 / 다중선형회귀</td>
+</tr>
+<tr class="odd">
+<td>점검하기</td>
+<td>5–6</td>
+<td>회귀진단 및 보정 / 모형 비교와 변수선택</td>
+</tr>
+<tr class="even">
+<td>현장 적용</td>
+<td>7</td>
+<td>사례분석: 아이스크림 판매량 예측</td>
+</tr>
+<tr class="odd">
+<td><strong>오늘의 핵심</strong></td>
+<td><strong>8</strong></td>
+<td><strong>가중회귀 — 측정 정밀도를 모형에 반영하는 법</strong></td>
+</tr>
+<tr class="even">
+<td>확장</td>
+<td>9</td>
+<td>가변수 — 범주 정보를 모형에 넣는 법</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>1장~7장과 9장은 <strong>아이스크림 가게 이야기</strong> 하나로 이어집니다</li>
+<li>8장 <strong>가중회귀</strong>가 이 특강의 핵심 목적지입니다</li>
+</ul>
+<aside class="notes">
+<p>이제 오늘의 지도를 펼쳐 보겠습니다. 아홉 개의 장을 지나는 기차 여행이라고 생각해 주시면 됩니다. 표의 위에서부터 보시면, 먼저 회귀가 무엇인지와 행렬 표기라는 기초를 다지고, 3장과 4장에서 직선을 실제로 긋는 법을 배웁니다. 5장과 6장에서는 그은 직선이 믿을 만한지 점검하고 여러 후보 중에서 좋은 모형을 고르는 법을 익힙니다. 7장에서 이 모든 것을 아이스크림 자료 하나에 통째로 적용해 보고, 8장에서 오늘의 핵심인 가중회귀, 즉 측정 정밀도가 서로 다른 자료를 다루는 법으로 갑니다. 계측기마다 불확도가 다른 자료를 늘 다루시는 여러분께 가장 쓸모 있는 장이 될 겁니다. “행렬을 너무 오래 놓았는데 괜찮을까요?”라고 걱정하실 수 있는데, 2장에서 오늘 필요한 만큼만 표 계산하듯 가볍게 다루니 안심하셔도 됩니다. 그리고 이 여정 내내 한 명의 주인공이 우리와 동행하는데, 바로 다음 슬라이드에서 소개하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="오늘의-주인공-아이스크림-가게-사장님" class="slide level2">
+<h2>오늘의 주인공 — 아이스크림 가게 사장님</h2>
+<ul>
+<li>사장님의 고민: <strong>“다음 기간엔 아이스크림이 얼마나 팔릴까?”</strong></li>
+<li>손에 쥔 자료: 4주 단위 <strong>30개 기간</strong>의 판매 기록 (CNU 회귀분석 강의노트 7장의 ice cream 자료)</li>
+<li>이 한 가지 이야기로 1~7장과 9장의 개념을 꿰어 갑니다 (8장은 측정 불확도가 기록된 physics 자료 사용)</li>
+</ul>
+<aside class="notes">
+<p>오늘 강의의 주인공을 소개합니다. 아이스크림 가게 사장님입니다. 사장님의 고민은 단순합니다. “다음 기간엔 얼마나 팔릴까?” 이 질문에 답하려고 4주 단위로 30개 기간의 기록을 모았습니다. 어떤 변수들이 기록되어 있는지는 잠시 뒤 제1장에서 정식으로 소개하겠습니다. “원자력 연구와 아이스크림이 무슨 상관이냐”고 물으실 수 있는데, 온도로 판매량을 설명하는 수학과 선량으로 반응을 설명하는 수학은 완전히 같습니다. 쉬운 재료로 원리를 익혀 두면 현장 자료에 그대로 옮길 수 있습니다. 다만 오늘의 핵심인 8장 가중회귀에서는 측정 불확도가 기록된 physics 자료를 따로 사용합니다. 그래서 오늘은 이 사장님의 고민을 함께 풀어 가면서 회귀분석 전체를 배우겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="세-가지-수업-약속" class="slide level2">
+<h2>세 가지 수업 약속</h2>
+<ul>
+<li><strong>약속 1</strong>: 모든 수식은 기호를 <strong>하나하나</strong> 한국어로 풀어 설명합니다 — 설명 없는 수식은 없습니다</li>
+<li><strong>약속 2</strong>: 새 개념은 <strong>비유와 그림이 먼저</strong>, 수식은 그다음에 나옵니다</li>
+<li><strong>약속 3</strong>: 어려우면 <strong>언제든 손을 들어 주세요</strong> — 질문은 강의를 늦추는 것이 아니라 완성합니다</li>
+</ul>
+<aside class="notes">
+<p>시작하기 전에 세 가지를 약속드리겠습니다. 첫째, 오늘 나오는 모든 수식은 기호 하나하나를 한국어로 풀어 설명합니다. 설명 없이 지나가는 수식은 단 하나도 없습니다. 둘째, 새 개념은 항상 비유와 그림으로 먼저 만나고, 수식은 그다음에 나옵니다. 초등학생도 따라올 수 있는 눈높이를 지키겠습니다. 셋째, 어려우면 언제든 손을 들어 주세요. “수학을 20년 놓았는데 따라갈 수 있을까요?”라는 걱정이 있으실 텐데, 오늘 필요한 수학은 더하기, 곱하기, 그리고 그림 읽기가 전부입니다. 그럼 첫 번째 정거장으로 출발하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section id="제1장-서론-회귀분석이란-무엇인가" class="title-slide slide level1 center">
+<h1>제1장 서론 — 회귀분석이란 무엇인가</h1>
+<aside class="notes">
+<p>안녕하십니까. 지금부터 회귀분석 특강의 첫 장을 시작하겠습니다. 어려운 수식보다 먼저, 어느 아이스크림 가게 사장님의 고민 이야기로 출발해 보겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="어느-아이스크림-가게-사장님의-고민" class="slide level2">
+<h2>어느 아이스크림 가게 사장님의 고민</h2>
+<ul>
+<li>사장님의 장부: 지난 30개 기간(4주 단위)의 <strong>판매량</strong>과 함께 <strong>온도, 가격, 소득</strong> 기록</li>
+<li>일기예보: “다음 주는 유난히 덥겠습니다”</li>
+<li>고민: <em>“그럼 아이스크림을 몇 통이나 준비해야 하지?”</em></li>
+<li>감(感)이 아니라 <strong>기록(데이터)</strong> 으로 답하는 방법 → 오늘 배울 <strong>회귀분석</strong></li>
+<li>이 가게 이야기가 특강 전체(제1~7장, 제9장)를 관통합니다</li>
+</ul>
+<aside class="notes">
+<p>먼저 이야기 하나로 시작하겠습니다. 아이스크림 가게 사장님이 지난 2년 반 동안, 4주 단위로 30개 기간의 판매 기록을 장부에 적어 두었습니다. 판매량뿐 아니라 그 기간의 평균 온도, 아이스크림 가격, 손님들의 소득 수준까지 함께 적었습니다. 그런데 일기예보에서 다음 주가 무척 덥다고 합니다. 사장님의 고민은 단순합니다. “몇 통을 준비해야 하나?” 여기서 예상되는 질문이 있습니다. “왜 하필 아이스크림입니까?”라고 물으실 수 있는데, 변수 사이의 관계가 누구나 직관적으로 짐작되는 자료라서, 처음 배우는 방법의 작동 원리를 확인하기에 가장 좋기 때문입니다. 그리고 이 자료 하나로 특강 마지막 장까지 계속 이어가면서, 새 개념이 나올 때마다 같은 가게로 돌아와 확인할 예정입니다. 여러분 현장의 계측 데이터로 바꿔 생각하셔도 구조는 완전히 같습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="회귀분석-점-구름-사이로-가장-좋은-직선-긋기" class="slide level2">
+<h2>회귀분석: 점 구름 사이로 가장 좋은 직선 긋기</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig01-what-is-regression.png" style="width:100.0%"></p>
+<figcaption>Ice cream consumption vs temperature with the fitted least-squares line</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[\hat{y}_i = 0.2069 + 0.003107\, x_i\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{y}_i\)</span>는 <span class="math inline">\(i\)</span>번째 기간의 아이스크림 소비량 예측값(적합값), <span class="math inline">\(x_i\)</span>는 그 기간의 평균 온도, <span class="math inline">\(0.2069\)</span>는 직선의 절편 추정값 <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(0.003107\)</span>은 기울기 추정값 <span class="math inline">\(\hat\beta_1\)</span>입니다.</p>
+<p><strong>한 줄 요약</strong>: 회귀분석 = 점 구름의 경향을 <strong>하나의 선</strong>으로 요약하는 방법.</p>
+</div></div>
+
+<aside class="notes">
+<p>사장님의 장부를 그림으로 그리면 이렇게 됩니다. 화면의 점 하나하나가 한 기간의 기록입니다. 가로축이 그 기간의 평균 온도, 세로축이 아이스크림 소비량입니다. 점들을 보시면 오른쪽 위로 비스듬히 올라가는 경향, 즉 더울수록 많이 팔리는 경향이 눈에 들어옵니다. 파란 직선이 바로 이 경향을 가장 잘 요약한 선이고, 이 선을 찾는 일이 회귀분석의 출발점입니다. 식을 읽어 드리면, 온도가 1도 오를 때 소비량이 평균적으로 약 0.0031만큼 늘어난다는 뜻입니다. 그리고 이 직선 하나가 소비량 변동의 약 60%를 설명합니다. 여기서 “가장 좋은 선이라는 게 도대체 무슨 기준입니까?”라고 물으실 수 있는데, 아주 좋은 질문입니다. 점과 선 사이의 세로 거리들을 가장 작게 만드는 기준, 즉 최소제곱법인데, 제3장에서 자세히 다루겠습니다. 오늘은 “점 구름 사이에 선을 긋는 방법”이라는 큰 그림만 기억해 주시면 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Fitted by lm(IC ~ temp), n = 30, R-squared = 0.602. Numbers computed by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section>
+<section id="회귀regression라는-이름의-유래-galton-1886" class="slide level2">
+<h2>“회귀(regression)”라는 이름의 유래 — Galton (1886)</h2>
+<ul>
+<li>골턴(Galton)은 <strong>아버지 키와 아들 키</strong>의 관계를 연구</li>
+<li>키가 매우 큰 아버지의 아들: 크긴 하지만 아버지만큼 <strong>극단적이지는 않음</strong></li>
+<li>키가 매우 작은 아버지의 아들: 역시 <strong>평균 쪽으로</strong> 이동</li>
+<li>이 현상을 “평균으로의 회귀(regression towards mediocrity)”라 이름 붙임</li>
+<li>오늘날의 회귀분석: 이름은 여기서 왔지만, <strong>변수 사이의 관계를 선(함수)으로 요약하는 방법 전반</strong>을 뜻함</li>
+</ul>
+
+<aside class="notes">
+<p>그런데 왜 이름이 하필 “회귀”, 즉 “되돌아간다”일까요? 130여 년 전 영국의 골턴이 아버지 키와 아들 키의 관계를 조사했습니다. 키가 아주 큰 아버지의 아들은 대체로 크긴 했지만, 아버지만큼 극단적으로 크지는 않았습니다. 반대로 아주 작은 아버지의 아들도 평균 쪽으로 올라와 있었습니다. 골턴은 이 현상을 “평균으로의 회귀”라고 불렀고, 그가 쓰던 분석 방법에 이 이름이 그대로 붙어 지금까지 내려온 것입니다. 여기서 “그럼 세대가 지나면 모두 키가 비슷해집니까?”라는 질문이 나올 수 있습니다. 그렇지는 않습니다. 극단적인 값이 다음 세대에 덜 극단적으로 나타나는 경향일 뿐, 집단 전체의 흩어짐이 줄어든다는 뜻은 아닙니다. 정리하면, 이름은 역사적 우연이고, 오늘날 회귀분석은 변수 사이의 관계를 선으로 요약하고 활용하는 도구 전반을 가리킵니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Galton, F. (1886). Regression towards mediocrity in hereditary stature. <em>Journal of the Anthropological Institute</em>, 15, 246-263.</p>
+</div></aside></section>
+<section id="용어-정리-모형-신호-잡음" class="slide level2">
+<h2>용어 정리: 모형 = 신호 + 잡음</h2>
+<p>비유: <strong>계측기 지시값 = 참값(신호) + 측정오차(잡음)</strong>. 데이터도 마찬가지입니다.</p>
+<p><span class="math display">\[y = f(x) + \varepsilon\]</span></p>
+<p>여기서 <span class="math inline">\(y\)</span>는 반응변수(알고 싶은 결과), <span class="math inline">\(x\)</span>는 설명변수(결과를 설명하는 단서), <span class="math inline">\(f(x)\)</span>는 신호(두 변수 사이의 체계적 관계), <span class="math inline">\(\varepsilon\)</span>은 잡음(우연한 흔들림, 오차)입니다.</p>
+<ul>
+<li><strong>반응변수</strong> <span class="math inline">\(y_i\)</span>: 알고 싶은 값 — 예) <span class="math inline">\(i\)</span>번째 기간의 아이스크림 소비량 IC</li>
+<li><strong>설명변수</strong> <span class="math inline">\(x_i\)</span>: 단서가 되는 값 — 예) 그 기간의 온도 temp</li>
+<li><strong>오차</strong> <span class="math inline">\(\varepsilon_i\)</span>: 평균 0, 분산 <span class="math inline">\(\sigma^2\)</span>의 우연한 흔들림</li>
+<li><span class="math inline">\(f(x)\)</span>를 직선 <span class="math inline">\(\beta_0 + \beta_1 x\)</span>로 택하면 → 제3장의 <strong>단순선형회귀</strong></li>
+</ul>
+<aside class="notes">
+<p>이제 용어를 정리하겠습니다. 여러분께 익숙한 계측 상황을 떠올려 보시면 좋겠습니다. 계측기의 지시값은 참값이라는 신호에 측정오차라는 잡음이 얹혀서 나옵니다. 데이터도 똑같은 구조입니다. 우리가 알고 싶은 결과인 y를 반응변수, 그 결과를 설명해 주는 단서 x를 설명변수라고 부릅니다. 그리고 y는 x가 정해 주는 체계적인 부분 f(x)에, 우연한 흔들림 엡실론이 더해진 것으로 봅니다. 아이스크림 가게로 돌아가면, 판매량이 반응변수, 온도가 설명변수이고, 같은 온도라도 판매량이 조금씩 다른 이유가 바로 잡음입니다. 여기서 “오차는 왜 꼭 있어야 합니까?”라고 물으실 수 있습니다. 온도 말고도 판매량에 영향을 주는 자잘한 요인들, 그리고 기록 자체의 흔들림을 우리가 전부 알 수는 없기 때문에, 그 몫을 오차라는 항에 담아 두는 것입니다. 신호 f(x)를 직선으로 고르면 단순선형회귀가 되는데, 그것이 제3장의 주제입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="회귀로-답할-수-있는-세-가지-질문" class="slide level2">
+<h2>회귀로 답할 수 있는 세 가지 질문</h2>
+<ol type="1">
+<li><strong>설명(explanation)</strong>: 온도는 판매량과 얼마나 강하게, 어느 방향으로 관련되는가?</li>
+<li><strong>예측(prediction)</strong>: 다음 기간의 온도가 주어지면, 판매량은 얼마쯤일까?</li>
+<li><strong>조정(adjustment)</strong>: 가격·소득이 같다고 놓았을 때, <strong>온도만의</strong> 효과는 얼마인가?</li>
+</ol>
+<p>일반적 활용 예 (연구 현장): 계측기 <strong>검교정 곡선</strong>(표준 입력 대 지시값의 관계로 지시값 보정), 설비 상태 지표의 <strong>시간 추세</strong> 파악 등.</p>
+<p><strong>한 줄 요약</strong>: 하나의 적합직선으로 <strong>설명·예측·조정</strong> 세 가지 질문에 모두 답할 수 있다.</p>
+<aside class="notes">
+<p>그렇다면 이렇게 그은 선 하나로 무엇을 할 수 있을까요? 크게 세 가지 질문에 답할 수 있습니다. 첫째는 설명입니다. 온도가 판매량과 얼마나 강하게, 어느 방향으로 관련되는지, 즉 기울기의 크기와 부호를 읽는 것입니다. 둘째는 예측입니다. 사장님의 원래 고민처럼, 다음 기간의 온도를 넣어 판매량을 미리 짐작하는 것입니다. 셋째는 조정입니다. 가격과 소득 같은 다른 조건을 같게 놓고 온도만의 효과를 떼어 보는 것인데, 이는 제4장의 다중회귀에서 본격적으로 다룹니다. 연구 현장에서의 일반적인 활용 예를 들면, 표준 입력과 계측기 지시값의 관계를 선으로 요약해 지시값을 보정하는 검교정 곡선, 그리고 설비 상태 지표가 시간에 따라 어떤 추세를 보이는지 파악하는 일이 모두 회귀분석의 틀에 들어옵니다. “이 셋 중에 무엇이 제일 중요합니까?”라고 물으신다면, 목적에 따라 다르다는 것이 답이고, 이번 특강에서 세 가지를 모두 다루게 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="특강을-관통하는-데이터-ice-cream" class="slide level2">
+<h2>특강을 관통하는 데이터: ice cream</h2>
+<table class="caption-top">
+<caption>Variables in the ice cream data (CNU regression lecture note, Ch. 7; n = 30 four-week periods)</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 30%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Role</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IC</td>
+<td>response <span class="math inline">\(y_i\)</span></td>
+<td>ice cream consumption</td>
+</tr>
+<tr class="even">
+<td>price</td>
+<td>explanatory</td>
+<td>price of ice cream</td>
+</tr>
+<tr class="odd">
+<td>income</td>
+<td>explanatory</td>
+<td>family income</td>
+</tr>
+<tr class="even">
+<td>temp</td>
+<td>explanatory</td>
+<td>mean temperature</td>
+</tr>
+<tr class="odd">
+<td>year</td>
+<td>explanatory (indicator)</td>
+<td>year-of-observation indicator (0/1/2)</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Ice cream data: 30 four-week periods (CNU lecture note, Chapter 7)</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">head</span>(ice)                         <span class="co"># columns: IC, price, income, temp, year</span></span>
+<span id="cb1-3"><a href=""></a></span>
+<span id="cb1-4"><a href=""></a><span class="co"># Preview of our first regression (details in Chapter 3)</span></span>
+<span id="cb1-5"><a href=""></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(IC <span class="sc">~</span> temp, <span class="at">data =</span> ice)  <span class="co"># intercept 0.2069, slope 0.003107</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+
+<aside class="notes">
+<p>마지막으로 오늘의 주인공, 아이스크림 데이터를 정식으로 소개하겠습니다. CNU 회귀분석 강의노트 7장의 사례 자료로, 4주 단위 기간 30개로 이루어져 있습니다. 반응변수는 아이스크림 소비량 IC이고, 설명변수로 가격 price, 소득 income, 온도 temp가 있으며, year라는 관측 연차 구분 표시가 붙어 있습니다. 아래 R 코드가 앞으로 우리가 하게 될 일의 예고편입니다. lm이라는 함수에 “IC를 temp로 설명하라”고 적어 주면, 조금 전 그림의 파란 직선, 절편 0.2069와 기울기 0.003107이 나옵니다. 여기서 “year의 0, 1, 2는 무슨 뜻입니까?”라는 질문이 나올 수 있는데, 몇 년째 기록인지를 나타내는 관측 연차 구분 표시이고, 제9장 가변수 회귀에서 이 변수를 제대로 활용하는 방법을 배우게 됩니다. 이 데이터는 제7장의 사례분석까지 계속 함께 갑니다. 그럼 다음 장에서, 선을 다루기 위한 최소한의 도구인 행렬 이야기로 넘어가겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Numbers computed by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section></section>
+<section>
+<section id="제2장-기초-행렬-이론-데이터를-한-덩어리로-다루기" class="title-slide slide level1 center">
+<h1>제2장 기초 행렬 이론 — 데이터를 한 덩어리로 다루기</h1>
+<aside class="notes">
+<p>1장에서는 회귀분석이 무엇인지 큰 그림을 그려 봤습니다. 이번 장에서는 앞으로 강의 내내 쓸 도구인 행렬을 준비운동 삼아 가볍게 익혀 보겠습니다. 새 기호가 몇 개 나오지만 엑셀 표를 수학 기호로 옮겨 적는 방법일 뿐이니, 편안한 마음으로 따라와 주시기 바랍니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="왜-행렬인가-성적표를-한-장씩-넘기지-않기" class="slide level2">
+<h2>왜 행렬인가 — 성적표를 한 장씩 넘기지 않기</h2>
+<ul>
+<li>비유: 학생 30명의 성적 처리 — 성적표를 <strong>한 장씩</strong> 넘기며 계산할까요, <strong>엑셀 시트 통째로</strong> 계산할까요?</li>
+<li>아이스크림 가게 자료도 결국 표 한 장: 30개 기간 <span class="math inline">\(\times\)</span> 4개 항목(소비량 IC, 가격 price, 소득 income, 온도 temp)</li>
+<li>기간마다 회귀식을 따로 쓰면 같은 모양의 식이 30줄 필요:</li>
+</ul>
+<p><span class="math display">\[
+y_1=\beta_0+\beta_1 x_{11}+\cdots+\varepsilon_1,\qquad
+y_2=\beta_0+\beta_1 x_{21}+\cdots+\varepsilon_2,\qquad
+\dots,\qquad
+y_{30}=\beta_0+\beta_1 x_{30,1}+\cdots+\varepsilon_{30}
+\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 <span class="math inline">\(i\)</span>번째 기간의 반응변수(아이스크림 소비량), <span class="math inline">\(x_{i1}\)</span>은 <span class="math inline">\(i\)</span>번째 기간의 첫 번째 설명변수 값, <span class="math inline">\(\beta_0,\beta_1,\dots\)</span>는 모든 기간에 공통인 회귀계수, <span class="math inline">\(\varepsilon_i\)</span>는 <span class="math inline">\(i\)</span>번째 기간의 오차, 관측 수는 <span class="math inline">\(n=30\)</span>입니다.</p>
+<ul>
+<li><strong>행렬 = 묶음 포장 도구</strong>: 이 30줄을 단 한 줄로 줄여 줍니다</li>
+</ul>
+<aside class="notes">
+<p>먼저 성적표 비유부터 말씀드리겠습니다. 학생 30명의 평균을 내는데 성적표를 한 장씩 넘기면서 계산기를 두드리는 분은 안 계실 겁니다. 엑셀에 표로 넣고 한 번에 처리하시지요. 행렬은 바로 그 엑셀 시트를 수학 기호로 부르는 이름일 뿐입니다. 화면의 30줄짜리 식을 보시면, 기간만 바뀔 뿐 모양이 완전히 똑같습니다. 같은 모양이 반복되면 묶어서 한 줄로 쓰고 싶어지는 것이 수학자의 본능이고, 그 묶음 포장이 행렬입니다. 여기서 예상되는 질문이 있습니다. “어차피 R이 다 계산해 주는데 행렬을 꼭 알아야 하나요?” 네, R의 lm() 함수가 내부에서 하는 일이 바로 이 행렬 계산이라서, 출력 결과를 제대로 읽고 문제를 진단하려면 최소한의 행렬 언어가 필요합니다. 오늘은 그 최소한만 배웁니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="벡터와-행렬-딱-세-가지-표기만-기억하기" class="slide level2">
+<h2>벡터와 행렬 — 딱 세 가지 표기만 기억하기</h2>
+<ul>
+<li><strong>벡터</strong>: 숫자를 세로로 줄 세운 것 <span class="math inline">\(\to\)</span> 굵은 소문자 <span class="math inline">\(\mathbf{y}\)</span></li>
+<li><strong>행렬</strong>: 숫자를 격자(표) 모양으로 배열한 것 <span class="math inline">\(\to\)</span> 굵은 대문자 <span class="math inline">\(\mathbf{X}\)</span></li>
+<li><strong>원소와 차원</strong>: <span class="math inline">\(x_{ij}\)</span>는 <span class="math inline">\(i\)</span>행 <span class="math inline">\(j\)</span>열의 숫자, 차원은 “행 <span class="math inline">\(\times\)</span> 열” — <strong>행 먼저, 열 나중</strong></li>
+</ul>
+<p><span class="math display">\[
+\mathbf{y}=\begin{pmatrix} y_1\\ y_2\\ \vdots\\ y_{30} \end{pmatrix}
+\;(30\times 1), \qquad
+\mathbf{X}=\begin{pmatrix}
+x_{11} &amp; \cdots &amp; x_{1p}\\
+\vdots &amp; \ddots &amp; \vdots\\
+x_{n1} &amp; \cdots &amp; x_{np}
+\end{pmatrix}
+\;(n\times p)
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{y}\)</span>는 반응변수 <span class="math inline">\(y_1,\dots,y_{30}\)</span>을 세로로 모은 벡터, <span class="math inline">\(\mathbf{X}\)</span>는 설명변수 값들을 모은 행렬, <span class="math inline">\(x_{ij}\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 <span class="math inline">\(j\)</span>번째 설명변수 값, <span class="math inline">\(n\)</span>은 관측 수, <span class="math inline">\(p\)</span>는 설명변수의 개수입니다.</p>
+<ul>
+<li>회귀에서는 절편용 1열을 맨 앞에 붙여 <span class="math inline">\(n\times(p+1)\)</span> 행렬로 씁니다 — 다음 슬라이드의 <span class="math inline">\(30\times 4\)</span> 모형행렬이 그 예입니다</li>
+<li>한 줄 요약: 굵은 글씨를 만나면 “숫자 여러 개를 한 덩어리로 묶었구나”라고 읽으면 됩니다</li>
+</ul>
+<aside class="notes">
+<p>표기는 딱 세 가지만 기억하시면 됩니다. 첫째, 숫자를 세로로 줄 세우면 벡터이고 굵은 소문자로 씁니다. 둘째, 숫자를 격자로 배열하면 행렬이고 굵은 대문자로 씁니다. 셋째, 원소를 찾을 때는 행 먼저, 열 나중입니다. 영화관에서 좌석을 찾을 때 “몇 번째 줄, 그 줄에서 몇 번째 자리”를 보는 것과 완전히 같습니다. 화면 왼쪽의 벡터를 보시면, 우리 아이스크림 가게의 30개 기간 판매량을 세로로 쭉 쌓은 것이 바로 이 y 벡터입니다. 차원 표기 30 곱하기 1도 “30줄, 1칸”이라고 소리 내어 읽으면 자연스럽게 외워집니다. 혹시 “굵은 글씨와 보통 글씨를 왜 구분하나요?”라고 궁금하실 수 있는데, 굵은 y는 30개짜리 묶음 전체, 보통 y에 아래첨자 i가 붙으면 그중 한 칸의 숫자 하나라는 구분입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="회귀모형의-행렬-표현-mathbfymathbfxboldsymbolbetaboldsymbolvarepsilon" class="slide level2">
+<h2>회귀모형의 행렬 표현 — <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}\)</span></h2>
+<p><span class="math display">\[
+\underbrace{\begin{pmatrix} y_1\\ y_2\\ \vdots\\ y_{30} \end{pmatrix}}_{\mathbf{y}\;(30\times 1)}
+=
+\underbrace{\begin{pmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; x_{13}\\
+1 &amp; x_{21} &amp; x_{22} &amp; x_{23}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+1 &amp; x_{30,1} &amp; x_{30,2} &amp; x_{30,3}
+\end{pmatrix}}_{\mathbf{X}\;(30\times 4)}
+\underbrace{\begin{pmatrix} \beta_0\\ \beta_1\\ \beta_2\\ \beta_3 \end{pmatrix}}_{\boldsymbol{\beta}\;(4\times 1)}
++
+\underbrace{\begin{pmatrix} \varepsilon_1\\ \varepsilon_2\\ \vdots\\ \varepsilon_{30} \end{pmatrix}}_{\boldsymbol{\varepsilon}\;(30\times 1)}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{y}\)</span>는 30개 기간의 아이스크림 소비량(IC)을 모은 반응변수 벡터, <span class="math inline">\(\mathbf{X}\)</span>의 1열은 절편 <span class="math inline">\(\beta_0\)</span>의 자리를 만들어 주는 1들이고 2, 3, 4열은 각각 가격(price) <span class="math inline">\(x_{i1}\)</span>, 소득(income) <span class="math inline">\(x_{i2}\)</span>, 온도(temp) <span class="math inline">\(x_{i3}\)</span>, <span class="math inline">\(\boldsymbol{\beta}\)</span>는 회귀계수 벡터, <span class="math inline">\(\boldsymbol{\varepsilon}\)</span>는 오차 벡터(각 <span class="math inline">\(\varepsilon_i\)</span>의 분산은 <span class="math inline">\(\sigma^2\)</span>)입니다.</p>
+<ul>
+<li><span class="math inline">\(\mathbf{X}\)</span>의 <strong>1열은 전부 1</strong>: 절편 <span class="math inline">\(\beta_0\)</span>이 모든 기간에 똑같이 더해지도록 하는 자리</li>
+<li>행렬 곱 규칙은 “행과 열을 짝지어 곱해서 더하기” — 그 결과가 앞 슬라이드의 30줄과 정확히 같음<sup>1</sup></li>
+</ul>
+<aside class="notes">
+<p>이제 이 장의 핵심 슬라이드입니다. 화면의 식을 왼쪽부터 차례로 살펴보겠습니다. 맨 왼쪽 y는 우리가 맞히고 싶은 30개 기간의 판매량 묶음입니다. 가운데 큰 X는 엑셀 시트 그대로입니다. 다만 맨 앞에 1로만 채워진 열이 하나 추가되어 30 곱하기 4가 되었습니다. 그 옆의 베타는 우리가 알아내고 싶은 회귀계수 네 개를 세로로 쌓은 것이고, 마지막 엡실론은 각 기간의 설명 안 되는 오차입니다. 여기서 꼭 나오는 질문이 있습니다. “왜 1열이 전부 1인가요?” 행렬 곱을 하면 각 행에서 베타0 곱하기 1이 계산되는데, 덕분에 절편 베타0이 모든 기간에 똑같이 더해집니다. 즉 1들의 열은 절편이 앉을 좌석입니다. 이 한 줄짜리 식을 풀어 쓰면 앞 슬라이드의 30줄과 글자 하나까지 같아집니다. 즉 행렬은 내용을 바꾼 것이 아니라 포장만 바꾼 것입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Matrix formulation follows the CNU regression lecture note (Ch. 2) and Kutner et al.&nbsp;(2005), <em>Applied Linear Statistical Models</em>, 5th ed.</p></li></ol></aside></section>
+<section id="전치와-역행렬-뒤집기와-되돌리기" class="slide level2">
+<h2>전치와 역행렬 — “뒤집기”와 “되돌리기”</h2>
+<ul>
+<li><strong>전치</strong> <span class="math inline">\(\mathbf{X}^\top\)</span>: 행과 열을 맞바꾸기 = 표를 대각선 축으로 <strong>뒤집기</strong> (<span class="math inline">\(30\times 4 \to 4\times 30\)</span>)</li>
+<li><strong>역행렬</strong> <span class="math inline">\(\mathbf{A}^{-1}\)</span>: 곱하면 원래대로 <strong>되돌리는</strong> 행렬 — 나눗셈의 행렬 버전</li>
+<li>숫자 비유: <span class="math inline">\(3x=6\)</span>이면 <span class="math inline">\(x=\tfrac{1}{3}\times 6=2\)</span> <span class="math inline">\(\to\)</span> 행렬에서는 <span class="math inline">\(\mathbf{A}\mathbf{x}=\mathbf{b}\)</span>이면 <span class="math inline">\(\mathbf{x}=\mathbf{A}^{-1}\mathbf{b}\)</span></li>
+</ul>
+<p><span class="math display">\[
+\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{A}\)</span>는 정사각(행 수 = 열 수) 행렬, <span class="math inline">\(\mathbf{A}^{-1}\)</span>은 <span class="math inline">\(\mathbf{A}\)</span>의 역행렬, <span class="math inline">\(\mathbf{I}\)</span>는 대각선만 1이고 나머지는 0인 항등행렬(숫자 1의 행렬 버전)입니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Transpose and inverse in R</span></span>
+<span id="cb2-2"><a href=""></a><span class="fu">t</span>(X)             <span class="co"># transpose: flip rows and columns</span></span>
+<span id="cb2-3"><a href=""></a><span class="fu">solve</span>(A)         <span class="co"># inverse of a square matrix A ("undo" matrix)</span></span>
+<span id="cb2-4"><a href=""></a><span class="fu">solve</span>(A) <span class="sc">%*%</span> A   <span class="co"># returns the identity matrix I</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>한 줄 요약: 전치는 뒤집기, 역행렬은 되돌리기 — 이 두 가지로 다음 슬라이드에서 회귀를 다 풉니다</li>
+</ul>
+<aside class="notes">
+<p>이번 장에서 새로 배우는 연산은 딱 두 개입니다. 첫째는 전치입니다. 종이에 표를 그린 다음 대각선 축으로 뒤집는다고 상상해 보십시오. 가로줄이 세로줄이 되고, 30 곱하기 4짜리 표가 4 곱하기 30이 됩니다. 그게 전부입니다. 둘째는 역행렬인데, 이것은 되돌리기 버튼입니다. 숫자에서 3 곱하기 x가 6이면 양변을 3으로 나눠서 x를 구하듯이, 행렬 방정식에서는 나눗셈 대신 역행렬을 곱해서 원래 값을 되찾습니다. R에서는 전치가 t, 역행렬이 solve라는 함수 하나씩이라는 것도 화면의 코드에서 확인하실 수 있습니다. 예상 질문 하나 짚고 가겠습니다. “역행렬은 항상 존재하나요?” 아닙니다. 두 설명변수가 사실상 같은 정보를 담고 있어서 표의 열들이 겹치면 역행렬이 없거나 매우 불안정해집니다. 이 문제는 뒤에서 다중공선성이라는 이름으로 다시 만나게 되니, 지금은 “항상 되는 건 아니구나” 정도만 기억해 주시면 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="예고편-한-줄이면-모든-회귀가-풀린다" class="slide level2">
+<h2>예고편 — 한 줄이면 모든 회귀가 풀린다</h2>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>는 자료로 추정한 회귀계수 벡터(위에 붙은 모자 기호는 “추정값”이라는 뜻), <span class="math inline">\(\mathbf{X}^\top\)</span>은 <span class="math inline">\(\mathbf{X}\)</span>의 전치, <span class="math inline">\((\mathbf{X}^\top\mathbf{X})^{-1}\)</span>은 <span class="math inline">\(\mathbf{X}^\top\mathbf{X}\)</span>의 역행렬, <span class="math inline">\(\mathbf{y}\)</span>는 반응변수 벡터입니다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Chapter 4 preview: all of least-squares regression in one line</span></span>
+<span id="cb3-2"><a href=""></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(IC <span class="sc">~</span> price <span class="sc">+</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice)  <span class="co"># 30 x 4, first column all 1s</span></span>
+<span id="cb3-3"><a href=""></a>y <span class="ot">&lt;-</span> ice<span class="sc">$</span>IC</span>
+<span id="cb3-4"><a href=""></a></span>
+<span id="cb3-5"><a href=""></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> y   <span class="co"># (X'X)^{-1} X'y</span></span>
+<span id="cb3-6"><a href=""></a><span class="co"># identical to coef(lm(IC ~ price + income + temp, data = ice))</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>단순회귀·다중회귀·가변수회귀 모두 이 <strong>한 줄</strong>의 특수한 경우 (이 식은 제4장에서 다시 만납니다)</li>
+<li>아이스크림 자료에 넣으면 <span class="math inline">\(\hat\beta_0=0.193\)</span>, <span class="math inline">\(\hat\beta_1=-1.029\)</span>(price), <span class="math inline">\(\hat\beta_2=0.00331\)</span>(income), <span class="math inline">\(\hat\beta_3=0.00346\)</span>(temp)<sup>1</sup></li>
+<li>한 줄 요약: 오늘 배운 전치와 역행렬만 있으면 회귀분석의 심장부를 읽을 수 있습니다</li>
+</ul>
+<aside class="notes">
+<p>마지막으로 예고편입니다. 화면의 식 한 줄이 사실상 이 강의 전체의 주인공입니다. 방금 배운 재료가 전부 들어 있습니다. X에 전치를 붙여 뒤집고, 곱한 것에 역행렬로 되돌리고, 다시 y를 곱하면 회귀계수 추정값이 나옵니다. 4장에서 이 식이 어디서 오는지 유도할 텐데, 오늘은 “뒤집고, 되돌리고, 곱한다”라는 구조만 눈에 익혀 두시면 충분합니다. 아래 R 코드도 보십시오. 행렬 곱 연산자와 solve 함수만으로 계산한 beta_hat이 lm 함수가 주는 계수와 완전히 일치하고, 실제로 아이스크림 자료에 넣으면 절편 0.193, 가격 -1.029, 소득 0.00331, 온도 0.00346이 나옵니다. 혹시 “이 식을 외워야 하나요?”라고 걱정하신다면, 외우실 필요 없습니다. 어떤 통계 프로그램이든 내부에서 이 계산을 하고 있다는 사실, 그리고 역행렬이 불안정하면 이 계산도 흔들린다는 감각만 가져가시면 됩니다. 그럼 이 도구를 들고 다음 장에서 단순선형회귀부터 시작하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>Computed by code/agent/2026-08-11/make-lecture-figures.R</p></li></ol></aside></section></section>
+<section>
+<section id="제3장-단순선형회귀-가장-좋은-직선-하나-긋기" class="title-slide slide level1 center">
+<h1>제3장 단순선형회귀 — 가장 좋은 직선 하나 긋기</h1>
+<aside class="notes">
+<p>이제 본격적으로 직선을 하나 그어 보겠습니다. 아이스크림 가게 사장님의 질문, “온도만 알면 판매량을 맞힐 수 있을까?”에 답하는 도구가 바로 단순선형회귀입니다. 이번 장에서는 수많은 직선 후보 가운데 딱 하나, 가장 좋은 직선을 고르는 원리를 배웁니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="어떤-직선이-가장-좋은-직선일까" class="slide level2">
+<h2>어떤 직선이 “가장 좋은” 직선일까?</h2>
+<ul>
+<li>산점도 위에 자를 대고 그으면 <strong>사람마다 다른 직선</strong>이 나옵니다</li>
+<li>상상: 각 점과 막대기(직선)를 <strong>용수철</strong>로 연결</li>
+<li>용수철에 저장되는 에너지는 늘어난 길이의 <strong>제곱</strong>에 비례</li>
+<li>막대기는 용수철 에너지의 합이 <strong>최소</strong>가 되는 자리에서 멈춤</li>
+<li>그 멈춘 자리가 바로 <strong>최소제곱(least squares) 직선</strong></li>
+</ul>
+<aside class="notes">
+<p>이 슬라이드가 3장 전체를 관통하는 그림입니다. 산점도 위에 막대기를 하나 올려놓고, 각 데이터 점과 막대기를 용수철로 연결했다고 상상해 보시기 바랍니다. 물리에서 배우듯 용수철에 저장되는 에너지는 늘어난 길이의 제곱에 비례합니다. 그래서 막대기를 손에서 놓으면 이리저리 움직이다가, 용수철 에너지의 총합이 가장 작아지는 자리에서 딱 멈춥니다. 그 자리가 바로 최소제곱 직선입니다. 여기서 자주 나오는 질문이 “왜 하필 제곱이냐”는 것입니다. 간격을 그냥 더하면 직선 위아래의 부호가 상쇄되어 0이 될 수 있고, 제곱을 하면 크게 벗어난 점에 더 큰 벌점을 주게 되며, 수학적으로도 미분으로 최소점을 깔끔하게 찾을 수 있기 때문입니다. 다음 슬라이드에서 이 “간격”을 실제 그림으로 확인하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="잔차-점과-직선-사이의-수직-간격" class="slide level2">
+<h2>잔차: 점과 직선 사이의 수직 간격</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig02-least-squares-idea.png" style="width:100.0%"></p>
+<figcaption>Least squares minimizes the sum of squared vertical gaps</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:40%;">
+<p><span class="math display">\[e_i = y_i - \hat y_i\]</span></p>
+<p>여기서 <span class="math inline">\(e_i\)</span>는 <span class="math inline">\(i\)</span>번째 잔차(그림의 빨간 수직 선분, 부호 포함), <span class="math inline">\(y_i\)</span>는 실제 관측값, <span class="math inline">\(\hat y_i\)</span>는 직선이 알려 주는 적합값(예측값)입니다.</p>
+</div></div>
+<aside class="notes">
+<p>화면의 그림을 보시면 파란 직선이 최소제곱으로 적합한 직선이고, 각 점에서 직선까지 이어진 빨간 수직 선분이 방금 말씀드린 용수철, 통계 용어로는 잔차입니다. 잔차는 실제 관측값에서 적합값을 뺀 것이므로, 점이 직선 위쪽에 있으면 양수, 아래쪽에 있으면 음수가 됩니다. 그림에서 가장 긴 빨간 선분을 보시면, 바로 이 점이 지금 직선을 가장 세게 잡아당기고 있는 것입니다. 여기서 예상되는 질문은 “점에서 직선까지의 최단거리, 즉 수선의 발을 쓰지 않고 왜 수직 간격을 쓰느냐”입니다. 우리의 목적이 x를 알고 y를 맞히는 것이므로, 틀리는 방향은 언제나 y 방향이고, 그래서 y 방향의 간격만 재는 것입니다. 이 빨간 선분들을 제곱해서 더한 값을 최소로 만드는 것이 다음 슬라이드의 수식입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="최소제곱법-제곱-합이-가장-작은-직선" class="slide level2">
+<h2>최소제곱법: 제곱 합이 가장 작은 직선</h2>
+<p>모형: <span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \varepsilon_i\)</span> — 여기서 <span class="math inline">\(y_i\)</span>는 반응변수, <span class="math inline">\(x_i\)</span>는 설명변수, <span class="math inline">\(\beta_0\)</span>는 절편, <span class="math inline">\(\beta_1\)</span>은 기울기, <span class="math inline">\(\varepsilon_i\)</span>는 오차(분산 <span class="math inline">\(\sigma^2\)</span>), <span class="math inline">\(i=1,\dots,n\)</span>입니다.</p>
+<p><span class="math display">\[\min_{\beta_0,\beta_1}\; \sum_{i=1}^{n} \left( y_i - \beta_0 - \beta_1 x_i \right)^2\]</span></p>
+<p>여기서 괄호 안은 <span class="math inline">\(i\)</span>번째 점과 직선 사이의 수직 간격이고, 이 제곱 합을 가장 작게 만드는 <span class="math inline">\(\beta_0, \beta_1\)</span>을 찾는 것이 최소제곱법입니다.</p>
+<ul>
+<li>이 방법의 정식 명칭은 <strong>보통최소제곱</strong>(Ordinary Least Squares, OLS)입니다</li>
+</ul>
+<aside class="notes">
+<p>이제 용수철 이야기를 수식으로 옮깁니다. 첫 줄이 우리가 세운 모형인데, “y는 직선 부분 더하기 오차”라고 읽으시면 됩니다. 가운데 식이 목적함수로, 방금 본 빨간 수직 선분들을 제곱해서 전부 더한 것이고, 이것을 가장 작게 만드는 절편과 기울기를 찾겠다는 선언입니다. 이 방법의 정식 이름이 보통최소제곱, 영어로 Ordinary Least Squares, 줄여서 OLS입니다. 뒤에서 가중회귀를 배울 때 이 이름이 다시 나오니 가볍게 기억해 두시면 좋습니다. 그럼 이 최소화 문제의 답이 어떻게 생겼는지 다음 슬라이드에서 바로 확인해 보겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="최소제곱법의-해-기울기와-절편-공식" class="slide level2">
+<h2>최소제곱법의 해: 기울기와 절편 공식</h2>
+<p><span class="math display">\[\hat\beta_1 = \frac{S_{xy}}{S_{xx}}, \qquad \hat\beta_0 = \bar y - \hat\beta_1 \bar x\]</span></p>
+<p><span class="math display">\[S_{xy} = \sum_{i=1}^{n}(x_i-\bar x)(y_i-\bar y), \qquad S_{xx} = \sum_{i=1}^{n}(x_i-\bar x)^2\]</span></p>
+<p>여기서 <span class="math inline">\(\hat\beta_0, \hat\beta_1\)</span>은 최소제곱 추정량, <span class="math inline">\(\bar x, \bar y\)</span>는 각각 <span class="math inline">\(x, y\)</span>의 표본평균, <span class="math inline">\(S_{xy}\)</span>는 <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span>가 함께 움직이는 정도, <span class="math inline">\(S_{xx}\)</span>는 <span class="math inline">\(x\)</span> 자체의 흩어짐입니다.</p>
+
+<aside class="notes">
+<p>이 최소화 문제는 미분으로 풀리고, 답은 손으로 쓸 수 있을 만큼 간단합니다. 기울기 추정값은 x와 y가 함께 움직이는 정도를 x 자체의 흩어짐으로 나눈 것이라고 읽으시면 됩니다. 절편 식을 잘 보시면, 직선이 항상 평균점, 즉 x의 평균과 y의 평균이 만나는 점을 지나가도록 높이를 맞춘다는 뜻입니다. 여기서 “이 공식을 외워야 하나요?”라는 질문이 자주 나오는데, 외우실 필요 없습니다. 잠시 후 보시겠지만 R이 전부 계산해 주므로, “함께 변하는 정도 나누기 x의 흩어짐”이라는 구조만 기억하시면 충분합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Least squares estimation: Kutner et al.&nbsp;(2005), <em>Applied Linear Statistical Models</em>, 5th ed.; CNU regression lecture note, Ch. 3.</p>
+</div></aside></section>
+<section id="기울기와-절편이-말해-주는-것" class="slide level2">
+<h2>기울기와 절편이 말해 주는 것</h2>
+<ul>
+<li><span class="math inline">\(\hat\beta_1\)</span> (기울기): <span class="math inline">\(x\)</span>가 1단위 커질 때 <span class="math inline">\(y\)</span>가 <strong>평균적으로</strong> 변하는 양</li>
+<li><span class="math inline">\(\hat\beta_0\)</span> (절편): <span class="math inline">\(x=0\)</span>일 때 예측되는 <span class="math inline">\(y\)</span>의 평균 — <span class="math inline">\(x=0\)</span>이 자료 범위 밖이면 해석에 주의</li>
+</ul>
+<p>아이스크림 자료(<span class="math inline">\(y\)</span> = 소비량 IC, <span class="math inline">\(x\)</span> = 온도 temp)의 적합 결과:</p>
+<p><span class="math display">\[\hat y = 0.2069 + 0.003107\, x\]</span></p>
+<p>여기서 <span class="math inline">\(\hat y\)</span>는 예측된 아이스크림 소비량, <span class="math inline">\(x\)</span>는 온도이며, 기울기 0.003107은 온도가 1도 오를 때 소비량이 평균 약 0.0031 증가함을 뜻합니다.</p>
+<ul>
+<li>“정확히”가 아니라 “<strong>평균적으로</strong>” — 개별 점은 직선 위아래로 흩어져 있음</li>
+</ul>
+
+<aside class="notes">
+<p>직선을 구했으니 이제 읽는 법입니다. 기울기는 “x가 1단위 커질 때 y가 평균적으로 얼마나 변하는가”입니다. 아이스크림 가게로 돌아가면, 온도가 1도 오를 때마다 소비량이 평균 약 0.0031씩 늘어난다는 뜻이고, 10도가 오르면 평균 약 0.031이 늘어나는 셈입니다. 여러분이 하시는 계측기 검교정도 구조가 똑같습니다. 기준 입력을 1단위 올릴 때 계측기 지시값이 얼마나 변하는지가 바로 기울기이고, 입력이 0일 때의 지시값이 절편, 즉 영점입니다. 다만 절편은 x가 0인 지점이 자료 범위 바깥이면 물리적으로 해석하지 않는 것이 안전합니다. 여기서 “절편이 음수로 나오면 잘못된 건가요?”라는 질문이 나올 수 있는데, 잠시 후 예제에서 절편이 음수로 나옵니다. x가 0 근처에 자료가 없다면 절편은 직선의 높이를 맞추는 장치일 뿐이므로 이상한 것이 아닙니다. 그리고 “평균적으로”라는 말이 중요합니다. 직선은 개별 점을 정확히 맞히는 것이 아니라 평균적인 경향을 맞히는 것입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Ice cream fit computed by code/agent/2026-08-11/make-lecture-figures.R (n = 30).</p>
+</div></aside></section>
+<section id="결정계수-r2-직선이-설명한-변동의-비율" class="slide level2">
+<h2>결정계수 <span class="math inline">\(R^2\)</span> — 직선이 설명한 변동의 비율</h2>
+<p>비유: 반 친구들의 시험 점수가 제각각일 때, 그 차이 중 “공부시간”으로 설명되는 몫.</p>
+<p><span class="math display">\[SST = SSR + SSE\]</span></p>
+<p>여기서 <span class="math inline">\(SST=\sum_{i=1}^{n}(y_i-\bar y)^2\)</span>는 <span class="math inline">\(y\)</span>의 전체 변동, <span class="math inline">\(SSR=\sum_{i=1}^{n}(\hat y_i-\bar y)^2\)</span>는 직선이 설명한 변동, <span class="math inline">\(SSE=\sum_{i=1}^{n}(y_i-\hat y_i)^2\)</span>는 직선이 설명하지 못하고 남은 변동입니다.</p>
+<p><span class="math display">\[R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}\]</span></p>
+<p>여기서 <span class="math inline">\(R^2\)</span>는 전체 변동 중 직선이 설명한 비율로, 0과 1 사이의 값입니다.</p>
+<ul>
+<li>CNU 예제3.1: <span class="math inline">\(R^2 = 0.644\)</span> → 변동의 64.4%를 직선이 설명</li>
+<li>아이스크림(IC~temp): <span class="math inline">\(R^2 = 0.602\)</span> → 온도 하나로 60.2% 설명</li>
+</ul>
+
+<aside class="notes">
+<p>직선을 그었으면 “이 직선이 얼마나 쓸모 있는가”를 재야 합니다. 비유로 시작하겠습니다. 반 친구들의 시험 점수는 제각각인데, 그 차이의 일부는 공부시간 차이로 설명되고 나머지는 컨디션이나 운 같은 다른 이유입니다. 점수 차이 전체가 SST, 공부시간으로 설명되는 부분이 SSR, 남은 부분이 SSE이고, 설명된 몫의 비율이 바로 결정계수입니다. 수식의 첫 줄은 전체 변동이 “설명된 변동 더하기 남은 변동”으로 정확히 쪼개진다는 뜻입니다. 예제3.1에서는 64.4%, 아이스크림 자료에서는 온도 하나만으로 소비량 변동의 60.2%가 설명됩니다. 여기서 “R 제곱이 얼마나 커야 좋은 건가요?”라는 질문이 거의 항상 나옵니다. 정답은 분야마다 다르다는 것입니다. 잘 통제된 검교정 실험이라면 0.99 이상을 기대하지만, 사람의 행동이 개입된 자료라면 0.3도 의미가 있을 수 있습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Values computed by code/agent/2026-08-11/make-lecture-figures.R.</p>
+</div></aside></section>
+<section id="기울기-t-검정-이-기울기-우연일까" class="slide level2">
+<h2>기울기 t-검정: 이 기울기, 우연일까?</h2>
+<ul>
+<li>핵심 질문: “기울기가 사실 0(평평한 직선)이라면, 이렇게 기울어진 데이터가 <strong>우연히</strong> 나올까?”</li>
+<li>가설: <span class="math inline">\(H_0: \beta_1 = 0\)</span> (<span class="math inline">\(x\)</span>는 <span class="math inline">\(y\)</span>와 무관) vs <span class="math inline">\(H_1: \beta_1 \neq 0\)</span> (<span class="math inline">\(x\)</span>는 <span class="math inline">\(y\)</span>와 유관)</li>
+<li>여기서 <span class="math inline">\(H_0\)</span>를 <strong>귀무가설</strong>(일단 참이라고 두고 시작하는 기본 가정)이라고 부릅니다</li>
+</ul>
+<p><span class="math display">\[t = \frac{\hat\beta_1}{\mathrm{se}(\hat\beta_1)}\]</span></p>
+<p>여기서 <span class="math inline">\(\hat\beta_1\)</span>은 추정된 기울기, <span class="math inline">\(\mathrm{se}(\hat\beta_1)\)</span>은 그 추정량의 표준오차(추정의 흔들림 크기)로, <span class="math inline">\(t\)</span>는 “기울기가 표준오차의 몇 배인가”를 뜻합니다.</p>
+<ul>
+<li>손 계산이 가능한 작은 예제(CNU 예제3.1, <span class="math inline">\(n=10\)</span>)로 바꿔 확인해 봅니다</li>
+<li>CNU 예제3.1: <span class="math inline">\(t = 0.685 / 0.180 \approx 3.80\)</span>, <span class="math inline">\(p = 0.0052\)</span></li>
+<li><span class="math inline">\(p\)</span>값 = <span class="math inline">\(H_0\)</span>(기울기 0)가 맞다는 <strong>가정 아래</strong> 이만큼 극단적인 결과가 나올 확률 → 0.0052라면 우연으로 보기 어려움</li>
+</ul>
+<aside class="notes">
+<p>결정계수가 “얼마나” 설명하는지를 쟀다면, t-검정은 “정말로” 관계가 있는지를 묻습니다. 여기서는 손 계산이 가능한 작은 예제, n이 10인 예제3.1로 바꿔 확인해 보겠습니다. 재판의 무죄 추정처럼, 일단 “기울기는 0이다, 즉 x와 y는 무관하다”라고 가정하고 시작합니다. 이렇게 일단 참이라고 두고 시작하는 기본 가정을 귀무가설이라고 부릅니다. 그 가정 아래에서 지금처럼 기울어진 데이터가 우연히 나올 법한지를 따지는 것입니다. t 통계량은 추정된 기울기를 그 흔들림, 즉 표준오차로 나눈 것이라, “기울기가 잡음의 몇 배나 되는가”로 읽으시면 됩니다. 예제3.1에서는 0.685를 0.180으로 나눠 약 3.80이 나오고, 이때 p값이 0.0052입니다. 즉 기울기가 정말 0이라면 이런 데이터는 대략 200번에 한 번꼴로나 나올 법한 결과이니, 우연이 아니라 진짜 기울기가 있다고 판단하는 것입니다. 여기서 흔한 오해 하나를 짚고 가겠습니다. “p가 0.0052라는 것은 기울기가 0일 확률이 0.52%라는 뜻인가요?” 그렇지 않습니다. p값은 어디까지나 기울기가 0이라는 가정 아래에서 이런 데이터가 나올 확률이지, 가설 자체가 참일 확률이 아닙니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="회귀계수는-고정된-숫자가-아니라-표본에-따라-흔들린다" class="slide level2">
+<h2>회귀계수는 고정된 숫자가 아니라 표본에 따라 흔들린다</h2>
+<p>비유: 같은 공정을 여러 번 측정하면, 측정값으로 만든 직선도 조금씩 달라집니다. 한 번 얻은 계수는 모집단의 진짜 계수를 추정한 <strong>표본 결과</strong>입니다.</p>
+<p><span class="math display">\[
+\hat{\boldsymbol\beta}
+= (\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y
+= \boldsymbol\beta + (\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\boldsymbol\varepsilon
+\]</span></p>
+<p>여기서 <span class="math inline">\(\boldsymbol\beta\)</span>는 모집단의 미지 회귀계수, <span class="math inline">\(\hat{\boldsymbol\beta}\)</span>는 표본에서 계산한 추정량, <span class="math inline">\(\mathbf X\)</span>는 설명변수 행렬, <span class="math inline">\(\mathbf y\)</span>는 반응변수 벡터, <span class="math inline">\(\boldsymbol\varepsilon\)</span>은 오차 벡터입니다.</p>
+<ul>
+<li><span class="math inline">\(\mathbf X\)</span>를 고정하고 <span class="math inline">\(E(\boldsymbol\varepsilon\mid\mathbf X)=\mathbf 0\)</span>, <span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon\mid\mathbf X)=\sigma^2\mathbf I\)</span>라 두면</li>
+<li><span class="math inline">\(E(\hat{\boldsymbol\beta}\mid\mathbf X)=\boldsymbol\beta\)</span>: 평균적으로 진짜 계수를 맞춤</li>
+<li><span class="math inline">\(\hat{\boldsymbol\beta}\)</span>는 자료가 바뀔 때마다 달라지는 <strong>확률변수</strong>이고, <span class="math inline">\(\boldsymbol\beta\)</span>는 고정된 미지 값</li>
+</ul>
+<aside class="notes">
+<p>같은 실험을 다시 하면 점들이 똑같이 나오지 않는 것처럼, 그 점들로 만든 직선의 기울기도 조금씩 달라집니다. 그래서 화면의 모자 베타는 진짜 값이 아니라 이번 표본에서 얻은 추정값입니다. 식의 두 번째 줄은 추정값이 진짜 계수와 오차의 영향을 합친 것이라고 말합니다. 오차의 평균이 0이면 여러 번 반복했을 때 오차가 한쪽으로만 계수를 밀지는 않으므로 평균적으로 진짜 계수를 맞춥니다. 여기서 중요한 구분은 베타는 고정된 미지 값이고, 모자 베타는 표본이 바뀌면 흔들리는 값이라는 점입니다. 표준오차와 신뢰구간은 바로 이 흔들림의 크기를 정량화합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="회귀계수의-분산-설계와-측정오차가-함께-결정한다" class="slide level2">
+<h2>회귀계수의 분산: 설계와 측정오차가 함께 결정한다</h2>
+<p><span class="math display">\[
+\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)
+= \sigma^2(\mathbf X^\top\mathbf X)^{-1}
+\]</span></p>
+<p>수식의 기호는 <span class="math inline">\(\sigma^2\)</span>: 오차분산, <span class="math inline">\(\mathbf X^\top\)</span>: 설명변수 행렬의 전치, <span class="math inline">\((\mathbf X^\top\mathbf X)^{-1}\)</span>: 설계정보의 역행렬, <span class="math inline">\(\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)\)</span>: 계수 추정량의 조건부 분산입니다.</p>
+<ul>
+<li>오차가 클수록 <span class="math inline">\(\sigma^2\)</span>가 커져 계수의 불확도가 증가</li>
+<li>설명변수의 변동과 서로 겹치지 않는 정보가 많을수록 <span class="math inline">\((\mathbf X^\top\mathbf X)^{-1}\)</span>가 작아져 불확도가 감소</li>
+<li>실제 계산에서는 <span class="math inline">\(\sigma^2\)</span>를 잔차로 추정한다: <span class="math inline">\(\hat\sigma^2 = SSE/(n-p-1)\)</span></li>
+<li><span class="math inline">\(j\)</span>번째 계수의 표준오차: <span class="math inline">\(\operatorname{se}(\hat\beta_j)=\sqrt{\widehat{\operatorname{Var}}(\hat\beta_j)}\)</span></li>
+</ul>
+<aside class="notes">
+<p>이 식은 계수의 흔들림이 무엇으로 결정되는지 보여 줍니다. 측정 자체가 시끄러우면, 즉 오차분산 시그마 제곱이 크면 계수를 정확히 알기 어렵습니다. 반대로 설명변수가 충분히 넓게 퍼져 있고 서로 비슷한 정보를 반복하지 않으면 계수의 흔들림이 작아집니다. 실무적으로는 진짜 오차분산을 모르기 때문에 잔차 제곱합을 자유도로 나눈 값으로 추정합니다. 행렬식 전체를 직접 계산할 필요는 없지만, 표준오차가 단순히 소프트웨어가 임의로 붙이는 숫자가 아니라 측정오차와 실험 설계에서 나온다는 점을 기억하시면 됩니다. 설명변수끼리 겹치면 역행렬이 커져 표준오차가 커지는 이유도 여기서 확인할 수 있습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="분산식의-도출-오차가-계수로-전파되는-경로" class="slide level2">
+<h2>분산식의 도출: 오차가 계수로 전파되는 경로</h2>
+<p>OLS 추정량을</p>
+<p><span class="math display">\[
+\hat{\boldsymbol\beta}=\boldsymbol\beta+\mathbf A\boldsymbol\varepsilon,
+\qquad
+\mathbf A=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top
+\]</span></p>
+<p>로 쓰면, 분산의 기본 성질 <span class="math inline">\(\operatorname{Var}(\mathbf A\boldsymbol\varepsilon)=\mathbf A\operatorname{Var}(\boldsymbol\varepsilon)\mathbf A^\top\)</span>에 의해</p>
+<p><span class="math display">\[
+\begin{aligned}
+\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)
+&amp;=\mathbf A(\sigma^2\mathbf I)\mathbf A^\top\\
+&amp;=\sigma^2(\mathbf X^\top\mathbf X)^{-1}
+\end{aligned}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf A\)</span>는 오차를 계수로 전달하는 변환행렬, <span class="math inline">\(\mathbf I\)</span>는 <span class="math inline">\(n\times n\)</span> 항등행렬, <span class="math inline">\(\mathbf A^\top\)</span>는 <span class="math inline">\(\mathbf A\)</span>의 전치입니다.</p>
+<ul>
+<li>첫 줄: 계수의 흔들림은 오차를 <span class="math inline">\(\mathbf A\)</span>로 변환한 결과</li>
+<li>둘째 줄: <span class="math inline">\(\mathbf X^\top(\mathbf X^\top\mathbf X)^{-1}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\)</span>의 대칭 구조를 사용</li>
+<li>이 결과가 표준오차·공분산·신뢰구간 계산의 출발점</li>
+</ul>
+<aside class="notes">
+<p>이번에는 공식을 외우는 대신 왜 그렇게 되는지 한 줄씩 확인합니다. 추정값은 진짜 계수에 오차를 변환한 것을 더한 모양입니다. 오차가 계수에 얼마나 전달되는지는 A라는 변환행렬이 결정합니다. 선형변환된 오차의 분산은 변환행렬, 원래 오차의 분산, 변환행렬의 전치를 차례로 곱해서 계산합니다. 오차분산이 시그마 제곱 아이덴티티라면, 가운데에 그것을 넣고 행렬을 정리해 앞 슬라이드의 식을 얻습니다. 이 유도는 회귀계수의 표준오차가 어디서 나오는지 보여 주는 핵심 연결고리입니다. 수식을 손으로 계산할 필요는 없지만, 오차가 설계행렬을 거쳐 계수 불확도로 전파된다는 구조는 꼭 기억해 주십시오.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gaussmarkov-정리-ols는-blue이다" class="slide level2">
+<h2>Gauss–Markov 정리: OLS는 BLUE이다</h2>
+<p>선형모형 <span class="math inline">\(\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon\)</span>에서 <span class="math inline">\(E(\boldsymbol\varepsilon\mid\mathbf X)=\mathbf0\)</span>, <span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon\mid\mathbf X)=\sigma^2\mathbf I\)</span>이고 <span class="math inline">\(\mathbf X\)</span>가 full rank이면, OLS 추정량은 다음 성질을 가집니다.</p>
+<p><span class="math display">\[
+\hat{\boldsymbol\beta}_{OLS}\ \text{is BLUE}
+\quad=\quad
+\text{Best Linear Unbiased Estimator}
+\]</span></p>
+<ul>
+<li><strong>Linear</strong>: 관측값 <span class="math inline">\(\mathbf y\)</span>의 선형함수</li>
+<li><strong>Unbiased</strong>: <span class="math inline">\(E(\hat{\boldsymbol\beta})=\boldsymbol\beta\)</span></li>
+<li><strong>Best</strong>: 같은 선형·불편 추정량 중 분산이 가장 작음</li>
+<li>정규성은 BLUE 자체에 필수는 아니지만, 정확한 <span class="math inline">\(t\)</span>·<span class="math inline">\(F\)</span> 검정과 구간 추론에는 추가로 사용됨 (Kutner et al., 2005; Faraway, 2015)</li>
+</ul>
+<aside class="notes">
+<p>BLUE는 색깔 이름이 아니라 세 단어의 앞글자입니다. 여러 개의 공평한 자를 놓고 비교했을 때, 평균적으로 진짜 위치를 가리키면서 가장 덜 흔들리는 자가 OLS라는 뜻입니다. 여기서 정규분포가 없어도 BLUE라는 결론은 유지됩니다. 정규성은 계수의 정확한 t검정과 신뢰구간을 만들 때 더해지는 조건입니다. 이 구분은 매우 중요합니다. 회귀 가정이 하나의 묶음처럼 보이지만, 어떤 결론에 어떤 가정이 필요한지는 다르기 때문입니다. 등분산이 깨지면 OLS가 더 이상 BLUE가 아니고, 이것이 뒤의 가중최소제곱으로 이어집니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="표준오차에서-신뢰구간으로-불확도를-구간으로-보고한다" class="slide level2">
+<h2>표준오차에서 신뢰구간으로: 불확도를 구간으로 보고한다</h2>
+<p>정규오차 가정 아래에서</p>
+<p><span class="math display">\[
+\frac{\hat\beta_j-\beta_j}{\operatorname{se}(\hat\beta_j)}
+\sim t_{\,n-p-1}
+\]</span></p>
+<p>따라서 <span class="math inline">\(100(1-\alpha)\%\)</span> 신뢰구간은</p>
+<p><span class="math display">\[
+\hat\beta_j
+\pm t_{\alpha/2,\,n-p-1}\operatorname{se}(\hat\beta_j)
+\]</span></p>
+<p>여기서 <span class="math inline">\(\hat\beta_j\)</span>는 추정 계수, <span class="math inline">\(\beta_j\)</span>는 모집단 계수, <span class="math inline">\(\operatorname{se}(\hat\beta_j)\)</span>는 표준오차, <span class="math inline">\(t_{\alpha/2,\,n-p-1}\)</span>은 자유도 <span class="math inline">\(n-p-1\)</span>인 <span class="math inline">\(t\)</span>분포의 임계값입니다.</p>
+<ul>
+<li>구간은 계수의 <strong>가능한 값의 범위</strong>를 표본 반복 절차로 표현</li>
+<li>95% 구간은 “이번 구간 안에 <span class="math inline">\(\beta_j\)</span>가 있을 확률이 95%”라는 뜻이 아님</li>
+<li>해석: 같은 절차를 반복해 만든 구간의 약 95%가 진짜 <span class="math inline">\(\beta_j\)</span>를 포함하도록 설계됨</li>
+<li>보고 예: 추정값, 표준오차, 95% 신뢰구간, 분석에 사용한 가정과 표본 범위</li>
+</ul>
+<aside class="notes">
+<p>표준오차가 흔들림의 크기를 한 숫자로 요약한다면, 신뢰구간은 그 흔들림을 양쪽 경계가 있는 범위로 보여 줍니다. 가운데가 추정값이고, 양옆으로 t 임계값과 표준오차를 곱한 만큼 펼칩니다. 95퍼센트라는 표현을 계수 자체가 이 구간 안에 있을 확률로 읽으면 안 됩니다. 진짜 계수는 고정되어 있고, 표본이 바뀌면 구간이 바뀌기 때문입니다. 올바른 뜻은 같은 방식으로 표본을 반복해 구간을 만들면 그중 약 95퍼센트가 진짜 계수를 포함하도록 절차를 설계했다는 것입니다. 연구보고서에서는 계수만 던지지 말고 표준오차나 신뢰구간을 함께 제시해야 독자가 결과의 정밀도를 판단할 수 있습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="r-예제-lm-한-줄이면-끝" class="slide level2">
+<h2>R 예제: <code>lm()</code> 한 줄이면 끝</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="co"># 2026-08-12 | Simple linear regression demo | lecture slide snippet</span></span>
+<span id="cb4-2"><a href=""></a><span class="co"># Data: CNU regression lecture note, Ch. 3, Example 3.1 (n = 10)</span></span>
+<span id="cb4-3"><a href=""></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> ex31)  <span class="co"># y: response, x: predictor</span></span>
+<span id="cb4-4"><a href=""></a><span class="fu">summary</span>(fit)                   <span class="co"># estimates, SE, t, p-value, R-squared</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<p>적합 결과: <span class="math inline">\(\hat y_i = -0.786 + 0.685\, x_i\)</span></p>
+<p>여기서 <span class="math inline">\(\hat y_i\)</span>는 적합값, <span class="math inline">\(-0.786\)</span>은 절편 추정값 <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(0.685\)</span>는 기울기 추정값 <span class="math inline">\(\hat\beta_1\)</span>입니다.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">SE</th>
+<th style="text-align: right;">t</th>
+<th style="text-align: right;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td style="text-align: right;">-0.786</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">–</td>
+<td style="text-align: right;">–</td>
+</tr>
+<tr class="even">
+<td>x (slope)</td>
+<td style="text-align: right;">0.685</td>
+<td style="text-align: right;">0.180</td>
+<td style="text-align: right;">3.80</td>
+<td style="text-align: right;">0.0052</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><span class="math inline">\(R^2 = 0.644\)</span> — 앞 슬라이드에서 본 값이 <code>summary()</code> 출력에 그대로 나타남</li>
+</ul>
+
+<aside class="notes">
+<p>지금까지의 이론이 R에서는 단 한 줄입니다. lm 함수에 “y를 x로 설명하라”는 뜻의 물결표 공식을 넣으면 최소제곱 계산이 끝나고, summary를 부르면 방금 배운 모든 숫자가 한 화면에 나옵니다. 표를 보시면 기울기 추정값 0.685, 표준오차 0.180, 그 둘을 나눈 t값 3.80, 그리고 p값 0.0052까지, 앞 슬라이드에서 손으로 따라간 값들이 그대로 출력됩니다. 절편이 음수인데, 아까 말씀드린 대로 x가 0 근처에 자료가 없다면 물리적으로 해석할 필요가 없는 값입니다. 결정계수 0.644도 출력 하단에 함께 나옵니다. 여기서 “실무 자료에도 이대로 쓰면 되나요?”라는 질문이 나올 수 있는데, 그렇습니다. 아이스크림 자료라면 lm(IC ~ temp)처럼 변수 이름만 바꾸면 되고, 실제로 7장 사례분석에서 그렇게 해 볼 예정입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Values computed by code/agent/2026-08-11/make-lecture-figures.R; data from CNU regression lecture note, Ch. 3 (Example 3.1).</p>
+</div></aside></section>
+<section id="제3장-한-줄-요약" class="slide level2">
+<h2>제3장 한 줄 요약</h2>
+<blockquote>
+<p><strong>긋고</strong>(수직 간격의 제곱 합이 최소가 되는 직선), <strong>읽고</strong>(<span class="math inline">\(x\)</span> 1단위당 <span class="math inline">\(y\)</span>의 평균 변화), <strong>확인한다</strong>(<span class="math inline">\(R^2\)</span>로 “얼마나”, <span class="math inline">\(t\)</span>-검정으로 “정말로”).</p>
+</blockquote>
+<ul>
+<li>최소제곱법: 용수철 에너지(잔차 제곱 합)가 최소인 자리에 직선이 멈춤</li>
+<li><span class="math inline">\(R^2\)</span>: 전체 변동 중 직선이 설명한 비율</li>
+<li><span class="math inline">\(t\)</span>-검정: 그 기울기가 우연인지 아닌지 판별</li>
+</ul>
+<aside class="notes">
+<p>3장을 한 문장으로 정리하겠습니다. 우리는 용수철 에너지, 즉 수직 간격의 제곱 합이 가장 작아지는 자리에 직선을 긋고, 기울기를 “x가 1단위 변할 때 y의 평균 변화”로 읽고, 결정계수로 얼마나 설명하는지, t-검정으로 그 기울기가 우연이 아닌지 확인했습니다. 이 네 단계, 긋고, 읽고, 얼마나, 정말로, 이것이 회귀분석의 기본 골격이고 뒤에 나오는 모든 내용은 이 골격의 확장입니다. 여기서 자연스럽게 “설명변수가 온도 하나로는 부족하면 어떻게 하나요?”라는 질문이 나옵니다. 아이스크림 판매량은 온도뿐 아니라 가격과 소득에도 달려 있을 텐데, 바로 그때 필요한 것이 다음 장의 다중선형회귀입니다. 직선 하나에서 여러 설명변수로, 이야기를 이어 가겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="제4장-다중선형회귀-여러-재료를-한꺼번에" class="title-slide slide level1 center">
+<h1>제4장 다중선형회귀 — 여러 재료를 한꺼번에</h1>
+<aside class="notes">
+<p>제3장에서는 온도 하나만으로 아이스크림 판매량을 설명해 보았습니다. 이번 장에서는 가격과 소득까지, 여러 재료를 한꺼번에 식에 넣는 다중선형회귀를 배웁니다. 재료가 늘어나면 요리가 풍성해지듯 모형도 좋아지지만, 해석할 때 꼭 지켜야 할 규칙이 하나 생기는데 그것이 이번 장의 핵심입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="판매량은-온도만으로-정해지지-않는다" class="slide level2">
+<h2>판매량은 온도만으로 정해지지 않는다</h2>
+<ul>
+<li>제3장 결과: 온도 하나로 <span class="math inline">\(R^2 = 0.602\)</span> — 판매량 변동의 약 40%는 아직 설명 못 함</li>
+<li>사장님의 직감: <strong>가격</strong>이 오르면 덜 팔리고, 동네 <strong>소득</strong>이 오르면 더 팔릴 것</li>
+<li>요리 비유: 맛은 소금·설탕·불 조절이 <strong>함께</strong> 만든다 — 재료 하나만 보면 놓친다</li>
+<li>계측 비유: 계측기 지시값도 온도·전원 전압·습도 등 여러 요인이 동시에 흔든다</li>
+<li><strong>한 줄 요약</strong>: 원인이 여럿이면, 식에도 여럿을 넣자</li>
+</ul>
+<aside class="notes">
+<p>앞 장에서 온도 하나로 R 제곱 0.602, 그러니까 판매량 출렁임의 60% 정도를 설명했습니다. 뒤집어 말하면 40%는 아직 설명하지 못한 채 남아 있다는 뜻입니다. 아이스크림 가게 사장님 입장에서는 당연히 가격을 올리면 덜 팔리고, 동네 손님들의 소득이 오르면 더 팔린다고 의심할 만합니다. 요리에 비유하면, 지금까지는 소금 하나로 맛을 설명하려 했던 것이고, 이제 설탕과 불 조절까지 함께 보겠다는 것입니다. 여러분이 다루시는 계측기도 마찬가지입니다. 지시값이 온도 하나가 아니라 전원 전압, 습도 같은 여러 요인의 영향을 동시에 받지 않습니까? 여기서 “그럼 변수를 많이 넣을수록 무조건 좋은 것 아닌가요?”라는 질문이 나올 수 있는데, 짧게 답하면 아닙니다. 그 이유는 이번 장 뒷부분의 수정 R 제곱에서, 그리고 제6장 변수선택에서 자세히 말씀드리겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="모형을-세우기-전에-그림부터-산점도-행렬" class="slide level2">
+<h2>모형을 세우기 전에 그림부터: 산점도 행렬</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig03-scatterplot-matrix.png" style="width:100.0%"></p>
+<figcaption>Scatterplot matrix of the ice cream data</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:42%;">
+<ul>
+<li>변수 4개: <code>IC</code>(소비량), <code>price</code>(가격), <code>income</code>(소득), <code>temp</code>(온도)</li>
+<li>모든 짝의 산점도를 <strong>한 번에</strong> 보는 그림</li>
+<li><code>temp</code>–<code>IC</code> 칸은 뚜렷한 우상향</li>
+<li>설명변수끼리의 겹침도 함께 확인</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>다중회귀에서는 변수가 여러 개라서 산점도도 여러 장이 필요한데, 이것을 바둑판처럼 한 화면에 모은 것이 산점도 행렬입니다. 화면에서 IC와 temp가 만나는 칸을 봐 주십시오. 점들이 오른쪽 위로 또렷하게 올라가는 모양, 즉 제3장에서 본 그 관계가 그대로 보입니다. 반면 IC와 price, IC와 income이 만나는 칸은 방향이 한눈에 들어오지 않을 만큼 흐릿합니다. 그림을 먼저 보는 이유는, 식을 세우기 전에 어떤 재료가 유망한지 감을 잡고, 이상한 점이 없는지 눈으로 확인하기 위해서입니다. 설명변수들끼리 만나는 칸도 함께 봐 두시면 좋습니다. “설명변수끼리 서로 관련되어 있으면 어떻게 되나요?”라고 물으실 수 있는데, 정보가 겹쳐서 계수 해석이 흔들릴 수 있습니다. 이를 다중공선성이라 부르고, 진단하는 방법은 뒤 장에서 소개하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="모형-식에-재료를-더한다" class="slide level2">
+<h2>모형: 식에 재료를 더한다</h2>
+<p><span class="math display">\[y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\cdots+\beta_p x_{ip}+\varepsilon_i,\qquad i=1,\dots,n\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 <span class="math inline">\(i\)</span>번째 반응변수(아이스크림 소비량), <span class="math inline">\(x_{i1},\dots,x_{ip}\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 설명변수 값(가격·소득·온도이면 <span class="math inline">\(p=3\)</span>), <span class="math inline">\(\beta_0\)</span>은 절편, <span class="math inline">\(\beta_1,\dots,\beta_p\)</span>는 각 설명변수의 회귀계수, <span class="math inline">\(\varepsilon_i\)</span>는 평균 0·분산 <span class="math inline">\(\sigma^2\)</span>인 오차, <span class="math inline">\(n\)</span>은 관측 수(우리 자료는 30)입니다.</p>
+<p><span class="math display">\[\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon},\qquad \hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{y}\)</span>는 반응변수 <span class="math inline">\(n\)</span>개를 쌓은 벡터, <span class="math inline">\(\mathbf{X}\)</span>는 절편용 1과 설명변수들을 열로 묶은 행렬, <span class="math inline">\(\boldsymbol{\beta}\)</span>는 회귀계수 벡터, <span class="math inline">\(\boldsymbol{\varepsilon}\)</span>는 오차 벡터이고, <span class="math inline">\(\hat{\boldsymbol\beta}\)</span>는 최소제곱 추정량입니다.</p>
+<ul>
+<li>유도 스케치: 잔차 제곱합을 <span class="math inline">\(\boldsymbol\beta\)</span>로 미분해 0으로 놓으면(제3장 용수철이 멈추는 지점) 이 식이 나온다</li>
+<li><strong>한 줄 요약</strong>: 변수가 몇 개든, 최소제곱 해는 행렬식 하나로 끝난다</li>
+</ul>
+
+<aside class="notes">
+<p>식 자체는 제3장의 직선 식에서 항이 몇 개 더 붙었을 뿐입니다. 요리로 치면 “맛 = 기본 간 + 소금 효과 + 설탕 효과 + 불 조절 효과 + 그날의 운”이라는 식입니다. 각 계수 베타는 그 재료를 한 단위 더 넣었을 때 맛이 얼마나 변하는지를 나타냅니다. 그리고 아래 행렬식을 봐 주십시오. 제2장에서 “왜 행렬을 배우나” 하실 때 약속드렸던 바로 그 장면입니다. 변수가 3개든 30개든, 최소제곱 추정량은 X 전치 X의 역행렬에 X 전치 y를 곱한 이 한 줄로 계산됩니다. “역행렬이 항상 구해지나요?”라는 질문이 나올 수 있는데, 어떤 설명변수가 다른 설명변수들의 정확한 조합으로 표현되는 완전한 중복만 없다면 구해집니다. 중복이 심할 때 생기는 문제는 뒤 장에서 따로 다루겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Source: CNU regression lecture note; Kutner, Nachtsheim, Neter, Li (2005), <em>Applied Linear Statistical Models</em>, 5th ed.</p>
+</div></aside></section>
+<section id="계수-해석의-핵심-다른-변수를-고정했을-때" class="slide level2">
+<h2>계수 해석의 핵심: “다른 변수를 고정했을 때”</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Fit the full model: consumption on price, income, and temperature</span></span>
+<span id="cb5-2"><a href=""></a>fit_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(IC <span class="sc">~</span> price <span class="sc">+</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">summary</span>(fit_full)   <span class="co"># coefficients, p-values, R-squared</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[\hat y_i = 0.193 - 1.029\,x_{i1} + 0.00331\,x_{i2} + 0.00346\,x_{i3}\]</span></p>
+<p>여기서 <span class="math inline">\(\hat y_i\)</span>는 적합값(예측 소비량), <span class="math inline">\(x_{i1}\)</span>은 가격, <span class="math inline">\(x_{i2}\)</span>는 소득, <span class="math inline">\(x_{i3}\)</span>은 온도입니다.</p>
+<table class="caption-top">
+<caption>Coefficient estimates of the full model (n = 30, <span class="math inline">\(R^2\)</span> = 0.719)</caption>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>price (<span class="math inline">\(x_{i1}\)</span>)</td>
+<td style="text-align: right;"><span class="math inline">\(-1.029\)</span></td>
+<td style="text-align: right;">0.226</td>
+</tr>
+<tr class="even">
+<td>income (<span class="math inline">\(x_{i2}\)</span>)</td>
+<td style="text-align: right;">0.00331</td>
+<td style="text-align: right;">0.0090</td>
+</tr>
+<tr class="odd">
+<td>temp (<span class="math inline">\(x_{i3}\)</span>)</td>
+<td style="text-align: right;">0.00346</td>
+<td style="text-align: right;"><span class="math inline">\(3.0\times 10^{-8}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>temp 계수 0.00346: <strong>가격·소득을 고정한 채</strong> 온도만 1도 오를 때의 평균 소비량 증가</li>
+<li>price는 <span class="math inline">\(p = 0.226\)</span>: 이 자료에서는 가격 효과의 <strong>증거가 부족</strong> — “효과가 없다”는 증명이 아님</li>
+</ul>
+
+<aside class="notes">
+<p>다중회귀 계수를 읽는 규칙은 딱 하나, “다른 변수를 고정했을 때”라는 조건을 반드시 붙이는 것입니다. temp의 계수 0.00346은 가격과 소득이 그대로일 때 온도만 1도 오르면 소비량이 평균 0.00346만큼 늘어난다는 뜻입니다. 제3장 단순회귀에서는 기울기가 0.00311이었는데 여기서는 0.00346으로 조금 달라졌지요? 다른 변수들이 식에 들어오면서 온도의 몫을 다시 나누어 계산했기 때문입니다. 이제 표에서 price 행을 봐 주십시오. 계수는 마이너스 1.029로 사장님의 직감과 방향은 같지만, p-값이 0.226이라 통계적으로 유의하지 않습니다. “그럼 가격은 판매량과 무관하다는 뜻인가요?”라고 물으실 수 있는데, 그렇지 않습니다. 이 자료에서 가격이 움직인 범위 안에서는 효과를 확인할 증거가 부족하다는 뜻이지, 효과가 없다는 증명이 아닙니다. 그렇다면 price를 식에서 빼는 것이 좋을지는 제6장 변수선택에서 정식으로 따져 보겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Computed by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section>
+<section id="r2는-공짜로-오른다-수정-r2" class="slide level2">
+<h2><span class="math inline">\(R^2\)</span>는 공짜로 오른다 — 수정 <span class="math inline">\(R^2\)</span></h2>
+<ul>
+<li>설명변수를 <strong>넣기만 하면</strong> <span class="math inline">\(R^2\)</span>는 절대 내려가지 않음 — 짐을 늘리면 항상 조금은 나아 보임</li>
+<li>공짜 상승에 “변수 사용료”를 물린 점수가 수정 <span class="math inline">\(R^2\)</span> (<span class="math inline">\(\bar R^2\)</span>)</li>
+</ul>
+<p><span class="math display">\[\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}\]</span></p>
+<p>여기서 <span class="math inline">\(SSE=\sum_{i=1}^n e_i^2\)</span>는 잔차제곱합(<span class="math inline">\(e_i = y_i - \hat y_i\)</span>는 잔차), <span class="math inline">\(SST=\sum_{i=1}^n (y_i-\bar y)^2\)</span>는 총제곱합(<span class="math inline">\(\bar y\)</span>는 <span class="math inline">\(y\)</span>의 평균), <span class="math inline">\(n\)</span>은 관측 수, <span class="math inline">\(p\)</span>는 설명변수 개수입니다. <span class="math inline">\(p\)</span>가 커지면 나누는 수 <span class="math inline">\(n-p-1\)</span>이 작아져 벌점이 붙으므로, 쓸모없는 변수를 넣으면 <span class="math inline">\(\bar R^2\)</span>는 오히려 내려갑니다.</p>
+<table class="caption-top">
+<caption><span class="math inline">\(R^2\)</span> before and after adding variables</caption>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th style="text-align: right;"><span class="math inline">\(R^2\)</span></th>
+<th style="text-align: right;">Adjusted <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IC ~ temp</td>
+<td style="text-align: right;">0.602</td>
+<td style="text-align: right;">0.587</td>
+</tr>
+<tr class="even">
+<td>IC ~ price + income + temp</td>
+<td style="text-align: right;">0.719</td>
+<td style="text-align: right;">0.686</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>한 줄 요약</strong>: 모형끼리 비교할 때는 <span class="math inline">\(R^2\)</span>가 아니라 수정 <span class="math inline">\(R^2\)</span>를 본다</li>
+</ul>
+
+<aside class="notes">
+<p>여행 가방에 물건을 하나 더 넣으면, 쓸모가 있든 없든 “혹시 필요할지 몰라” 하며 든든해 보입니다. R 제곱이 딱 그렇습니다. 설명변수를 넣기만 하면 절대 내려가지 않고 항상 조금은 오릅니다. 실제로 표를 보시면 온도만 있을 때 0.602였던 R 제곱이 세 변수를 넣으니 0.719로 올랐습니다. 그래서 변수 하나당 사용료를 물린 점수가 수정 R 제곱입니다. 수식에서 p가 커지면 n 마이너스 p 마이너스 1이 작아져서, 잔차가 충분히 줄지 않으면 점수가 오히려 깎이는 구조입니다. 우리 자료에서는 수정 R 제곱도 0.587에서 0.686으로 올랐으니, 추가한 변수들이 사용료 이상의 값어치는 했다고 볼 수 있습니다. “수정 R 제곱이 오르면 변수 추가가 항상 정당한가요?”라고 물으신다면, 좋은 신호이긴 하지만 최종 판단은 제6장에서 배울 AIC 같은 기준들과 함께 내리는 것이 안전하다고 말씀드리겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Computed by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section>
+<section id="모형-전체가-쓸모-있는가-f-검정" class="slide level2">
+<h2>모형 전체가 쓸모 있는가: F-검정</h2>
+<ul>
+<li>개별 변수를 따지기 전에 먼저 묻기: “세 변수를 <strong>다 합쳐도</strong> 소용없는 것 아닐까?”</li>
+<li>가설: <span class="math inline">\(H_0:\ \beta_1=\beta_2=\cdots=\beta_p=0\)</span> (모든 재료가 무의미) vs <span class="math inline">\(H_1\)</span>: 적어도 하나는 <span class="math inline">\(0\)</span>이 아님</li>
+</ul>
+<p><span class="math display">\[F=\frac{SSR/p}{SSE/(n-p-1)}\]</span></p>
+<p>여기서 <span class="math inline">\(SSR=\sum_{i=1}^n(\hat y_i-\bar y)^2\)</span>는 회귀제곱합(모형이 설명한 부분), <span class="math inline">\(SSE\)</span>는 잔차제곱합(설명하지 못한 부분), <span class="math inline">\(p\)</span>는 설명변수 개수, <span class="math inline">\(n\)</span>은 관측 수입니다. 설명한 부분이 설명 못 한 부분에 비해 충분히 크면 <span class="math inline">\(F\)</span>가 커져 <span class="math inline">\(H_0\)</span>를 기각합니다.</p>
+<ul>
+<li>점검 순서: 계측 시스템 <strong>전체 점검</strong>(F-검정) 통과 후 <strong>채널별 점검</strong>(개별 t-검정)</li>
+<li><code>summary(fit_full)</code> 출력 맨 아래 줄의 <code>F-statistic</code>이 바로 이 값</li>
+<li><strong>한 줄 요약</strong>: F-검정은 모형이라는 팀 전체의 실력 테스트다</li>
+<li><strong>한 줄 요약</strong>: 여러 원인을 한 모형에 — 계수는 “다른 변수 고정” 조건으로 읽는다</li>
+</ul>
+
+<aside class="notes">
+<p>개별 선수의 기록을 따지기 전에, 팀 전체가 경기를 뛸 실력이 되는지부터 확인해야겠지요. F-검정이 바로 그 팀 전체의 실력 테스트입니다. 귀무가설은 절편을 뺀 모든 회귀계수가 0, 즉 세 재료가 몽땅 무의미하다는 극단적인 주장입니다. 수식을 보시면 분자는 모형이 설명한 부분을 변수 개수로 나눈 것이고, 분모는 설명하지 못한 부분을 자유도(자료 개수에서 추정한 계수 개수를 뺀 값)로 나눈 것입니다. 설명한 쪽이 훨씬 크면 F가 커지고, 팀 전체가 무의미하다는 주장을 기각하게 됩니다. 계측에 비유하면 시스템 전체 점검을 먼저 통과한 다음에 채널별 점검, 즉 개별 t-검정으로 넘어가는 순서입니다. R에서는 summary 출력의 맨 아래 줄에 F-statistic이라고 표시되니 따로 계산하실 필요는 없습니다. “F-검정은 통과했는데 개별 t-검정이 모두 유의하지 않으면 어떻게 하나요?”라는 질문이 나올 수 있는데, 변수끼리 정보가 겹칠 때 실제로 생기는 현상이고 다중공선성의 신호일 수 있습니다. 이 문제는 뒤 장에서 진단 도구와 함께 다시 만나겠습니다. 이렇게 세운 모형을 그대로 믿어도 될까요? 다음 장에서 모형의 건강검진, 회귀진단으로 넘어가겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Source: CNU regression lecture note; Kutner, Nachtsheim, Neter, Li (2005), <em>Applied Linear Statistical Models</em>, 5th ed.</p>
+</div></aside></section></section>
+<section>
+<section id="제5장-회귀진단-및-보정-숫자만-믿지-말고-그림을-보라" class="title-slide slide level1 center">
+<h1>제5장 회귀진단 및 보정 — 숫자만 믿지 말고 그림을 보라</h1>
+<aside class="notes">
+<p>앞 장까지는 아이스크림 가게 자료로 회귀직선을 구하고 R제곱 같은 숫자로 모형을 평가했습니다. 이번 장에서는 그 숫자들을 믿기 전에 반드시 거쳐야 할 건강검진, 즉 회귀진단을 배웁니다. 계측기를 쓰기 전에 검교정부터 하듯이, 모형도 쓰기 전에 점검한다고 생각하시면 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="같은-숫자-전혀-다른-그림-anscombe의-사중주" class="slide level2">
+<h2>같은 숫자, 전혀 다른 그림 — Anscombe의 사중주</h2>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig08-anscombe.png" style="width:100.0%"></p>
+<figcaption>Anscombe’s quartet: identical summary statistics, very different data</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:42%;">
+<p>네 개의 서로 다른 자료에 회귀직선을 그었더니 <strong>넷 다 똑같은 직선</strong>이 나왔습니다.</p>
+<p><span class="math display">\[\hat y_i = 3.00 + 0.500\,x_i\]</span></p>
+<p>여기서 <span class="math inline">\(\hat y_i\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 적합값(직선이 예측한 값), <span class="math inline">\(x_i\)</span>는 설명변수 값, <span class="math inline">\(3.00\)</span>은 절편 추정값 <span class="math inline">\(\hat\beta_0\)</span>, <span class="math inline">\(0.500\)</span>은 기울기 추정값 <span class="math inline">\(\hat\beta_1\)</span>입니다.</p>
+<ul>
+<li>요약 숫자만 보면 네 자료는 구분 불가 — 그림을 보면 전혀 다른 이야기 (Anscombe, 1973)</li>
+</ul>
+</div></div>
+
+<aside class="notes">
+<p>화면의 수식을 먼저 봐 주십시오. 네 개의 서로 다른 자료에 회귀직선을 그었는데, 넷 다 절편 3.00, 기울기 0.500으로 완전히 같은 직선이 나왔습니다. 평균이나 상관계수 같은 요약 통계도 사실상 같습니다. 그런데 아래 네 산점도를 보시면, 왼쪽 위만 우리가 생각하는 직선 관계이고, 오른쪽 위는 매끈한 곡선, 왼쪽 아래는 이상치 하나가 직선을 끌어당긴 모습, 오른쪽 아래는 점 하나가 기울기를 통째로 만들어낸 모습입니다. 여기서 “숫자가 같으면 결론도 같은 것 아닌가요”라는 질문이 나올 수 있는데, 그렇지 않습니다. 예를 들어 오른쪽 아래 자료에서 이 직선으로 예측을 하면 엉뚱한 값이 나옵니다. 이것이 Anscombe가 1973년 논문에서 이 네 자료를 만든 이유입니다. 회귀분석은 숫자 계산이 절반, 그림 확인이 나머지 절반이라는 것을 기억해 주십시오.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Fitted coefficients computed from base R <code>anscombe</code> data by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section>
+<section id="회귀모형이-앉는-의자-다리는-4개" class="slide level2">
+<h2>회귀모형이 앉는 의자, 다리는 4개</h2>
+<p><span class="math display">\[y_i = \beta_0 + \beta_1 x_{i1} + \cdots + \beta_p x_{ip} + \varepsilon_i, \qquad \varepsilon_i \overset{iid}{\sim} N(0,\ \sigma^2)\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 반응변수, <span class="math inline">\(x_{i1},\dots,x_{ip}\)</span>는 설명변수, <span class="math inline">\(\beta_0,\dots,\beta_p\)</span>는 회귀계수, <span class="math inline">\(\varepsilon_i\)</span>는 오차, <span class="math inline">\(\sigma^2\)</span>은 오차의 분산이며, <span class="math inline">\(iid\)</span>는 오차들이 서로 독립이고 같은 분포를 따른다는 뜻입니다.</p>
+<ul>
+<li><strong>선형성</strong>: <span class="math inline">\(x\)</span>와 <span class="math inline">\(y\)</span>의 관계가 직선으로 표현됨</li>
+<li><strong>독립성</strong>: 오차 <span class="math inline">\(\varepsilon_i\)</span>끼리 서로 독립</li>
+<li><strong>정규성</strong>: 오차가 정규분포 <span class="math inline">\(N(0,\sigma^2)\)</span>을 따름</li>
+<li><strong>등분산성</strong>: 오차의 분산이 어디서나 같은 <span class="math inline">\(\sigma^2\)</span></li>
+<li>다리 하나만 부러져도 의자는 기우뚱 — 표준오차·검정·신뢰구간이 흔들림 (Kutner et al., 2005)</li>
+</ul>
+<aside class="notes">
+<p>회귀모형을 의자라고 생각해 보십시오. 이 의자는 다리가 네 개인데, 선형성, 독립성, 정규성, 등분산성입니다. 수식에서 오차 엡실론이 평균 0, 분산 시그마 제곱인 정규분포를 서로 독립적으로 따른다는 부분이 바로 이 네 다리를 한 줄로 적은 것입니다. 다리가 하나라도 부러지면 의자가 기우뚱하듯이, 가정이 하나라도 크게 깨지면 회귀계수의 표준오차, t검정, 신뢰구간이 모두 흔들립니다. “독립성은 그림으로 어떻게 확인하나요”라고 물으실 수 있는데, 독립성은 그림보다 자료가 수집된 구조를 보고 판단하는 경우가 많습니다. 예를 들어 아이스크림 자료처럼 시간 순서로 모인 자료라면 잔차를 시간 순서대로 그려 패턴이 있는지 확인합니다. 나머지 세 다리는 잠시 후 진단 그림으로 하나씩 점검하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="잔차-e_i-모형이-설명하지-못한-나머지" class="slide level2">
+<h2>잔차 <span class="math inline">\(e_i\)</span> — 모형이 설명하지 못한 나머지</h2>
+<p><span class="math display">\[e_i = y_i - \hat y_i\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 실제 관측값, <span class="math inline">\(\hat y_i\)</span>는 모형의 적합값, <span class="math inline">\(e_i\)</span>는 둘의 차이인 잔차입니다.</p>
+<ul>
+<li>오차 <span class="math inline">\(\varepsilon_i\)</span>는 볼 수 없지만, 잔차 <span class="math inline">\(e_i\)</span>는 자료에서 계산되는 <strong>오차의 발자국</strong></li>
+<li>가정이 모두 맞으면 잔차는 0 주위에 <strong>패턴 없이</strong> 흩어져야 함</li>
+<li>잔차 그림 = 모형의 <strong>청진기</strong>: 겉(요약 숫자)이 멀쩡해도 속은 들어봐야 함</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co"># Fit the ice cream model and draw the 4 standard diagnostic plots</span></span>
+<span id="cb6-2"><a href=""></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(IC <span class="sc">~</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice)</span>
+<span id="cb6-3"><a href=""></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># 2 x 2 panel layout</span></span>
+<span id="cb6-4"><a href=""></a><span class="fu">plot</span>(fit)              <span class="co"># residual diagnostics in one command</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<aside class="notes">
+<p>미리 말씀드리면 다음 장 변수선택에서 price를 빼게 되는데, 그 최종 모형을 먼저 진단해 보겠습니다. 오차 엡실론은 모형 속의 이론적인 양이라 우리가 직접 볼 수 없습니다. 대신 관측값에서 적합값을 뺀 잔차는 자료에서 바로 계산할 수 있고, 오차가 남긴 발자국 역할을 합니다. 의사가 청진기로 몸속 소리를 듣듯이, 우리는 잔차 그림으로 모형 속의 문제를 듣습니다. 네 가지 가정이 모두 성립한다면 잔차는 0을 중심으로 아무 패턴 없이 무작위로 흩어져야 합니다. 반대로 잔차에 어떤 모양이 보인다면 모형이 놓친 구조가 있다는 신호입니다. R에서는 화면 아래 코드처럼 plot(fit) 한 줄이면 표준 진단 그림 네 장이 한꺼번에 그려집니다. 다음 슬라이드에서 이 네 장을 하나씩 읽는 법을 연습해 보겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="진단-그림-4종-세트-읽는-법" class="slide level2">
+<h2>진단 그림 4종 세트 읽는 법</h2>
+<div class="columns">
+<div class="column" style="width:64%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig04-residual-diagnostics.png" style="width:100.0%"></p>
+<figcaption>Residual diagnostics for IC ~ income + temp</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:36%;">
+<ul>
+<li><strong>좌상 Residuals vs Fitted</strong>: 곡선 패턴이 보이면 → 선형성 위반 신호</li>
+<li><strong>우상 Normal Q-Q</strong>: 점들이 대각선에서 크게 이탈하면 → 정규성 의심</li>
+<li><strong>좌하 Scale-Location</strong>: 오른쪽으로 갈수록 깔때기처럼 퍼지면 → 등분산성 위반</li>
+<li><strong>우하 Residuals vs Leverage</strong>: 오른쪽 구석의 외딴 점 → 영향점 후보</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>이 그림이 방금 말씀드린 plot(fit)의 결과로, 소득과 온도로 아이스크림 소비량을 설명한 모형입니다. 왼쪽 위 Residuals vs Fitted부터 보십시오. 점들이 0 근처에 수평으로 흩어져 있으면 합격이고, U자나 아치 같은 곡선이 보이면 선형성이 깨진 것입니다. 오른쪽 위 Q-Q 그림에서는 점들이 대각선 위에 얹혀 있으면 정규성에 큰 문제가 없다고 봅니다. 왼쪽 아래 Scale-Location에서 점의 퍼짐이 오른쪽으로 갈수록 넓어지는 깔때기 모양이면 등분산성 위반입니다. 마지막으로 오른쪽 아래 그림에서 오른쪽 구석에 뚝 떨어진 점이 있으면 직선을 크게 움직이는 영향점 후보입니다. “곡선 패턴이 보이면 어떻게 하나요”라고 물으신다면, 변수를 변환하거나 곡선 항을 추가하는 처방이 있고 이 장 마지막에 정리해 드리겠습니다. 우리 아이스크림 모형은 네 장 모두 크게 걱정할 신호가 없습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="이상치지렛값영향점-시소-끝에-앉은-아이" class="slide level2">
+<h2>이상치·지렛값·영향점 — 시소 끝에 앉은 아이</h2>
+<ul>
+<li><strong>이상치(outlier)</strong>: <span class="math inline">\(y\)</span> 방향으로 동떨어진 점 — 잔차가 큰 점</li>
+<li><strong>지렛값(leverage) <span class="math inline">\(h_{ii}\)</span></strong>: <span class="math inline">\(x\)</span> 방향으로 얼마나 끝자리인지 — 시소의 끝일수록 큼</li>
+<li><strong>영향점(influential point)</strong>: 그 한 점을 빼면 회귀직선이 크게 움직이는 점</li>
+<li>시소 비유: 끝에 앉은 아이(큰 지렛값)가 힘껏 누르면(큰 잔차) 시소 전체가 기울어짐</li>
+</ul>
+<p><span class="math display">\[D_i = \frac{r_i^2}{p+1}\cdot\frac{h_{ii}}{1-h_{ii}}\]</span></p>
+<p>여기서 <span class="math inline">\(r_i\)</span>는 <span class="math inline">\(i\)</span>번째 표준화잔차(잔차 <span class="math inline">\(e_i\)</span>를 그 표준오차로 나눈 값), <span class="math inline">\(h_{ii}\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 지렛값, <span class="math inline">\(p+1\)</span>은 절편을 포함한 회귀계수의 개수입니다. <span class="math inline">\(D_i\)</span>가 유난히 큰 점이 영향점 후보입니다 (Cook, 1977).</p>
+<aside class="notes">
+<p>놀이터 시소를 떠올려 보십시오. 회전축 근처에 앉은 아이는 아무리 눌러도 시소가 별로 움직이지 않지만, 끝에 앉은 아이는 살짝만 눌러도 시소 전체가 기울어집니다. 회귀에서 x 방향으로 끝자리에 있는 정도가 지렛값이고, y 방향으로 동떨어진 정도가 잔차이며, 이 둘이 합쳐져 직선을 실제로 움직이는 힘이 영향력입니다. 화면의 Cook의 거리는 이 두 요소를 하나의 숫자로 묶은 것으로, 표준화잔차의 제곱과 지렛값이 모두 클수록 커집니다. “이상치이면서 지렛값도 큰 점이 있으면 어떻게 되나요”라고 물으신다면, 바로 그런 점이 가장 위험한 영향점입니다. 실무에서는 D값이 다른 점들보다 유난히 큰 관측을 골라 그 배경을 조사합니다. 계측 자료로 비유하면, 교정이 어긋난 날의 측정 하나가 검량선 전체를 끌고 갈 수 있다는 이야기입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="다중공선성과-vif-설명변수끼리-겹치면" class="slide level2">
+<h2>다중공선성과 VIF — 설명변수끼리 겹치면</h2>
+<ul>
+<li>발표자 두 명이 <strong>같은 내용을 동시에 말하면</strong> 누구 말인지 구분 어려움 → 설명변수끼리 정보가 겹치면 <span class="math inline">\(\hat\beta_j\)</span> 추정이 불안정</li>
+</ul>
+<p><span class="math display">\[\mathrm{VIF}_j = \frac{1}{1-R_j^2}\]</span></p>
+<p>여기서 <span class="math inline">\(R_j^2\)</span>는 <span class="math inline">\(j\)</span>번째 설명변수를 <strong>나머지 설명변수들로 회귀</strong>했을 때의 결정계수입니다. 겹침이 없으면 <span class="math inline">\(\mathrm{VIF}_j\)</span>는 1, 겹침이 심해 <span class="math inline">\(R_j^2\)</span>가 1에 가까워질수록 커집니다.</p>
+<table class="caption-top">
+<caption>VIF for the full model lm(IC ~ price + income + temp)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Variable</th>
+<th style="text-align: right;">VIF</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">price</td>
+<td style="text-align: right;">1.03</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">income</td>
+<td style="text-align: right;">1.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">temp</td>
+<td style="text-align: right;">1.14</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>관례적으로 VIF가 10(문헌에 따라 5)을 넘으면 심각한 다중공선성을 의심 (Kutner et al., 2005) — 아이스크림 자료는 모두 1에 가까워 <strong>문제 없음</strong></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># VIF by hand: regress one predictor on the remaining predictors</span></span>
+<span id="cb7-2"><a href=""></a>r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(<span class="fu">lm</span>(price <span class="sc">~</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice))<span class="sc">$</span>r.squared</span>
+<span id="cb7-3"><a href=""></a><span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> r2)   <span class="co"># VIF for price = 1.03</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+
+<aside class="notes">
+<p>이번에는 설명변수들끼리의 문제입니다. 발표자 두 명이 똑같은 내용을 동시에 말하면 청중은 누가 어떤 정보를 주는지 구분하기 어렵습니다. 마찬가지로 설명변수 둘이 거의 같은 정보를 담고 있으면, 모형은 공을 누구에게 돌릴지 몰라 회귀계수 추정이 불안정해집니다. VIF는 j번째 설명변수를 나머지 설명변수들로 회귀했을 때의 결정계수로 계산하며, 겹침이 없으면 1이고 겹침이 심할수록 커집니다. 관례적으로 10을 넘으면, 문헌에 따라서는 5를 기준으로, 심각한 다중공선성을 의심합니다. 표를 보시면 아이스크림 자료는 price가 1.03, income과 temp가 각각 1.14로 모두 1에 가깝습니다. 즉 이 자료에서는 설명변수끼리 정보가 거의 겹치지 않아 다중공선성 걱정은 없습니다. “VIF가 크게 나오면 어떻게 하나요”라고 물으신다면, 겹치는 변수 중 하나를 빼거나 변수들을 결합하는 방법이 있고, 변수를 고르는 이야기는 제6장에서 이어집니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>VIF computed by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section>
+<section id="진단-후-처방-보정-수단-개관" class="slide level2">
+<h2>진단 후 처방 — 보정 수단 개관</h2>
+<ul>
+<li><strong>곡선 패턴(선형성 위반)</strong> → 변수 변환(<span class="math inline">\(\log\)</span>, 제곱근) 또는 곡선 항 추가</li>
+<li><strong>깔때기 모양(등분산성 위반)</strong> → 가중회귀(WLS)로 보정 — <strong>제8장에서 자세히</strong></li>
+<li><strong>Q-Q 이탈(정규성 의심)</strong> → 반응변수 변환 검토</li>
+<li><strong>이상 관측</strong> → 먼저 <strong>원인 조사</strong>: 기록 오류인지, 진짜 신호인지 — 함부로 삭제 금지</li>
+<li>한 줄 요약: <strong>진단은 고장 신호, 보정은 정비</strong> — 신호의 원인을 알고 고친다</li>
+</ul>
+<aside class="notes">
+<p>진단에서 신호가 잡혔을 때의 처방을 한 장으로 정리했습니다. 곡선 패턴이 보이면 로그나 제곱근 같은 변환, 혹은 곡선 항 추가가 첫 번째 처방입니다. 잔차의 퍼짐이 깔때기 모양이면 관측마다 정밀도가 다르다는 뜻이므로, 정밀한 관측에 더 큰 가중치를 주는 가중회귀가 정석이고, 이것이 제8장의 주제입니다. 이상 관측이 보이면 지우기 전에 반드시 원인부터 조사해야 합니다. 기록 오류로 확인되면 고치거나 제외할 수 있지만, 원인을 모르는 채 지우는 것은 마음에 안 드는 측정값을 버리는 것과 같아서 결과를 왜곡합니다. “그래도 한 점 때문에 결론이 바뀌면 어떻게 하나요”라고 물으신다면, 그 점을 넣은 분석과 뺀 분석을 둘 다 보고하는 민감도 분석이 정직한 답입니다. 진단은 고장 신호를 읽는 일이고, 보정은 원인을 알고 하는 정비라는 것, 이 한 문장으로 이번 장을 마무리하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="제6장-모형-비교와-변수선택-필요한-짐만-싸기" class="title-slide slide level1 center">
+<h1>제6장 모형 비교와 변수선택 — 필요한 짐만 싸기</h1>
+<aside class="notes">
+<p>앞 장에서는 이미 만든 모형이 건강한지 진단하는 방법을 살펴보았습니다. 이번 장에서는 한 걸음 더 나아가, 여러 후보 모형 가운데 어떤 변수를 남기고 어떤 변수를 뺄지 고르는 방법을 배웁니다. 여행 가방을 쌀 때 필요한 짐만 골라 담듯이, 모형도 필요한 변수만 담는 것이 이번 장의 핵심 그림입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="비유-여행-가방-싸기" class="slide level2">
+<h2>비유: 여행 가방 싸기</h2>
+<ul>
+<li>짐을 <strong>다 넣으면</strong>: 가방이 무거워 끌고 다니기 힘듭니다 → 변수를 다 넣은 모형은 복잡하고, 해석과 관리가 어렵습니다</li>
+<li>짐을 <strong>너무 빼면</strong>: 정작 필요한 옷이 없어 곤란합니다 → 중요한 변수를 빼면 설명력이 크게 떨어집니다</li>
+<li>좋은 모형 = <strong>설명력</strong>(잘 맞음)과 <strong>단순함</strong>(가벼움)의 균형 (Kutner et al., 2005)</li>
+<li>이 장의 질문: 아이스크림 판매량 예측에 <code>price</code>, <code>income</code>, <code>temp</code> 중 <strong>무엇을 담을까?</strong></li>
+</ul>
+<aside class="notes">
+<p>해외 출장 가방을 싸는 장면을 떠올려 보시기 바랍니다. 혹시 몰라서 이것저것 다 넣으면 가방이 무거워서 공항에서 고생하고, 반대로 너무 줄이면 정작 현지에서 필요한 옷이 없어 곤란해집니다. 회귀모형도 똑같습니다. 변수를 다 넣으면 모형이 무겁고 복잡해지고, 너무 빼면 설명력이 부족해집니다. 그래서 좋은 모형이란 잘 맞으면서도 가벼운, 균형 잡힌 모형입니다. “변수를 많이 넣을수록 무조건 좋은 것 아닌가요?”라고 물으실 수 있는데, 짧게 답하면 지금 가진 자료에는 더 잘 맞아 보여도 새 자료 예측은 오히려 나빠질 수 있습니다. 바로 다음 슬라이드에서 그 이유를 보겠습니다. 이번 장 내내 아이스크림 가게 사장님의 고민, 즉 가격, 소득, 온도 세 변수 중 무엇을 남길지를 함께 풀어 가겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="과적합-기출문제만-통째로-외운-학생" class="slide level2">
+<h2>과적합: 기출문제만 통째로 외운 학생</h2>
+<ul>
+<li>기출문제 답만 통째로 외운 학생: 기출(훈련 자료)은 100점, <strong>새 시험(새 자료)은 낙제</strong></li>
+<li>변수를 추가하면 <span class="math inline">\(R^2\)</span>(결정계수, 제3장)는 <strong>절대 내려가지 않습니다</strong> → “다 넣자”는 착각을 부릅니다 (Kutner et al., 2005)</li>
+<li>자료 속 우연한 <strong>잡음까지 외운</strong> 모형 = <strong>과적합(overfitting)</strong> → 새 데이터 예측 실패</li>
+<li>해결책: 짐(변수) 개수만큼 <strong>벌점을 주는 성적표</strong>가 필요 → 수정 <span class="math inline">\(R^2\)</span>, AIC</li>
+</ul>
+<aside class="notes">
+<p>기출문제 답안을 이해 없이 통째로 외운 학생을 떠올려 보시기 바랍니다. 기출문제를 다시 풀면 100점이지만, 숫자만 살짝 바뀐 새 시험에서는 낙제합니다. 회귀모형도 마찬가지입니다. 변수를 추가하면 결정계수 R 제곱은 수학적으로 절대 내려가지 않기 때문에, 훈련 자료 점수만 보면 변수를 다 넣는 것이 항상 이득처럼 보입니다. 하지만 그렇게 만든 모형은 자료 속 우연한 잡음까지 외워 버려서, 정작 새 데이터를 예측할 때 성적이 나빠집니다. 이것을 과적합이라고 부릅니다. “그럼 과적합인지 아닌지 어떻게 알 수 있나요?”라고 물으실 수 있는데, 새 자료로 직접 검증하는 방법도 있지만, 자료가 많지 않을 때는 변수 개수만큼 벌점을 주는 지표로 비교하는 것이 실용적인 답입니다. 그 대표 선수가 바로 다음에 나오는 AIC입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="aic-성적에서-짐-개수만큼-벌점-빼기" class="slide level2">
+<h2>AIC: 성적에서 짐 개수만큼 벌점 빼기</h2>
+<p><span class="math display">\[\mathrm{AIC} = -2\log\hat{L} + 2k\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{L}\)</span>은 적합한 모형이 자료를 얼마나 잘 설명하는지 나타내는 최대가능도(잘 맞을수록 커짐), <span class="math inline">\(\log\)</span>는 자연로그, <span class="math inline">\(p\)</span>는 설명변수의 개수, <span class="math inline">\(k\)</span>는 추정하는 모수의 개수(회귀계수 <span class="math inline">\(p+1\)</span>개 + 오차분산 <span class="math inline">\(\sigma^2\)</span> 1개 = <span class="math inline">\(p+2\)</span>; R의 <code>AIC()</code>가 세는 방식)입니다.</p>
+<ul>
+<li>앞 항 <span class="math inline">\(-2\log\hat{L}\)</span>: <strong>시험 점수</strong> 부분 — 자료에 잘 맞을수록 작아집니다</li>
+<li>뒤 항 <span class="math inline">\(2k\)</span>: <strong>벌점</strong> 부분 — 추정하는 모수가 하나 늘 때마다 2점씩 더해집니다</li>
+<li>AIC는 <strong>작을수록 좋은 모형</strong>입니다 (Akaike, 1974)</li>
+<li>수정 <span class="math inline">\(R^2\)</span>(adjusted <span class="math inline">\(R^2\)</span>)도 같은 정신: 변수 개수를 반영해 <span class="math inline">\(R^2\)</span>를 깎아 줍니다</li>
+</ul>
+<aside class="notes">
+<p>이제 벌점이 있는 성적표, AIC를 소개합니다. 수식이 나왔지만 구조는 아주 단순합니다. 앞 항은 모형이 자료에 잘 맞을수록 작아지는 시험 점수 부분이고, 뒤 항은 담은 짐, 즉 추정하는 모수 하나당 2점씩 더해지는 벌점 부분입니다. 그래서 변수를 하나 추가하면 적합이 좋아져 앞 항은 줄어들지만 벌점은 늘어나고, 이 둘을 합친 값이 작을수록 균형이 좋은 모형입니다. 이 아이디어는 아카이케가 1974년에 제안한 것으로, 지금도 모형 비교의 표준 도구로 쓰입니다. “AIC가 음수로 나오던데 잘못된 것 아닌가요?”라는 질문을 자주 받는데, AIC의 절대값 자체에는 의미가 없고 같은 자료로 적합한 모형들 사이의 크고 작음, 즉 순위만 의미가 있습니다. 그래서 음수여도 전혀 문제가 없고, 더 작은 쪽을 고르면 됩니다. 수정 R 제곱도 같은 정신으로 변수 개수만큼 R 제곱을 깎아 주는 지표라는 점만 기억해 두시기 바랍니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="아이스크림-데이터-세-후보-모형의-성적표" class="slide level2 smaller">
+<h2>아이스크림 데이터: 세 후보 모형의 성적표</h2>
+<table class="caption-top">
+<caption>Candidate models for ice cream sales (n = 30)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Model</th>
+<th style="text-align: center;"><span class="math inline">\(R^2\)</span></th>
+<th style="text-align: center;">Adjusted <span class="math inline">\(R^2\)</span></th>
+<th style="text-align: center;">AIC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><code>IC ~ price + income + temp</code> (full)</td>
+<td style="text-align: center;">0.719</td>
+<td style="text-align: center;">0.686</td>
+<td style="text-align: center;">-107.21</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><code>IC ~ income + temp</code></td>
+<td style="text-align: center;">0.702</td>
+<td style="text-align: center;">0.680</td>
+<td style="text-align: center;"><strong>-107.48</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><code>IC ~ temp</code></td>
+<td style="text-align: center;">0.602</td>
+<td style="text-align: center;">0.587</td>
+<td style="text-align: center;">-100.77</td>
+</tr>
+</tbody>
+</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Compare candidate models on the AIC scale (smaller is better)</span></span>
+<span id="cb8-2"><a href=""></a>full <span class="ot">&lt;-</span> <span class="fu">lm</span>(IC <span class="sc">~</span> price <span class="sc">+</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice)</span>
+<span id="cb8-3"><a href=""></a><span class="fu">AIC</span>(full)                                   <span class="co"># -107.21</span></span>
+<span id="cb8-4"><a href=""></a><span class="fu">AIC</span>(<span class="fu">lm</span>(IC <span class="sc">~</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice))  <span class="co"># -107.48 &lt;- smallest</span></span>
+<span id="cb8-5"><a href=""></a><span class="fu">AIC</span>(<span class="fu">lm</span>(IC <span class="sc">~</span> temp, <span class="at">data =</span> ice))           <span class="co"># -100.77</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>AIC 최소 = <code>IC ~ income + temp</code> → <strong>price는 가방에서 내려놓습니다</strong></li>
+</ul>
+
+<aside class="notes">
+<p>이제 아이스크림 가게 자료로 세 후보 모형의 성적표를 만들어 보았습니다. 표에서 R 제곱 열을 보시면 변수가 많은 full 모형이 0.719로 가장 높습니다. 방금 말씀드린 대로 R 제곱은 변수를 넣을수록 올라가기 때문입니다. 하지만 벌점을 반영한 AIC 열을 보시면 price를 뺀 income과 temp 모형이 -107.48로 가장 작아서, 성적표의 승자가 됩니다. “수정 R 제곱은 full이 0.686으로 근소하게 더 높은데 왜 다른 결론이 나오나요?”라고 물으실 수 있습니다. 두 지표는 벌점을 주는 방식이 달라서 이렇게 차이가 아주 작을 때는 결론이 엇갈릴 수 있고, 이번 자료에서는 전체 모형에서 price의 회귀계수가 p-값 0.226으로 유의하지 않다는 점까지 함께 보면 price를 빼는 쪽이 더 설득력이 있습니다. 결론적으로 아이스크림 사장님의 가방에는 소득과 온도만 담고, 가격은 내려놓기로 합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Values computed by code/agent/2026-08-11/make-lecture-figures.R.</p>
+</div></aside></section>
+<section id="step-aic-벌점으로-자동-짐-싸기" class="slide level2">
+<h2>step(): AIC 벌점으로 자동 짐 싸기</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Backward elimination by AIC, starting from the full model</span></span>
+<span id="cb9-2"><a href=""></a><span class="fu">step</span>(<span class="fu">lm</span>(IC <span class="sc">~</span> price <span class="sc">+</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice))</span>
+<span id="cb9-3"><a href=""></a><span class="co"># Start:                      AIC = -194.34</span></span>
+<span id="cb9-4"><a href=""></a><span class="co"># - drop price  -&gt; AIC = -194.62  (smaller: better -&gt; remove price)</span></span>
+<span id="cb9-5"><a href=""></a><span class="co"># - drop income -&gt; AIC = -188.31  (larger: worse  -&gt; keep income)</span></span>
+<span id="cb9-6"><a href=""></a><span class="co"># - drop temp   -&gt; AIC = -160.31  (larger: worse  -&gt; keep temp)</span></span>
+<span id="cb9-7"><a href=""></a><span class="co"># Final selected model: IC ~ income + temp</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li><code>step()</code>은 변수를 하나씩 빼 보며 <strong>AIC가 가장 작아지는 길</strong>을 자동으로 찾습니다</li>
+<li>결과: <code>price</code> 제거(-194.34 → -194.62), <code>income</code>·<code>temp</code>는 유지</li>
+<li>손으로 만든 성적표(앞 슬라이드)와 <strong>같은 결론</strong>: <code>IC ~ income + temp</code></li>
+</ul>
+
+<aside class="notes">
+<p>방금은 후보마다 AIC를 손으로 계산해 비교했는데, R의 step 함수는 이 짐 싸기를 자동으로 해 줍니다. 코드 출력 경로를 위에서부터 보시면, 전체 모형에서 출발할 때 AIC가 -194.34이고, price를 빼면 -194.62로 더 작아져서 성적이 좋아집니다. 반면 income이나 temp를 빼면 각각 -188.31, -160.31로 커져서 성적이 나빠지기 때문에 두 변수는 가방에 남깁니다. 그래서 step의 최종 선택도 income과 temp 두 변수 모형이 됩니다. “앞 슬라이드에서는 AIC가 -107 근처였는데 여기서는 왜 -194인가요?”라는 질문이 자연스럽게 나오는데, step이 출력하는 AIC는 상수항을 생략한 값이라 AIC 함수 값과 숫자는 다르지만, 같은 자료에서는 모형 간 순위가 완전히 같습니다. 그러니 값 자체보다는 어느 모형이 더 작은지만 보시면 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Note: step() reports AIC up to an additive constant, so its values differ from AIC(); with the same data and the same n, the rankings are identical. Computed by code/agent/2026-08-11/make-lecture-figures.R.</p>
+</div></aside></section>
+<section id="주의-자동-선택은-내비게이션일-뿐" class="slide level2">
+<h2>주의: 자동 선택은 내비게이션일 뿐</h2>
+<ul>
+<li><code>step()</code>은 <strong>후보를 제안</strong>할 뿐, 최종 결정은 연구자의 몫입니다</li>
+<li>선택된 모형에서 <strong>잔차 진단을 반드시 다시</strong> 합니다 (제5장의 도구)</li>
+<li><strong>도메인 지식이 우선</strong>: 이론상 꼭 필요한 변수는 벌점 점수만으로 버리지 않습니다</li>
+<li>계측기 비유: 자동 교정 기능이 있어도 <strong>최종 확인은 사람</strong>이 하듯이</li>
+<li>한 줄 요약: <strong>필요한 짐만 싸되, 꼭 필요한 짐은 두고 내리지 않기</strong></li>
+</ul>
+<aside class="notes">
+<p>마지막으로 꼭 드리고 싶은 주의사항입니다. step 같은 자동 선택은 자동차 내비게이션과 같아서, 좋은 길을 제안해 주지만 운전대를 잡은 사람은 여전히 연구자 여러분입니다. 자동 선택이 끝난 모형이라도 제5장에서 배운 잔차 진단을 반드시 다시 해서, 새 모형이 회귀의 기본 가정을 만족하는지 확인해야 합니다. 그리고 통계 벌점보다 도메인 지식이 우선입니다. 여러분이 계측기를 다루실 때 자동 교정 기능이 있어도 최종 검교정 확인은 담당자가 직접 하시는 것과 같은 이치입니다. “그럼 price는 영원히 버려도 되는 건가요?”라고 물으신다면, 아닙니다. 이번 자료에서는 price의 효과를 뒷받침할 근거가 약했을 뿐이고, 가격이 판매량에 중요하다는 이론적 근거가 있다면 다른 자료나 다른 설계에서 다시 검토해야 합니다. 이번 장을 한 줄로 요약하면, 필요한 짐만 싸되 꼭 필요한 짐은 두고 내리지 않기입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="제7장-사례분석-아이스크림-데이터로-처음부터-끝까지" class="title-slide slide level1 center">
+<h1>제7장 사례분석 — 아이스크림 데이터로 처음부터 끝까지</h1>
+<aside class="notes">
+<p>자, 이제 종합 실습 시간입니다. 제1장부터 함께해 온 아이스크림 가게 사장님의 고민을, 지금까지 배운 도구를 전부 꺼내어 처음부터 끝까지 한 번에 풀어 보겠습니다. 이 장의 흐름 하나만 기억하고 돌아가셔도 오늘 특강은 성공입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="데이터와-두-개의-질문" class="slide level2">
+<h2>데이터와 두 개의 질문</h2>
+<ul>
+<li>자료: 4주 단위로 묶인 30개 기간의 판매 기록 (관측 수 <span class="math inline">\(n = 30\)</span>)</li>
+<li>질문 1 — 설명: 무엇이 아이스크림 소비를 움직이는가?</li>
+<li>질문 2 — 예측: 다음 기간에는 얼마나 팔릴까?</li>
+</ul>
+<table class="caption-top">
+<caption>Ice cream data: 30 four-week periods (CNU regression lecture note, Ch. 7)</caption>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IC</td>
+<td>Per-capita ice cream consumption (pints)</td>
+</tr>
+<tr class="even">
+<td>price</td>
+<td>Price of ice cream</td>
+</tr>
+<tr class="odd">
+<td>income</td>
+<td>Income</td>
+</tr>
+<tr class="even">
+<td>temp</td>
+<td>Mean temperature (°F)</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>화면의 표를 봐 주십시오. 우리 자료는 4주 단위로 묶인 30개 기간의 기록이고, 변수는 소비량 IC, 가격, 소득, 온도 네 가지입니다. 사장님의 질문은 두 가지로 정리됩니다. 첫째는 무엇이 소비를 움직이는가라는 “설명”의 질문이고, 둘째는 다음 기간에 얼마나 팔릴까라는 “예측”의 질문입니다. 회귀분석은 이 두 질문을 하나의 식으로 동시에 다룰 수 있는 도구입니다. 여기서 “왜 4주 단위인가요?”라는 질문이 나올 수 있는데, 자료가 그렇게 수집되어 있기 때문이고, 분석을 시작하기 전에 분석 단위가 무엇인지부터 확인하는 습관이 중요하다는 정도로 이해해 주시면 됩니다. 여러분의 현장으로 옮기면, 계측기 응답에 영향을 줄 만한 후보 인자들을 목록으로 정리하는 단계에 해당합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="단계-먼저-눈으로-본다" class="slide level2">
+<h2>1단계: 먼저 눈으로 본다</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig01-what-is-regression.png" style="width:100.0%"></p>
+<figcaption>Ice cream consumption vs temperature with the fitted least-squares line</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:40%;">
+<ul>
+<li>숫자 요약보다 그림이 먼저 — 요약통계가 같아도 그림은 전혀 다를 수 있음 (Anscombe, 1973)</li>
+<li>온도가 오르면 소비가 늘어나는 우상향 경향이 뚜렷</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>본격적인 계산에 들어가기 전에 반드시 그림부터 그립니다. 화면의 산점도에서 가로축은 온도, 세로축은 1인당 소비량입니다. 점들이 오른쪽 위로 올라가는 경향, 그리고 파란 직선이 그 경향을 한 줄로 요약하고 있는 모습을 가리켜 봐 주십시오. 제5장에서 본 Anscombe의 네 자료를 기억하십니까? 요약 숫자가 완전히 같아도 그림은 전혀 다를 수 있었습니다. 그래서 그림이 항상 분석의 첫 단계입니다. “점이 30개밖에 안 되는데 믿을 수 있나요?”라고 물으실 수 있는데, 바로 그래서 뒤에서 표준오차와 구간으로 불확실성을 정직하게 함께 보고하게 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="단계-후보를-다-넣고-적합-full-model" class="slide level2 smaller">
+<h2>2단계: 후보를 다 넣고 적합 — full model</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a><span class="co"># Fit the full model with all three candidate predictors</span></span>
+<span id="cb10-2"><a href=""></a>full <span class="ot">&lt;-</span> <span class="fu">lm</span>(IC <span class="sc">~</span> price <span class="sc">+</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice)</span>
+<span id="cb10-3"><a href=""></a><span class="fu">summary</span>(full)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span class="math display">\[\hat y_i = 0.193 - 1.029\,x_{i1} + 0.00331\,x_{i2} + 0.00346\,x_{i3}\]</span></p>
+<p>여기서 <span class="math inline">\(\hat y_i\)</span>는 <span class="math inline">\(i\)</span>번째 기간 소비량(IC)의 적합값, <span class="math inline">\(x_{i1}\)</span>은 가격(price), <span class="math inline">\(x_{i2}\)</span>는 소득(income), <span class="math inline">\(x_{i3}\)</span>은 온도(temp)입니다.</p>
+<table class="caption-top">
+<caption>Full model fit, <span class="math inline">\(R^2\)</span> = 0.719, adjusted <span class="math inline">\(R^2\)</span> = 0.686, <span class="math inline">\(n\)</span> = 30 (computed by code/agent/2026-08-11/make-lecture-figures.R)</caption>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(Intercept)</td>
+<td style="text-align: right;">0.193</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr class="even">
+<td>price</td>
+<td style="text-align: right;">-1.029</td>
+<td style="text-align: right;">0.226</td>
+</tr>
+<tr class="odd">
+<td>income</td>
+<td style="text-align: right;">0.00331</td>
+<td style="text-align: right;">0.0090</td>
+</tr>
+<tr class="even">
+<td>temp</td>
+<td style="text-align: right;">0.00346</td>
+<td style="text-align: right;">3.0e-08</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>온도·소득은 유의, 가격은 유의하지 않음 (<span class="math inline">\(p = 0.226\)</span>)</li>
+<li>VIF: price 1.03, income 1.14, temp 1.14 → 다중공선성 걱정 없음</li>
+</ul>
+<aside class="notes">
+<p>이제 후보 변수 세 개를 모두 넣고 다중회귀를 적합합니다. R에서는 lm 한 줄이면 됩니다. 결과 표를 보시면 온도와 소득의 p-값은 매우 작아 유의하지만, 가격은 0.226으로 유의하지 않습니다. 여기서 “그럼 가격은 소비에 영향이 없다는 뜻인가요?”라는 질문이 자주 나옵니다. 아닙니다. 이 자료에서는 가격 효과를 구분해 낼 증거가 부족하다는 뜻이지, 효과가 없다는 증명이 아닙니다. 표 아래 VIF 값이 모두 1 근처라는 점도 확인해 주십시오. 설명변수끼리 겹치는 정보가 거의 없다는 뜻이라서, 제5장에서 걱정했던 다중공선성 문제는 이 자료에는 없습니다. 결정계수는 0.719로, 소비량 변동의 약 72%를 세 변수가 설명하고 있습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="단계-변수선택-step이-고른-모형" class="slide level2 smaller">
+<h2>3단계: 변수선택 — step()이 고른 모형</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="co"># Backward elimination by AIC; the selected model is kept in `reduced`</span></span>
+<span id="cb11-2"><a href=""></a>reduced <span class="ot">&lt;-</span> <span class="fu">step</span>(full)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>step 경로: 시작 AIC <span class="math inline">\(-194.34\)</span> → price 제거 후 <span class="math inline">\(-194.62\)</span>로 개선 (Akaike, 1974)</li>
+<li>income, temp를 빼면 각각 <span class="math inline">\(-188.31\)</span>, <span class="math inline">\(-160.31\)</span>로 악화 → 최종 모형은 IC ~ income + temp</li>
+</ul>
+<table class="caption-top">
+<caption>Model comparison by AIC(); step() reports AIC on a scale shifted by a constant, so the ranking is identical (computed by code/agent/2026-08-11/make-lecture-figures.R)</caption>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th style="text-align: right;">AIC</th>
+<th style="text-align: right;"><span class="math inline">\(R^2\)</span></th>
+<th style="text-align: right;">Adj. <span class="math inline">\(R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>IC ~ price + income + temp</td>
+<td style="text-align: right;">-107.21</td>
+<td style="text-align: right;">0.719</td>
+<td style="text-align: right;">0.686</td>
+</tr>
+<tr class="even">
+<td>IC ~ income + temp</td>
+<td style="text-align: right;">-107.48</td>
+<td style="text-align: right;">0.702</td>
+<td style="text-align: right;">0.680</td>
+</tr>
+<tr class="odd">
+<td>IC ~ temp</td>
+<td style="text-align: right;">-100.77</td>
+<td style="text-align: right;">0.602</td>
+<td style="text-align: right;">0.587</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\hat y_i = -0.113 + 0.00353\,x_{i2} + 0.00354\,x_{i3}\]</span></p>
+<p>여기서 <span class="math inline">\(\hat y_i\)</span>는 소비량 적합값, <span class="math inline">\(x_{i2}\)</span>는 소득, <span class="math inline">\(x_{i3}\)</span>은 온도입니다. 소득이 같을 때 온도가 1도(°F) 오르면 평균 소비가 1인당 0.00354파인트 늘어나고(<span class="math inline">\(p = 1.5\times 10^{-8}\)</span>), 소득 효과도 유의합니다(<span class="math inline">\(p = 0.0055\)</span>).</p>
+<aside class="notes">
+<p>그럼 세 변수를 다 쓸까요, 줄일까요? 제6장에서 배운 step 함수에게 물어봅니다. 경로를 보시면 가격을 빼면 AIC가 -194.34에서 -194.62로 좋아지고, 반대로 소득이나 온도를 빼면 크게 나빠집니다. 그래서 최종 모형에는 소득과 온도만 남습니다. 표의 AIC() 값과 step이 화면에 출력하는 값은 상수만큼 다르지만, 같은 자료에서는 순위가 같으니 혼동하지 않으셔도 됩니다. 축소모형의 계수를 읽어 보면, 소득이 같을 때 온도가 화씨 1도 오르면 평균 소비가 1인당 0.00354파인트 늘어납니다. “겨우 0.00354면 너무 작은 효과 아닌가요?”라고 하실 수 있는데, 단위가 1인당 파인트라서 그렇습니다. 계절에 따라 온도가 수십 도씩 움직이고 손님 수까지 곱해지는 것을 생각하면, 사장님에게는 결코 작은 차이가 아닙니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="단계-진단-모형의-건강검진" class="slide level2">
+<h2>4단계: 진단 — 모형의 건강검진</h2>
+<div class="columns">
+<div class="column" style="width:64%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig04-residual-diagnostics.png" style="width:100.0%"></p>
+<figcaption>Residual diagnostics for IC ~ income + temp</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:36%;">
+<p>잔차 <span class="math inline">\(e_i = y_i - \hat y_i\)</span>를 봅니다. 여기서 <span class="math inline">\(e_i\)</span>는 잔차, <span class="math inline">\(y_i\)</span>는 실제 소비량, <span class="math inline">\(\hat y_i\)</span>는 모형의 적합값입니다.</p>
+</div></div>
+<ul>
+<li>잔차 vs 적합값: 특별한 무늬 없이 흩어져 있는가</li>
+<li>Q-Q: 정규성 / Scale-Location: 등분산 / Leverage: 영향점 (Cook, 1977)</li>
+<li>크게 벗어나는 관측은 원자료에서 원인을 확인하고 보고서에 명시</li>
+</ul>
+<aside class="notes">
+<p>모형을 골랐다고 바로 보고하는 것이 아니라, 먼저 건강검진을 합니다. 화면 왼쪽 위의 잔차 대 적합값 그림에서 점들이 특별한 무늬 없이 흩어져 있는지 봅니다. 오른쪽 위 Q-Q 그림에서는 점들이 대각선에 잘 붙어 있는지, 즉 정규성 가정을 확인합니다. 왼쪽 아래 Scale-Location 그림은 잔차의 크기가 적합값에 따라 커지거나 작아지지 않는지, 즉 등분산 가정을 보는 그림입니다. 오른쪽 아래는 지렛값과 Cook의 거리로, 한두 점이 결과를 좌지우지하고 있지 않은지 확인합니다. 그림에 번호가 붙어 표시된 관측들은 상대적으로 눈에 띈다는 뜻이니, 그 기간에 특별한 일이 있었는지 원자료를 확인해 보는 것이 좋습니다. “이상해 보이는 점은 지워도 되나요?”라는 질문에는 이렇게 답하겠습니다. 기록 오류로 확인된 경우가 아니면 함부로 지우지 말고, 포함했을 때와 뺐을 때의 결과를 모두 보고하는 것이 원칙입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="단계-평균-맞히기-vs-한-명-맞히기-신뢰구간과-예측구간" class="slide level2 smaller">
+<h2>5단계: 평균 맞히기 vs 한 명 맞히기 — 신뢰구간과 예측구간</h2>
+<ul>
+<li>비유: “우리 반 평균 키 추정” vs “다음에 전학 올 학생 한 명의 키 맞히기”</li>
+<li>평균은 개인차가 상쇄되어 좁게, 한 명은 개인차까지 떠안으므로 항상 더 넓게</li>
+</ul>
+<p>평균 반응에 대한 신뢰구간과 새 관측에 대한 예측구간:</p>
+<p><span class="math display">\[\hat y_0 \pm t_{\alpha/2,\;n-p-1}\sqrt{\widehat{\operatorname{Var}}(\hat y_0)}
+\qquad \text{vs} \qquad
+\hat y_0 \pm t_{\alpha/2,\;n-p-1}\sqrt{\widehat{\operatorname{Var}}(\hat y_0) + \hat\sigma^2}\]</span></p>
+<p>여기서 <span class="math inline">\(\hat y_0\)</span>는 새 조건에서 회귀식으로 계산한 값, <span class="math inline">\(t_{\alpha/2,\,n-p-1}\)</span>은 자유도 <span class="math inline">\(n-p-1\)</span>인 <span class="math inline">\(t\)</span>분포의 분위수, <span class="math inline">\(\widehat{\operatorname{Var}}(\hat y_0)\)</span>은 <span class="math inline">\(\hat y_0\)</span>의 분산 추정값, <span class="math inline">\(\hat\sigma^2\)</span>은 오차분산 <span class="math inline">\(\sigma^2\)</span>의 추정값, <span class="math inline">\(n\)</span>은 관측 수, <span class="math inline">\(p\)</span>는 설명변수 개수입니다. 예측구간은 근호 안에 <span class="math inline">\(\hat\sigma^2\)</span>이 더해지므로 항상 신뢰구간보다 넓습니다 (Kutner et al., 2005).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href=""></a><span class="co"># Interval for the AVERAGE of periods like this vs ONE specific next period</span></span>
+<span id="cb12-2"><a href=""></a>new <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">income =</span> <span class="dv">85</span>, <span class="at">temp =</span> <span class="dv">65</span>)</span>
+<span id="cb12-3"><a href=""></a><span class="fu">predict</span>(reduced, new, <span class="at">interval =</span> <span class="st">"confidence"</span>)   <span class="co"># narrower: mean response</span></span>
+<span id="cb12-4"><a href=""></a><span class="fu">predict</span>(reduced, new, <span class="at">interval =</span> <span class="st">"prediction"</span>)   <span class="co"># wider: one new observation</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<aside class="notes">
+<p>마지막으로 사장님의 두 번째 질문, 예측입니다. 비유부터 말씀드리겠습니다. 우리 반 평균 키를 추정하는 것과 다음에 전학 올 학생 한 명의 키를 맞히는 것은 난이도가 전혀 다릅니다. 평균은 개인차가 서로 상쇄되어 좁은 구간으로 맞힐 수 있지만, 한 명을 맞히려면 그 학생 고유의 개인차까지 떠안아야 하므로 구간이 넓어질 수밖에 없습니다. 수식에서 두 구간의 차이는 근호 안에 오차분산 추정값이 하나 더해지느냐, 그것뿐입니다. 그래서 예측구간은 항상 신뢰구간보다 넓습니다. R에서는 predict 함수의 interval 인자만 confidence에서 prediction으로 바꾸면 됩니다. “검교정에서 다음 측정값 하나를 보증해야 한다면 어느 구간을 써야 하나요?”라는 질문이 나올 수 있는데, 그때는 반드시 예측구간입니다. 개별 측정값 하나를 다루는 문제이기 때문입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="사례가-주는-교훈-다섯-단계-사이클" class="slide level2">
+<h2>사례가 주는 교훈 — 다섯 단계 사이클</h2>
+<ul>
+<li>1 그림: 숫자보다 먼저 산점도 (Anscombe, 1973)</li>
+<li>2 모형: 후보 변수를 넣어 적합</li>
+<li>3 선택: AIC 등 기준으로 군더더기 제거</li>
+<li>4 진단: 잔차 그림으로 가정 점검, 영향점 확인</li>
+<li>5 보고: 계수의 뜻 + 구간(불확실성)까지 함께 제시</li>
+</ul>
+<p>계측기 검교정 곡선을 만들 때도 이 다섯 단계는 그대로 적용됩니다.</p>
+<aside class="notes">
+<p>정리하겠습니다. 오늘 사례가 보여준 흐름은 다섯 단계입니다. 먼저 그림을 그리고, 모형을 적합하고, 기준을 세워 변수를 고르고, 잔차로 진단하고, 마지막으로 불확실성까지 붙여서 보고합니다. 이 순서는 아이스크림 판매량이든 계측기 검교정 곡선이든 똑같이 적용됩니다. 특히 강조하고 싶은 것은 맨 처음의 그림과 맨 마지막의 구간입니다. 그림 없이 시작한 분석과 구간 없이 끝난 보고는 반쪽짜리입니다. “다섯 단계 중 하나만 남긴다면 무엇입니까?”라고 물으신다면, 저는 진단을 남기겠습니다. 가정이 깨진 모형에서 나온 숫자는 아무리 그럴듯해 보여도 믿을 수 없기 때문입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="제8장-일반화-가중회귀모형-믿을-만한-측정에-더-큰-발언권을" class="title-slide slide level1 center">
+<h1>제8장 일반화 가중회귀모형 — 믿을 만한 측정에 더 큰 발언권을</h1>
+<aside class="notes">
+<p>자, 드디어 오늘 특강의 제목에도 들어 있는 핵심 주제, 가중회귀에 도착했습니다. 지금까지는 모든 관측값을 똑같이 믿는다는 전제로 직선을 맞춰 왔습니다. 이번 장에서는 더 믿을 만한 측정에 더 큰 발언권을 주는 방법을 배우는데, 여러분의 실험실 데이터와 가장 직접 맞닿는 장입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="비유-정밀도가-다른-저울-세-대" class="slide level2">
+<h2>비유: 정밀도가 다른 저울 세 대</h2>
+<ul>
+<li>같은 시료 하나를 세 저울로 잰다: 정밀 분석저울, 주방 저울, 낡은 체중계</li>
+<li>세 숫자를 그냥 산술평균? 상식은 “정밀한 저울의 말을 더 믿어라”</li>
+<li>실험실도 마찬가지: 계측기마다 교정 성적서에 적힌 <strong>측정 불확도</strong>가 다름</li>
+<li>회귀분석의 번역: 믿을 만한 관측값에 더 큰 <strong>발언권</strong> = 가중치 <span class="math inline">\(w_i\)</span></li>
+<li>여기서 <span class="math inline">\(w_i\)</span>는 <span class="math inline">\(i\)</span>번째 관측값에 주는 가중치, 즉 발언권의 크기입니다</li>
+</ul>
+<aside class="notes">
+<p>같은 시료 하나를 세 가지 저울로 재는 상황을 상상해 보시죠. 정밀 분석저울, 주방 저울, 그리고 낡은 체중계입니다. 세 숫자가 나왔을 때 이 셋을 그냥 산술평균하는 분은 안 계실 겁니다. 당연히 정밀한 저울이 준 숫자를 더 믿으시겠죠. 여러분 실험실에서도 계측기마다 교정 성적서에 적힌 측정 불확도가 전부 다릅니다. 회귀분석에서 이 상식을 수식으로 옮긴 것이 바로 가중치 <span class="math inline">\(w_i\)</span>입니다. 이쯤에서 “그럼 낡은 체중계 값은 그냥 버리면 되지 않나요?”라고 물으실 수 있는데요, 버리는 것은 발언권을 0으로 만드는 극단적인 선택입니다. 정보가 조금이라도 담겨 있다면 작은 발언권이라도 주는 쪽이 보통 손해가 적습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="문제-제기-퍼짐이-한결같지-않다면-이분산" class="slide level2">
+<h2>문제 제기: 퍼짐이 한결같지 않다면 — 이분산</h2>
+<div class="columns">
+<div class="column" style="width:42%;">
+<ul>
+<li>지금까지의 약속(등분산): <span class="math inline">\(\operatorname{Var}(\varepsilon_i)=\sigma^2\)</span></li>
+<li>약속이 깨진 상황(이분산): <span class="math inline">\(\operatorname{Var}(\varepsilon_i)=\sigma_i^2\)</span></li>
+</ul>
+<p>여기서 <span class="math inline">\(\varepsilon_i\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 오차, <span class="math inline">\(\sigma^2\)</span>는 모든 관측에 공통인 오차 분산, <span class="math inline">\(\sigma_i^2\)</span>는 관측마다 달라지는 오차 분산입니다.</p>
+</div><div class="column" style="width:58%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig05-heteroscedasticity.png" style="width:100.0%"></p>
+<figcaption>Simulated data with error spread growing in x (funnel-shaped residuals)</figcaption>
+</figure>
+</div>
+</div></div>
+<aside class="notes">
+<p>지금까지 우리는 오차의 퍼짐이 어디에서나 같다는 등분산을 약속으로 깔고 왔습니다. 이 약속이 깨진 상황, 즉 오차 분산이 관측마다 달라지는 상황을 이분산이라고 부릅니다. 왼쪽 그림을 보시면 <span class="math inline">\(x\)</span>가 커질수록 점들이 직선 주위에서 점점 넓게 퍼지는 것이 보입니다. 오른쪽 잔차 그림에서는 이 모양이 왼쪽은 좁고 오른쪽은 넓은, 깔때기 모양으로 나타납니다. 이 깔때기가 이분산의 대표적인 신호입니다. “실무에서 이분산을 어떻게 알아채나요?”라고 물으신다면, 답은 간단합니다. 제5장에서 배운 잔차 그림을 그려 보고 이런 깔때기 모양이 있는지 눈으로 확인하는 것이 가장 빠릅니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="이분산에서-ols제3장에서-배운-보통최소제곱의-운명" class="slide level2">
+<h2>이분산에서 OLS(제3장에서 배운 보통최소제곱)의 운명</h2>
+<ul>
+<li>기울기 추정 <span class="math inline">\(\hat\beta_1\)</span>은 여전히 <strong>편향 없음</strong> — 평균적으로는 과녁 중심을 맞힘</li>
+<li>그러나 <strong>최적(최소분산)이 아님</strong> — 덜 흔들리는 더 좋은 추정법이 존재</li>
+<li><strong>표준오차는 왜곡됨</strong> — 등분산을 전제로 계산된 공식이기 때문</li>
+<li>그 결과 <span class="math inline">\(t\)</span>-검정, <span class="math inline">\(p\)</span>-값, 신뢰구간이 모두 틀어짐 (Kutner et al., 2005)</li>
+<li>비유: 화살은 과녁 중심 주위에 떨어지지만, 흔들림이 크고 조준경 눈금(표준오차)마저 안 맞는 상태</li>
+</ul>
+<p>여기서 <span class="math inline">\(\hat\beta_1\)</span>은 기울기 <span class="math inline">\(\beta_1\)</span>의 추정량입니다.</p>
+<aside class="notes">
+<p>그러면 이분산인데도 그냥 OLS를 쓰면 무슨 일이 생길까요? 좋은 소식과 나쁜 소식이 있습니다. 좋은 소식은 기울기 추정이 여전히 편향이 없다는 것, 즉 평균적으로는 과녁 중심을 맞힌다는 것입니다. 나쁜 소식은 두 가지입니다. 첫째, 화살의 흔들림이 필요 이상으로 커서 최적의 추정이 아닙니다. 둘째, 표준오차 공식 자체가 등분산을 전제로 만들어져 있어서 조준경 눈금이 틀어진 상태가 됩니다. 그래서 t-검정과 신뢰구간, p-값을 그대로 믿으면 안 됩니다. “그럼 OLS 결과를 전부 버려야 하나요?”라고 물으실 수 있는데, 계수 값 자체는 참고할 수 있지만 검정과 구간은 신뢰하면 안 되고, 지금부터 배울 가중최소제곱으로 다시 적합하는 것이 정석입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="wls의-아이디어-가중치를-붙인-최소제곱" class="slide level2">
+<h2>WLS의 아이디어: 가중치를 붙인 최소제곱</h2>
+<p><span class="math display">\[\min_{\beta_0,\,\beta_1}\ \sum_{i=1}^{n} w_i\,\left(y_i-\beta_0-\beta_1 x_i\right)^2\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 반응변수, <span class="math inline">\(x_i\)</span>는 설명변수, <span class="math inline">\(\beta_0,\beta_1\)</span>은 절편과 기울기, <span class="math inline">\(w_i\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 가중치, <span class="math inline">\(n\)</span>은 관측 수, <span class="math inline">\(\sigma_i^2\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 오차 분산입니다.</p>
+<ul>
+<li>분산이 작은(정밀한) 점에 큰 <span class="math inline">\(w_i\)</span>: 이론적 최적 가중치는 <span class="math inline">\(w_i = 1/\sigma_i^2\)</span></li>
+<li>모든 <span class="math inline">\(w_i = 1\)</span>이면 그냥 OLS — 즉 <strong>OLS는 WLS의 특수한 경우</strong></li>
+</ul>
+<aside class="notes">
+<p>아이디어는 딱 하나입니다. 제곱오차를 더할 때 각 항 앞에 발언권 <span class="math inline">\(w_i\)</span>를 곱해 주는 것입니다. 가중치가 큰 점의 오차는 벌점이 크게 계산되니까, 직선은 그 점 가까이 지나가려고 노력하게 됩니다. 반대로 가중치가 작은 점은 조금 멀리 지나가도 벌점이 작습니다. 이론적으로 가장 좋은 가중치는 그 관측의 오차 분산의 역수, 즉 <span class="math inline">\(1/\sigma_i^2\)</span>입니다. 정밀한 저울일수록 발언권을 크게 주자는 상식이 그대로 수식이 된 것입니다. 여기서 “가중치의 절대 크기도 중요한가요?”라는 질문이 자주 나오는데, 답은 비율만 중요하다는 것입니다. 모든 가중치에 같은 상수를 곱해도 직선의 추정값은 변하지 않습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="행렬로-쓰면-한-줄" class="slide level2">
+<h2>행렬로 쓰면 한 줄</h2>
+<p><span class="math display">\[\hat{\boldsymbol\beta}_W=(\mathbf X^\top \mathbf W \mathbf X)^{-1}\mathbf X^\top \mathbf W \mathbf y\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf y\)</span>는 반응변수 벡터, <span class="math inline">\(\mathbf X\)</span>는 설명변수를 모은 모형행렬, <span class="math inline">\(\mathbf W = \operatorname{diag}(w_1,\dots,w_n)\)</span>은 가중치를 대각선에 놓은 대각행렬, <span class="math inline">\(\hat{\boldsymbol\beta}_W\)</span>는 가중최소제곱 추정량입니다.</p>
+<ul>
+<li><span class="math inline">\(\mathbf W = \mathbf I\)</span>(항등행렬)이면 앞에서 본 OLS 공식 <span class="math inline">\((\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y\)</span>로 복귀</li>
+<li>직관: <span class="math inline">\(\mathbf W\)</span>는 각 관측의 발언권을 계산 전체에 심어 넣는 장치</li>
+</ul>
+<aside class="notes">
+<p>앞에서 본 최소화 문제를 풀면 답이 이렇게 한 줄로 나옵니다. OLS 공식과 비교해 보시면 <span class="math inline">\(\mathbf X\)</span>와 <span class="math inline">\(\mathbf y\)</span> 사이사이에 가중치 행렬 <span class="math inline">\(\mathbf W\)</span>가 끼어들어 간 것뿐입니다. <span class="math inline">\(\mathbf W\)</span>는 대각선에 발언권 <span class="math inline">\(w_1\)</span>부터 <span class="math inline">\(w_n\)</span>까지를 나란히 적어 놓은 행렬입니다. 만약 모든 발언권이 1이라면 <span class="math inline">\(\mathbf W\)</span>는 항등행렬이 되고, 공식은 정확히 OLS로 되돌아갑니다. 그러니까 새 공식을 외우실 필요 없이, OLS에 발언권을 끼워 넣었다고만 기억하시면 됩니다. “이 역행렬 계산을 우리가 직접 해야 하나요?”라고 걱정하실 수 있는데, 전혀 아닙니다. 잠시 뒤에 보시겠지만 R의 lm 함수에 인자 하나만 추가하면 이 계산을 전부 대신해 줍니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="실무-규칙-가중치는-이렇게-정한다" class="slide level2">
+<h2>실무 규칙: 가중치는 이렇게 정한다</h2>
+<table class="caption-top">
+<caption>Practical rules for choosing weights (Kutner et al., 2005; CNU lecture note Ch. 8)</caption>
+<colgroup>
+<col style="width: 44%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Situation</th>
+<th>Weight <span class="math inline">\(w_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>측정 분산 <span class="math inline">\(\sigma_i^2\)</span>를 아는 경우(교정 성적서, 반복 측정)</td>
+<td><span class="math inline">\(w_i = 1/\sigma_i^2\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(y_i\)</span>가 <span class="math inline">\(n_i\)</span>개 측정값의 평균인 경우</td>
+<td><span class="math inline">\(w_i = n_i\)</span></td>
+</tr>
+<tr class="odd">
+<td>퍼짐(분산)이 <span class="math inline">\(x_i\)</span>에 비례해 커지는 경우</td>
+<td><span class="math inline">\(w_i \propto 1/x_i\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>여기서 <span class="math inline">\(\sigma_i^2\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 오차 분산, <span class="math inline">\(n_i\)</span>는 <span class="math inline">\(y_i\)</span>를 만들 때 평균한 측정 횟수, <span class="math inline">\(\propto\)</span>는 “비례한다”는 기호입니다.</p>
+<ul>
+<li>공통 원리: <strong>가중치 = 분산의 역수</strong> — <span class="math inline">\(n_i\)</span>개 평균의 분산은 <span class="math inline">\(\sigma^2/n_i\)</span>이므로 역수를 취하면 <span class="math inline">\(w_i \propto n_i\)</span></li>
+</ul>
+<aside class="notes">
+<p>그럼 실무에서 가중치를 어떻게 정할까요? 규칙은 사실 하나입니다. 그 관측값의 분산을 알아내서 역수를 취하면 됩니다. 첫째 줄, 교정 성적서나 반복 측정으로 측정 분산을 알고 있다면 그 역수를 그대로 쓰시면 됩니다. 둘째 줄, 만약 <span class="math inline">\(y_i\)</span>가 여러 번 측정한 값의 평균이라면, 평균의 분산은 측정 횟수로 나눠져 작아지니까 가중치는 측정 횟수에 비례하게 줍니다. 셋째 줄, 아까 깔때기 그림처럼 분산이 <span class="math inline">\(x\)</span>에 비례해 커진다면 가중치는 <span class="math inline">\(x\)</span>의 역수에 비례하게 잡습니다. “분산 정보가 전혀 없으면 어떻게 하나요?”라는 질문이 나올 수 있는데, 그때는 잔차 그림으로 분산이 어떤 변수에 따라 커지는지 그 구조를 추정한 뒤 가중치를 만들어 다시 적합하는 방법을 씁니다. 핵심은 가중치에 근거가 있어야 한다는 점입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="예제-physics-자료-정밀한-점의-말을-들어주기" class="slide level2 smaller">
+<h2>예제: physics 자료 — 정밀한 점의 말을 들어주기</h2>
+<ul>
+<li>physics 자료(CNU 강의노트 8장 예제 8.1, <span class="math inline">\(n=10\)</span>): 측정 분산에 비례하는 값 <span class="math inline">\(w\)</span>가 기록되어 있음 → 가중치는 역수 <span class="math inline">\(1/w\)</span></li>
+</ul>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig06-wls-physics.png" style="width:100.0%"></p>
+<figcaption>OLS vs WLS fits on the physics data; point size is proportional to weight</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href=""></a><span class="co"># w is proportional to the measurement variance,</span></span>
+<span id="cb13-2"><a href=""></a><span class="co"># so the weight is its inverse: 1/w</span></span>
+<span id="cb13-3"><a href=""></a>fit_ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> physics)</span>
+<span id="cb13-4"><a href=""></a>fit_wls <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> physics,</span>
+<span id="cb13-5"><a href=""></a>              <span class="at">weights =</span> <span class="dv">1</span><span class="sc">/</span>w)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top">
+<caption>OLS vs WLS estimates on the physics data (n = 10)</caption>
+<thead>
+<tr class="header">
+<th>Estimate</th>
+<th>OLS</th>
+<th>WLS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\hat\beta_0\)</span> (intercept)</td>
+<td>136.6 (SE 11.9)</td>
+<td>144.8 (SE 10.3)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\hat\beta_1\)</span> (slope)</td>
+<td>602.4 (SE 55.6)</td>
+<td>549.5 (SE 53.6)</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<ul>
+<li>결과 읽기: 기울기 602.4 → 549.5로 이동, 표준오차는 두 계수 모두 감소(11.9 → 10.3, 55.6 → 53.6), WLS <span class="math inline">\(R^2 = 0.929\)</span></li>
+</ul>
+
+<aside class="notes">
+<p>이제 실제 자료로 실험해 보겠습니다. CNU 강의노트 8장의 physics 자료인데, 관측이 10개뿐이고 각 관측의 측정 분산에 비례하는 값 <span class="math inline">\(w\)</span>가 함께 기록되어 있습니다. 그림에서 점의 크기가 가중치 <span class="math inline">\(1/w\)</span>에 비례합니다. 즉 큰 점일수록 정밀하게 측정된, 발언권이 큰 점입니다. 파란 실선이 모든 점을 똑같이 대접한 OLS이고, 주황 점선이 발언권을 반영한 WLS입니다. 두 직선이 서로 다른 이유는 WLS가 큰 점들의 말을 더 들어줬기 때문입니다. 오른쪽 표를 보시면 기울기가 602.4에서 549.5로 움직였고, 표준오차는 절편이 11.9에서 10.3으로, 기울기가 55.6에서 53.6으로 줄었습니다. R 코드는 딱 한 군데, lm 안에 weights 인자를 추가한 것이 전부입니다. “표준오차가 조금밖에 안 줄었는데 의미가 있나요?”라고 물으실 수 있는데, 관측이 10개뿐이라 감소 폭이 작아 보이지만, 애초에 잘못 계산되던 표준오차 대신 분산 구조를 반영한 표준오차를 쓰게 되었다는 점이 더 중요합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Computed by code/agent/2026-08-11/make-lecture-figures.R</p>
+</div></aside></section>
+<section id="한-걸음-더-오차끼리-손잡고-움직인다면-gls" class="slide level2">
+<h2>한 걸음 더: 오차끼리 손잡고 움직인다면 — GLS</h2>
+<p><span class="math display">\[\hat{\boldsymbol\beta}_{GLS}=(\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf X)^{-1}\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf y\]</span></p>
+<p>여기서 <span class="math inline">\(\boldsymbol\Sigma\)</span>는 오차 벡터 <span class="math inline">\(\boldsymbol\varepsilon\)</span>의 공분산행렬(<span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon)=\boldsymbol\Sigma\)</span>)로, 대각 원소는 각 오차의 분산, 비대각 원소는 오차들 사이의 공분산입니다. 나머지 기호는 앞 슬라이드와 같습니다.</p>
+<ul>
+<li>WLS는 <span class="math inline">\(\boldsymbol\Sigma\)</span>가 <strong>대각행렬</strong>인 특수한 경우 — 비대각(오차끼리의 상관)이 전부 0</li>
+<li>시계열 자료의 자기상관: 어제의 오차와 오늘의 오차가 닮음 (CNU 강의노트 8장 예제 8.3, longley 자료)</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># Load nlme, which provides the gls() function</span></span>
+<span id="cb14-2"><a href=""></a><span class="fu">library</span>(nlme)</span>
+<span id="cb14-3"><a href=""></a><span class="co"># GLS with AR(1) errors over time on the longley data</span></span>
+<span id="cb14-4"><a href=""></a>fit_gls <span class="ot">&lt;-</span> <span class="fu">gls</span>(Employed <span class="sc">~</span> GNP <span class="sc">+</span> Population, <span class="at">data =</span> longley,</span>
+<span id="cb14-5"><a href=""></a>               <span class="at">correlation =</span> <span class="fu">corAR1</span>(<span class="at">form =</span> <span class="sc">~</span>Year))</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<aside class="notes">
+<p>마지막으로 한 걸음만 더 나가 보겠습니다. 지금까지는 오차들이 서로 남남이라고, 즉 독립이라고 가정했습니다. 그런데 시간 순서로 쌓이는 자료에서는 어제의 오차와 오늘의 오차가 닮아 있는 경우가 많습니다. 이런 상관까지 담으려면 오차의 공분산행렬 <span class="math inline">\(\boldsymbol\Sigma\)</span> 전체를 공식에 넣어야 하고, 그 결과가 일반화최소제곱, GLS입니다. 공식 모양을 보시면 WLS와 완전히 같은 골격이고, <span class="math inline">\(\mathbf W\)</span> 자리에 <span class="math inline">\(\boldsymbol\Sigma^{-1}\)</span>이 들어갔을 뿐입니다. <span class="math inline">\(\boldsymbol\Sigma\)</span>가 대각행렬이면 GLS가 곧 WLS가 되니까, 오늘 배운 WLS는 GLS라는 큰 가족의 특수한 경우인 셈입니다. CNU 강의노트 8장의 예제 8.3, longley 자료가 바로 이런 시계열 자기상관 사례이고, R에서는 nlme 패키지의 gls 함수에 corAR1 옵션을 주면 됩니다. “우리 실험실의 연속 계측 자료도 해당되나요?”라고 물으신다면, 잔차를 시간 순서로 그려 보셔서 이웃한 잔차가 비슷하게 움직이는 패턴이 보이면 GLS를 고려하시라고 답하겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="제8장-요약-발언권을-공정하게" class="slide level2">
+<h2>제8장 요약: 발언권을 공정하게</h2>
+<ul>
+<li>이분산이면 OLS는 편향은 없지만 <strong>최적이 아니고, 표준오차가 틀어진다</strong></li>
+<li>처방은 WLS: <span class="math inline">\(\min\sum w_i(y_i-\beta_0-\beta_1 x_i)^2\)</span>, 이론적 최적 가중치는 <span class="math inline">\(w_i = 1/\sigma_i^2\)</span></li>
+<li>실무 연결: <strong>측정 불확도가 기록되어 있다면 그 분산의 역수를 <code>weights</code>로 반영하라</strong></li>
+<li>오차끼리 상관까지 있으면 GLS: <span class="math inline">\(\mathbf W\)</span> 자리에 <span class="math inline">\(\boldsymbol\Sigma^{-1}\)</span></li>
+<li>다음 장 예고: 아이스크림 가게로 돌아가 관측 연차 같은 범주 정보를 <strong>가변수</strong>로 넣는다</li>
+</ul>
+<p>여기서 기호는 이 장에서 정의한 것과 같습니다(<span class="math inline">\(w_i\)</span> 가중치, <span class="math inline">\(\sigma_i^2\)</span> 관측별 오차 분산, <span class="math inline">\(\boldsymbol\Sigma\)</span> 오차 공분산행렬).</p>
+<aside class="notes">
+<p>제8장을 정리하겠습니다. 오차의 퍼짐이 한결같지 않은 이분산 상황에서 OLS는 편향은 없지만 최적이 아니고, 무엇보다 표준오차가 틀어져서 검정과 구간을 믿을 수 없게 됩니다. 처방은 믿을 만한 점에 큰 발언권을 주는 가중최소제곱이고, 이론적 최적 가중치는 분산의 역수입니다. 여러분 현장에서는 교정 성적서와 측정 불확도 기록이 이미 있으니, 그 정보를 weights 인자로 넣기만 하면 오늘 내용을 바로 적용하실 수 있습니다. 오차끼리 상관까지 있는 시계열이라면 GLS로 확장하면 됩니다. 마지막으로 “가중치를 잘못 정하면 어떻게 되나요?”라는 질문에 답을 드리면, 미리 정한 가중치를 쓰는 한 추정의 편향은 생기지 않지만 효율이 떨어질 수 있으니, 불확도 기록이나 잔차 그림 같은 근거를 갖고 정하시는 것이 안전합니다. 다음 장에서는 다시 아이스크림 가게로 돌아가서, 관측 연차처럼 숫자가 아닌 정보를 가변수로 모형에 넣는 방법을 보겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="제9장-가변수-회귀모형-범주를-스위치로-켜고-끄기" class="title-slide slide level1 center">
+<h1>제9장 가변수 회귀모형 — 범주를 스위치로 켜고 끄기</h1>
+<aside class="notes">
+<p>드디어 마지막 장입니다. 지금까지는 온도, 가격, 소득처럼 숫자로 된 설명변수만 다루었는데, 이번 장에서는 관측 연차나 기기 제조사처럼 숫자가 아닌 정보를 모형에 넣는 방법을 배웁니다. 아이스크림 가게 이야기의 마지막 퍼즐 조각인 관측 연차 변수를 드디어 사용하게 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="숫자가-아닌-정보를-모형에-넣으려면" class="slide level2">
+<h2>숫자가 아닌 정보를 모형에 넣으려면?</h2>
+<ul>
+<li>지금까지 쓴 설명변수: 온도, 가격, 소득 — 모두 <strong>숫자</strong></li>
+<li>현장의 중요한 정보는 범주인 경우가 많음: 관측 연차, 계측기 제조사, 운전/정지 상태</li>
+<li>범주는 더하거나 곱할 수 없음 → 회귀식에 그대로 넣을 수 없음</li>
+<li>해결: 전등 스위치처럼 <strong>“해당하면 1, 아니면 0”</strong> — 가변수(dummy variable)</li>
+<li>아이스크림 데이터의 관측 연차 변수 <code>year</code>(0/1/2)로 직접 해 봅니다</li>
+</ul>
+<aside class="notes">
+<p>지금까지 우리가 모형에 넣은 설명변수는 온도, 가격, 소득처럼 전부 숫자였습니다. 그런데 여러분의 현장을 떠올려 보시면, 계측기가 어느 제조사 제품인지, 설비가 운전 중인지 정지 중인지처럼 숫자가 아닌 정보가 훨씬 많지요. 이런 범주는 더하거나 곱할 수가 없어서 회귀식에 그대로 넣을 수 없습니다. 해결책은 의외로 단순합니다. 방마다 달린 전등 스위치처럼, 해당하면 1, 아니면 0인 변수를 새로 만드는 것입니다. 이것을 가변수, 영어로 dummy variable이라고 부릅니다. 이 대목에서 “범주형 변수를 문자 그대로 lm에 넣어도 잘 돌아가던데요?”라고 물으실 수 있습니다. 맞습니다. R이 뒤에서 자동으로 이 스위치를 만들어 주기 때문인데, 오늘은 그 뒤에서 벌어지는 일을 직접 들여다보겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="스위치는-k-1개면-충분하다" class="slide level2">
+<h2>스위치는 <span class="math inline">\(k-1\)</span>개면 충분하다</h2>
+<table class="caption-top">
+<caption>Dummy coding for observation year (year): k = 3 categories need only k - 1 = 2 switches</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">year (observation year)</th>
+<th style="text-align: center;"><span class="math inline">\(d_{1i}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(d_{2i}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0 (baseline)</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+</tbody>
+</table>
+<p>여기서 <span class="math inline">\(d_{1i}\)</span>는 <span class="math inline">\(i\)</span>번째 기간의 관측 연차가 year = 1이면 1, 아니면 0인 가변수이고, <span class="math inline">\(d_{2i}\)</span>는 관측 연차가 year = 2이면 1, 아니면 0인 가변수입니다.</p>
+<ul>
+<li>범주가 <span class="math inline">\(k\)</span>개면 가변수는 <span class="math inline">\(k-1\)</span>개: <code>year</code>는 3개 범주 → 스위치 2개</li>
+<li>스위치가 모두 꺼진 상태가 <strong>기준 범주</strong>(여기서는 year = 0) — 그 몫은 절편 <span class="math inline">\(\beta_0\)</span>가 담당</li>
+<li>셋 다 넣으면 안 되는 이유: 어느 관측치든 <span class="math inline">\(d_{0i}+d_{1i}+d_{2i}=1\)</span> → 절편과 <strong>완전 공선성</strong>(dummy trap)</li>
+<li>여기서 <span class="math inline">\(d_{0i}\)</span>는 year = 0이면 1, 아니면 0인 (실제로는 만들지 않은) 세 번째 스위치입니다</li>
+<li>R에서는 <code>factor(year)</code>라고만 쓰면 이 코딩을 자동으로 만들어 줌</li>
+</ul>
+<aside class="notes">
+<p>표를 먼저 봐 주십시오. 관측 연차가 세 가지인데 스위치는 두 개뿐입니다. year가 1이면 첫 번째 스위치만 켜지고, 2이면 두 번째 스위치만 켜지고, 0이면 둘 다 꺼집니다. 둘 다 꺼진 상태, 즉 기준 범주의 평균 수준은 절편이 대신 맡아 줍니다. 그래서 스위치를 범주 수만큼 세 개 다 만들면 문제가 생깁니다. 세 스위치를 더하면 어느 관측치에서나 정확히 1이 되는데, 이것은 절편이 쓰는 1로만 된 열과 완전히 겹치는, 앞에서 본 완전 공선성 상황입니다. 이를 dummy trap이라고 부릅니다. 여기서 “그냥 0, 1, 2를 숫자 하나로 넣으면 안 되나요?”라는 질문이 자주 나옵니다. 그렇게 하면 연차 0에서 1로 갈 때의 효과와 1에서 2로 갈 때의 효과가 정확히 같다고 강제하는 셈이라, 순서와 간격에 의미가 없는 범주에는 맞지 않습니다. 가변수는 각 연차의 효과를 각자 자유롭게 추정하게 해 줍니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="평행선-모형-기울기-하나-절편-셋" class="slide level2">
+<h2>평행선 모형 — 기울기 하나, 절편 셋</h2>
+<div class="columns">
+<div class="column" style="width:56%;">
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i + \beta_2 d_{1i} + \beta_3 d_{2i} + \varepsilon_i
+\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 <span class="math inline">\(i\)</span>번째 기간의 아이스크림 소비량(IC), <span class="math inline">\(x_i\)</span>는 온도(temp), <span class="math inline">\(d_{1i}, d_{2i}\)</span>는 각각 관측 연차가 year = 1, year = 2일 때 1이 되는 가변수, <span class="math inline">\(\beta_0\)</span>는 기준 연차(year = 0)의 절편, <span class="math inline">\(\beta_1\)</span>은 세 연차가 공유하는 온도의 기울기, <span class="math inline">\(\beta_2, \beta_3\)</span>는 year = 1, year = 2 연차가 기준 연차보다 위아래로 얼마나 이동하는지 나타내는 절편 차이, <span class="math inline">\(\varepsilon_i\)</span>는 평균 0, 분산 <span class="math inline">\(\sigma^2\)</span>인 오차입니다.</p>
+<ul>
+<li>연차별 절편: year = 0은 <span class="math inline">\(\beta_0\)</span>, year = 1은 <span class="math inline">\(\beta_0+\beta_2\)</span>, year = 2는 <span class="math inline">\(\beta_0+\beta_3\)</span></li>
+<li>기울기 <span class="math inline">\(\beta_1\)</span>은 공통 → 스위치는 직선을 <strong>위아래로 평행이동</strong>만 시킴</li>
+</ul>
+</div><div class="column" style="width:44%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-11/fig07-dummy-variable.png" style="width:100.0%"></p>
+<figcaption>One common slope, three intercepts: IC ~ temp + factor(year)</figcaption>
+</figure>
+</div>
+</div></div>
+
+<aside class="notes">
+<p>그림을 봐 주십시오. 파란 점, 주황 점, 청록 점이 각각 세 관측 연차의 자료이고, 직선도 세 개가 그려져 있는데 기울기가 전부 똑같아서 평행선입니다. 수식을 보시면 온도의 기울기 베타1은 하나뿐이고, 연차 스위치가 켜질 때마다 베타2나 베타3만큼 직선이 통째로 위아래로 이동합니다. 그래서 이 모형을 평행선 모형이라고 부릅니다. 계측기 검교정에 비유하면, 제조사마다 영점은 조금씩 다르지만 감도는 같은 상황입니다. 여기서 “세 직선의 기울기가 정말 같다고 가정해도 되나요?”라는 질문이 나올 수 있는데, 아주 좋은 질문입니다. 그것이 바로 이 모형의 가정이고, 의심스러우면 잠시 후 배울 상호작용 항으로 기울기까지 풀어 줄 수 있습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><div>
+<p>Additive dummy-variable model; see Kutner et al.&nbsp;(2005) and the CNU regression lecture notes.</p>
+</div></aside></section>
+<section id="r-결과-읽기-온도를-고정해도-관측-연차-효과가-남는다" class="slide level2">
+<h2>R 결과 읽기 — 온도를 고정해도 관측 연차 효과가 남는다</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href=""></a><span class="co"># Fit the parallel-lines model: common temp slope, observation-year-specific intercepts</span></span>
+<span id="cb15-2"><a href=""></a>fit_dummy <span class="ot">&lt;-</span> <span class="fu">lm</span>(IC <span class="sc">~</span> temp <span class="sc">+</span> <span class="fu">factor</span>(year), <span class="at">data =</span> ice)</span>
+<span id="cb15-3"><a href=""></a><span class="fu">summary</span>(fit_dummy)</span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<table class="caption-top">
+<caption>Coefficients of IC ~ temp + factor(year); R-squared = 0.790, adjusted R-squared = 0.765, n = 30 (computed by code/agent/2026-08-11/make-lecture-figures.R)</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Term</th>
+<th style="text-align: right;">Estimate</th>
+<th style="text-align: right;">p-value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">0.1687</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">temp</td>
+<td style="text-align: right;">0.00339</td>
+<td style="text-align: right;">1.0e-09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">factor(year)1</td>
+<td style="text-align: right;">0.0165</td>
+<td style="text-align: right;">0.232</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor(year)2</td>
+<td style="text-align: right;">0.0743</td>
+<td style="text-align: right;">8.2e-05</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>같은 온도라도 3년차(year = 2)에는 평균 소비가 <strong>+0.0743</strong> 높음 — 시간에 따른 소비 수준의 상승 (<span class="math inline">\(p = 8.2\times10^{-5} &lt; 0.001\)</span>)</li>
+<li>year = 1의 차이 +0.0165는 유의하지 않음 (<span class="math inline">\(p = 0.232\)</span>)</li>
+<li>연차별 절편: <span class="math inline">\(0.1687\)</span>, <span class="math inline">\(0.1687+0.0165=0.1852\)</span>, <span class="math inline">\(0.1687+0.0743=0.2430\)</span></li>
+<li>온도만 쓴 모형의 <span class="math inline">\(R^2 = 0.602\)</span> → 연차 스위치 추가 후 <span class="math inline">\(R^2 = 0.790\)</span> (adj. <span class="math inline">\(0.587 \to 0.765\)</span>)</li>
+</ul>
+<aside class="notes">
+<p>R 코드는 한 줄입니다. factor(year)라고 쓰면 스위치 두 개가 자동으로 들어갑니다. 표의 계수를 읽어 보겠습니다. 온도 기울기는 0.00339로 여전히 매우 유의합니다. 3년차(year = 2)의 스위치 계수는 +0.0743이고 p값이 0.001보다 훨씬 작으니, 같은 온도라도 3년차에는 평균 소비가 그만큼 높다는 뜻입니다. 시간에 따라 소비 수준 자체가 올라간 것입니다. 반면 year = 1의 +0.0165는 p값이 0.232라서 기준 연차와 다르다고 말하기 어렵습니다. 절편을 직접 계산해 보면 기준 연차가 0.1687, year = 1은 0.1687 더하기 0.0165로 0.1852, year = 2는 0.1687 더하기 0.0743으로 0.2430이 됩니다. 결정계수도 온도만 썼을 때 0.602에서 0.790으로 올라갔습니다. 여기서 “year = 1이 유의하지 않으니 그 스위치만 빼면 되지 않나요?”라고 물으실 수 있는데, 보통은 한 범주형 변수에 딸린 스위치들을 한 묶음으로 넣거나 빼고, 묶음 전체의 기여는 F-검정으로 판단합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="확장-기울기도-다르게-상호작용" class="slide level2">
+<h2>확장 — 기울기도 다르게: 상호작용</h2>
+<ul>
+<li>평행선 모형의 숨은 가정: 관측 연차는 <strong>절편만</strong> 바꾼다(온도 민감도는 세 연차가 동일)</li>
+<li>기울기도 다를 수 있다면 <span class="math inline">\(x_i \times d_{1i}\)</span>처럼 <strong>곱한 항(상호작용)</strong>을 추가</li>
+</ul>
+<p><span class="math display">\[
+y_i = \beta_0 + \beta_1 x_i + \beta_2 d_{1i} + \beta_3 d_{2i} + \beta_4 x_i d_{1i} + \beta_5 x_i d_{2i} + \varepsilon_i
+\]</span></p>
+<p>여기서 <span class="math inline">\(x_i d_{1i}, x_i d_{2i}\)</span>는 온도와 연차 가변수를 곱한 상호작용 항이고, <span class="math inline">\(\beta_4, \beta_5\)</span>는 year = 1, year = 2 연차에서 기울기가 기준 연차보다 얼마나 달라지는지 나타냅니다. 예를 들어 year = 1 연차의 기울기는 <span class="math inline">\(\beta_1 + \beta_4\)</span>가 됩니다. 나머지 기호는 앞 슬라이드와 같습니다.</p>
+<ul>
+<li>R에서는 <code>lm(IC ~ temp * factor(year))</code> 한 줄이면 됨 (오늘은 개념까지만)</li>
+<li>검교정 비유: 제조사마다 <strong>영점</strong>만 다르면 평행선 모형, <strong>감도</strong>까지 다르면 상호작용 모형</li>
+</ul>
+<blockquote>
+<p><strong>한 줄 요약</strong>: 범주 정보는 0/1 스위치(가변수) <span class="math inline">\(k-1\)</span>개로 모형에 들어간다. 스위치는 절편을 바꾸고(평행선 모형), <span class="math inline">\(x\)</span>와 곱해 넣으면 기울기까지 바꾼다(상호작용 모형).</p>
+</blockquote>
+<aside class="notes">
+<p>마지막으로 한 걸음만 더 나가 보겠습니다. 평행선 모형은 관측 연차가 절편만 바꾼다고 가정했습니다. 그런데 온도에 대한 민감도 자체가 연차마다 다를 수도 있겠지요. 그럴 때는 온도와 스위치를 곱한 항, 즉 상호작용 항을 추가하면 됩니다. 스위치가 켜지면 절편은 베타2만큼, 기울기는 베타4만큼 함께 달라집니다. 검교정 비유로 돌아가면, 영점만 다르면 평행선 모형이고 감도까지 다르면 상호작용 모형입니다. 여기서 “상호작용을 넣으면 항상 좋은 것 아닌가요?”라고 물으실 수 있는데, 추정할 계수가 늘어나는 만큼 과적합 위험도 커지므로, 계수의 유의성과 제6장에서 배운 AIC 같은 기준으로 필요한지 판단하시면 됩니다. 오늘 강의의 마지막 요약입니다. 범주는 스위치 k 빼기 1개로 모형에 들어가고, 그 스위치는 절편부터 기울기까지 범주별 차이를 표현해 줍니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="마무리-오늘의-지도-접기" class="title-slide slide level1 center">
+<h1>마무리 — 오늘의 지도 접기</h1>
+<aside class="notes">
+<p>여기까지가 오늘 준비한 본론의 전부입니다. 이제 마지막으로, 지금까지 함께 걸어온 길을 한 장의 지도로 접어 정리하고, 내일부터 바로 쓰실 체크리스트와 참고문헌을 안내해 드리겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="전체-요약-공식-다섯-개로-그리는-지도" class="slide level2 smaller">
+<h2>전체 요약 — 공식 다섯 개로 그리는 지도</h2>
+<p><strong>1. 최소제곱 목적함수</strong> — 점과 직선 사이 세로 거리 제곱합을 가장 작게</p>
+<p><span class="math display">\[Q(\beta_0,\beta_1)=\sum_{i=1}^{n}\left(y_i-\beta_0-\beta_1 x_i\right)^2\]</span></p>
+<p><strong>2. 최소제곱(OLS) 해</strong> — 자료가 알려주는 최적의 계수</p>
+<p><span class="math display">\[\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}\]</span></p>
+<p><strong>3. 결정계수</strong> — 직선이 설명한 변동의 비율</p>
+<p><span class="math display">\[R^2 = 1-\frac{\sum_{i=1}^{n} e_i^2}{\sum_{i=1}^{n}\left(y_i-\bar{y}\right)^2}\]</span></p>
+<p><strong>4. 가중최소제곱(WLS) 해</strong> — 정밀한 측정에 더 큰 발언권</p>
+<p><span class="math display">\[\hat{\boldsymbol{\beta}}_{W}=(\mathbf{X}^\top \mathbf{W} \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{W} \mathbf{y}\]</span></p>
+<p><strong>5. AIC</strong> — 설명력과 단순함의 저울 (Akaike, 1974)</p>
+<p><span class="math display">\[\mathrm{AIC}=-2\log L + 2k\]</span></p>
+<p>기호는 각 장에서 정의한 것과 같습니다.</p>
+<aside class="notes">
+<p>오늘 배운 것을 한 장으로 접어 보겠습니다. 공식 다섯 개면 오늘 여정 전체가 담깁니다. 첫 번째 식은 “어디에 직선을 그을까”라는 질문에 대한 답으로, 점과 직선 사이 세로 거리의 제곱합을 벌점 삼아 가장 작게 만들자는 약속이었습니다. 두 번째 식은 그 벌점을 가장 작게 만드는 계수를 행렬 하나로 계산하는 공식이고, 세 번째 식은 그렇게 그은 직선이 자료의 출렁임을 몇 퍼센트나 설명했는지 알려주는 성적표였습니다. 네 번째 식이 오늘의 핵심인 가중회귀입니다. 정밀한 측정에는 큰 가중치, 흔들리는 측정에는 작은 가중치를 주어 발언권을 다르게 하는 것, 이것이 여러분의 검교정 자료에 바로 쓰이는 도구입니다. 다섯 번째 AIC는 잘 맞는 모형과 단순한 모형 사이에서 균형을 잡아 주는 저울이었습니다. “이 공식을 다 외워야 하나요?”라고 물으신다면, 아닙니다. 계산은 전부 R이 해 주니, 각 식이 무엇을 하려는 것인지 그 뜻만 기억하시면 충분합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="내일부터-쓰는-실무-체크리스트" class="slide level2">
+<h2>내일부터 쓰는 실무 체크리스트</h2>
+<ul>
+<li><strong>하나</strong> — 모형을 적합하기 전에 <strong>그림부터</strong> 본다: 요약 수치가 같아도 자료 모양은 전혀 다를 수 있다 (Anscombe, 1973)</li>
+<li><strong>둘</strong> — 다중회귀 계수는 <strong>“다른 변수를 고정했을 때”</strong>의 효과로 읽는다</li>
+<li><strong>셋</strong> — 적합 후 <strong>진단 그림 4종</strong>(잔차-적합값, Q-Q, 등분산, 영향점)을 확인한다 (Cook, 1977)</li>
+<li><strong>넷</strong> — <strong>변수선택을 했다면 다시 진단</strong>한다: 모형이 바뀌면 잔차도 바뀐다</li>
+<li><strong>다섯</strong> — 관측마다 <strong>측정 불확도가 다르면 가중치</strong>를 반영한다 (가중회귀, 제8장)</li>
+</ul>
+<aside class="notes">
+<p>이제 내일 아침 연구실에서 바로 쓰실 체크리스트 다섯 가지입니다. 첫째, 어떤 모형이든 적합하기 전에 그림부터 보십시오. 앤스컴의 네 자료는 모두 절편 3.00, 기울기 0.500이라는 똑같은 직선을 주지만 그림을 그려 보면 네 개가 완전히 다른 모양이었습니다. 둘째, 다중회귀의 계수는 반드시 “다른 변수를 고정했을 때”라는 조건을 붙여 해석하십시오. 셋째, 적합이 끝나면 잔차 그림 네 종류로 모형의 건강검진을 하시고, 넷째, 변수선택으로 모형이 바뀌었다면 진단을 처음부터 다시 하십시오. 다섯째가 오늘의 핵심인데, 관측마다 측정 불확도가 다르면 가중치를 반영하는 것입니다. “그 가중치는 어디서 얻나요?”라고 물으실 수 있는데, 반복 측정의 분산이나 계측기 사양서의 불확도에서 얻는 경우가 많고, 8장에서 본 것처럼 분산의 역수를 가중치로 쓰는 것이 기본입니다. 이 다섯 줄만 지키셔도 회귀분석의 흔한 함정 대부분을 피하실 수 있습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="참고문헌" class="slide level2 smaller">
+<h2>참고문헌</h2>
+<ul>
+<li>Galton, F. (1886). Regression towards mediocrity in hereditary stature. <em>Journal of the Anthropological Institute</em>, 15, 246-263.</li>
+<li>Kutner, M. H., Nachtsheim, C. J., Neter, J., &amp; Li, W. (2005). <em>Applied Linear Statistical Models</em>, 5th ed.&nbsp;McGraw-Hill.</li>
+<li>Faraway, J. J. (2015). <em>Linear Models with R</em>, 2nd ed.&nbsp;CRC Press.</li>
+<li>Akaike, H. (1974). A new look at the statistical model identification. <em>IEEE Transactions on Automatic Control</em>, 19(6), 716-723.</li>
+<li>Anscombe, F. J. (1973). Graphs in statistical analysis. <em>The American Statistician</em>, 27(1), 17-21.</li>
+<li>Cook, R. D. (1977). Detection of influential observation in linear regression. <em>Technometrics</em>, 19(1), 15-18.</li>
+<li>CNU 회귀분석 강의노트 (본 특강의 뼈대 교재, 프로젝트 references 폴더)</li>
+</ul>
+<aside class="notes">
+<p>오늘 강의가 기댄 문헌들입니다. 회귀라는 이름의 출발점이 된 골턴의 1886년 논문부터, 표준 교과서인 Kutner, 그리고 R과 함께 읽기 좋은 Faraway까지 정리했습니다. 더 공부하고 싶으신 분이 “어떤 책부터 보면 좋을까요?”라고 물으신다면, R을 쓰시는 분께는 코드와 이론이 나란히 나오는 Faraway의 책을 먼저 권해 드립니다. 오늘 다룬 장 구성의 뼈대는 CNU 회귀분석 강의노트를 따랐으니, 복습하실 때 함께 보시면 좋습니다. 긴 시간 끝까지 함께해 주셔서 감사합니다. 질문은 지금 이 자리에서도, 강의가 끝난 뒤에도 언제든 환영합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="regression-lecture-note_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="regression-lecture-note_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 1024,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "복사완료!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "복사완료!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

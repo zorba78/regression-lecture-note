@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<script src="_rendertest-02_files/libs/clipboard/clipboard.min.js"></script>
+<script src="_rendertest-02_files/libs/quarto-html/tabby.min.js"></script>
+<script src="_rendertest-02_files/libs/quarto-html/popper.min.js"></script>
+<script src="_rendertest-02_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="_rendertest-02_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="_rendertest-02_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="_rendertest-02_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.36">
+
+  <title>Preliminary Knowledge render test</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="_rendertest-02_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="_rendertest-02_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="_rendertest-02_files/libs/revealjs/dist/theme/quarto-2740581606dc327e82f18f789b69d8a0.css">
+  <link href="_rendertest-02_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="_rendertest-02_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="_rendertest-02_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="_rendertest-02_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Preliminary Knowledge render test</h1>
+
+<div class="quarto-title-authors">
+</div>
+
+</section>
+<section>
+<section id="preliminary-knowledge" class="title-slide slide level1 center">
+<h1>Preliminary Knowledge</h1>
+<aside class="notes">
+<p>회귀분석을 배우기 전에 연장통부터 챙기겠습니다. 이 장은 두 부분입니다. 앞쪽은 행렬 표기예요. 자료 30줄을 한 줄로 줄여 쓰는 방법입니다. 뒤쪽은 확률분포와 검정의 기초입니다. 정규분포, 표집분포, t분포, p-value, 신뢰구간. R 출력에서 매번 마주치는 말들이죠. 여기서 뜻을 확실히 해 두면 뒤가 편합니다. 새 기호가 몇 개 나오지만 겁먹으실 필요 없습니다. 새로 배우는 계산은 전치와 역행렬 딱 두 개, 나머지는 전부 이름 붙이기입니다. 이 장에는 회귀 이야기가 거의 나오지 않습니다. 대신 개념마다 맨 끝에 “회귀에서는 이것이 어디에 쓰인다”는 한 줄 예고를 붙여 두었습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="왜-행렬-표기인가" class="slide level2">
+<h2>왜 행렬 표기인가</h2>
+<h3 id="질문"><i class="fa-solid fa-question"></i> 질문</h3>
+<p>관측 하나마다 회귀식을 따로 쓰면 같은 모양의 식이 <span class="math inline">\(n\)</span>개 필요하다.</p>
+<p><span class="math display">\[
+y_1=\beta_0+\beta_1 x_{11}+\cdots+\varepsilon_1,\qquad
+y_2=\beta_0+\beta_1 x_{21}+\cdots+\varepsilon_2,\qquad
+\dots,\qquad
+y_{30}=\beta_0+\beta_1 x_{30,1}+\cdots+\varepsilon_{30}
+\]</span></p>
+<p>여기서 <span class="math inline">\(y_i\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 반응변수, <span class="math inline">\(x_{i1}\)</span>은 <span class="math inline">\(i\)</span>번째 관측의 첫 번째 설명변수 값, <span class="math inline">\(\beta_0,\beta_1,\dots\)</span>는 모든 관측에 공통인 회귀계수, <span class="math inline">\(\varepsilon_i\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 오차, 관측 수는 <span class="math inline">\(n=30\)</span>이다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>핵심</strong></p>
+<ul>
+<li>
+관측이 바뀌어도 식의 모양은 동일하고, 회귀계수 <span class="math inline">\(\beta_0,\beta_1,\dots\)</span>는 모든 관측에 공통임
+</li>
+<li>
+같은 모양이 반복되면 하나로 묶어 쓰는 것이 자연스러움
+</li>
+<li>
+행렬 표기는 이 30줄을 한 줄로 줄여 준다
+</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>성적표 비유를 하나 들어 보겠습니다. 학생 30명 평균을 내는데 성적표를 한 장씩 넘기며 계산기를 두드리는 분은 없으시겠죠. 엑셀에 표로 넣고 한 번에 처리하십니다. 행렬은 바로 그 엑셀 시트에 붙인 수학 이름일 뿐입니다. 화면의 30줄을 보세요. 번호만 바뀌고 모양은 완전히 같습니다. 이렇게 같은 모양이 반복되면 묶고 싶어지는 게 사람 마음이고, 그 포장이 행렬입니다. 여기서 꼭 나오는 질문. “어차피 R이 계산해 주는데 행렬을 알아야 하나요?” 네. R의 lm 함수가 속으로 하는 일이 정확히 이 행렬 계산이거든요. 출력을 제대로 읽으려면 최소한의 행렬 언어가 필요합니다. 오늘은 딱 그 최소한만 합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="벡터와-행렬" class="slide level2 smaller">
+<h2>벡터와 행렬</h2>
+<h3 id="정의"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<div class="columns">
+<div class="column" style="width:46%;">
+<blockquote>
+<p><strong>벡터</strong> : 숫자를 세로로 줄 세운 배열. 굵은 소문자 <span class="math inline">\(\mathbf{y}\)</span>로 표기한다.</p>
+<p><strong>행렬</strong> : 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 <span class="math inline">\(\mathbf{X}\)</span>로 표기한다.</p>
+<p><strong>차원</strong> : 크기는 항상 “행 <span class="math inline">\(\times\)</span> 열” 순서로 적는다.</p>
+</blockquote>
+</div><div class="column" style="width:54%;">
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>표기 규약</strong></p>
+<ul>
+<li>
+원소 <span class="math inline">\(x_{ij}\)</span>의 아래첨자는 행 먼저, 열 나중
+</li>
+<li>
+굵은 글씨는 묶음, 아래첨자가 붙은 보통 글씨는 그 안의 낱개 숫자 하나
+</li>
+<li>
+<span class="math inline">\(\mathbf{X}\)</span>는 절편열을 포함한 <span class="math inline">\(n\times(p+1)\)</span> 설계행렬 전용 기호
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></div>
+<p><span class="math display">\[
+\mathbf{y}=\begin{pmatrix} y_1\\ y_2\\ \vdots\\ y_{30} \end{pmatrix}
+\;(30\times 1), \qquad
+\mathbf{X}=\begin{pmatrix}
+1 &amp; x_{11} &amp; \cdots &amp; x_{1p}\\
+1 &amp; x_{21} &amp; \cdots &amp; x_{2p}\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+1 &amp; x_{n1} &amp; \cdots &amp; x_{np}
+\end{pmatrix}
+\;(n\times (p+1))
+\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{y}\)</span>는 반응변수 <span class="math inline">\(y_1,\dots,y_{30}\)</span>을 세로로 모은 벡터, <span class="math inline">\(\mathbf{X}\)</span>는 1열이 모두 1인 절편열이고 나머지 <span class="math inline">\(p\)</span>개 열이 설명변수 값인 설계행렬, <span class="math inline">\(x_{ij}\)</span>는 <span class="math inline">\(i\)</span>번째 관측의 <span class="math inline">\(j\)</span>번째 설명변수 값, <span class="math inline">\(n\)</span>은 관측 수, <span class="math inline">\(p\)</span>는 설명변수의 개수이다.</p>
+<aside class="notes">
+<p>외울 것은 세 가지뿐입니다. 세로로 줄 세우면 벡터, 굵은 소문자. 격자로 배열하면 행렬, 굵은 대문자. 원소를 찾을 때는 행 먼저 열 나중. 영화관에서 몇 번째 줄, 그 줄의 몇 번째 자리를 찾는 것과 똑같죠. 차원 표기 30 곱하기 1도 “서른 줄, 한 칸”이라고 소리 내어 읽으면 금방 익숙해집니다. 굵은 글씨를 왜 따로 쓰냐고요? 굵은 y는 서른 개짜리 묶음 전체이고, 보통 y에 아래첨자 i가 붙으면 그중 한 칸의 숫자 하나입니다. 굵은 글씨를 만나면 “아, 여러 개를 한 덩어리로 묶었구나” 하고 읽으시면 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="회귀모형의-행렬-표현" class="slide level2">
+<h2>회귀모형의 행렬 표현</h2>
+<h3 id="정의-1"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<blockquote>
+<p>관측 <span class="math inline">\(n\)</span>개로 이루어진 선형회귀모형은 다음 한 줄로 표현된다.</p>
+<p><span class="math display">\[\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}\]</span></p>
+<p>여기서 <span class="math inline">\(\mathbf{X}\)</span>는 절편열을 포함한 <span class="math inline">\(n\times(p+1)\)</span> 설계행렬이다.</p>
+</blockquote>
+<p>여기서 <span class="math inline">\(\mathbf{y}\)</span>는 반응변수 <span class="math inline">\(n\)</span>개를 모은 <span class="math inline">\(n\times 1\)</span> 벡터, <span class="math inline">\(\mathbf{X}\)</span>는 1열이 모두 1이고 나머지 <span class="math inline">\(p\)</span>개 열이 설명변수 값인 설계행렬, <span class="math inline">\(\boldsymbol{\beta}\)</span>는 회귀계수 <span class="math inline">\(\beta_0,\beta_1,\dots,\beta_p\)</span>를 모은 <span class="math inline">\((p+1)\times 1\)</span> 벡터, <span class="math inline">\(\boldsymbol{\varepsilon}\)</span>는 오차 <span class="math inline">\(\varepsilon_1,\dots,\varepsilon_n\)</span>을 모은 <span class="math inline">\(n\times 1\)</span> 벡터이며 각 <span class="math inline">\(\varepsilon_i\)</span>가 흩어진 정도를 <span class="math inline">\(\sigma^2\)</span>으로 적는다.</p>
+<div class="callout callout-note no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>행렬 곱과 개별 식의 동치</strong></p>
+<p>행렬 곱 규칙은 행과 열을 짝지어 곱해서 더하기다. <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span>의 <span class="math inline">\(i\)</span>번째 성분이 <span class="math inline">\(\beta_0+\beta_1x_{i1}+\cdots+\beta_px_{ip}\)</span>이므로, 이 한 줄을 풀어 쓰면 앞 슬라이드의 30줄과 정확히 같다.<sup>1</sup></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>이 장 앞부분의 핵심 슬라이드입니다. 요점은 하나예요. 화면의 식 한 줄이 앞에서 본 서른 줄과 완전히 같은 내용이라는 것. 행렬 곱셈도 별게 아닙니다. 왼쪽 표의 한 행과 오른쪽 세로 묶음을 순서대로 짝지어 곱한 다음 전부 더하라, 이게 전부죠. 그 규칙대로 하면 i번째 행에서 베타영 더하기 베타일 곱하기 x, 원래 회귀식이 그대로 튀어나옵니다. 내용은 그대로고 포장만 바뀐 겁니다. 상자 서른 개를 하나씩 나르느냐, 팔레트에 올려 한 번에 옮기느냐의 차이죠. X를 설계행렬이라 부르는 이유도 간단합니다. 실험이나 관측을 어떻게 설계해 자료를 모았는지가 이 표에 그대로 담기니까요.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><ol class="aside-footnotes"><li id="fn1"><p>Matrix formulation follows Kutner et al.&nbsp;(2005), <em>Applied Linear Statistical Models</em>, 5th ed., McGraw-Hill.</p></li></ol></aside></section>
+<section id="아이스크림-자료" class="slide level2 smaller">
+<h2>아이스크림 자료</h2>
+<h3 id="데이터-구조"><i class="fa-solid fa-table"></i> 데이터 구조</h3>
+<table class="caption-top">
+<caption>First five rows of the ice cream data.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: right;">period</th>
+<th style="text-align: right;">IC</th>
+<th style="text-align: right;">price</th>
+<th style="text-align: right;">income</th>
+<th style="text-align: right;">temp</th>
+<th style="text-align: right;">year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.386</td>
+<td style="text-align: right;">0.270</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.374</td>
+<td style="text-align: right;">0.282</td>
+<td style="text-align: right;">79</td>
+<td style="text-align: right;">56</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.393</td>
+<td style="text-align: right;">0.277</td>
+<td style="text-align: right;">81</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.425</td>
+<td style="text-align: right;">0.280</td>
+<td style="text-align: right;">80</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.406</td>
+<td style="text-align: right;">0.272</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">69</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>규모와 변수</strong></p>
+<ul>
+<li>
+<span class="math inline">\(n=30\)</span>개 기간(4주 단위) <span class="math inline">\(\times\)</span> 6개 열: 기간 번호 period와 분석 변수 5개
+</li>
+<li>
+IC: 아이스크림 소비량, 반응변수 <span class="math inline">\(y_i\)</span> 자리에 들어감
+</li>
+<li>
+price: 가격, income: 소득, temp: 평균 기온, 설명변수 <span class="math inline">\(x_{ij}\)</span> 자리에 들어감
+</li>
+<li>
+year: 관측 연차(0, 1, 2). 계절이 아니라 자료를 모은 해를 뜻하며, Dummy Variable 장에서 가변수로 투입
+</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>이 강의 내내 따라다닐 자료를 소개하겠습니다. 아이스크림 소비 자료예요. 한 줄이 4주짜리 기간 하나이고, 그런 기간이 서른 개 있습니다. 화면에는 앞 다섯 줄만 띄웠습니다. 열을 보시죠. IC가 소비량, 우리가 맞히고 싶은 값입니다. price는 가격, income은 소득, temp는 그 기간의 평균 기온이고요. 마지막 year는 조심하셔야 합니다. 봄여름가을겨울 같은 계절이 아니라 자료를 모은 해가 첫해냐 둘째 해냐 셋째 해냐를 나타냅니다. 0, 1, 2 세 값이죠. 이 변수는 뒤에 가변수 장에서 따로 다룹니다. 서른 개면 적다고 느끼실 수 있는데, 회귀분석 교과서에서 오래 쓰인 고전 자료입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="아이스크림-자료-1" class="slide level2">
+<h2>아이스크림 자료</h2>
+<h3 id="설계행렬"><i class="fa-solid fa-pen-to-square"></i> 설계행렬</h3>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>Design matrix for the ice cream data</strong>, <span class="math inline">\(n=30\)</span>, <span class="math inline">\(p=3\)</span></p>
+<p><span class="math display">\[
+\underbrace{\begin{pmatrix} y_1\\ y_2\\ \vdots\\ y_{30} \end{pmatrix}}_{\mathbf{y}\;(30\times 1)}
+=
+\underbrace{\begin{pmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; x_{13}\\
+1 &amp; x_{21} &amp; x_{22} &amp; x_{23}\\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots\\
+1 &amp; x_{30,1} &amp; x_{30,2} &amp; x_{30,3}
+\end{pmatrix}}_{\mathbf{X}\;(30\times 4)}
+\underbrace{\begin{pmatrix} \beta_0\\ \beta_1\\ \beta_2\\ \beta_3 \end{pmatrix}}_{\boldsymbol{\beta}\;(4\times 1)}
++
+\underbrace{\begin{pmatrix} \varepsilon_1\\ \varepsilon_2\\ \vdots\\ \varepsilon_{30} \end{pmatrix}}_{\boldsymbol{\varepsilon}\;(30\times 1)}
+\]</span></p>
+</div>
+</div>
+</div>
+<p>여기서 <span class="math inline">\(\mathbf{y}\)</span>는 30개 기간의 소비량 IC를 모은 벡터, <span class="math inline">\(\mathbf{X}\)</span>의 1열은 절편 <span class="math inline">\(\beta_0\)</span>의 자리를 만들어 주는 1들이고 2, 3, 4열은 각각 price <span class="math inline">\(x_{i1}\)</span>, income <span class="math inline">\(x_{i2}\)</span>, temp <span class="math inline">\(x_{i3}\)</span>이다. 첫 행의 값을 넣으면 <span class="math inline">\(x_{11}=0.270\)</span>, <span class="math inline">\(x_{12}=78\)</span>, <span class="math inline">\(x_{13}=41\)</span>, <span class="math inline">\(y_1=0.386\)</span>이다.</p>
+<p><span class="math inline">\(\mathbf{X}\)</span>의 <strong>1열이 전부 1</strong>인 이유는 행렬 곱에서 각 행마다 <span class="math inline">\(\beta_0\times 1\)</span>이 계산되어 절편 <span class="math inline">\(\beta_0\)</span>이 모든 기간에 똑같이 더해지도록 하기 위해서다.</p>
+<aside class="notes">
+<p>앞 슬라이드의 표를 그대로 수학 기호로 옮긴 그림입니다. 왼쪽 y는 우리가 맞히고 싶은 서른 개 소비량 묶음. 가운데 큰 X는 엑셀 시트 그대로인데, 맨 앞에 1로만 채워진 열이 하나 추가되어 30 곱하기 4가 되었습니다. 그 옆 베타는 알아내고 싶은 계수 네 개, 마지막 엡실론은 설명되지 않고 남는 오차입니다. 여기서 꼭 나오는 질문. “1열은 왜 전부 1인가요?” 행렬 곱을 하면 각 행에서 베타영 곱하기 1이 계산되고, 그래서 절편이 모든 기간에 똑같이 더해집니다. 1들의 열은 절편이 앉을 좌석인 셈이죠. 아래 문장에 첫 행 실제 숫자를 넣어 뒀습니다. x11이 0.270, x12가 78, x13이 41. 앞 슬라이드 표 첫 줄과 맞춰 보세요.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="전치와-역행렬" class="slide level2 smaller">
+<h2>전치와 역행렬</h2>
+<h3 id="정의-2"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<blockquote>
+<p><strong>전치</strong> <span class="math inline">\(\mathbf{X}^\top\)</span> : 행과 열을 맞바꾼 행렬. <span class="math inline">\(\mathbf{X}\)</span>가 <span class="math inline">\(30\times 4\)</span>이면 <span class="math inline">\(\mathbf{X}^\top\)</span>은 <span class="math inline">\(4\times 30\)</span>이다.</p>
+</blockquote>
+<p><span class="math inline">\(\mathbf{X}\)</span>의 <span class="math inline">\((i,j)\)</span> 원소가 <span class="math inline">\(\mathbf{X}^\top\)</span>의 <span class="math inline">\((j,i)\)</span> 원소가 된다. 값은 그대로이고 배열 방향만 바뀐다.</p>
+</div><div class="column" style="width:50%;">
+<blockquote>
+<p><strong>역행렬</strong> <span class="math inline">\(\mathbf{A}^{-1}\)</span> : 정방행렬 <span class="math inline">\(\mathbf{A}\)</span>에 대해 <span class="math inline">\(\mathbf{A}^{-1}\mathbf{A}=\mathbf{I}\)</span> 를 만족하는 행렬.</p>
+</blockquote>
+<p>여기서 <span class="math inline">\(\mathbf{A}\)</span>는 행과 열의 수가 같은 정방행렬, <span class="math inline">\(\mathbf{I}\)</span>는 주대각선 원소가 1이고 나머지가 0인 항등행렬이다. 역행렬은 스칼라의 나눗셈에 대응하는 연산이다.</p>
+</div></div>
+<p><span class="math display">\[
+\mathbf{A}\mathbf{x}=\mathbf{b}\;\Longrightarrow\;\mathbf{x}=\mathbf{A}^{-1}\mathbf{b}
+\]</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># Two matrix operations used throughout this lecture</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">t</span>(X)             <span class="co"># transpose: flip rows and columns, 30 x 4 -&gt; 4 x 30</span></span>
+<span id="cb1-3"><a href=""></a><span class="fu">solve</span>(A)         <span class="co"># inverse of a square matrix A</span></span>
+<span id="cb1-4"><a href=""></a><span class="fu">solve</span>(A) <span class="sc">%*%</span> A   <span class="co"># returns the identity matrix I</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<aside class="notes">
+<p>새로 배우는 계산은 이 두 개가 끝입니다. 먼저 전치. 종이에 표를 그린 다음 대각선 축으로 뒤집는다고 상상하세요. 가로줄이 세로줄이 되고 30 곱하기 4가 4 곱하기 30이 됩니다. 숫자는 하나도 안 바뀌고 자리만 옮겨 다니죠. 다음은 역행렬, 되돌리기 버튼입니다. 숫자에서는 3 곱하기 x가 6이면 3으로 나눠서 x를 구하죠. 그런데 행렬에는 나눗셈이 없습니다. 대신 역행렬을 곱해서 되돌립니다. R에서는 t와 solve, 함수 이름 두 개면 끝나고요. 예상 질문 하나. 역행렬은 항상 있나요? 아닙니다. 두 설명변수가 사실상 같은 정보를 담아 표의 열이 겹치면 역행렬이 없거나 몹시 불안정해집니다. 이건 뒤에 다중공선성이라는 이름으로 다시 만납니다. 지금은 “항상 되는 건 아니구나” 정도면 충분해요.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="예고-최소제곱추정량" class="slide level2 smaller">
+<h2>예고: 최소제곱추정량</h2>
+<h3 id="핵심"><i class="fa-solid fa-lightbulb"></i> 핵심</h3>
+<blockquote>
+<p>자료 <span class="math inline">\((\mathbf{y},\mathbf{X})\)</span>가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현된다.</p>
+</blockquote>
+<p><span class="math display">\[
+\hat{\boldsymbol{\beta}}=(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
+\]</span></p>
+<p>여기서 <span class="math inline">\(\hat{\boldsymbol{\beta}}\)</span>는 자료로 추정한 회귀계수 벡터(위에 붙은 모자 기호는 “추정값”이라는 뜻), <span class="math inline">\(\mathbf{X}^\top\)</span>은 <span class="math inline">\(\mathbf{X}\)</span>의 전치, <span class="math inline">\((\mathbf{X}^\top\mathbf{X})^{-1}\)</span>은 <span class="math inline">\(\mathbf{X}^\top\mathbf{X}\)</span>의 역행렬, <span class="math inline">\(\mathbf{y}\)</span>는 반응변수 벡터이다.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># The whole of least-squares regression in one line</span></span>
+<span id="cb2-2"><a href=""></a>X <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(IC <span class="sc">~</span> price <span class="sc">+</span> income <span class="sc">+</span> temp, <span class="at">data =</span> ice)  <span class="co"># 30 x 4, first column all 1s</span></span>
+<span id="cb2-3"><a href=""></a>beta_hat <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">t</span>(X) <span class="sc">%*%</span> X) <span class="sc">%*%</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> ice<span class="sc">$</span>IC          <span class="co"># (X'X)^{-1} X'y</span></span>
+<span id="cb2-4"><a href=""></a><span class="co"># identical to coef(lm(IC ~ price + income + temp, data = ice))</span></span></code></pre></div><button title="클립보드 복사" class="code-copy-button"><i class="bi"></i></button></div>
+<p>단순회귀, 다중회귀, 가변수회귀는 모두 이 한 줄의 특수한 경우이며, 유도는 Multiple Linear Regression 장에서 다룬다.</p>
+<aside class="notes">
+<p>행렬 부분을 마무리하는 예고편입니다. 화면의 식 한 줄이 사실상 이 강의 전체의 주인공이에요. 방금 배운 재료가 전부 들어 있죠. X를 뒤집고, 곱한 걸 역행렬로 되돌리고, 다시 y를 곱한다. 아래 R 코드를 보세요. model.matrix가 아까 그린 30 곱하기 4짜리 설계행렬을 만들어 주고 1열까지 알아서 채워 줍니다. 다음 줄이 방금 배운 식 그대로고요. t는 전치, 퍼센트 기호는 행렬 곱, solve는 역행렬. 이렇게 손으로 계산한 값이 lm 함수가 주는 계수와 완전히 일치합니다. 외우실 필요는 없습니다. 어떤 통계 프로그램이든 속으로 이 계산을 한다는 것, 그리고 역행렬이 불안정하면 계수도 같이 흔들린다는 감각. 그 둘만 가져가시면 됩니다. 자, 이제 확률 이야기로 넘어가겠습니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="정규분포" class="slide level2">
+<h2>정규분포</h2>
+<h3 id="정의-3"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<blockquote>
+<p>확률변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 표준편차 <span class="math inline">\(\sigma\)</span>인 <strong>정규분포</strong>를 따를 때 <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>로 적고, 그 밀도함수는 다음과 같다.</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\qquad -\infty&lt;x&lt;\infty\]</span></p>
+</blockquote>
+<p>여기서 <span class="math inline">\(\mu\)</span>는 분포의 중심인 평균, <span class="math inline">\(\sigma\)</span>는 흩어진 정도인 표준편차, <span class="math inline">\(\sigma^2\)</span>은 표준편차를 제곱한 분산이다. 밀도함수 <span class="math inline">\(f(x)\)</span>의 값 자체는 확률이 아니고, 곡선 아래 넓이가 확률이다. 곡선 전체의 넓이는 1이다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>모양의 성질</strong></p>
+<ul>
+<li>
+<span class="math inline">\(\mu\)</span>를 중심으로 좌우대칭인 종 모양이고, 평균과 중앙값이 같음
+</li>
+<li>
+모수 두 개(<span class="math inline">\(\mu\)</span>, <span class="math inline">\(\sigma\)</span>)만 정하면 분포 전체가 결정됨. <span class="math inline">\(\mu\)</span>는 위치, <span class="math inline">\(\sigma\)</span>는 폭을 조절
+</li>
+<li>
+<span class="math inline">\(\mu=0\)</span>, <span class="math inline">\(\sigma=1\)</span>인 경우를 표준정규분포라 하고 <span class="math inline">\(N(0,1)\)</span>로 적음
+</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>확률 이야기의 출발점입니다. 정규분포, 종 모양 곡선이죠. 식이 복잡해 보이지만 읽는 법은 간단합니다. 뮤가 어디에 봉우리를 세울지, 시그마가 얼마나 넓게 퍼질지. 딱 두 개만 정하면 곡선이 완전히 결정됩니다. 헷갈리기 쉬운 점 하나 짚고 갑니다. 곡선의 높이는 확률이 아닙니다. 곡선 아래 넓이가 확률이에요. 특정 한 점의 값이 나올 확률은 0입니다. 대신 “1.5와 2.0 사이에 들어올 확률”처럼 구간을 물어야 넓이로 답이 나오죠. 전체 넓이는 1, 즉 100퍼센트입니다. 시그마와 시그마 제곱을 왜 둘 다 쓰냐고요? 시그마는 자료와 단위가 같아 읽기 편하고, 시그마 제곱은 계산할 때 편합니다. 그래서 상황 따라 골라 씁니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="정규분포-1" class="slide level2 smaller">
+<h2>정규분포</h2>
+<h3 id="규칙"><i class="fa-solid fa-table"></i> 68-95-99.7 규칙</h3>
+<table class="caption-top">
+<caption>Coverage probabilities of the normal distribution.</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Interval</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mu\pm 1\sigma\)</span></td>
+<td style="text-align: right;">0.683</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(\mu\pm 2\sigma\)</span></td>
+<td style="text-align: right;">0.954</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(\mu\pm 3\sigma\)</span></td>
+<td style="text-align: right;">0.997</td>
+</tr>
+</tbody>
+</table>
+<p>계산은 <code>pnorm(1) - pnorm(-1) = 0.6827</code>, <code>pnorm(2) - pnorm(-2) = 0.9545</code>, <code>pnorm(3) - pnorm(-3) = 0.9973</code>으로 얻는다. 즉 정규분포를 따르는 값이 평균에서 표준편차 3배 넘게 떨어질 확률은 약 0.3%로 매우 작다.</p>
+<h3 id="측정오차에-정규분포를-가정하는-이유"><i class="fa-solid fa-lightbulb"></i> 측정오차에 정규분포를 가정하는 이유</h3>
+<blockquote>
+<p>서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워진다(중심극한정리).</p>
+</blockquote>
+<p>측정오차는 온도, 습도, 진동, 판독 습관 등 작은 요인 다수의 합으로 보는 것이 자연스러우므로 종 모양 분포가 근거 있는 출발점이 된다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>회귀에서는 오차 <span class="math inline">\(\varepsilon_i\)</span>가 평균 0, 분산 <span class="math inline">\(\sigma^2\)</span>인 정규분포를 따른다고 가정하고, 이 가정 위에서 검정과 구간추정을 한다.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>정규분포를 다루는 사람들이 몸으로 외우는 숫자가 있습니다. 68, 95, 99.7. 평균에서 표준편차 한 칸 안에 약 68퍼센트, 두 칸 안에 약 95퍼센트, 세 칸 안에 약 99.7퍼센트가 들어옵니다. 그러니까 세 칸을 벗어나면 천 번에 세 번쯤 있는 일이죠. 관리도에서 3시그마 선을 긋는 이유가 바로 이겁니다. 그럼 왜 하필 정규분포를 가정할까요? 근거가 있습니다. 작고 서로 무관한 영향이 여럿 겹쳐 더해지면, 각각이 어떤 모양이든 그 합은 종 모양으로 수렴합니다. 측정오차가 딱 그렇죠. 그날 온도, 습도, 장비 진동, 읽는 사람의 버릇. 어느 하나가 지배하지 않고 조금씩 보태집니다. 다만 가정은 가정입니다. 맞는지는 뒤에 잔차로 확인할 겁니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="표본과-표집분포" class="slide level2 smaller">
+<h2>표본과 표집분포</h2>
+<h3 id="정의-4"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<blockquote>
+<p><strong>모집단</strong> : 알고 싶은 대상 전체. <strong>표본</strong> : 실제로 관측한 일부.</p>
+<p><strong>통계량</strong> : 표본에서 계산한 값(표본평균 <span class="math inline">\(\bar X\)</span> 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.</p>
+<p><strong>표집분포</strong> : 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.</p>
+</blockquote>
+<p><span class="math inline">\(X_1,\dots,X_n\)</span>이 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 모집단에서 뽑힌 표본일 때 표본평균 <span class="math inline">\(\bar X=\frac{1}{n}\sum_{i=1}^n X_i\)</span>의 표집분포는 다음을 만족한다.</p>
+<p><span class="math display">\[
+E(\bar X)=\mu,\qquad \operatorname{SD}(\bar X)=\frac{\sigma}{\sqrt{n}}
+\]</span></p>
+<p>여기서 <span class="math inline">\(E(\bar X)\)</span>는 표본평균의 평균(반복해서 뽑았을 때의 중심), <span class="math inline">\(\operatorname{SD}(\bar X)\)</span>는 표본평균의 표준편차이며 이를 <strong>표준오차</strong>(standard error, SE)라 한다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<ul>
+<li>
+표준오차는 추정값의 흔들림 폭이고, <span class="math inline">\(n\)</span>이 커질수록 <span class="math inline">\(\sqrt{n}\)</span>에 반비례해 줄어듦. <span class="math inline">\(n\)</span>이 4배면 표준오차는 절반
+</li>
+<li>
+회귀에서는 계수 추정값 <span class="math inline">\(\hat\beta_j\)</span>가 통계량이며, R 출력의 <code>Std. Error</code> 열이 그 표준오차다
+</li>
+</ul>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>여기가 통계에서 제일 중요한 생각의 전환점입니다. 같은 실험을 내일 다시 하면 어떻게 될까요? 숫자가 조금 달라집니다. 그러니 우리가 계산한 평균 하나는 “그럴 수도 있었던 여러 값” 중 하나일 뿐이죠. 그 여러 값이 어떻게 퍼져 있는지를 그린 게 표집분포입니다. 자료의 분포가 아니라 계산 결과의 분포. 이 구분이 핵심이에요. 그리고 그 퍼짐의 폭을 표준오차라고 부릅니다. 시그마 나누기 루트 n이죠. 여기 좋은 소식이 있습니다. 표본이 커지면 표준오차가 줄어듭니다. 다만 루트가 붙어 있어요. 정밀도를 두 배로 올리려면 자료를 네 배 모아야 한다는 뜻입니다. 표준편차와 표준오차, 이름이 비슷해서 자주 헷갈리는데요. 표준편차는 자료가 흩어진 정도, 표준오차는 추정값이 흔들리는 정도입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="t분포" class="slide level2 smaller">
+<h2>t분포</h2>
+<h3 id="정의-5"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-13/fig-p03-normal-vs-t.png" style="width:100.0%"></p>
+<figcaption>Standard normal and t distributions with 3 and 10 degrees of freedom</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:42%;">
+<blockquote>
+<p><span class="math inline">\(\sigma\)</span>를 모른 채 표본표준편차 <span class="math inline">\(s\)</span>로 대신하면 <span class="math display">\[T=\frac{\bar X-\mu}{s/\sqrt{n}}\]</span> 는 자유도 <span class="math inline">\(n-1\)</span>의 <strong>t분포</strong>를 따른다.</p>
+</blockquote>
+<ul>
+<li>
+정규분포보다 봉우리가 낮고 꼬리가 두꺼움
+</li>
+<li>
+<span class="math inline">\(\sigma\)</span>를 추정하는 불확실성이 더해졌기 때문임
+</li>
+<li>
+자유도가 커지면 정규분포에 가까워짐
+</li>
+</ul>
+</div></div>
+<p>여기서 <strong>자유도</strong>는 분산을 추정하는 데 쓸 수 있는 독립인 정보의 개수다. 자유도가 클수록 <span class="math inline">\(s\)</span>가 <span class="math inline">\(\sigma\)</span>에 가까워지므로 t분포는 <span class="math inline">\(N(0,1)\)</span>에 수렴한다. 양측 2.5% 임계값을 비교하면 자유도 3에서 3.182, 자유도 10에서 2.228, 자유도 28에서 2.048이고 정규분포는 1.960이다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>회귀에서는 계수 검정에 자유도 <span class="math inline">\(n-(p+1)\)</span>의 t분포를 쓴다. 아이스크림 자료의 단순회귀는 <span class="math inline">\(30-2=28\)</span>이다.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>t분포는 정규분포의 사촌쯤 됩니다. 왜 따로 필요할까요? 표준오차를 계산하려면 시그마가 있어야 하는데, 우리는 시그마를 모릅니다. 그래서 자료에서 추정한 s를 대신 넣죠. 그런데 s 자체가 표본마다 흔들립니다. 불확실성이 하나 더 얹힌 겁니다. 그 대가로 꼬리가 두꺼워집니다. 그림에서 확인해 보세요. 주황 점선이 자유도 3, 초록 점선이 자유도 10입니다. 자유도 3짜리는 봉우리가 눈에 띄게 낮고 양쪽 끝이 두툼하죠. 자유도 10은 벌써 파란 정규분포에 꽤 붙었습니다. 꼬리가 두껍다는 건 극단적인 값이 나올 확률을 더 넉넉히 인정한다는 뜻이에요. 즉 t분포는 정규분포보다 조심스럽습니다. 자유도라는 말이 낯설 텐데요. 흩어진 정도를 재는 데 실제로 쓸 수 있는 정보가 몇 개냐로 생각하시면 됩니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="가설검정의-논리" class="slide level2 smaller">
+<h2>가설검정의 논리</h2>
+<h3 id="정의-6"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<blockquote>
+<p><strong>귀무가설</strong> <span class="math inline">\(H_0\)</span> : 반증되기 전까지 참이라고 두는 기본 가정. 보통 “효과가 없다”, “차이가 없다” 쪽에 놓는다.</p>
+<p><strong>대립가설</strong> <span class="math inline">\(H_1\)</span> : 자료로 입증하고자 하는 주장. 보통 “효과가 있다” 쪽이다.</p>
+</blockquote>
+<h3 id="절차"><i class="fa-solid fa-list-check"></i> 절차</h3>
+<ol>
+<li>
+<span class="math inline">\(H_0\)</span>와 <span class="math inline">\(H_1\)</span>을 자료를 보기 전에 정한다
+</li>
+<li>
+자료에서 검정통계량을 계산한다(예: <span class="math inline">\(T=(\bar X-\mu_0)/(s/\sqrt{n})\)</span>)
+</li>
+<li>
+<span class="math inline">\(H_0\)</span>가 참이라고 할 때 그 통계량이 따르는 분포를 안다(예: 자유도 <span class="math inline">\(n-1\)</span>의 t분포)
+</li>
+<li>
+관측된 통계량이 그 분포에서 얼마나 드문 값인지를 잰다
+</li>
+</ol>
+<p>검정은 <span class="math inline">\(H_0\)</span>를 <strong>기각</strong>하거나 <strong>기각하지 못한다</strong>는 두 가지 결론만 낸다. “<span class="math inline">\(H_0\)</span>를 채택한다”는 표현은 쓰지 않는다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>회귀에서는 각 설명변수마다 <span class="math inline">\(H_0:\beta_j=0\)</span>(그 변수의 기여가 없다) 대 <span class="math inline">\(H_1:\beta_j\neq 0\)</span>을 검정한다.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>가설검정은 형사재판과 구조가 같습니다. 재판에서는 피고인을 일단 무죄로 놓죠. 그게 귀무가설입니다. 검사가 증거를 쌓아서 무죄라고 보기엔 너무 이상하다는 걸 보이면 유죄 판결이 납니다. 통계도 똑같아요. 먼저 효과가 없다고 가정해 놓고, 그 가정 아래에서 지금 자료가 얼마나 이상한지를 잽니다. 순서가 중요합니다. 자료를 본 다음에 가설을 세우면 반칙이에요. 그리고 결론 표현에 주의하셔야 합니다. 무죄 판결은 결백의 증명이 아니라 유죄를 입증하지 못했다는 뜻이죠. 마찬가지로 우리는 “귀무가설을 기각하지 못했다”까지만 말합니다. “효과가 없음을 증명했다”고는 못 해요. 이 구분이 다음 슬라이드에서 아주 중요해집니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="p-value" class="slide level2 smaller">
+<h2>p-value</h2>
+<h3 id="정의-7"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<div class="columns">
+<div class="column" style="width:58%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="../../../output/agent/2026-08-13/fig-p04-pvalue-tail.png" style="width:100.0%"></p>
+<figcaption>Two-sided p-value as the shaded tail area beyond |t| = 2.20, t distribution with 28 df</figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:42%;">
+<blockquote>
+<p><strong>p-value</strong> : 귀무가설이 참이라고 가정할 때, 실제로 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률.</p>
+</blockquote>
+<p><span class="math display">\[
+p=P\left(|T|\ge 2.20 \mid H_0\right)=0.0362
+\]</span></p>
+<p>여기서 <span class="math inline">\(T\)</span>는 자유도 28의 t분포를 따르는 검정통계량이고, 계산은 <code>2 * pt(-2.20, 28) = 0.0362</code>이다.</p>
+</div></div>
+<p>p가 작다는 것은 관측된 자료가 <span class="math inline">\(H_0\)</span> 아래에서 보기 드문 결과라는 뜻이고, 이때 <span class="math inline">\(H_0\)</span>를 기각한다. 관례적 기준 <span class="math inline">\(\alpha=0.05\)</span>는 학문 공동체의 약속일 뿐 자연법칙이 아니다.</p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p>회귀에서는 R 출력의 <code>Pr(&gt;|t|)</code> 열이 각 계수에 대한 이 확률이다.</p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>p-value를 그림 하나로 이해해 보겠습니다. 귀무가설이 참이라면 검정통계량은 저 파란 종 모양 안에서 놀아야 합니다. 대부분 0 근처죠. 그런데 우리가 실제로 얻은 값이 2.20이었습니다. 빨간 점선 자리예요. 이 값보다 더 바깥으로 나갈 확률이 얼마냐, 그 분홍색 넓이가 p-value입니다. 양쪽을 다 재는 이유는 방향을 미리 정하지 않았기 때문이고요. 여기서는 0.0362, 약 3.6퍼센트입니다. 귀무가설이 맞다면 이런 자료는 백 번에 서너 번 나오는 셈이죠. 드무니까 귀무가설을 의심합니다. 0.05라는 기준은 어디서 왔을까요? 자연법칙이 아닙니다. 20번에 한 번 정도면 드물다고 치자는 관습이에요. 그래서 다음 슬라이드가 필요합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="p-value-1" class="slide level2 smaller">
+<h2>p-value</h2>
+<h3 id="주의-해석의-함정"><i class="fa-solid fa-triangle-exclamation"></i> 주의: 해석의 함정</h3>
+<div class="callout callout-warning no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>p-value가 아닌 것</strong></p>
+<ol>
+<li>
+<strong>p는 귀무가설이 참일 확률이 아니다.</strong> p는 <span class="math inline">\(H_0\)</span>가 참이라는 조건을 붙이고 계산한 자료 쪽의 확률이다. 조건과 결론을 맞바꾸어 읽으면 안 된다.
+</li>
+<li>
+<strong>p가 크다고 효과가 없음이 증명되는 것은 아니다.</strong> 표본이 작거나 측정오차가 크면 실재하는 효과도 드러나지 않는다. 증거 없음과 없음의 증거는 다르다.
+</li>
+<li>
+<strong>통계적 유의성과 실질적 중요성은 다르다.</strong> <span class="math inline">\(n\)</span>이 매우 크면 실무적으로 무시할 만한 차이도 유의해진다. 효과의 크기를 함께 보아야 한다.
+</li>
+<li>
+<strong>p = 0.049와 p = 0.051 사이에 질적 차이는 없다.</strong> 0.05는 연속적인 증거의 강도에 그은 임의의 선이다.
+</li>
+</ol>
+</div>
+</div>
+</div>
+<p>따라서 p-value는 추정값의 크기, 표준오차, 신뢰구간과 <strong>함께</strong> 보고해야 한다.<sup>1</sup></p>
+<aside class="notes">
+<p>이 슬라이드가 오늘 전체에서 가장 중요할 수도 있습니다. p-value만큼 널리 쓰이면서 널리 오해받는 숫자가 없거든요. 첫째, p는 귀무가설이 참일 확률이 아닙니다. 방향이 반대예요. 귀무가설이 참이라고 치고 계산한, 자료 쪽의 확률입니다. 둘째, p가 크게 나왔다고 효과가 없다고 결론 내리시면 안 됩니다. 자료가 부족해서 못 본 것일 수도 있으니까요. 어두운 방에서 아무것도 못 봤다고 방이 비었다고 할 수는 없죠. 셋째, 유의하다와 중요하다는 다른 말입니다. 자료를 십만 개 모으면 아무 의미 없는 0.001의 차이도 별표가 세 개 붙습니다. 넷째, 0.049와 0.051 사이에 무슨 일이 벌어지는 게 아닙니다. 그래서 p 하나만 보고하지 말고 추정값과 신뢰구간을 같이 보여 주셔야 합니다. 미국통계학회가 2016년에 공식 성명까지 낸 사안입니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<aside><ol class="aside-footnotes"><li id="fn2"><p>American Statistical Association (2016), <em>Statement on Statistical Significance and P-Values</em>, The American Statistician 70(2), 129-133.</p></li></ol></aside></section>
+<section id="신뢰구간" class="slide level2 smaller">
+<h2>신뢰구간</h2>
+<h3 id="정의-8"><i class="fa-solid fa-bullseye"></i> 정의</h3>
+<blockquote>
+<p><strong>95% 신뢰구간</strong> : 같은 절차로 표본 추출과 구간 계산을 반복했을 때, 만들어진 구간들 가운데 약 95%가 참값을 포함하도록 설계된 구간.</p>
+</blockquote>
+<p><span class="math display">\[
+\hat\theta \pm t_{0.975,\;\nu}\times \operatorname{SE}(\hat\theta)
+\]</span></p>
+<p>여기서 <span class="math inline">\(\hat\theta\)</span>는 관심 모수의 추정값, <span class="math inline">\(\operatorname{SE}(\hat\theta)\)</span>는 그 표준오차, <span class="math inline">\(t_{0.975,\nu}\)</span>는 자유도 <span class="math inline">\(\nu\)</span>인 t분포의 상위 2.5% 지점(자유도 28이면 2.048)이다.</p>
+<div class="callout callout-warning no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>주의</strong></p>
+<ul>
+<li>
+확률은 <strong>구간</strong>에 붙지 참값에 붙지 않음. 참값은 고정된 미지의 상수이며 구간이 표본마다 움직임
+</li>
+<li>
+“이 구간 안에 참값이 있을 확률이 95%”는 잘못된 서술임
+</li>
+<li>
+구간이 좁으면 정밀한 추정, 넓으면 정보가 부족한 추정임
+</li>
+</ul>
+</div>
+</div>
+</div>
+<p>95% 신뢰구간이 0을 포함하지 않는 것과 양측 검정에서 <span class="math inline">\(p&lt;0.05\)</span>인 것은 동일한 판정이다.</p>
+<aside class="notes">
+<p>신뢰구간은 p-value보다 정보가 많습니다. 값이 어느 범위에 있을 법한지를 폭으로 보여 주니까요. 그런데 뜻을 정확히 말하기가 은근히 까다롭습니다. 흔한 오해부터 짚죠. “이 구간에 참값이 있을 확률이 95퍼센트다.” 이건 틀린 문장입니다. 참값은 이미 정해진 하나의 숫자예요. 흔들리는 건 참값이 아니라 우리가 만든 구간입니다. 그물 던지기를 떠올려 보세요. 물고기는 한 자리에 가만히 있고, 우리가 그물을 던집니다. 백 번 던지면 아흔다섯 번쯤 잡히도록 그물 크기를 맞춘 것, 그게 95퍼센트 신뢰구간입니다. 지금 이 한 번의 던지기가 성공했는지는 알 수 없죠. 마지막으로 실용적인 요령 하나. 95퍼센트 구간이 0을 걸치지 않으면 양측 p가 0.05보다 작습니다. 둘은 같은 판정입니다. 여기까지가 연장통이고, 다음 장부터 본격적으로 회귀를 시작합니다.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section></section>
+
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="_rendertest-02_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="_rendertest-02_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="_rendertest-02_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="_rendertest-02_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 1024,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "복사완료!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "복사완료!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
