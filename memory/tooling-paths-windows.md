@@ -5,7 +5,7 @@ type: reference
 date: 2026-08-13
 ---
 
-- **Quarto** 1.9.36 (RStudio 번들): 공백 경로 버그로 정식 경로 호출 시 deno 모듈 오류. **반드시 8.3 단축 경로 사용**: `C:\PROGRA~1\RStudio\resources\app\bin\quarto\bin\quarto.cmd`
+- **Quarto** 1.9.36 (RStudio 번들): PATH에 없음. `quarto.cmd` 를 공백 포함 경로로 부르면 deno 모듈 오류가 난다. 회피법 두 가지가 모두 확인됨 — (a) 8.3 단축 경로 `C:\PROGRA~1\RStudio\resources\app\bin\quarto\bin\quarto.cmd`, (b) **`.cmd` 대신 `.exe` 를 직접 호출**. Bash에서 `"/c/Program Files/RStudio/resources/app/bin/quarto/bin/quarto.exe" render <파일>.qmd` 로 2026-08-24 정상 렌더(exit 0). 공백이 있어도 `.exe` 는 문제없다.
 - **R**: `C:\Program Files\R\R-4.6.0\bin\Rscript.exe` (4.5.2/4.5.3/4.6.0 설치). quarto·Rscript 모두 PATH에 없음. locale은 Korean_Korea.utf8.
 - **CRAN 접근 불가**: `install.packages()` 실패(네트워크 차단). 새 패키지 설치 불가하므로 base R로 해결할 것. `icons`, `HistData`, `car`, `leaps` 등 미설치.
 - **PDF 텍스트 추출**: `pdftotext` (TeX Live 동봉) `C:\texlive\2025\bin\windows\pdftotext.exe`. Read 도구가 "password-protected"로 거부하는 PDF도 `pdftotext -enc UTF-8 -layout` 로는 정상 추출됨. 관련: [[reference-pdfs-locked]]

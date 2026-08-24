@@ -112,3 +112,69 @@
   font-size: 0.62em;
   color: #6b6a66;
 }
+
+/* ---------------------------------------------------------------------------
+   Adopted from references/obesity-pulse-presentation/custom.scss (2026-08-24).
+   Only the deck-independent parts were taken: the H2 treatment, the table
+   treatment, the column gap, and the italic figure caption.
+
+   Deliberately NOT taken, because they would fight the settings above:
+     - $presentation-font-size-root: 26px and the h1/h2/h3 sizes. That deck is
+       1280x720; this one is 1280x1024 and its type scale is tuned above.
+     - .reveal table { font-size: 0.66em; width: 100% }. Table sizing and
+       centring are already set above for this deck's wider result tables.
+     - .small / .smaller / .muted / .center-text. `.smaller` is a built-in
+       Quarto class used on 61 slides here; redefining it to 0.68em would
+       rescale all of them.
+     - The study-specific classes (.ctrl/.gyn/.andr, .badge, .banner, .card,
+       .tone-*, .chip, .phenotype-card, .body-fig, .col-head, .sig/.nonsig).
+       None of them are used by this deck.
+   --------------------------------------------------------------------------- */
+
+/* Korean-capable sans-serif stack. The reference sets this through the SCSS
+   variable $font-family-sans-serif, which works on its `default` theme but not
+   here: the `simple` theme this deck uses pins its own 'Source Sans Pro'. So it
+   is applied as a plain rule instead, which loads after the theme and wins.
+   A font stack only, with no webfont import, so the deck loads no external
+   resource; where Noto Sans KR is absent it falls back to Malgun Gothic, the
+   Windows Korean default. Font Awesome glyphs and code blocks are untouched:
+   both carry their own font-family on a more specific selector. */
+.reveal .slides section,
+.reveal h1, .reveal h2, .reveal h3, .reveal h4,
+.reveal .quarto-title-block {
+  font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}
+
+/* Slide titles: academic blue with a rule under them. Margin and font size
+   stay as set above; only colour and the underline are added. */
+.reveal h2 {
+  color: #14324a;
+  border-bottom: 3px solid #3b9ab2;
+  padding-bottom: 0.12em;
+}
+
+/* Result tables: dark header band, hairline grid, zebra body. */
+.reveal table th {
+  background: #14324a;
+  color: #ffffff;
+  border: 1px solid #cfd8dd;
+  text-align: center;
+}
+.reveal table td {
+  border: 1px solid #d7dee2;
+  vertical-align: middle;
+}
+.reveal table tbody tr:nth-child(even) {
+  background: #f4f7f9;
+}
+
+/* Two-column slides sat flush against each other at this width. */
+.reveal .columns {
+  gap: 1.2em;
+}
+
+/* Figure captions italic, matching the reference deck. Size and colour are
+   already set above. */
+.reveal figcaption {
+  font-style: italic;
+}
