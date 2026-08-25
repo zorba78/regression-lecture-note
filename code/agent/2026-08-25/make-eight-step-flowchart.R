@@ -25,9 +25,9 @@ BOX_FILL <- "#ffffff"
 ## ---- content ----------------------------------------------------------
 
 phases <- list(
-     list(head = "문제 설정 및 데이터 획득", sub = "Before any number exists"),
-     list(head = "모형 특정 및 적합", sub = "Specify and fit"),
-     list(head = "검증 및 사용", sub = "Check and use")
+     list(head = "문제 설정 및 데이터 획득", sub = "Problem setting and data collection"),
+     list(head = "모형 특정 및 적합", sub = "Model specification and fitting"),
+     list(head = "검증 및 사용", sub = "Validation and use")
 )
 
 steps <- list(
@@ -87,7 +87,7 @@ for (g in 1:3) {
           band_top - 4.0,
           phases[[g]]$head,
           font = 2,
-          cex = 1.25,
+          cex = 1.62,
           col = INK
      )
      text(
@@ -95,7 +95,7 @@ for (g in 1:3) {
           band_top - 8.2,
           phases[[g]]$sub,
           font = 3,
-          cex = 0.85,
+          cex = 1.10,
           col = INK2
      )
 
@@ -114,8 +114,8 @@ for (g in 1:3) {
                border = COL_BLUE,
                lwd = 2
           )
-          text(bx[g], y + 1.7, steps[[i]][1], font = 2, cex = 1.05, col = INK)
-          text(bx[g], y - 2.6, steps[[i]][2], font = 3, cex = 0.80, col = INK2)
+          text(bx[g], y + 1.7, steps[[i]][1], font = 2, cex = 1.36, col = INK)
+          text(bx[g], y - 2.6, steps[[i]][2], font = 3, cex = 1.04, col = INK2)
           # arrow down to the next box inside the same band
           if (k < length(ids)) {
                arrows(
@@ -173,7 +173,7 @@ text(
      fb - 3.8,
      "7단계 모형 검증 결과가 만족스럽지 않은 경우",
      font = 2,
-     cex = 1.05,
+     cex = 1.36,
      col = COL_ORANGE
 )
 text(
@@ -181,7 +181,7 @@ text(
      fb - 7.6,
      "Regression analysis is a loop, not a one-way street",
      font = 3,
-     cex = 0.82,
+     cex = 1.07,
      col = COL_ORANGE
 )
 
