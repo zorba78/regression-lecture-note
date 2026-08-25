@@ -26,7 +26,7 @@ date: 2026-08-24
 - `.small / .smaller / .muted / .center-text` — **`.smaller`는 Quarto 내장 클래스이고 이 덱에서 61회 사용**. 0.68em으로 재정의하면 61장이 한꺼번에 축소됨
 - 연구 전용 클래스 15종(`.ctrl/.gyn/.andr`, `.badge`, `.banner`, `.card`, `.tone-*`, `.chip`, `.phenotype-card`, `.body-fig`, `.col-head`, `.sig/.nonsig` 등) — 이 덱에서 사용처 0
 
-**주의 1 — 폰트는 SCSS 변수로 안 먹는다.** 참조 덱은 `theme: [default, custom.scss]`라 `$font-family-sans-serif`가 통하지만, 이 덱의 `simple` 테마는 `'Source Sans Pro'`를 고정한다. 반드시 `lecture.css`에 일반 CSS 규칙으로 쓸 것. 웹폰트 `@import`는 절대 넣지 말 것(폐쇄망).
+**주의 1 — 폰트는 SCSS 변수로 안 먹는다.** 참조 덱은 `theme: [default, custom.scss]`라 `$font-family-sans-serif`가 통하지만, 이 덱의 `simple` 테마는 `'Source Sans Pro'`를 고정한다. 반드시 `lecture.css`에 일반 CSS 규칙으로 쓸 것. 웹폰트 `@import`는 절대 넣지 말 것(폐쇄망). 2026-08-24 렌더본 확인: `Noto Sans KR` 은 문서에 포함되지 않으므로 실제 표시는 두 번째 순위인 **Malgun Gothic** 으로 떨어진다(Windows 기본 탑재). 발표 PC가 Windows면 그대로 쓰면 되고, 다른 OS면 세 번째 이하로 내려간다.
 
 **주의 2 — 스타일 변경은 레이아웃을 깨뜨린다.** H2 밑줄로 상단이 약 12px 늘고 한글 폰트가 넓어져, 이식 후 2장이 깨졌다. `일반화최소제곱(GLS): WLS와의 관계`(세로 빠듯), `예제 physics 자료: 추정 결과`(WLS 식 가로 잘림). 둘 다 제목에 `{.smaller}`를 붙여 해결. 앞으로 전역 스타일을 건드리면 `{.smaller}` 없는 장문 슬라이드부터 캡처해 확인할 것. 관련: [[slide-overflow-check]]
 
