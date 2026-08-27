@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+    a { color: #027eb6; } a:hover { color: #14324a; }
+    .mth { font-family: "Cambria Math", "Latin Modern Math", Georgia, serif; font-style: italic; }
+    .up { font-style: normal; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; height: 1024px; box-sizing: border-box; background: #ffffff; padding: 58px 64px 40px 64px; display: flex; flex-direction: column; color: #191919">
+
+  <div style="display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 9px; border-bottom: 2px solid #3b9ab2">
+    <div style="font-size: 56px; font-weight: 700; color: #14324a; line-height: 1.08">최대가능도법의 착안</div>
+    <div style="font-size: 24px; font-weight: 700; color: #3b9ab2; letter-spacing: 0.04em">정의</div>
+  </div>
+
+  <div style="font-size: 26px; line-height: 1.45; color: #1c2733; margin-top: 16px">확률을 말하려면 오차에 분포가 필요. <span class="mth">ε<sub>i</sub></span> ~ <span class="mth">N</span>(0, <span class="mth">σ</span><span class="up">²</span>) 이면 <span class="mth">y<sub>i</sub></span> ~ <span class="mth">N</span>(<span class="mth">β</span><sub>0</sub> + <span class="mth">β</span><sub>1</sub><span class="mth">x<sub>i</sub></span>, <span class="mth">σ</span><span class="up">²</span>)</div>
+
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px">
+    <img src="likelihood.png" style="width: 1152px; display: block">
+    <div style="font-size: 21px; font-style: italic; color: #52514e">The normal-error model (left) and the log-likelihood over candidate slopes (right)</div>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px">
+    <div style="border-top: 3px solid #3b9ab2; padding-top: 14px; display: flex; flex-direction: column; gap: 9px">
+      <div style="font-size: 23px; font-weight: 700; color: #14324a">무엇을 보는가</div>
+      <div style="font-size: 25px; line-height: 1.45">관측마다 종이 하나씩 있고 중심만 직선을 따라 움직임. 폭 <span class="mth">σ</span> 는 어디서나 같음</div>
+    </div>
+    <div style="border-top: 3px solid #e0a800; padding-top: 14px; display: flex; flex-direction: column; gap: 9px">
+      <div style="font-size: 23px; font-weight: 700; color: #14324a">무엇을 얻는가</div>
+      <div style="font-size: 25px; line-height: 1.45">곡선의 꼭대기 <span class="mth">β̂</span><sub>1</sub> = 0.00311 은 제곱합 곡선의 바닥과 같은 자리 — 위아래로 뒤집은 모양</div>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 18px; font-size: 19px; color: #8a8a86">
+    <div>3. Simple Linear Regression</div>
+    <div>17 / 28</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

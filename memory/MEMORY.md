@@ -10,6 +10,11 @@
 - [R 코드 금지·이론 우선](no-r-code-theory-first.md) — 청강자가 R을 모름. 계산은 수식으로 제시
 - [문체 규칙](slide-register-rule.md) — 본문 개조식(정의·정리는 문장 유지) / 노트 경어체, AI 어투는 노트를 먼저 볼 것
 - [연결감 장치](slide-flow-devices.md) — 제목 차별화 · 장 브리지 · 이 장의 정리 통일
+- [장별 개별 덱](chapter-split-decks.md) — 장별 덱 8개가 정본. 마스터는 동결, split 스크립트는 다시 돌리지 않음
+- [행렬 도구의 장 분업](matrix-toolbox-ch2-vs-ch4.md) — 정의는 02장, 적용은 04장. 양쪽에 같은 내용을 쓰지 않음
+- [최대가능도 용어와 03장 MLE](likelihood-term-and-ch3-mle.md) — 덱 전체가 "최대가능도". 03장 유도가 05장 AIC의 근거
+- [슬라이드 배치 시스템](slide-layout-system.md) — 배치는 lecture.css로 결정. A는 정의 밴드뿐, 바닥 고정은 선택형 .pin. vh 단위 금지
+- [tabset 폐지](tabset-removed-for-pdf.md) — PDF에서 활성 탭만 남으므로 16개 전부 해제. 노트의 "탭" 지시도 함께 정리
 - [슬라이드 스타일 구성](deck-style-decisions.md) — CSS 파일 역할, 참조 덱에서 가져온 것과 버린 것
 - [레이아웃 초과 검출법](slide-overflow-check.md) — 151장 레이아웃 초과 검출법과 실패하는 방식
 - [회귀 명칭의 유래](regression-etymology-sources.md) — reversion→regression 경위. regression 첫 등장은 1886이 아니라 1885
@@ -19,3 +24,5 @@
 - [ice 데이터 year 변수](ice-data-year-variable.md) — year는 계절이 아니라 관측 연차(사실 오류 주의)
 - [참고자료 PDF 잠김](reference-pdfs-locked.md) — CNU·DSSI PDF 암호 보호로 읽기 불가, R 예제만 가용
 - [Quarto/R 실행 경로](tooling-paths-windows.md) — quarto는 8.3 단축 경로로 호출 필요
+- [사용자 편집 영역 보존](respect-user-edits.md) — 사용자가 직접 고친 부분은 요청 없이 손대지 않음
+- [split 스크립트의 편집 파괴](split-script-destroys-user-edits.md) — 장별 덱은 통째로 덮어써짐. 실행 전 mtime 확인 필수

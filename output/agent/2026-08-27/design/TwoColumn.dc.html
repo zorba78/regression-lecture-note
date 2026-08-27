@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+    a { color: #027eb6; } a:hover { color: #14324a; }
+    .mth { font-family: "Cambria Math", "Latin Modern Math", Georgia, serif; font-style: italic; }
+    .up { font-style: normal; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; height: 1024px; box-sizing: border-box; background: #ffffff; padding: 58px 64px 40px 64px; display: flex; flex-direction: column; color: #191919">
+
+  <div style="display: flex; flex-direction: column">
+    <div style="font-size: 56px; font-weight: 700; color: #14324a; line-height: 1.08; padding-bottom: 9px; border-bottom: 2px solid #3b9ab2">행렬의 계수</div>
+  </div>
+
+  <div style="display: flex; gap: 32px; flex-grow: 1; margin-top: 24px">
+
+    <div style="width: 430px; flex-shrink: 0; background: #f4f7f9; border-top: 4px solid #14324a; padding: 22px 24px; display: flex; flex-direction: column; gap: 20px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b9ab2" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="0.8" fill="#3b9ab2"></circle></svg>
+        <div style="font-size: 30px; font-weight: 700; color: #27374a">정의</div>
+      </div>
+      <div style="font-size: 25px; line-height: 1.5"><span style="font-weight: 700">계수</span>(rank) <span class="mth">rank</span>(<span class="mth" style="font-weight:700">A</span>) : 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.</div>
+      <div style="font-size: 25px; line-height: 1.5"><span style="font-weight: 700">완전계수</span>(full rank) : 정방행렬이 완전계수인 것과 <span class="mth">det</span>(<span class="mth" style="font-weight:700">A</span>) <span class="up">≠</span> 0 은 동치이다.</div>
+      <div style="height: 1px; background: #cfd8dd"></div>
+      <div style="font-size: 23px; line-height: 1.5; color: #52514e"><span style="font-weight: 700; color: #14324a">서로 독립</span> : 어떤 열도 나머지 열들의 조합으로 만들어지지 않음. 만들어지는 열은 새 정보가 아님</div>
+      <div style="flex-grow: 1"></div>
+      <div style="border-left: 4px solid #3b9ab2; padding-left: 14px; font-size: 22px; line-height: 1.45; color: #1c2733"><span style="font-weight: 700; color: #14324a">회귀에서의 쓰임</span><br><span class="mth">rank</span>(<span class="mth" style="font-weight:700">X</span><span class="up">ᵀ</span><span class="mth" style="font-weight:700">X</span>) = <span class="mth">rank</span>(<span class="mth" style="font-weight:700">X</span>) 이므로 열이 완전계수 <span class="mth">p</span>+1 일 때에만 역행렬이 존재</div>
+    </div>
+
+    <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 22px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3b9ab2" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h10"></path></svg>
+        <div style="font-size: 30px; font-weight: 700; color: #27374a">확인</div>
+      </div>
+
+      <div style="border: 1px solid #d7dee2; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px">
+        <div style="font-size: 24px; font-weight: 700; color: #14324a">앞 슬라이드의 두 행렬</div>
+        <div style="display: flex; gap: 26px; align-items: center">
+          <div style="font-size: 27px" class="mth" style="font-weight:700">A</div>
+          <div style="font-size: 26px; line-height: 1.5"><span class="mth">rank</span> = 2 (2열 중 2) → 완전계수, <span class="mth">det</span> = 1</div>
+        </div>
+        <div style="display: flex; gap: 26px; align-items: center">
+          <div style="font-size: 27px" class="mth" style="font-weight:700">S</div>
+          <div style="font-size: 26px; line-height: 1.5"><span class="mth">rank</span> = 1 (2열 중 1) → 계수 부족, <span class="mth">det</span> = 0</div>
+        </div>
+        <div style="font-size: 23px; line-height: 1.5; color: #52514e"><span class="mth" style="font-weight:700">S</span> 의 2열 (1, 2)<span class="up">ᵀ</span> 은 1열 (2, 4)<span class="up">ᵀ</span> 의 절반. 열이 둘처럼 보이지만 정보는 하나</div>
+      </div>
+
+      <div style="border: 1px solid #d7dee2; padding: 20px 24px; display: flex; flex-direction: column; gap: 14px; flex-grow: 1">
+        <div style="font-size: 24px; font-weight: 700; color: #14324a">설계행렬에서</div>
+        <table style="border-collapse: collapse; width: 100%; font-size: 23px">
+          <tr>
+            <th style="background: #14324a; color: #ffffff; border: 1px solid #cfd8dd; text-align: center; padding: 8px 14px; font-weight: 700">Matrix</th>
+            <th style="background: #14324a; color: #ffffff; border: 1px solid #cfd8dd; text-align: center; padding: 8px 14px; font-weight: 700">Size</th>
+            <th style="background: #14324a; color: #ffffff; border: 1px solid #cfd8dd; text-align: center; padding: 8px 14px; font-weight: 700">rank</th>
+            <th style="background: #14324a; color: #ffffff; border: 1px solid #cfd8dd; text-align: center; padding: 8px 14px; font-weight: 700">det(X<span class="up">ᵀ</span>X)</th>
+          </tr>
+          <tr>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">X</td>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">30 × 4</td>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">4</td>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">4.68 × 10⁵</td>
+          </tr>
+          <tr style="background: #f4f7f9">
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">+ 섭씨 열</td>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">30 × 5</td>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">4</td>
+            <td style="border: 1px solid #d7dee2; padding: 8px 14px; text-align: center">1.5 × 10⁻⁶</td>
+          </tr>
+        </table>
+        <div style="font-size: 21px; font-style: italic; color: #52514e">Rank of the ice cream design matrix, with and without a redundant column</div>
+        <div style="font-size: 23px; line-height: 1.5; color: #52514e">열을 하나 더 넣어도 rank는 4에 머무름</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 19px; color: #8a8a86">
+    <div>2. Preliminary Knowledge</div>
+    <div>11 / 29</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

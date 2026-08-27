@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+    a { color: #027eb6; } a:hover { color: #14324a; }
+    .mth { font-family: "Cambria Math", "Latin Modern Math", Georgia, serif; font-style: italic; }
+    .up { font-style: normal; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; height: 1024px; box-sizing: border-box; background: #ffffff; padding: 58px 64px 40px 64px; display: flex; flex-direction: column; color: #191919">
+
+  <div style="display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 9px; border-bottom: 2px solid #3b9ab2">
+    <div style="font-size: 56px; font-weight: 700; color: #14324a; line-height: 1.08">최대가능도 추정</div>
+    <div style="font-size: 24px; font-weight: 700; color: #3b9ab2; letter-spacing: 0.04em">가능도에서 정규방정식까지</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 34px; margin-top: 26px; flex-grow: 1">
+
+    <div style="display: flex; gap: 22px; align-items: stretch">
+      <div style="width: 54px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px">
+        <div style="width: 46px; height: 46px; border-radius: 50%; background: #14324a; color: #ffffff; font-size: 25px; font-weight: 700; display: flex; align-items: center; justify-content: center">1</div>
+        <div style="width: 2px; flex-grow: 1; background: #cfd8dd"></div>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 9px; padding-bottom: 6px">
+        <div style="font-size: 27px; font-weight: 700; color: #27374a">밀도를 모두 곱한다</div>
+        <div style="font-size: 26px; line-height: 1.5; color: #1c2733">관측이 서로 독립이므로 정규밀도 <span class="mth">n</span>개의 곱이 <span style="font-weight: 700">가능도</span>. 지수를 모으면 제곱합 <span class="mth">S</span>(<span class="mth">β</span><sub>0</sub>, <span class="mth">β</span><sub>1</sub>) 이 저절로 등장</div>
+        <div style="background: #f4f7f9; padding: 12px 20px; font-size: 26px" class="mth"><span style="font-weight:700">L</span> = (2<span class="up">π</span>σ<span class="up">²</span>)<span class="up">⁻ⁿ/²</span> exp{ − S(β<sub>0</sub>, β<sub>1</sub>) / 2σ<span class="up">²</span> }</div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 22px; align-items: stretch">
+      <div style="width: 54px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px">
+        <div style="width: 46px; height: 46px; border-radius: 50%; background: #14324a; color: #ffffff; font-size: 25px; font-weight: 700; display: flex; align-items: center; justify-content: center">2</div>
+        <div style="width: 2px; flex-grow: 1; background: #cfd8dd"></div>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 9px; padding-bottom: 6px">
+        <div style="font-size: 27px; font-weight: 700; color: #27374a">로그를 취한다</div>
+        <div style="font-size: 26px; line-height: 1.5; color: #1c2733">로그는 증가함수이므로 최대점의 위치가 바뀌지 않음. <span class="mth">β</span> 가 들어 있는 항은 마지막 하나뿐</div>
+        <div style="background: #f4f7f9; padding: 12px 20px; font-size: 26px" class="mth"><span style="font-weight:700">ℓ</span> = − (n/2) ln(2<span class="up">π</span>) − (n/2) ln σ<span class="up">²</span> − S(β<sub>0</sub>, β<sub>1</sub>) / 2σ<span class="up">²</span></div>
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 22px; align-items: stretch">
+      <div style="width: 54px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px">
+        <div style="width: 46px; height: 46px; border-radius: 50%; background: #3b9ab2; color: #ffffff; font-size: 25px; font-weight: 700; display: flex; align-items: center; justify-content: center">3</div>
+      </div>
+      <div style="flex-grow: 1; display: flex; flex-direction: column; gap: 9px">
+        <div style="font-size: 27px; font-weight: 700; color: #27374a">계수 앞의 부호를 본다</div>
+        <div style="font-size: 26px; line-height: 1.5; color: #1c2733">그 계수 <span class="mth">−1 / 2σ<span class="up">²</span></span> 는 항상 <span style="font-weight: 700">음수</span>. 따라서 가능도를 키우는 일과 제곱합을 줄이는 일이 같아짐</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="background: #14324a; color: #ffffff; padding: 22px 28px; display: flex; align-items: center; justify-content: center; gap: 26px">
+    <div style="font-size: 30px; font-weight: 700" class="mth">ℓ <span class="up">을 최대화</span></div>
+    <div style="font-size: 30px; color: #9fd0dd">⟺</div>
+    <div style="font-size: 30px; font-weight: 700" class="mth">S(β<sub>0</sub>, β<sub>1</sub>) <span class="up">을 최소화</span></div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; font-size: 19px; color: #8a8a86">
+    <div>3. Simple Linear Regression</div>
+    <div>18 / 28</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

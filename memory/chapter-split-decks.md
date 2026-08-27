@@ -1,0 +1,35 @@
+---
+name: chapter-split-decks
+description: 장별 덱 8개가 정본이다. 분할은 1회성이었고 split-chapters.py는 다시 돌리지 않는다
+type: project
+date: 2026-08-26
+---
+
+**정본은 장별 덱 8개** `quarto/agent/2026-08-26/01-introduction.qmd` ~ `08-summary.qmd` 이다. 수정은 **해당 장의 파일에서 직접** 한다.
+
+**`code/agent/2026-08-26/split-chapters.py` 를 다시 돌리지 말 것.** 사용자가 요청한 것은 "이전 전체 버전을 장별로 나눠 달라"는 **1회성 분할**이었지, 장 하나를 고칠 때마다 8개를 재생성하라는 것이 아니었다. 재실행하면 장별 덱의 손편집이 전부 사라진다(실제로 `01-introduction.qmd` 의 `1·2단계` 슬라이드 편집을 이렇게 잃었다). 관련: [[split-script-destroys-user-edits]]
+
+**마스터 `quarto/agent/2026-08-13/regression-lecture-note.qmd` 는 분할 시점의 기록으로 동결**한다. 장별 덱과 동기화하지 않는다. 2026-08-26 16:33 분할 시점까지의 내용(자료 10행, 4단계 모형 설정 재배치, 변수의 유형 이동, 콜아웃 리스트 스타일)은 양쪽이 일치한다.
+
+| 파일 | 장 | H2 슬라이드 |
+|:--|:--|--:|
+| 01-introduction | Introduction | 22 |
+| 02-preliminary-knowledge | Preliminary Knowledge | 24 |
+| 03-simple-linear-regression | Simple Linear Regression | 23 |
+| 04-multiple-linear-regression | Multiple Linear Regression | 31 |
+| 05-diagnosis-variable-selection | Diagnosis & Variable Selection | 20 |
+| 06-weighted-regression | Weighted Regression | 22 |
+| 07-dummy-variable | Dummy Variable | 14 |
+| 08-summary | Summary | 7 |
+
+기준은 `grep -c '^## '` 값이며 각 장 끝의 참고문헌 슬라이드를 포함한다(2026-08-26 실측). 표지 H1과 렌더 시 붙는 첫 장 때문에 화면 하단 번호는 이 값보다 크다.
+
+**경로 규칙 두 가지 (분할 때 스크립트가 처리해 둔 것. 이제는 각 덱에 이미 반영되어 있음)**
+- YAML의 `assets/...` → `../2026-08-13/assets/...` 로 재작성. CSS·폰트를 복제하지 않고 마스터 것을 공유한다.
+- 그림 경로 `../../../output/...` 은 **그대로 둔다.** 새 폴더가 같은 깊이라 유효하다.
+
+**참고문헌 배치**: 마스터 끝의 참고문헌 3장은 장별 덱에서 제거하고, 각 장에서 **실제로 인용한 문헌만** 골라 그 장 마지막에 붙인다. 인용 위치는 aside 블록·표 캡션·본문 `(저자, 연도)` 표기로 확인했다. 교과서 2권(Kutner 2005, Faraway 2015)은 모든 덱에 공통으로 넣어 각 덱이 독립적으로 성립하게 한다.
+
+**강의노트 인용은 넣지 않는다**(사용자 지시, 2026-08-26). 정재환 DSSI 강의자료와 CNU 회귀분석 강의노트는 장별 덱의 참고문헌에서 제외한다.
+
+**검증**: 8개 모두 렌더 exit 0, 깨진 그림 참조 0, 외부 링크는 ORCID 1건뿐(마스터와 동일). 관련: [[lecture-draft-progress]], [[deck-style-decisions]], [[tooling-paths-windows]]

@@ -25,7 +25,7 @@
 
 /* Figures must never push the slide into vertical overflow. */
 .reveal .slide img {
-  max-height: 614px;   /* 60% of the 1024px canvas */
+  max-height: 60vh;
   width: auto;
   object-fit: contain;
 }
@@ -66,20 +66,15 @@
   margin: 0.5em 0 !important;
 }
 
-/* Every display equation used to carry `overflow-x: auto; overflow-y: hidden`
-   here as a safety net against math wider than the slide. That made each
-   equation its own scroll box, and a scroll box shows a full-width scrollbar as
-   soon as its content is ONE pixel wider than its container - which sub-pixel
-   rounding produces on its own at browser zoom or Windows display scaling other
-   than 100%. The result was a scrollbar under equations with room to spare: on
-   02 "멱등행렬" the math measures 373px inside a 530px box, 30% clear, and a bar
-   still appeared. `max-width` is kept - it constrains without creating a scroll
-   box - and over-wide math now spills visibly instead of hiding behind a bar,
-   which is what the horizontal-overflow check looks for. Long equations belong
-   in an `aligned` environment in the source; that is the real fix. */
+/* Safety net for equations wider than the slide. Display math does not wrap,
+   so an over-long line is silently clipped at the right edge; this makes it
+   scroll instead of disappear. Long equations should still be stacked with
+   an aligned environment in the source: this only stops silent data loss. */
 .reveal .slides section .MathJax_Display,
 .reveal .slides section mjx-container[display="true"] {
   max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 /* Same guard for wide tables and columns. */
@@ -108,7 +103,7 @@
 /* Code blocks are illustrative, not the focus. */
 .reveal pre code {
   font-size: 0.72em;
-  max-height: 471px;   /* 46% of the 1024px canvas */
+  max-height: 46vh;
 }
 
 /* Aside = provenance line ("Computed by ..."). Keep it quiet. */
@@ -189,53 +184,93 @@
    (they all load this file). Chosen from the layout candidates reviewed on
    2026-08-27; see output/agent/2026-08-27/design/.
 
-     A  (no class)  the definition blockquote reads as a tinted band. Nothing
-                    else: slides keep the browser's block layout.
-     A' .pin        opt-in. Full-height flex column with the closing callout on
-                    the bottom edge, for the sparser slides that had 300-370px
-                    of dead space at the foot (신뢰구간, 직교벡터, 멱등행렬).
-     B  .rail       concept rail left, working area right, both full height.
+     A  (no class)  base grid. The slide is a vertical stack that fills the
+                    1024px canvas: the definition blockquote reads as a tinted
+                    band and the closing callout is pinned to the bottom edge
+                    instead of floating in the middle of the slide. Measured
+                    before this change: 300-370px of dead space at the foot of
+                    the sparser slides (신뢰구간, 직교벡터, 대각합, 멱등행렬).
+     B  .rail      concept rail left, working area right, both full height.
      C  .fig-led    the figure takes the full content width; the read-out sits
                     under it, pinned to the foot.
      D  .stepped    numbered derivation steps with a dark conclusion band.
 
-   Every class is opt-in on the H2, so an untouched slide renders exactly as it
-   did before this file grew a layout section. A' was the deck-wide default from
-   2026-08-27 until later the same day, when it was measured as the cause of
-   four distinct layout defects; see the A block below for the measurements.
-
-   NO `vh` UNITS ANYWHERE IN THIS FILE. reveal renders into the fixed 1280x1024
-   canvas set in each deck's YAML and then transform-scales it to the window, so
-   a `vh` inside a slide resolves against the BROWSER WINDOW, not the slide.
-   Measured on 02 "대각합": a `min-height: 72vh` rail is 69.8% of the slide in a
-   1024px-tall window, 85.7% at 1280 and 86.4% at 1920 - it runs clean off the
-   bottom on any normal monitor, which is why a sweep at exactly 1280x1024 sees
-   nothing wrong. Use px against the 1024px canvas instead.
+   The base grid is deliberately CSS-only so no slide source had to be
+   rewritten; B/C/D are opt-in classes on the H2.
    =========================================================================== */
 
-/* --- A: base ---------------------------------------------------------------
-   A is the definition band and nothing else. It was originally the whole slide
-   turned into a full-height flex column with the closing callout pinned to the
-   foot; that was withdrawn on 2026-08-27 after it was measured as the cause of
-   four separate defects, and the pin now lives behind the opt-in `.pin` class
-   below. Do not put the flex column back on the default. Why:
+/* --- A: base grid ---------------------------------------------------------
+   `height: 100%` turns the section into a full-canvas flex column so that an
+   `auto` top margin can push the closing band down. `flex-shrink: 0` on the
+   children is the safety catch: without it a slide whose content already
+   exceeds the canvas would be squashed rather than overflowing as before.
 
-   1. A flex container does NOT collapse the vertical margins between adjacent
-      children. Three callouts each carrying an inline `margin-top: 1em;
-      margin-bottom: 1em` cost 1em per gap in block layout and 2em here, so
-      every already-full slide gained height and clipped. Measured on 01
-      "Galton 자료에 대한 단순선형모형 적합": bottom-band ink 0 before, 6072
-      after, 0 again with the flex column off and everything else left in place.
-      CSS cannot ask for collapsed margins inside a flex container.
-   2. The same doubling inflated the gaps between blocks on slides that did fit,
-      which read as sloppy spacing rather than as a layout (01 "변수의 유형").
-   3. `margin-top: auto` takes ALL the remaining free space before anything else
-      gets a share, so the pinned callout landed on top of the absolutely
-      positioned provenance <aside> (02 "회귀모형의 행렬 표현").
-   4. Slides that are only a heading and a table gained a ~200px void under the
-      heading (01 "강의의 구성").
+   Scoped to `.present` on purpose: reveal drives slide visibility with an
+   inline `display` (none for far slides, block for near ones), so a blanket
+   `display: flex !important` would force every slide visible at once. Only
+   the slide on screen carries .present, and only there does the inline
+   `block` need overriding. Off-screen preloads keep block layout, which does
+   not matter visually; PDF print mode also stays block, so the pin is a
+   screen refinement, not a PDF one.
 
-   The tint is safe because it changes no box heights that matter. */
+   `.dense` opts a slide out entirely. A flex container does NOT collapse the
+   vertical margins between adjacent children, so switching a slide from block
+   to flex silently ADDS a margin at every boundary: three callouts each
+   carrying an inline `margin-top: 1em; margin-bottom: 1em` cost 1em per gap in
+   block layout and 2em here. On a slide that was already full that is the
+   difference between fitting and clipping. Measured on 01 "Galton 자료에 대한
+   단순선형모형 적합": bottom-band ink 0 with the pre-layout CSS, 6072 with this
+   rule, back to 0 with this rule disabled and everything else left in place.
+   CSS cannot ask for collapsed margins inside a flex container, so a slide
+   with no spare height has to stay block. See the `.dense` block below. */
+.reveal .slides section.slide.level2.present:not(.dense) {
+  display: flex !important;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+.reveal .slides section.slide.level2.present:not(.dense) > * {
+  flex-shrink: 0;
+}
+
+/* Print/PDF export takes the same grid. Reveal shows every section in this
+   mode (html.print-pdf), so there is no display:none to fight and no
+   !important is needed; without this rule the exported PDF would silently
+   fall back to the pre-2026-08-27 block layout while the screen deck used
+   the new one. */
+html.print-pdf .reveal .slides section.slide.level2:not(.dense) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+html.print-pdf .reveal .slides section.slide.level2:not(.dense) > * {
+  flex-shrink: 0;
+}
+
+/* The closing band. `:last-of-type` counts the last <div> child, so the rule
+   fires only when the callout really is the last block on the slide; a slide
+   ending in an .aside provenance line pins that instead, which is where a
+   footnote belongs anyway. `aside.notes` is a different tag and never counts.
+
+   The `:not(:has(~ *:not(aside)))` guard is what stops the pin from throwing
+   trailing content off the slide. Without it, a slide that ends with a
+   callout FOLLOWED BY a paragraph (06 "일반화최소제곱(GLS): WLS와의 관계")
+   pushed those three paragraphs past the bottom edge, silently. The guard
+   reads: pin only when this callout has no later sibling other than the
+   speaker-notes aside. Where :has() is unsupported the whole rule is dropped
+   and nothing pins, which is the safe way to fail.
+
+   No padding-bottom on the section: an earlier version had 0.9em there and it
+   cost every slide about 29px of usable height, which tipped five already-full
+   slides into clipping (verified against the pre-change CSS: all measured 0
+   overflow before, non-zero after). The breathing room goes on the pinned
+   element instead. */
+.reveal .slides section.slide.level2:not(.rail):not(.dense) > div.callout:last-of-type:not(:has(~ *:not(aside))),
+.reveal .slides section.slide.level2:not(.rail):not(.dense) > div.aside:last-of-type:not(:has(~ *:not(aside))) {
+  margin-top: auto;
+  margin-bottom: 0.35em;
+}
 
 /* Definition band. The quote rule alone read as a soft left tick at 1280px;
    the tint gives the definition a shape the audience can find on every slide. */
@@ -245,55 +280,24 @@
   padding: 0.5em 0.8em;
 }
 
-/* --- A option: .pin --------------------------------------------------------
-   Opt-in closing band, for a slide with real dead space at its foot. Add `.pin`
-   to the H2 and the slide becomes a full-height flex column so the last callout
-   sits on the bottom edge instead of floating mid-slide.
+/* --- A escape hatch: .dense ----------------------------------------------
+   For the handful of slides whose content already fills the canvas. The class
+   means "this slide has no spare height", and it gives back every pixel the
+   layout takes: the flex column (see above) and the band's vertical padding,
+   which is 0.5em top and bottom on a slide that cannot spare it. The tint and
+   the teal rule stay, so the slide still reads as part of the deck. The pin is
+   excluded as well - in block layout `margin-top: auto` computes to 0, which
+   would strip the closing callout's normal top margin instead of pushing it
+   down.
 
-   Use it ONLY on a slide verified to have spare height. Everything in the list
-   above still applies to a `.pin` slide - this class does not fix those, it
-   just confines them to slides where they cost nothing.
-
-   Two guards make it fail safe rather than fail silently:
-     - `:not(:has(> aside:not(.notes)))` - a slide carrying a provenance <aside>
-       is never turned into a flex column, because that aside is positioned
-       absolutely near the foot and the pinned callout would land on top of it.
-       `aside.notes` is the speaker-notes block and is not that.
-     - `:not(:has(~ *:not(aside)))` on the callout - pin only when nothing but
-       an aside follows it, so a trailing paragraph is never thrown off-slide.
-   Where `:has()` is unsupported both rules drop and nothing pins, which is the
-   safe way to fail.
-
-   Scoped to `.present`: reveal drives slide visibility with an inline `display`
-   (none for far slides, block for near ones), so a blanket `display: flex
-   !important` would force every slide visible at once. */
-.reveal .slides section.slide.level2.pin.present:not(:has(> aside:not(.notes))) {
-  display: flex !important;
-  flex-direction: column;
-  height: 100%;
-  box-sizing: border-box;
-}
-.reveal .slides section.slide.level2.pin.present:not(:has(> aside:not(.notes))) > * {
-  flex-shrink: 0;
-}
-
-/* Print/PDF export takes the same grid. Reveal shows every section in this mode
-   (html.print-pdf), so there is no display:none to fight. */
-html.print-pdf .reveal .slides section.slide.level2.pin:not(:has(> aside:not(.notes))) {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  box-sizing: border-box;
-}
-html.print-pdf .reveal .slides section.slide.level2.pin:not(:has(> aside:not(.notes))) > * {
-  flex-shrink: 0;
-}
-
-/* `:last-of-type` counts the last <div> child, so this fires only when the
-   callout really is the last block on the slide. */
-.reveal .slides section.slide.level2.pin:not(.rail) > div.callout:last-of-type:not(:has(~ *:not(aside))) {
-  margin-top: auto;
-  margin-bottom: 0.35em;
+   Measured on 05 "선택 후 재진단": bottom-band ink 530 with the layout, 433
+   with the flex column off but the band padding still on, 0 with both off.
+   Carried by 8 slides as of 2026-08-27; 02 "행렬 표기의 필요성" is on the list
+   because the layout made it worse (1127 -> 1611), but it overflowed by 1127
+   before any of this work and .dense only returns it to that state. */
+.reveal .slides section.slide.level2.dense blockquote {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 /* --- B: .rail ------------------------------------------------------------
@@ -313,7 +317,7 @@ html.print-pdf .reveal .slides section.slide.level2.pin:not(:has(> aside:not(.no
    min-height is deterministic, and 72vh of the 1024px canvas puts the foot of
    the rail at about y=880, just above the closing band. */
 .reveal .slides section.slide.level2.rail > .columns > .column:first-child {
-  min-height: 737px;   /* 72% of the 1024px canvas */
+  min-height: 72vh;
 }
 /* An auto margin swallows all remaining free space before flex-grow gets a
    share of it, so on a .rail slide the two rails would never reach the foot
@@ -344,7 +348,7 @@ html.print-pdf .reveal .slides section.slide.level2.pin:not(:has(> aside:not(.no
 .reveal .slides section.fig-led img {
   width: 100%;
   height: auto;
-  max-height: 512px;   /* 50% of the 1024px canvas */
+  max-height: 50vh;
 }
 .reveal .slides section.fig-led .quarto-figure,
 .reveal .slides section.fig-led figure {
@@ -412,24 +416,13 @@ html.print-pdf .reveal .slides section.slide.level2.pin:not(:has(> aside:not(.no
   border-radius: 0;
 }
 .reveal .slides section.stepped > div.callout:last-of-type,
-.reveal .slides section.stepped > div.callout:last-of-type .callout-body,
+.reveal .slides section.stepped > div.callout:last-of-type .callout-body-container,
 .reveal .slides section.stepped > div.callout:last-of-type strong {
   color: #ffffff;
 }
 /* The conclusion is one short statement; centre it and give it the weight of
-   a result rather than of another bullet.
-   `flex-grow` is what makes the centring visible. Quarto renders BOTH div.callout
-   and .callout-body as flex rows, so .callout-body and .callout-content are flex
-   items and without a grow factor each shrinks to the width of its own content -
-   measured at 265.7px inside a 1045.1px band on 2026-08-28. text-align: center
-   was in force the whole time, but it was centring inside that narrow box, which
-   sat at the left edge of the band. Both levels need to grow; MathJax is not
-   involved. */
-.reveal .slides section.stepped > div.callout:last-of-type .callout-body,
-.reveal .slides section.stepped > div.callout:last-of-type .callout-content {
-  flex: 1 1 auto;
-}
-.reveal .slides section.stepped > div.callout:last-of-type .callout-body {
+   a result rather than of another bullet. */
+.reveal .slides section.stepped > div.callout:last-of-type .callout-body-container {
   text-align: center;
   font-size: 1.05em;
   padding: 0.35em 0;

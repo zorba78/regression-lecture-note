@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <style>
+    body { margin: 0; font-family: "Noto Sans KR", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif; }
+    a { color: #027eb6; } a:hover { color: #14324a; }
+    .mth { font-family: "Cambria Math", "Latin Modern Math", Georgia, serif; font-style: italic; }
+    .up { font-style: normal; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; height: 1024px; box-sizing: border-box; background: #ffffff; padding: 58px 64px 40px 64px; display: flex; flex-direction: column; gap: 0; color: #191919">
+
+  <div style="display: flex; flex-direction: column; gap: 0">
+    <div style="font-size: 56px; font-weight: 700; color: #14324a; line-height: 1.08; padding-bottom: 9px; border-bottom: 2px solid #3b9ab2">행렬의 계수</div>
+    <div style="display: flex; align-items: center; gap: 11px; margin-top: 16px">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#3b9ab2" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="4.5"></circle><circle cx="12" cy="12" r="0.8" fill="#3b9ab2"></circle></svg>
+      <div style="font-size: 38px; font-weight: 700; color: #27374a; line-height: 1.1">정의</div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 22px; margin-top: 26px; flex-grow: 1">
+
+    <div style="background: #f4f7f9; border-left: 5px solid #3b9ab2; padding: 20px 26px; display: flex; flex-direction: column; gap: 13px">
+      <div style="font-size: 28px; line-height: 1.45"><span style="font-weight: 700">계수</span>(rank) <span class="mth">rank</span>(<span class="mth" style="font-weight:700">A</span>) : 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.</div>
+      <div style="font-size: 28px; line-height: 1.45"><span style="font-weight: 700">완전계수</span>(full rank) : 정방행렬이 완전계수인 것과 <span class="mth">det</span>(<span class="mth" style="font-weight:700">A</span>) <span class="up">≠</span> 0 은 동치이다.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; align-items: start">
+      <div style="border: 1px solid #d7dee2; border-left: 5px solid #3b9ab2; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 23px; font-weight: 700; color: #14324a; letter-spacing: 0.01em">앞 슬라이드의 두 행렬</div>
+        <div style="font-size: 25px; line-height: 1.5"><span class="mth">rank</span>(<span class="mth" style="font-weight:700">A</span>) = 2 &nbsp;→&nbsp; 완전계수, <span class="mth">det</span> = 1</div>
+        <div style="font-size: 25px; line-height: 1.5"><span class="mth">rank</span>(<span class="mth" style="font-weight:700">S</span>) = 1 &nbsp;→&nbsp; 계수 부족, <span class="mth">det</span> = 0</div>
+        <div style="font-size: 23px; line-height: 1.5; color: #52514e">2열이 1열의 절반. 열이 둘처럼 보이지만 정보는 하나</div>
+      </div>
+      <div style="border: 1px solid #d7dee2; border-left: 5px solid #e0a800; padding: 18px 22px; display: flex; flex-direction: column; gap: 12px">
+        <div style="font-size: 23px; font-weight: 700; color: #14324a; letter-spacing: 0.01em">설계행렬에서</div>
+        <div style="font-size: 25px; line-height: 1.5"><span class="mth" style="font-weight:700">X</span> 는 30 × 4, <span class="mth">rank</span> = 4 → 완전계수</div>
+        <div style="font-size: 25px; line-height: 1.5">섭씨 열을 더한 30 × 5 도 <span class="mth">rank</span> = 4</div>
+        <div style="font-size: 23px; line-height: 1.5; color: #52514e">열은 5개인데 정보는 4개 — 그래서 행렬식이 0으로 떨어짐</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="display: flex; align-items: flex-start; gap: 18px; border-top: 2px solid #3b9ab2; background: #eef6f9; padding: 18px 24px; margin-top: 22px">
+    <div style="font-size: 22px; font-weight: 700; color: #14324a; white-space: nowrap; padding-top: 3px">회귀에서의 쓰임</div>
+    <div style="font-size: 25px; line-height: 1.45; color: #1c2733"><span class="mth">rank</span>(<span class="mth" style="font-weight:700">X</span><span class="up">ᵀ</span><span class="mth" style="font-weight:700">X</span>) = <span class="mth">rank</span>(<span class="mth" style="font-weight:700">X</span>) 이므로 <span class="mth" style="font-weight:700">X</span> 의 열이 완전계수 <span class="mth">p</span>+1 일 때에만 역행렬이 존재. 계수가 모자라면 <span class="mth" style="font-weight:700">β̂</span> 가 하나로 정해지지 않음</div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; font-size: 19px; color: #8a8a86">
+    <div>2. Preliminary Knowledge</div>
+    <div>11 / 29</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>
