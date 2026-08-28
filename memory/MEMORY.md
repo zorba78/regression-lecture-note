@@ -22,6 +22,7 @@
 - [불확도 이론 요청](regression-uncertainty-content.md) — 표준오차·Gauss-Markov 상세 포함 요청
 - [Galton 실제 자료](galton-real-data.md) — 2026-08-24부터 모의자료 대신 실제 가족 기록(898명) 사용
 - [ice 데이터 year 변수](ice-data-year-variable.md) — year는 계절이 아니라 관측 연차(사실 오류 주의)
+- [06장 GLS 예제 = Lake Huron](gls-example-lakehuron.md) — 아이스크림은 자기상관이 약해 기각. 예제는 효과가 뚜렷한 자료로 고를 것
 - [참고자료 PDF 잠김](reference-pdfs-locked.md) — CNU·DSSI PDF 암호 보호로 읽기 불가, R 예제만 가용
 - [Quarto/R 실행 경로](tooling-paths-windows.md) — quarto는 8.3 단축 경로로 호출 필요
 - [사용자 편집 영역 보존](respect-user-edits.md) — 사용자가 직접 고친 부분은 요청 없이 손대지 않음

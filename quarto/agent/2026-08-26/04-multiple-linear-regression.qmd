@@ -46,7 +46,7 @@ editor_options:
 ### <i class="fa-solid fa-question"></i> 질문
 
 ::: {.callout-note appearance="minimal"}
-**앞 장에서 여기까지** · 온도 하나로 $R^2=0.602$. **이 장의 질문** · 설명변수를 여럿으로 늘리면 계수를 어떻게 읽고, 얼마나 믿을 수 있는가
+<i class="fa-solid fa-link"></i> **앞 장에서 여기까지**: 온도 하나로 $R^2=0.602$. <i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 설명변수를 여럿으로 늘리면 계수를 어떻게 읽고, 얼마나 믿을 수 있는가
 :::
 
 > 단순선형회귀의 적합 결과는 $R^2=0.602$ 였다. 소비량 변동의 약 40%는 온도 하나로 설명되지 않은 채 남아 있다.
@@ -79,7 +79,7 @@ editor_options:
 
 ::: {.column width="42%"}
 ::: {.callout-tip appearance="minimal"}
-**읽는 순서**
+<i class="fa-solid fa-list-check"></i> **읽는 순서**
 
 <ul>
 <li>변수 4개의 모든 짝을 산점도로 그려 한 화면에 배치한 그림</li>
@@ -97,21 +97,28 @@ editor_options:
 :::
 
 
-## 다중선형회귀모형: 정의
+## 다중선형회귀모형: 정의 {.smaller}
 
 ### <i class="fa-solid fa-bullseye"></i> 조건부 기댓값의 설명변수를 여럿으로
 
 > 관측 $i=1,\dots,n$ 에 대하여
 > $$y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\cdots+\beta_p x_{ip}+\varepsilon_i$$
 
-여기서 $y_i$: $i$번째 반응변수(소비량), $x_{ij}$: $i$번째 관측의 $j$번째 설명변수 값, $\beta_0$: 절편, $\beta_1,\dots,\beta_p$: 각 설명변수의 회귀계수, $\varepsilon_i$: 평균 0, 분산 $\sigma^2$인 오차, $n$: 관측 수(30), $p$: 설명변수 개수(3)
+**기호**
+
+<ul>
+<li>$y_i$: $i$번째 반응변수(소비량), $x_{ij}$: $i$번째 관측의 $j$번째 설명변수 값</li>
+<li>$\beta_0$: 절편, $\beta_1,\dots,\beta_p$: 각 설명변수의 회귀계수</li>
+<li>$\varepsilon_i$: 평균 0, 분산 $\sigma^2$ 인 오차</li>
+<li>$n$: 관측 수(30), $p$: 설명변수 개수(3)</li>
+</ul>
 
 ::: {.callout-tip appearance="minimal"}
-**조건부 기댓값으로 다시 쓰면**
+<i class="fa-solid fa-pen-to-square"></i> **조건부 기댓값으로 다시 쓰면**
 
 $$E(Y\mid x_1,\dots,x_p)=\beta_0+\beta_1 x_1+\cdots+\beta_p x_p$$
 
-회귀가 설명변수 조건 아래 반응변수의 평균이라는 정의는 그대로이고, 조건 자리에 놓이는 변수의 개수만 늘어남.
+회귀가 설명변수 조건 아래 반응변수의 평균이라는 정의는 그대로이고, 조건 자리에 놓이는 변수의 개수만 늘어남
 :::
 
 ::: {.aside}
@@ -138,7 +145,13 @@ $$
 \end{pmatrix}
 $$
 
-여기서 $\mathbf y$: 반응변수 $n$개를 쌓은 벡터, $\mathbf X$: 절편용 1의 열과 설명변수 열을 묶은 $n\times(p+1)$ 설계행렬, $\boldsymbol\beta$: 회귀계수 벡터($p+1$개), $\boldsymbol\varepsilon$: 오차 벡터. 이 자료에서 $\mathbf X$ 는 $30\times 4$
+**기호**
+
+<ul>
+<li>$\mathbf y$: 반응변수 $n$ 개를 쌓은 벡터, $\boldsymbol\varepsilon$: 오차 벡터</li>
+<li>$\mathbf X$: 절편용 1의 열과 설명변수 열을 묶은 $n\times(p+1)$ 설계행렬</li>
+<li>$\boldsymbol\beta$: 회귀계수 벡터($p+1$ 개). 이 자료에서 $\mathbf X$ 는 $30\times 4$</li>
+</ul>
 
 ::: notes
 관측이 서른 개면 방정식도 서른 줄입니다. 그것을 다 늘어놓으면 화면이 모자랍니다. 그래서 세로로 쌓아 한 덩어리로 묶습니다. 그것이 행렬 표기입니다. 왼쪽 맨 앞 열이 전부 1인 점이 눈에 띄실 것입니다. 이 열이 절편을 담당합니다. 절편은 어떤 설명변수에도 곱해지지 않고 항상 그대로 더해지니 곱하는 숫자가 1입니다. 우리 자료는 관측이 30개, 절편까지 세면 계수가 4개라서 설계행렬이 30행 4열입니다. 앞 장에서 행렬을 왜 배우는지 물으셨다면, 답이 이 화면입니다.
@@ -175,14 +188,14 @@ $$\therefore\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\
 > $\mathbf X$ 가 $n\times(p+1)$ 이고 $\operatorname{rank}(\mathbf X)=p+1\;(\le n)$ 일 때, 그리고 그때만 $(\mathbf X^\top\mathbf X)^{-1}$ 가 존재하고 최소제곱 해가 유일하게 정해진다.
 
 <ul>
-<li>2장에서 본 사슬 그대로 — $\operatorname{rank}(\mathbf X^\top\mathbf X)=\operatorname{rank}(\mathbf X)$ 이므로, $\mathbf X$ 가 full rank가 아니면 $\det(\mathbf X^\top\mathbf X)=0$ 이고 역행렬이 없음</li>
-<li>깨지는 경우 둘 — 어떤 설명변수가 다른 설명변수들의 <b>정확한 선형결합</b>일 때(예: 섭씨와 화씨를 함께 투입), 그리고 <b>$n<p+1$</b> 로 관측이 계수보다 적을 때</li>
+<li>2장에서 본 사슬 그대로. $\operatorname{rank}(\mathbf X^\top\mathbf X)=\operatorname{rank}(\mathbf X)$ 이므로, $\mathbf X$ 가 full rank가 아니면 $\det(\mathbf X^\top\mathbf X)=0$ 이고 역행렬이 없음</li>
+<li>깨지는 경우 둘. 어떤 설명변수가 다른 설명변수들의 <b>정확한 선형결합</b>일 때(예: 섭씨와 화씨를 함께 투입), 그리고 <b>$n<p+1$</b> 로 관측이 계수보다 적을 때</li>
 </ul>
 
 ::: {.callout-note appearance="minimal"}
-**아이스크림 완전모형** · $n=30$, $p=3$ 이므로 $\mathbf X$ 는 $30\times 4$. $\operatorname{rank}(\mathbf X)=4=p+1$ 로 full rank이며 해가 유일하게 정해짐
+<i class="fa-solid fa-table"></i> **아이스크림 완전모형**: $n=30$, $p=3$ 이므로 $\mathbf X$ 는 $30\times 4$. $\operatorname{rank}(\mathbf X)=4=p+1$ 로 full rank이며 해가 유일하게 정해짐
 
-잔차제곱합은 두 가지로 같게 계산됨 — $\mathbf e^\top\mathbf e=\mathbf y^\top\mathbf y-\hat{\boldsymbol\beta}^\top\mathbf X^\top\mathbf y=0.035313$
+잔차제곱합은 두 가지로 같게 계산됨: $\mathbf e^\top\mathbf e=\mathbf y^\top\mathbf y-\hat{\boldsymbol\beta}^\top\mathbf X^\top\mathbf y=0.035313$
 :::
 
 ::: notes
@@ -196,14 +209,14 @@ $$\therefore\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\
 
 > $$\mathbf H=\mathbf X(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top,\qquad \hat{\mathbf y}=\mathbf X\hat{\boldsymbol\beta}=\mathbf H\mathbf y$$
 
-여기서 $\mathbf H$는 설계행렬 $\mathbf X$ 만으로 결정되는 $n\times n$ 행렬, $\hat{\mathbf y}$는 적합값 벡터임. $\mathbf y$ 에 곱해 주면 $\mathbf y$ 가 모자를 쓴 $\hat{\mathbf y}$ 가 된다고 해서 **모자행렬(hat matrix)** 이라 부름.
+여기서 $\mathbf H$: 설계행렬 $\mathbf X$ 만으로 결정되는 $n\times n$ 행렬, $\hat{\mathbf y}$: 적합값 벡터. $\mathbf y$ 에 곱해 주면 $\mathbf y$ 가 모자를 쓴 $\hat{\mathbf y}$ 가 된다고 해서 **모자행렬(hat matrix)**
 
 ::: {.callout-tip appearance="minimal"}
-**잔차도 같은 방식으로 얻는다**
+<i class="fa-solid fa-pen-to-square"></i> **잔차도 같은 방식으로 얻는다**
 
 $$\mathbf e=\mathbf y-\hat{\mathbf y}=(\mathbf I-\mathbf H)\mathbf y$$
 
-$\mathbf I$는 $n\times n$ 항등행렬, $\mathbf e$는 잔차 벡터($e_i=y_i-\hat y_i$)임. 적합값과 잔차가 모두 $\mathbf y$ 의 선형변환으로 표현됨.
+$\mathbf I$: $n\times n$ 항등행렬, $\mathbf e$: 잔차 벡터($e_i=y_i-\hat y_i$). 적합값과 잔차가 모두 $\mathbf y$ 의 선형변환으로 표현됨
 :::
 
 ::: {.aside}
@@ -227,7 +240,7 @@ Source: Hoaglin, D. C., & Welsch, R. E. (1978). The hat matrix in regression and
 
 ::: {.column width="42%"}
 ::: {.callout-tip appearance="minimal"}
-**그림이 말하는 것**
+<i class="fa-solid fa-chart-line"></i> **그림이 말하는 것**
 
 <ul>
 <li>$\hat{\mathbf y}=\mathbf H\mathbf y$ 는 $\mathbf y$ 를 $\mathbf X$ 의 열공간(column space)에 수직으로 내린 사영</li>
@@ -260,7 +273,7 @@ Source: Hoaglin, D. C., & Welsch, R. E. (1978). The hat matrix in regression and
 
 : Properties of the hat matrix verified on the full model (n = 30, p = 3)
 
-멱등은 이미 사영한 것을 다시 사영해도 그대로라는 뜻임. 대각합 $\operatorname{tr}(\mathbf H)$ 는 대각원소의 합이며 추정한 계수의 개수 $p+1=4$ 와 일치함.
+멱등은 이미 사영한 것을 다시 사영해도 그대로라는 뜻. 대각합 $\operatorname{tr}(\mathbf H)$ 는 대각원소의 합이며 추정한 계수의 개수 $p+1=4$ 와 일치
 
 **다음 장 예고**
 
@@ -360,7 +373,7 @@ $E(\hat\sigma^2_{ML})=\dfrac{n-p-1}{n}\sigma^2$ 로 **과소추정**. 표준오�
 > $$\beta_j=E(Y\mid x_j+1,\ \text{나머지 고정})-E(Y\mid x_j,\ \text{나머지 고정})$$
 
 ::: {.callout-tip appearance="minimal"}
-**해석에 반드시 붙는 조건절**
+<i class="fa-solid fa-triangle-exclamation"></i> **해석에 반드시 붙는 조건절**
 
 <ul>
 <li>"다른 변수를 고정했을 때"를 빼면 다중회귀 계수의 해석은 성립하지 않음</li>
@@ -426,7 +439,7 @@ $$\hat y_i = 0.193 - 1.03\,x_{i1} + 0.00331\,x_{i2} + 0.00346\,x_{i3}$$
 > $\hat\beta_3=0.00346$ (temp): 가격과 소득을 고정한 채 온도만 1도(°F) 상승할 때의 평균 소비량 증가분
 
 ::: {.callout-tip appearance="minimal"}
-**p-value의 뜻**
+<i class="fa-solid fa-lightbulb"></i> **p-value의 뜻**
 
 <ul>
 <li>"이 계수는 사실 0이다"라는 주장이 옳다고 가정했을 때, 지금 자료에서 얻은 것만큼 또는 그보다 더 극단적인 추정값이 나올 확률</li>
@@ -445,8 +458,8 @@ temp의 계수 0.00346은 가격과 소득이 그대로일 때 온도만 화씨 
 ### <i class="fa-solid fa-lightbulb"></i> 다른 변수를 고정한다는 말의 계산적 정의
 
 <ol>
-<li><b>반응변수에서 다른 변수의 몫을 뺀다.</b> $y$ 를 가격과 소득에만 회귀시키고 남은 잔차 $e_{y\cdot(\text{price},\,\text{income})}$ — 가격과 소득으로는 설명되지 않는 소비량 부분</li>
-<li><b>관심 변수에서도 똑같이 뺀다.</b> $x_{\text{temp}}$ 를 가격과 소득에 회귀시키고 남은 잔차 $e_{\text{temp}\cdot(\text{price},\,\text{income})}$ — 가격과 소득으로는 설명되지 않는 온도 부분</li>
+<li><b>반응변수에서 다른 변수의 몫을 뺀다.</b> $y$ 를 가격과 소득에만 회귀시키고 남은 잔차 $e_{y\cdot(\text{price},\,\text{income})}$, 곧 가격과 소득으로는 설명되지 않는 소비량 부분</li>
+<li><b>관심 변수에서도 똑같이 뺀다.</b> $x_{\text{temp}}$ 를 가격과 소득에 회귀시키고 남은 잔차 $e_{\text{temp}\cdot(\text{price},\,\text{income})}$, 곧 가격과 소득으로는 설명되지 않는 온도 부분</li>
 <li><b>남은 것끼리 단순회귀한다.</b> 두 잔차를 산점도에 찍고 직선을 그으면, 그 기울기가 <b>다중회귀의 $\hat\beta_{\text{temp}}$ 와 정확히 일치</b></li>
 </ol>
 
@@ -468,7 +481,7 @@ $$\hat\beta_j=\frac{\sum e_{y\cdot\text{others}}\;e_{x_j\cdot\text{others}}}{\su
 ::: {.callout-tip appearance="minimal" style="margin-top: 1em"}
 <ul>
 <li>왼쪽 기울기 $0.003107$ = 온도만 넣은 <b>단순회귀</b>의 계수. 오른쪽 기울기 $0.003462$ = 가격·소득의 몫을 양쪽에서 걷어 낸 뒤의 기울기이며, 완전모형의 $\hat\beta_{\text{temp}}$ 와 일치(차이 $8.7\times10^{-19}$)</li>
-<li>오른쪽 직선은 반드시 원점을 지남 — 두 축이 모두 잔차라 평균이 0이기 때문</li>
+<li>오른쪽 직선은 반드시 원점을 지남. 두 축이 모두 잔차라 평균이 0이기 때문</li>
 </ul>
 :::
 
@@ -482,7 +495,7 @@ $$\hat\beta_j=\frac{\sum e_{y\cdot\text{others}}\;e_{x_j\cdot\text{others}}}{\su
 ### <i class="fa-solid fa-triangle-exclamation"></i> 증거 부족과 효과 없음의 구별
 
 ::: {.callout-tip appearance="minimal"}
-**p-value가 큰 계수를 읽는 법**
+<i class="fa-solid fa-lightbulb"></i> **p-value가 큰 계수를 읽는 법**
 
 <ul>
 <li>price: $\hat\beta_1=-1.03$, $p=0.226$</li>
@@ -492,7 +505,7 @@ $$\hat\beta_j=\frac{\sum e_{y\cdot\text{others}}\;e_{x_j\cdot\text{others}}}{\su
 </ul>
 :::
 
-가격을 식에서 뺄 것인지는 Diagnosis & Variable Selection 장의 변수선택에서 판단함.
+가격을 식에서 뺄 것인지는 Diagnosis & Variable Selection 장의 변수선택에서 판단
 
 ::: notes
 price를 보십시오. 계수는 마이너스 1.03으로 사장님의 직감과 방향은 같습니다. 가격이 오르면 덜 팔린다는 뜻입니다. 그런데 p-값이 0.226이라 유의하지 않습니다. 그러면 가격은 소비량과 무관할까요. 아닙니다. 이 자료에서 가격이 움직인 범위 안에서는 효과를 확인할 증거가 부족하다는 뜻이지, 효과가 없다는 증명이 아닙니다. 법정의 무죄 판결이 결백의 증명이 아니라 증거 부족이라는 뜻인 것과 같습니다. 이 구분은 실무에서 특히 중요합니다. 유의하지 않았다는 이유로 그 인자를 무시했다가 낭패를 보는 경우가 적지 않습니다. 가격을 식에서 뺄지 말지는 다음 장의 변수선택에서 정식으로 따져 보겠습니다.
@@ -509,7 +522,13 @@ price를 보십시오. 계수는 마이너스 1.03으로 사장님의 직감과 
 
 $$\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}$$
 
-여기서 $SSE=\sum_{i=1}^n e_i^2$: 잔차제곱합($e_i=y_i-\hat y_i$), $SST=\sum_{i=1}^n(y_i-\bar y)^2$: 총제곱합($\bar y$는 $y$의 평균), $n$: 관측 수, $p$: 설명변수 개수. $p$가 커지면 나누는 수 $n-p-1$ 이 작아져 벌점이 붙으므로, 쓸모없는 변수를 넣으면 $\bar R^2$ 는 오히려 내려감
+**기호**
+
+<ul>
+<li>$SSE=\sum_{i=1}^n e_i^2$: 잔차제곱합($e_i=y_i-\hat y_i$), $n$: 관측 수, $p$: 설명변수 개수</li>
+<li>$SST=\sum_{i=1}^n(y_i-\bar y)^2$: 총제곱합($\bar y$ 는 $y$ 의 평균)</li>
+<li>$p$ 가 커지면 나누는 수 $n-p-1$ 이 작아져 벌점이 붙음. 쓸모없는 변수를 넣으면 $\bar R^2$ 는 오히려 내려감</li>
+</ul>
 
 ::: notes
 여행 가방에 물건을 하나 더 넣으면 쓸모가 있든 없든 혹시 필요할지 모른다며 든든해 보입니다. R 제곱이 그렇습니다. 설명변수를 넣기만 하면 절대 내려가지 않고 항상 조금은 오릅니다. 그러니 변수 개수가 다른 두 모형을 R 제곱만으로 견주면 언제나 변수가 많은 쪽이 이깁니다. 공정한 비교가 아닙니다. 그래서 변수 하나당 사용료를 물린 점수를 만들었습니다. 수정 R 제곱입니다. 수식에서 p가 커지면 n 빼기 p 빼기 1이 작아지고, 그러면 분수 값이 커져서 점수가 깎입니다. 잔차가 그 벌점을 이길 만큼 충분히 줄어야 비로소 값이 올라가는 구조입니다. 다음 슬라이드에서 이 자료로 실제 그런 일이 일어나는지 보겠습니다.
@@ -524,7 +543,7 @@ $$\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}$$
 
 ::: {.callout-tip appearance="minimal"}
 <ul>
-<li>$SST$ 가 고정이므로 $R^2=1-SSE/SST$ 는 SSE를 뒤집은 값일 뿐 — 왼쪽이 내려가면 파란 선은 반드시 올라감. <b>$R^2$ 는 변수 추가에 반대할 수 없는 지표</b></li>
+<li>$SST$ 가 고정이므로 $R^2=1-SSE/SST$ 는 SSE를 뒤집은 값일 뿐. 왼쪽이 내려가면 파란 선은 반드시 올라감. <b>$R^2$ 는 변수 추가에 반대할 수 없는 지표</b></li>
 <li>수정 $R^2$ 는 두 제곱합을 각자의 자유도로 나누므로, 새 변수가 자유도 하나 값을 못 벌면 <b>내려감</b>. 회색 구간이 그런 변수들이 들어간 자리이고, 꺾이는 지점이 적정 모형 크기</li>
 </ul>
 :::
@@ -547,7 +566,7 @@ $$\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}$$
 : $R^2$ and adjusted $R^2$ for three nested models (n = 30)
 
 ::: {.callout-tip appearance="minimal"}
-**읽기**
+<i class="fa-solid fa-lightbulb"></i> **읽기**
 
 <ul>
 <li>$R^2$ 는 변수를 넣을수록 0.602, 0.702, 0.719로 계속 오름. 상승 자체는 당연</li>
@@ -633,7 +652,14 @@ $$\sum(\hat y_i-\bar y)\,e_i=\underbrace{\sum \hat y_i e_i}_{=\,0}-\;\bar y\unde
 
 $$F=\frac{SSR/p}{SSE/(n-p-1)}$$
 
-여기서 $SSR=\sum_{i=1}^n(\hat y_i-\bar y)^2$: 회귀제곱합(모형이 설명한 부분), $SSE=\sum_{i=1}^n e_i^2$: 잔차제곱합(설명하지 못한 부분). 나누는 수 $p$ 와 $n-p-1$ 은 **자유도**, 곧 자료가 담은 정보 가운데 그 몫에 배정된 개수. 관측 $n$개에서 계수 $p+1$개를 추정하는 데 정보를 쓰고 남은 것이 잔차의 자유도이며, 이 자료에서는 $30-3-1=26$
+**기호**
+
+<ul>
+<li>$SSR=\sum_{i=1}^n(\hat y_i-\bar y)^2$: 회귀제곱합. 모형이 설명한 부분</li>
+<li>$SSE=\sum_{i=1}^n e_i^2$: 잔차제곱합. 설명하지 못한 부분</li>
+<li>나누는 수 $p$ 와 $n-p-1$: <b>자유도</b>. 자료가 담은 정보 가운데 그 몫에 배정된 개수</li>
+<li>관측 $n$ 개에서 계수 $p+1$ 개를 추정하는 데 쓰고 남은 것이 잔차의 자유도. 이 자료에서는 $30-3-1=26$</li>
+</ul>
 
 ::: {.callout-tip appearance="minimal"}
 <ul>
@@ -644,7 +670,7 @@ $$F=\frac{SSR/p}{SSE/(n-p-1)}$$
 :::
 
 ::: {.callout-note appearance="minimal"}
-**$R^2$ 로 다시 쓰면** · 분자와 분모를 $\mathrm{SST}$ 로 나누면 $F$ 가 결정계수만의 함수가 됨
+<i class="fa-solid fa-pen-to-square"></i> **$R^2$ 로 다시 쓰면**: 분자와 분모를 $\mathrm{SST}$ 로 나누면 $F$ 가 결정계수만의 함수가 됨
 
 $$F=\frac{R^2/p}{(1-R^2)/(n-p-1)}$$
 
@@ -669,7 +695,7 @@ $R^2$ 가 같아도 $p$ 가 크면 $F$ 는 작아짐. **설명력과 모형의 �
 : Analysis of variance for the ice cream full model (n = 30, p = 3)
 
 ::: {.callout-tip appearance="minimal"}
-**표 읽는 법**
+<i class="fa-solid fa-table"></i> **표 읽는 법**
 
 <ul>
 <li><b>Mean Sq</b> = Sum Sq를 Df로 나눈 값, 곧 <b>자유도 하나당 변동</b>. 크기가 다른 두 제곱합을 비교할 수 있게 만드는 척도 조정</li>
@@ -680,7 +706,7 @@ $R^2$ 가 같아도 $p$ 가 크면 $F$ 는 작아짐. **설명력과 모형의 �
 :::
 
 ::: {.callout-note appearance="minimal"}
-**단순회귀에서는 t검정과 같은 결론** · 설명변수가 하나면 $F(1,n-2)=\{t(n-2)\}^2$ 이므로 두 검정이 완전히 일치. 온도만 넣은 단순회귀에서 $t=6.50$, 그 제곱 $6.50^2=42.3$ 이 그대로 $F$ 값
+<i class="fa-solid fa-circle-check"></i> **단순회귀에서는 t검정과 같은 결론**: 설명변수가 하나면 $F(1,n-2)=\{t(n-2)\}^2$ 이므로 두 검정이 완전히 일치. 온도만 넣은 단순회귀에서 $t=6.50$, 그 제곱 $6.50^2=42.3$ 이 그대로 $F$ 값
 :::
 
 ::: notes
@@ -714,22 +740,29 @@ $R^2$ 가 같아도 $p$ 가 크면 $F$ 는 작아짐. **설명력과 모형의 �
 :::
 
 
-## 회귀계수의 표집분포: 추정량은 확률변수
+## 회귀계수의 표집분포: 추정량은 확률변수 {.smaller .stepped}
 
 ### <i class="fa-solid fa-lightbulb"></i> 참값과 오차가 전달된 몫
 
-> 한 번의 자료에서 계산한 $\hat{\boldsymbol\beta}$ 는 미지 계수 $\boldsymbol\beta$ 를 추정한 표본 결과이며, 자료가 바뀌면 값이 달라지는 **확률변수**이다.
+> 한 번의 자료에서 계산한 $\hat{\boldsymbol\beta}$ 는 미지 계수 $\boldsymbol\beta$ 를 추정한 표본 결과이며, 자료가 바뀌면 값이 달라지는 **확률변수**이다. 자료를 다시 모아 같은 계산을 반복하면 추정값이 조금씩 달라지며, 그 값들이 이루는 분포가 **표집분포(sampling distribution)**
 
-$$
-\hat{\boldsymbol\beta}
-=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y
-=\boldsymbol\beta+(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\boldsymbol\varepsilon
-$$
+<ol>
+<li><b>정의에서 출발한다.</b> 관측한 $\mathbf y$ 만으로 계산하는 식이며, 이 단계에는 미지의 참값이 아직 등장하지 않음
+$$\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y$$</li>
+<li><b>$\mathbf y$ 를 모형으로 바꿔 쓴다.</b> 참 모형 $\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$ 를 대입. 관측값 안에 <b>참값이 만든 부분</b>과 <b>오차</b>가 함께 들어 있음을 드러내는 단계
+$$\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top(\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon)$$</li>
+<li><b>분배한 뒤 상쇄시킨다.</b> 두 항으로 가르면 앞 항에서 $(\mathbf X^\top\mathbf X)^{-1}$ 와 $\mathbf X^\top\mathbf X$ 가 만나 항등행렬이 되므로 $\boldsymbol\beta$ 만 남음
+$$\hat{\boldsymbol\beta}=\underbrace{(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf X}_{=\;\mathbf I}\boldsymbol\beta
++(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\boldsymbol\varepsilon$$</li>
+</ol>
 
-둘째 등호는 추정량이 **참값**과 **오차가 전달된 부분**의 합임을 보여 줌. 자료를 다시 모아 같은 계산을 반복하면 추정값이 조금씩 달라지며, 그 값들이 이루는 분포가 **표집분포(sampling distribution)**
+::: {.callout-note appearance="minimal"}
+$$\hat{\boldsymbol\beta}=\underbrace{\boldsymbol\beta}_{\textstyle \text{고정된 참값}}
++\underbrace{(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\boldsymbol\varepsilon}_{\textstyle \text{자료마다 달라지는 몫}}$$
+:::
 
 ::: notes
-같은 공정을 여러 번 측정하면 측정값이 조금씩 달라집니다. 그 값으로 그은 직선의 기울기도 매번 달라집니다. 같은 실험을 다시 해도 점이 똑같은 자리에 찍히지는 않기 때문입니다. 그렇게 반복했을 때 나오는 추정값들을 모아 그린 분포가 표집분포입니다. 화면의 모자 쓴 베타는 진짜 값이 아니라 이번 표본에서 얻은 한 번의 결과입니다. 식의 두 번째 등호를 보시면 추정값이 진짜 계수에 무언가를 더한 모양이라는 점을 알 수 있습니다. 앞부분은 우리가 알고 싶은 고정된 값, 뒷부분은 이번 자료에 우연히 섞여 들어온 잡음이 계수 쪽으로 전달된 몫입니다. 이 두 조각으로 나눠 보는 것이 이야기의 출발점입니다.
+같은 공정을 여러 번 측정하면 측정값이 조금씩 달라집니다. 그 값으로 그은 직선의 기울기도 매번 달라집니다. 같은 실험을 다시 해도 점이 똑같은 자리에 찍히지는 않기 때문입니다. 그렇게 반복했을 때 나오는 추정값들을 모아 그린 분포가 표집분포입니다. 화면의 모자 쓴 베타는 진짜 값이 아니라 이번 표본에서 얻은 한 번의 결과입니다. 아래 세 줄이 그 사실을 식으로 보인 것입니다. 첫 줄은 우리가 실제로 계산하는 식입니다. 여기에는 관측값만 들어 있고 진짜 계수는 보이지 않습니다. 두 번째 줄에서 관측값 자리에 참 모형을 그대로 대입합니다. 관측값이란 참값이 만든 부분에 오차가 얹힌 것이라는 뜻이니, 이렇게 바꿔 써도 아무것도 달라지지 않습니다. 세 번째 줄이 핵심입니다. 괄호를 풀어 두 항으로 가르면 앞쪽에서 역행렬과 원래 행렬이 만나 서로 지워집니다. 항등행렬이 남으니 앞 항은 그냥 베타가 됩니다. 그래서 마지막 띠처럼 추정값은 고정된 참값에 오차가 계수 쪽으로 전달된 몫을 더한 모양이 됩니다. 앞 조각은 자료를 다시 모아도 그대로이고, 뒤 조각만 매번 달라집니다. 추정값이 흔들리는 이유가 오직 뒤 조각 하나라는 것, 이것이 다음 두 화면에서 평균과 분산을 계산할 때 그대로 쓰입니다.
 :::
 
 
@@ -738,16 +771,16 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 기댓값이 참값과 일치
 
 ::: {.callout-tip appearance="minimal"}
-**전제 조건**
+<i class="fa-solid fa-list-check"></i> **전제 조건**
 
 <ul>
 <li>$\mathbf X$ 를 고정된 것으로 두고 조건부로 생각</li>
-<li>$E(\boldsymbol\varepsilon\mid\mathbf X)=\mathbf 0$ : 오차의 평균이 0</li>
-<li>$\operatorname{Var}(\boldsymbol\varepsilon\mid\mathbf X)=\sigma^2\mathbf I$ : 오차의 분산이 모두 $\sigma^2$ 로 같고 서로 무관</li>
+<li>$E(\boldsymbol\varepsilon\mid\mathbf X)=\mathbf 0$: 오차의 평균이 0</li>
+<li>$\operatorname{Var}(\boldsymbol\varepsilon\mid\mathbf X)=\sigma^2\mathbf I$: 오차의 분산이 모두 $\sigma^2$ 로 같고 서로 무관</li>
 </ul>
 :::
 
-> $E(\hat{\boldsymbol\beta}\mid\mathbf X)=\boldsymbol\beta$ : 최소제곱 추정량의 기댓값은 참값과 일치한다(불편추정량).
+> $E(\hat{\boldsymbol\beta}\mid\mathbf X)=\boldsymbol\beta$: 최소제곱 추정량의 기댓값은 참값과 일치한다(불편추정량).
 
 | Symbol | Nature | Meaning |
 |:--|:--|:--|
@@ -834,7 +867,7 @@ $$\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)=\sigma^2(\mathbf X^\to
 
 | Step | 사용한 가정 | 깨지면 생기는 일 |
 |:--|:--|:--|
-| 1. 오차의 함수로 | 모형이 옳음 ($E(\boldsymbol\varepsilon)=\mathbf 0$) | 추정량이 **편향**됨 — 분산 이전의 문제 |
+| 1. 오차의 함수로 | 모형이 옳음 ($E(\boldsymbol\varepsilon)=\mathbf 0$) | 추정량이 **편향**됨. 분산 이전의 문제 |
 | 2. 선형변환 | $\mathbf X$ 는 고정 (확률변수 아님) | 조건부가 아닌 분산은 더 복잡해짐 |
 | 3. $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I$ | **등분산**(대각원소가 모두 같음) + **독립**(대각 밖이 0) | 계수 추정값은 그대로여도 **표준오차가 틀림** |
 
@@ -842,7 +875,7 @@ $$\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)=\sigma^2(\mathbf X^\to
 
 ::: {.callout-tip appearance="minimal"}
 <ul>
-<li>결과가 $\sigma^2\times(\mathbf X^\top\mathbf X)^{-1}$ 로 <b>깔끔히 분리</b> — 앞은 측정의 잡음, 뒤는 설계가 담은 정보. 실험을 설계할 때 손댈 수 있는 쪽은 뒤쪽</li>
+<li>결과가 $\sigma^2\times(\mathbf X^\top\mathbf X)^{-1}$ 로 <b>깔끔히 분리</b>됨. 앞은 측정의 잡음, 뒤는 설계가 담은 정보. 실험을 설계할 때 손댈 수 있는 쪽은 뒤쪽</li>
 <li>$j$번째 계수의 표준오차 $\operatorname{se}(\hat\beta_j)=\hat\sigma\sqrt{c_{jj}}$, 계수 사이 공분산은 비대각원소 $\sigma^2c_{jk}$. 결과표의 표준오차와 신뢰구간이 모두 이 한 식에서 나옴</li>
 </ul>
 :::
@@ -857,7 +890,7 @@ $$\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)=\sigma^2(\mathbf X^\to
 ### <i class="fa-solid fa-list-check"></i> 정리가 성립할 조건
 
 ::: {.callout-tip appearance="minimal"}
-**정리가 성립하기 위한 조건**
+<i class="fa-solid fa-list-check"></i> **정리가 성립하기 위한 조건**
 
 <ul>
 <li><strong>선형모형</strong>: $\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$</li>
@@ -884,7 +917,7 @@ Theorem (Gauss-Markov)
 :   앞의 가정이 성립하면, 최소제곱 추정량 $\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\mathbf y$ 는 $\mathbf y$ 의 선형함수이면서 불편인 모든 추정량 가운데 분산이 가장 작다.
 
 ::: {.callout-tip appearance="minimal"}
-**BLUE 네 글자의 뜻**
+<i class="fa-solid fa-lightbulb"></i> **BLUE 네 글자의 뜻**
 
 <ul>
 <li><strong>B</strong>est: 같은 부류의 추정량 중 분산이 가장 작음</li>
@@ -935,7 +968,11 @@ $$
 \hat\beta_j\pm t_{\alpha/2,\,n-p-1}\operatorname{se}(\hat\beta_j)
 $$
 
-$t$ 분포는 정규분포처럼 좌우대칭인 종 모양이나 꼬리가 더 두꺼우며, 자유도가 커질수록 정규분포에 근접. 여기서 $\operatorname{se}(\hat\beta_j)$: 표준오차, $t_{\alpha/2,\,n-p-1}$: 자유도 $n-p-1$ 인 $t$ 분포의 임계값. 오른쪽 식이 $100(1-\alpha)\%$ 신뢰구간
+<ul>
+<li>$t$ 분포는 정규분포처럼 좌우대칭인 종 모양이나 꼬리가 더 두꺼움. 자유도가 커질수록 정규분포에 근접</li>
+<li>$\operatorname{se}(\hat\beta_j)$: 표준오차, $t_{\alpha/2,\,n-p-1}$: 자유도 $n-p-1$ 인 $t$ 분포의 임계값</li>
+<li>오른쪽 식이 $100(1-\alpha)\%$ 신뢰구간</li>
+</ul>
 
 ::: notes
 표준오차가 흔들림의 크기를 숫자 하나로 요약한다면, 신뢰구간은 그 흔들림을 양쪽 경계가 있는 범위로 보여 줍니다. 가운데가 추정값이고 양옆으로 임계값과 표준오차를 곱한 만큼 펼친 것이 전부입니다. t 분포는 정규분포와 생김새가 비슷한데 꼬리가 조금 더 두껍습니다. 자료가 적을수록 극단적인 값이 나올 여지를 더 넉넉히 잡아 준다고 이해하시면 됩니다. 자유도가 커지면 두 분포는 사실상 같아집니다. 임계값도 자유도에 따라 달라집니다. 자료가 적을수록 값이 커져서 구간이 넓어집니다. 아는 것이 적으면 조심스럽게 넓게 말한다고 이해하시면 자연스럽습니다.
@@ -971,11 +1008,11 @@ $t$ 분포는 정규분포처럼 좌우대칭인 종 모양이나 꼬리가 더 
 ### <i class="fa-solid fa-triangle-exclamation"></i> 확률이 붙는 대상
 
 ::: {.callout-tip appearance="minimal"}
-**95% 신뢰구간을 읽는 법**
+<i class="fa-solid fa-lightbulb"></i> **95% 신뢰구간을 읽는 법**
 
 <ul>
 <li>옳은 해석: 같은 절차를 반복해 만든 구간의 약 95%가 진짜 $\beta_j$ 를 포함하도록 설계됨</li>
-<li>틀린 해석: 이번에 계산한 구간 안에 $\beta_j$ 가 있을 확률이 95%</li>
+<li>틀린 해석: "이번에 계산한 구간 안에 $\beta_j$ 가 있을 확률이 95%</li>
 <li>확률은 계수가 아니라 구간을 만드는 절차에 붙음</li>
 </ul>
 :::
@@ -1000,7 +1037,7 @@ $t$ 분포는 정규분포처럼 좌우대칭인 종 모양이나 꼬리가 더 
 > $$\text{예측구간}:\ \hat y_0\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{1+\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0}$$
 
 <ul>
-<li>근호 안의 $1$ 이 두 구간을 가르는 전부 — 새 관측에는 개별 오차 $\varepsilon_0$ 이 추가로 실리기 때문. 따라서 <b>예측구간이 항상 더 넓음</b></li>
+<li>근호 안의 $1$ 이 두 구간을 가르는 전부. 새 관측에는 개별 오차 $\varepsilon_0$ 이 추가로 실리기 때문. 따라서 <b>예측구간이 항상 더 넓음</b></li>
 <li>$\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0$ 는 $\mathbf x_0$ 가 자료의 중심에서 멀수록 커짐. 자료 범위 밖으로 외삽하면 두 구간 모두 급격히 넓어짐</li>
 </ul>
 
@@ -1049,7 +1086,7 @@ $$\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0=0.089095,\qquad
 :::
 
 ::: {.callout-note appearance="minimal"}
-**다음 장** · Diagnosis & Variable Selection: 이렇게 세운 모형을 그대로 믿어도 되는가. 잔차로 가정을 점검하고 변수를 고른다
+<i class="fa-solid fa-link"></i> **다음 장**: Diagnosis & Variable Selection: 이렇게 세운 모형을 그대로 믿어도 되는가. 잔차로 가정을 점검하고 변수를 고른다
 :::
 
 ::: notes

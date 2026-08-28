@@ -68,10 +68,10 @@ $$
 :::
 
 ::: {.callout-tip appearance="minimal" style="font-size: 80%"}
-**특징**
+<i class="fa-solid fa-list-check"></i> **특징**
 
 <ul>
-<li>관측이 바뀌어도 식의 모양은 동일하고, 회귀계수 $\beta_0,\beta_1,\dots$는 모든 관측에 공통임</li>
+<li>관측이 바뀌어도 식의 모양은 동일하고, 회귀계수 $\beta_0,\beta_1,\dots$는 모든 관측에 공통</li>
 <li>같은 형태가 반복되므로 하나로 묶어 표기</li>
 <li>행렬 표기는 이 $n$개의 식을 한 줄로 축약</li>
 </ul>
@@ -86,11 +86,11 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {style="margin-bottom: 0.8em"}
-> **벡터** : 숫자를 세로로 줄 세운 배열. 굵은 소문자 $\mathbf{y}$로 표기한다.
+> **벡터**: 숫자를 세로로 줄 세운 배열. 굵은 소문자 $\mathbf{y}$로 표기한다.
 >
-> **행렬** : 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 $\mathbf{X}$로 표기한다.
+> **행렬**: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 $\mathbf{X}$로 표기한다.
 >
-> **차원** : 크기는 항상 "행 $\times$ 열" 순서로 적는다.
+> **차원**: 크기는 항상 "행 $\times$ 열" 순서로 적는다.
 :::
 
 $$
@@ -109,7 +109,7 @@ $$
 
 :::: {.column width="50%"}
 ::: {.callout-note appearance="minimal"}
-**기호가 가리키는 것**
+<i class="fa-solid fa-lightbulb"></i> **기호가 가리키는 것**
 
 <ul style="margin-bottom: 0">
 <li>$\mathbf{y}$: 반응변수 $y_1,\dots,y_n$ 을 세로로 모은 벡터</li>
@@ -122,7 +122,7 @@ $$
 
 :::: {.column width="50%"}
 ::: {.callout-tip appearance="minimal"}
-**표기 규약**
+<i class="fa-solid fa-pen-to-square"></i> **표기 규약**
 
 <ul style="margin-bottom: 0">
 <li>원소 $x_{ij}$의 아래첨자는 행 먼저, 열 나중</li>
@@ -156,7 +156,7 @@ $$
 </ul>
 
 ::: {.callout-note appearance="minimal"}
-**행렬 곱과 개별 식의 동치**
+<i class="fa-solid fa-circle-check"></i> **행렬 곱과 개별 식의 동치**
 
 <ul>
 <li>행렬 곱 규칙 = 행과 열을 짝지어 곱한 뒤 더하기</li>
@@ -188,7 +188,7 @@ Matrix formulation follows Kutner et al. (2005), *Applied Linear Statistical Mod
 : First five rows of the ice cream data.
 
 ::: {.callout-tip appearance="minimal"}
-**규모와 변수**
+<i class="fa-solid fa-table"></i> **규모와 변수**
 
 <ul>
 <li>$n=30$개 기간(4주 단위) $\times$ 6개 열: 기간 번호 period와 분석 변수 5개</li>
@@ -207,7 +207,7 @@ Matrix formulation follows Kutner et al. (2005), *Applied Linear Statistical Mod
 ### <i class="fa-solid fa-pen-to-square"></i> 표에서 행렬로
 
 ::: {.callout-tip appearance="minimal"}
-**Design matrix for the ice cream data**, $n=30$, $p=3$
+<i class="fa-solid fa-table"></i> **Design matrix for the ice cream data**, $n=30$, $p=3$
 
 $$
 \underbrace{\begin{pmatrix} y_1\\ y_2\\ \vdots\\ y_{30} \end{pmatrix}}_{\mathbf{y}\;(30\times 1)}
@@ -239,18 +239,18 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **전치** $\mathbf A^\top$ : 행과 열을 맞바꾼 행렬. $\mathbf A$ 의 $(i,j)$ 원소가 $\mathbf A^\top$ 의 $(j,i)$ 원소가 된다.
+> **전치** $\mathbf A^\top$: 행과 열을 맞바꾼 행렬. $\mathbf A$ 의 $(i,j)$ 원소가 $\mathbf A^\top$ 의 $(j,i)$ 원소가 된다.
 
 <ul>
 <li>$(\mathbf A^\top)^\top=\mathbf A$, &nbsp; $(\mathbf A+\mathbf B)^\top=\mathbf A^\top+\mathbf B^\top$</li>
-<li>$(\mathbf{AB})^\top=\mathbf B^\top\mathbf A^\top$ : 곱의 전치는 <b>순서가 뒤집힘</b></li>
+<li>$(\mathbf{AB})^\top=\mathbf B^\top\mathbf A^\top$: 곱의 전치는 <b>순서가 뒤집힘</b></li>
 <li>$\mathbf A^\top=\mathbf A$ 인 정방행렬을 <b>대칭행렬</b>이라 함</li>
 </ul>
 
 ### <i class="fa-solid fa-list-check"></i> 확인
 
 ::: {.callout-note appearance="minimal"}
-**벡터의 전치** — 세로가 가로로. $3\times 1$ 이 $1\times 3$ 으로 (아이스크림 소비량 앞 세 값)
+<i class="fa-solid fa-pen-to-square"></i> **벡터의 전치**: 세로가 가로로. $3\times 1$ 이 $1\times 3$ 으로 (아이스크림 소비량 앞 세 값)
 
 $$\mathbf y=\begin{pmatrix}0.386\\ 0.374\\ 0.393\end{pmatrix}
 \;\Longrightarrow\;
@@ -258,7 +258,7 @@ $$\mathbf y=\begin{pmatrix}0.386\\ 0.374\\ 0.393\end{pmatrix}
 :::
 
 ::: {.callout-note appearance="minimal"}
-**행렬의 전치** — 대각선 축으로 뒤집기. $2\times 3$ 이 $3\times 2$ 로, $\mathbf M$ 의 1행이 $\mathbf M^\top$ 의 1열
+<i class="fa-solid fa-pen-to-square"></i> **행렬의 전치**: 대각선 축으로 뒤집기. $2\times 3$ 이 $3\times 2$ 로, $\mathbf M$ 의 1행이 $\mathbf M^\top$ 의 1열
 
 $$\mathbf M=\begin{pmatrix}1&2&3\\ 4&5&6\end{pmatrix}
 \;\Longrightarrow\;
@@ -266,7 +266,7 @@ $$\mathbf M=\begin{pmatrix}1&2&3\\ 4&5&6\end{pmatrix}
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · $\mathbf X$ 가 $30\times 4$ 이면 $\mathbf X^\top$ 은 $4\times 30$, 둘을 곱한 $\mathbf X^\top\mathbf X$ 는 $4\times 4$. 순서가 뒤집히는 성질을 쓰면 $(\mathbf X^\top\mathbf X)^\top=\mathbf X^\top\mathbf X$, 곧 대칭행렬
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: $\mathbf X$ 가 $30\times 4$ 이면 $\mathbf X^\top$ 은 $4\times 30$, 둘을 곱한 $\mathbf X^\top\mathbf X$ 는 $4\times 4$. 순서가 뒤집히는 성질을 쓰면 $(\mathbf X^\top\mathbf X)^\top=\mathbf X^\top\mathbf X$, 곧 대칭행렬
 :::
 
 ::: notes
@@ -277,7 +277,7 @@ $$\mathbf M=\begin{pmatrix}1&2&3\\ 4&5&6\end{pmatrix}
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **행렬식**(determinant) $\det(\mathbf A)$ : 정방행렬 하나에 대응시키는 수 하나. $2\times 2$ 에서는 $ad-bc$ 이며, $|\det(\mathbf A)|$ 는 이 행렬이 넓이를 몇 배로 바꾸는지를 나타낸다.
+> **행렬식**(determinant) $\det(\mathbf A)$: 정방행렬 하나에 대응시키는 수 하나. $2\times 2$ 에서는 $ad-bc$ 이며, $|\det(\mathbf A)|$ 는 이 행렬이 넓이를 몇 배로 바꾸는지를 나타낸다.
 
 $$
 \det\begin{pmatrix}a&b\\ c&d\end{pmatrix}=ad-bc
@@ -289,7 +289,7 @@ $$
 
 :::: {.column width="50%"}
 ::: {.callout-note appearance="minimal"}
-**넓이가 남는 경우**
+<i class="fa-solid fa-circle-check"></i> **넓이가 남는 경우**
 
 $$\mathbf A=\begin{pmatrix}2&1\\ 1&1\end{pmatrix},\quad \det(\mathbf A)=2\cdot 1-1\cdot 1=1$$
 
@@ -299,7 +299,7 @@ $$\mathbf A=\begin{pmatrix}2&1\\ 1&1\end{pmatrix},\quad \det(\mathbf A)=2\cdot 1
 
 :::: {.column width="50%"}
 ::: {.callout-warning appearance="minimal"}
-**넓이가 0이 되는 경우**
+<i class="fa-solid fa-triangle-exclamation"></i> **넓이가 0이 되는 경우**
 
 $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2-1\cdot 4=0$$
 
@@ -312,7 +312,7 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 왜 눌리는지는 다음 슬라이드의 **계수**, 눌리면 무엇이 문제인지는 그다음 **역행렬** 슬라이드에서 이어짐
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 아이스크림 완전모형은 $\det(\mathbf X^\top\mathbf X)=4.68\times 10^{5}$. 화씨 기온을 섭씨로 바꾼 열을 하나 더 넣으면 $1.5\times 10^{-6}$ 으로 떨어지고 계산이 멈춤
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 아이스크림 완전모형은 $\det(\mathbf X^\top\mathbf X)=4.68\times 10^{5}$. 화씨 기온을 섭씨로 바꾼 열을 하나 더 넣으면 $1.5\times 10^{-6}$ 으로 떨어지고 계산이 멈춤
 :::
 
 ::: notes
@@ -323,9 +323,9 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **계수**(rank) $\operatorname{rank}(\mathbf A)$ : 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.
+> **계수**(rank) $\operatorname{rank}(\mathbf A)$: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.
 >
-> **완전계수**(full rank) : $\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})$ 인 상태. 정방행렬이 완전계수인 것과 $\det(\mathbf A)\neq 0$ 은 동치이다.
+> **완전계수**(full rank): $\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})$ 인 상태. 정방행렬이 완전계수인 것과 $\det(\mathbf A)\neq 0$ 은 동치이다.
 
 여기서 **서로 독립**: 어떤 열도 나머지 열들의 조합으로 만들어지지 않음. 만들어지는 열은 새 정보가 아님
 
@@ -333,7 +333,7 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 
 :::: {.column width="50%"}
 ::: {.callout-note appearance="minimal"}
-**앞 슬라이드의 두 행렬**
+<i class="fa-solid fa-table"></i> **앞 슬라이드의 두 행렬**
 
 <ul style="margin-bottom: 0">
 <li>$\operatorname{rank}(\mathbf A)=2$ (2열 중 2) → 완전계수, $\det=1$</li>
@@ -345,7 +345,7 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 
 :::: {.column width="50%"}
 ::: {.callout-warning appearance="minimal"}
-**설계행렬에서**
+<i class="fa-solid fa-table"></i> **설계행렬에서**
 
 <ul style="margin-bottom: 0">
 <li>$\mathbf X$ 는 $30\times 4$, $\operatorname{rank}=4$ → 완전계수</li>
@@ -358,7 +358,7 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · $\operatorname{rank}(\mathbf X^\top\mathbf X)=\operatorname{rank}(\mathbf X)$ 이므로 $\mathbf X$ 의 열이 완전계수 $p+1$ 일 때에만 $(\mathbf X^\top\mathbf X)^{-1}$ 이 존재. 계수가 모자라면 $\hat{\boldsymbol\beta}$ 가 하나로 정해지지 않음
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: $\operatorname{rank}(\mathbf X^\top\mathbf X)=\operatorname{rank}(\mathbf X)$ 이므로 $\mathbf X$ 의 열이 완전계수 $p+1$ 일 때에만 $(\mathbf X^\top\mathbf X)^{-1}$ 이 존재. 계수가 모자라면 $\hat{\boldsymbol\beta}$ 가 하나로 정해지지 않음
 :::
 
 ::: notes
@@ -369,14 +369,14 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **역행렬** $\mathbf A^{-1}$ : 정방행렬 $\mathbf A$ 에 대해 $\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I$ 를 만족하는 행렬.
+> **역행렬** $\mathbf A^{-1}$: 정방행렬 $\mathbf A$ 에 대해 $\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I$ 를 만족하는 행렬.
 >
-> **존재 조건** : $\det(\mathbf A)\neq 0$, 곧 $\mathbf A$ 가 완전계수일 때에만 존재한다.
+> **존재 조건**: $\det(\mathbf A)\neq 0$, 곧 $\mathbf A$ 가 완전계수일 때에만 존재한다.
 
 여기서 $\mathbf I$: 주대각선이 1, 나머지가 0인 항등행렬. 행렬에 나눗셈이 없으므로 $\mathbf A\mathbf x=\mathbf b$ 는 $\mathbf x=\mathbf A^{-1}\mathbf b$ 로 풂
 
 ::: {.callout-note appearance="minimal"}
-**$2\times 2$ 로 직접 계산** — 분모 자리에 행렬식
+<i class="fa-solid fa-pen-to-square"></i> **$2\times 2$ 로 직접 계산**: 분모 자리에 행렬식
 
 $$
 \mathbf A^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\ -c&a\end{pmatrix}
@@ -384,13 +384,13 @@ $$
 =\begin{pmatrix}1&-1\\ -1&2\end{pmatrix}
 $$
 
-검산 : $\mathbf A^{-1}\mathbf A=\begin{pmatrix}1&-1\\ -1&2\end{pmatrix}\begin{pmatrix}2&1\\ 1&1\end{pmatrix}=\begin{pmatrix}1&0\\ 0&1\end{pmatrix}=\mathbf I$
+검산: $\mathbf A^{-1}\mathbf A=\begin{pmatrix}1&-1\\ -1&2\end{pmatrix}\begin{pmatrix}2&1\\ 1&1\end{pmatrix}=\begin{pmatrix}1&0\\ 0&1\end{pmatrix}=\mathbf I$
 
 계수가 1이어서 $\det=0$ 이었던 $\mathbf S$ 에는 이 계산을 할 수 없음. 분모가 0
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · $\hat{\boldsymbol\beta}$ 계산에 필요한 역행렬은 $(\mathbf X^\top\mathbf X)^{-1}$ 하나. 계수가 모자라면 아예 없고, 완전계수라도 그 경계에 가까우면 계수 추정값이 크게 흔들림
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: $\hat{\boldsymbol\beta}$ 계산에 필요한 역행렬은 $(\mathbf X^\top\mathbf X)^{-1}$ 하나. 계수가 모자라면 아예 없고, 완전계수라도 그 경계에 가까우면 계수 추정값이 크게 흔들림
 :::
 
 ::: notes
@@ -401,17 +401,17 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **내적** $\mathbf a^\top\mathbf b=a_1b_1+\cdots+a_nb_n$ : 두 벡터를 성분끼리 곱해 모두 더한 수 하나.
+> **내적** $\mathbf a^\top\mathbf b=a_1b_1+\cdots+a_nb_n$: 두 벡터를 성분끼리 곱해 모두 더한 수 하나.
 >
-> **직교** : $\mathbf a^\top\mathbf b=0$ 이면 두 벡터는 서로 직각이다.
+> **직교**: $\mathbf a^\top\mathbf b=0$ 이면 두 벡터는 서로 직각이다.
 >
-> **직교행렬** $\mathbf Q$ : 열들이 서로 직교하고 길이가 모두 1인 정방행렬. $\mathbf Q^\top\mathbf Q=\mathbf I$ 이므로 $\mathbf Q^{-1}=\mathbf Q^\top$.
+> **직교행렬** $\mathbf Q$: 열들이 서로 직교하고 길이가 모두 1인 정방행렬. $\mathbf Q^\top\mathbf Q=\mathbf I$ 이므로 $\mathbf Q^{-1}=\mathbf Q^\top$.
 
 ::: columns
 
 :::: {.column width="52%"}
 ::: {.callout-note appearance="minimal"}
-**직접 확인** $\mathbf a=(1,2)^\top$, $\mathbf b=(-2,1)^\top$
+<i class="fa-solid fa-circle-check"></i> **직접 확인** $\mathbf a=(1,2)^\top$, $\mathbf b=(-2,1)^\top$
 
 $$\mathbf a^\top\mathbf b=1\cdot(-2)+2\cdot 1=0$$
 
@@ -425,7 +425,7 @@ $$\|\mathbf a+\mathbf b\|^2=\|\mathbf a\|^2+\|\mathbf b\|^2
 
 :::: {.column width="48%"}
 <ul>
-<li>$\|\mathbf a\|=\sqrt{\mathbf a^\top\mathbf a}$ : 벡터의 길이</li>
+<li>$\|\mathbf a\|=\sqrt{\mathbf a^\top\mathbf a}$: 벡터의 길이</li>
 <li>$\mathbf a^\top\mathbf b=0$ 은 두 벡터가 공유하는 성분이 하나도 없다는 뜻</li>
 <li>직교행렬은 회전과 반사만 할 뿐 길이를 바꾸지 않음. 역행렬이 전치와 같아 계산이 매우 안정적</li>
 </ul>
@@ -434,7 +434,7 @@ $$\|\mathbf a+\mathbf b\|^2=\|\mathbf a\|^2+\|\mathbf b\|^2
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 최소제곱은 잔차를 모든 설명변수와 직교시키는 계산 $\mathbf X^\top\mathbf e=\mathbf 0$. 이 직각 덕분에 제곱합이 $\mathrm{SST}=\mathrm{SSR}+\mathrm{SSE}$ 로 정확히 쪼개짐
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 최소제곱은 잔차를 모든 설명변수와 직교시키는 계산 $\mathbf X^\top\mathbf e=\mathbf 0$. 이 직각 덕분에 제곱합이 $\mathrm{SST}=\mathrm{SSR}+\mathrm{SSE}$ 로 정확히 쪼개짐
 :::
 
 ::: notes
@@ -445,17 +445,17 @@ $$\|\mathbf a+\mathbf b\|^2=\|\mathbf a\|^2+\|\mathbf b\|^2
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **대각합**(trace) $\operatorname{tr}(\mathbf A)=a_{11}+\cdots+a_{nn}$ : 정방행렬의 주대각선 원소를 모두 더한 수 하나.
+> **대각합**(trace) $\operatorname{tr}(\mathbf A)=a_{11}+\cdots+a_{nn}$: 정방행렬의 주대각선 원소를 모두 더한 수 하나.
 
 <ul>
 <li>$\operatorname{tr}(\mathbf A+\mathbf B)=\operatorname{tr}(\mathbf A)+\operatorname{tr}(\mathbf B)$, &nbsp; $\operatorname{tr}(c\mathbf A)=c\operatorname{tr}(\mathbf A)$</li>
-<li>$\operatorname{tr}(\mathbf{AB})=\operatorname{tr}(\mathbf{BA})$ : $\mathbf A$ 가 $k\times n$, $\mathbf B$ 가 $n\times k$ 이면 두 곱의 <b>크기가 서로 달라도</b> 대각합은 같음</li>
+<li>$\operatorname{tr}(\mathbf{AB})=\operatorname{tr}(\mathbf{BA})$: $\mathbf A$ 가 $k\times n$, $\mathbf B$ 가 $n\times k$ 이면 두 곱의 <b>크기가 서로 달라도</b> 대각합은 같음</li>
 </ul>
 
 ### <i class="fa-solid fa-list-check"></i> 확인
 
 ::: {.callout-note appearance="minimal"}
-**$\operatorname{tr}(\mathbf{AB})=\operatorname{tr}(\mathbf{BA})$ 직접 확인** ($\mathbf A$ 는 $1\times 3$, $\mathbf B$ 는 $3\times 1$)
+<i class="fa-solid fa-circle-check"></i> **$\operatorname{tr}(\mathbf{AB})=\operatorname{tr}(\mathbf{BA})$ 직접 확인** ($\mathbf A$ 는 $1\times 3$, $\mathbf B$ 는 $3\times 1$)
 
 $$
 \mathbf{AB}=\begin{pmatrix}1&2&3\end{pmatrix}\begin{pmatrix}1\\ 0\\ 2\end{pmatrix}=7,
@@ -468,7 +468,7 @@ $\operatorname{tr}(\mathbf{AB})=7$, $\operatorname{tr}(\mathbf{BA})=1+0+6=7$. $1
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 자유도를 세는 도구. 다음 슬라이드에서 보듯 모형이 쓴 정보량 $p+1$ 과 남은 자유도 $n-p-1$ 이 모두 어떤 행렬의 대각합으로 나옴
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 자유도를 세는 도구. 다음 슬라이드에서 보듯 모형이 쓴 정보량 $p+1$ 과 남은 자유도 $n-p-1$ 이 모두 어떤 행렬의 대각합으로 나옴
 :::
 
 ::: notes
@@ -480,10 +480,10 @@ $\operatorname{tr}(\mathbf{AB})=7$, $\operatorname{tr}(\mathbf{BA})=1+0+6=7$. $1
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **고윳값**(eigenvalue) $\lambda$ 와 **고유벡터**(eigenvector) $\mathbf v\neq\mathbf 0$ : $\mathbf{Av}=\lambda\mathbf v$ 를 만족하는 짝. 행렬을 곱해도 **방향이 바뀌지 않고 길이만 $\lambda$ 배** 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값이다.
+> **고윳값**(eigenvalue) $\lambda$ 와 **고유벡터**(eigenvector) $\mathbf v\neq\mathbf 0$: $\mathbf{Av}=\lambda\mathbf v$ 를 만족하는 짝. 행렬을 곱해도 **방향이 바뀌지 않고 길이만 $\lambda$ 배** 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값이다.
 
 ::: {.callout-note appearance="minimal"}
-**직접 확인** ($\mathbf A$ 는 대칭행렬)
+<i class="fa-solid fa-circle-check"></i> **직접 확인** ($\mathbf A$ 는 대칭행렬)
 
 $$\mathbf A=\begin{pmatrix}2&1\\ 1&2\end{pmatrix},\qquad
 \mathbf A\begin{pmatrix}1\\ 1\end{pmatrix}=\begin{pmatrix}3\\ 3\end{pmatrix}=3\begin{pmatrix}1\\ 1\end{pmatrix},\qquad
@@ -494,12 +494,12 @@ $\lambda_1=3$ 의 방향은 $(1,1)$, $\lambda_2=1$ 의 방향은 $(1,-1)$. 방�
 
 <ul>
 <li>$n\times n$ 행렬의 고윳값은 중복을 세어 $n$ 개</li>
-<li>$\operatorname{tr}(\mathbf A)=\sum_j\lambda_j$ : 확인 $2+2=4=3+1$</li>
-<li>$\det(\mathbf A)=\prod_j\lambda_j$ : 확인 $2\cdot2-1\cdot1=3=3\times 1$</li>
+<li>$\operatorname{tr}(\mathbf A)=\sum_j\lambda_j$: 확인 $2+2=4=3+1$</li>
+<li>$\det(\mathbf A)=\prod_j\lambda_j$: 확인 $2\cdot2-1\cdot1=3=3\times 1$</li>
 </ul>
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 앞 슬라이드의 대각합을 **고윳값의 합**으로 바꿔 읽을 수 있게 됨. 다음 두 슬라이드에서 자유도가 이 방식으로 세어짐
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 앞 슬라이드의 대각합을 **고윳값의 합**으로 바꿔 읽을 수 있게 됨. 다음 두 슬라이드에서 자유도가 이 방식으로 세어짐
 :::
 
 ::: notes
@@ -511,7 +511,7 @@ $\lambda_1=3$ 의 방향은 $(1,1)$, $\lambda_2=1$ 의 방향은 $(1,-1)$. 방�
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **스펙트럴 분해**(spectral decomposition) : 대칭행렬 $\mathbf A$ 는 직교행렬 $\mathbf Q$ 와 고윳값을 늘어놓은 대각행렬 $\boldsymbol\Lambda$ 로 항상 다음과 같이 쪼개진다.
+> **스펙트럴 분해**(spectral decomposition): 대칭행렬 $\mathbf A$ 는 직교행렬 $\mathbf Q$ 와 고윳값을 늘어놓은 대각행렬 $\boldsymbol\Lambda$ 로 항상 다음과 같이 쪼개진다.
 >
 > $$\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^\top=\sum_{j=1}^{n}\lambda_j\,\mathbf q_j\mathbf q_j^\top,
 > \qquad \mathbf Q^\top\mathbf Q=\mathbf I$$
@@ -519,7 +519,7 @@ $\lambda_1=3$ 의 방향은 $(1,1)$, $\lambda_2=1$ 의 방향은 $(1,-1)$. 방�
 여기서 $\mathbf q_j$: $\mathbf Q$ 의 $j$번째 열이자 $\lambda_j$ 의 고유벡터. 서로 **직교**하며 길이가 1
 
 ::: {.callout-note appearance="minimal"}
-**앞 슬라이드의 $\mathbf A$ 로 확인**
+<i class="fa-solid fa-circle-check"></i> **앞 슬라이드의 $\mathbf A$ 로 확인**
 
 $$\mathbf q_1\mathbf q_1^\top=\frac12\begin{pmatrix}1&1\\ 1&1\end{pmatrix},\quad
 \mathbf q_2\mathbf q_2^\top=\frac12\begin{pmatrix}1&-1\\ -1&1\end{pmatrix},\quad
@@ -532,7 +532,7 @@ $$\mathbf q_1\mathbf q_1^\top=\frac12\begin{pmatrix}1&1\\ 1&1\end{pmatrix},\quad
 </ul>
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 다음 슬라이드의 멱등행렬, 그리고 적합값을 만드는 모자행렬이 모두 대칭이므로 이 분해가 그대로 적용됨
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 다음 슬라이드의 멱등행렬, 그리고 적합값을 만드는 모자행렬이 모두 대칭이므로 이 분해가 그대로 적용됨
 :::
 
 ::: notes
@@ -544,13 +544,13 @@ $$\mathbf q_1\mathbf q_1^\top=\frac12\begin{pmatrix}1&1\\ 1&1\end{pmatrix},\quad
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **멱등행렬**(idempotent matrix) : $\mathbf A^2=\mathbf A$ 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않는다.
+> **멱등행렬**(idempotent matrix): $\mathbf A^2=\mathbf A$ 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않는다.
 
 ::: columns
 
 :::: {.column width="50%"}
 ::: {.callout-note appearance="minimal"}
-**직접 확인**
+<i class="fa-solid fa-circle-check"></i> **직접 확인**
 
 $$\mathbf J=\frac12\begin{pmatrix}1&1\\ 1&1\end{pmatrix}
 \;\Longrightarrow\;
@@ -562,7 +562,7 @@ $\operatorname{tr}(\mathbf J)=\tfrac12+\tfrac12=1$. 앞 슬라이드의 $\mathbf
 
 :::: {.column width="50%"}
 ::: {.callout-note appearance="minimal"}
-**나머지 부분도 멱등**
+<i class="fa-solid fa-circle-check"></i> **나머지 부분도 멱등**
 
 $$(\mathbf I-\mathbf A)^2=\mathbf I-2\mathbf A+\mathbf A^2=\mathbf I-\mathbf A$$
 
@@ -574,11 +574,11 @@ $\mathbf A^2$ 자리에 $\mathbf A$ 를 넣으면 $-2\mathbf A+\mathbf A=-\mathb
 
 <ul>
 <li>$\mathbf{Av}=\lambda\mathbf v$ 의 양변에 $\mathbf A$ 를 한 번 더 곱하면 $\mathbf A^2\mathbf v=\lambda^2\mathbf v$. $\mathbf A^2=\mathbf A$ 이므로 $\lambda^2=\lambda$, 곧 고윳값은 <b>0 아니면 1</b></li>
-<li>앞 슬라이드의 세 사실을 그대로 씀 — 대각합 = 고윳값의 합, 계수 = 0이 아닌 고윳값의 개수. 여기서는 0이 아닌 고윳값이 모두 1이므로 $\operatorname{tr}(\mathbf A)=\operatorname{rank}(\mathbf A)$ = <b>사영하고 남는 차원의 수</b></li>
+<li>앞 슬라이드의 세 사실을 그대로 씀. 대각합 = 고윳값의 합, 계수 = 0이 아닌 고윳값의 개수. 여기서는 0이 아닌 고윳값이 모두 1이므로 $\operatorname{tr}(\mathbf A)=\operatorname{rank}(\mathbf A)$ = <b>사영하고 남는 차원의 수</b></li>
 </ul>
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 적합값을 만드는 모자행렬 $\mathbf H=\mathbf X(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top$ 이 대칭 멱등행렬. 아이스크림 완전모형에서 $\operatorname{tr}(\mathbf H)=4=p+1$, $\operatorname{tr}(\mathbf I-\mathbf H)=26=n-p-1$
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 적합값을 만드는 모자행렬 $\mathbf H=\mathbf X(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top$ 이 대칭 멱등행렬. 아이스크림 완전모형에서 $\operatorname{tr}(\mathbf H)=4=p+1$, $\operatorname{tr}(\mathbf I-\mathbf H)=26=n-p-1$
 :::
 
 ::: notes
@@ -596,7 +596,7 @@ $\mathbf A^2$ 자리에 $\mathbf A$ 를 넣으면 $-2\mathbf A+\mathbf A=-\mathb
 
 :::: {.column width="48%"}
 ::: {.callout-note appearance="minimal"}
-**필요한 공식은 두 개**
+<i class="fa-solid fa-list-check"></i> **필요한 공식은 두 개**
 
 $$\frac{\partial(\mathbf a^\top\mathbf b)}{\partial\mathbf b}=\mathbf a,
 \qquad
@@ -608,7 +608,7 @@ $$\frac{\partial(\mathbf a^\top\mathbf b)}{\partial\mathbf b}=\mathbf a,
 
 :::: {.column width="52%"}
 ::: {.callout-note appearance="minimal"}
-**최소제곱에 적용**
+<i class="fa-solid fa-pen-to-square"></i> **최소제곱에 적용**
 
 $$
 \begin{aligned}
@@ -627,11 +627,11 @@ $$
 $$\mathbf X^\top\mathbf X\hat{\boldsymbol\beta}=\mathbf X^\top\mathbf y$$
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · $\det(\mathbf X^\top\mathbf X)\neq 0$ 이면 양변 왼쪽에 $(\mathbf X^\top\mathbf X)^{-1}$ 을 곱해 다음 슬라이드의 한 줄을 얻음
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 최소제곱은 **미분해서 0으로 놓는** 계산 그 자체이며, 그 결과가 위의 정규방정식. 한 번 더 미분한 $\dfrac{\partial^2 S}{\partial\boldsymbol\beta\,\partial\boldsymbol\beta^\top}=2\mathbf X^\top\mathbf X$ 가 완전계수일 때 양정치이므로 이 자리는 최댓값이 아니라 **최솟값**. 같은 도구가 4장의 최대가능도 추정에도 그대로 쓰임
 :::
 
 ::: notes
-연장통의 마지막 도구입니다. 다음 슬라이드에 나올 최소제곱 공식이 하늘에서 떨어진 것이 아니라는 점을 보여 드리겠습니다. 벡터로 미분한다는 말이 어렵게 들리지만 하는 일은 단순합니다. 성분마다 하나씩 미분해서 원래 모양대로 쌓아 두는 것, 그것뿐입니다. 공식도 두 개면 충분합니다. 왼쪽 상자를 보십시오. 숫자에서 ab를 b로 미분하면 a가 남고, ab 제곱을 미분하면 2ab가 됩니다. 벡터에서도 모양이 똑같습니다. 뒤에 붙는 것이 a냐 2Ab냐의 차이뿐입니다. 오른쪽에서 실제로 써 보겠습니다. 잔차제곱합을 풀어 쓰면 덩어리가 셋 나옵니다. 첫 덩어리는 베타가 들어 있지 않으니 미분하면 사라집니다. 둘째 덩어리에 첫 공식을, 셋째 덩어리에 둘째 공식을 적용합니다. X 전치 X는 대칭이니 둘째 공식을 조건 없이 쓸 수 있습니다. 이렇게 얻은 식을 0으로 놓은 것이 정규방정식입니다. 여기서 조금 전에 배운 행렬식이 다시 등장합니다. 행렬식이 0이 아니어야 양변에 역행렬을 곱할 수 있고, 그래야 다음 슬라이드의 그 한 줄이 나옵니다. 지금까지 챙긴 연장이 마지막에 한 줄로 모이는 셈입니다.
+연장통의 마지막 도구입니다. 다음 슬라이드에 나올 최소제곱 공식이 하늘에서 떨어진 것이 아니라는 점을 보여 드리겠습니다. 벡터로 미분한다는 말이 어렵게 들리지만 하는 일은 단순합니다. 성분마다 하나씩 미분해서 원래 모양대로 쌓아 두는 것, 그것뿐입니다. 공식도 두 개면 충분합니다. 왼쪽 상자를 보십시오. 숫자에서 ab를 b로 미분하면 a가 남고, ab 제곱을 미분하면 2ab가 됩니다. 벡터에서도 모양이 똑같습니다. 뒤에 붙는 것이 a냐 2Ab냐의 차이뿐입니다. 오른쪽에서 실제로 써 보겠습니다. 잔차제곱합을 풀어 쓰면 덩어리가 셋 나옵니다. 첫 덩어리는 베타가 들어 있지 않으니 미분하면 사라집니다. 둘째 덩어리에 첫 공식을, 셋째 덩어리에 둘째 공식을 적용합니다. X 전치 X는 대칭이니 둘째 공식을 조건 없이 쓸 수 있습니다. 이렇게 얻은 식을 0으로 놓은 것이 정규방정식입니다. 여기서 한 가지 확인하고 넘어가겠습니다. 미분해서 0이 되는 자리는 최솟값일 수도 있고 최댓값일 수도 있습니다. 한 번 더 미분하면 2 곱하기 X 전치 X가 나오는데, 설명변수가 완전계수이면 이 행렬이 양정치입니다. 그래서 그 자리가 최솟값이고, 최소제곱이라는 이름이 붙습니다. 아이스크림 완전모형에서 이 행렬의 고윳값을 실제로 계산해 보면 넷 다 양수입니다. 그다음으로 조금 전에 배운 행렬식이 다시 등장합니다. 행렬식이 0이 아니어야 양변에 역행렬을 곱할 수 있고, 그래야 다음 슬라이드의 그 한 줄이 나옵니다. 지금까지 챙긴 연장이 마지막에 한 줄로 모이는 셈입니다.
 :::
 
 ## 최소제곱추정량 예고 {.smaller}
@@ -644,10 +644,16 @@ $$
 \hat{\boldsymbol{\beta}}=(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
 $$
 
-여기서 $\hat{\boldsymbol{\beta}}$: 자료로 추정한 회귀계수 벡터(모자 기호는 추정값이라는 뜻), $\mathbf{X}^\top$: $\mathbf{X}$의 전치, $(\mathbf{X}^\top\mathbf{X})^{-1}$: $\mathbf{X}^\top\mathbf{X}$의 역행렬, $\mathbf{y}$: 반응변수 벡터
+**기호**
+
+<ul>
+<li>$\hat{\boldsymbol{\beta}}$: 자료로 추정한 회귀계수 벡터. 모자 기호는 추정값이라는 뜻</li>
+<li>$\mathbf{X}^\top$: $\mathbf{X}$ 의 전치, $(\mathbf{X}^\top\mathbf{X})^{-1}$: $\mathbf{X}^\top\mathbf{X}$ 의 역행렬</li>
+<li>$\mathbf{y}$: 반응변수 벡터</li>
+</ul>
 
 ::: {.callout-note appearance="minimal"}
-**차원으로 따라가기** (아이스크림 완전모형, $n=30$, 설명변수 $p=3$)
+<i class="fa-solid fa-list-check"></i> **차원으로 따라가기** (아이스크림 완전모형, $n=30$, 설명변수 $p=3$)
 
 $$
 \underbrace{\mathbf X^\top}_{4\times 30}\;\underbrace{\mathbf X}_{30\times 4}=\underbrace{\mathbf X^\top\mathbf X}_{4\times 4}
@@ -678,7 +684,7 @@ $$
 </ul>
 
 ::: {.callout-tip appearance="minimal"}
-**모양의 성질**
+<i class="fa-solid fa-lightbulb"></i> **모양의 성질**
 
 <ul>
 <li>$\mu$를 중심으로 좌우대칭인 종 모양이고, 평균과 중앙값이 같음</li>
@@ -712,7 +718,7 @@ $$
 측정오차 = 온도, 습도, 진동, 판독 습관 등 작은 요인 다수의 합. 따라서 종 모양 분포가 근거 있는 출발점
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 오차 $\varepsilon_i$가 평균 0, 분산 $\sigma^2$인 정규분포를 따른다고 가정하고, 그 위에서 검정과 구간추정
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 오차 $\varepsilon_i$가 평균 0, 분산 $\sigma^2$인 정규분포를 따른다고 가정하고, 그 위에서 검정과 구간추정
 :::
 
 ::: notes
@@ -723,11 +729,11 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **모집단** : 알고 싶은 대상 전체. **표본** : 실제로 관측한 일부.
+> **모집단**: 알고 싶은 대상 전체. **표본**: 실제로 관측한 일부.
 >
-> **통계량** : 표본에서 계산한 값(표본평균 $\bar X$ 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.
+> **통계량**: 표본에서 계산한 값(표본평균 $\bar X$ 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.
 >
-> **표집분포** : 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.
+> **표집분포**: 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.
 
 $X_1,\dots,X_n$이 평균 $\mu$, 분산 $\sigma^2$인 모집단에서 뽑힌 표본일 때, 표본평균 $\bar X=\frac{1}{n}\sum_{i=1}^n X_i$의 표집분포는 다음을 만족
 
@@ -774,7 +780,7 @@ $$
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · **흩어진 정도를 재는 양**의 분포. 잔차제곱합을 오차분산으로 나누면
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: **흩어진 정도를 재는 양**의 분포. 잔차제곱합을 오차분산으로 나누면
 
 $$\frac{\mathrm{SSE}}{\sigma^2}\sim\chi^2(n-p-1)$$
 
@@ -802,7 +808,7 @@ $$\frac{\mathrm{SSE}}{\sigma^2}\sim\chi^2(n-p-1)$$
 
 <ul>
 <li>정규분포보다 봉우리가 낮고 꼬리가 두꺼움</li>
-<li>$\sigma$를 추정하는 불확실성이 더해졌기 때문임</li>
+<li>$\sigma$ 를 추정하는 불확실성이 더해졌기 때문</li>
 <li>자유도가 커지면 정규분포에 가까워짐</li>
 </ul>
 ::::
@@ -816,7 +822,7 @@ $$\frac{\mathrm{SSE}}{\sigma^2}\sim\chi^2(n-p-1)$$
 </ul>
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 계수 검정에 자유도 $n-(p+1)$의 t분포. 아이스크림 자료의 단순회귀는 $30-2=28$
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 계수 검정에 자유도 $n-(p+1)$의 t분포. 아이스크림 자료의 단순회귀는 $30-2=28$
 :::
 
 ::: notes
@@ -848,7 +854,7 @@ t분포는 정규분포의 사촌쯤 됩니다. 왜 따로 필요할까요. 표�
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · **두 분산 추정값의 비**. 모형이 설명한 몫과 남은 몫을 각자의 자유도로 나누어 견줌
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: **두 분산 추정값의 비**. 모형이 설명한 몫과 남은 몫을 각자의 자유도로 나누어 견줌
 
 $$F=\frac{\mathrm{SSR}/p}{\mathrm{SSE}/(n-p-1)}\sim F(p,\;n-p-1)$$
 
@@ -863,21 +869,26 @@ $$F=\frac{\mathrm{SSR}/p}{\mathrm{SSE}/(n-p-1)}\sim F(p,\;n-p-1)$$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **95% 신뢰구간** : 같은 절차로 표본 추출과 구간 계산을 반복했을 때, 만들어진 구간들 가운데 약 95%가 참값을 포함하도록 설계된 구간.
+> **95% 신뢰구간**: 같은 절차로 표본 추출과 구간 계산을 반복했을 때, 만들어진 구간들 가운데 약 95%가 참값을 포함하도록 설계된 구간.
 
 $$
 \hat\theta \pm t_{0.975,\;\nu}\times \operatorname{SE}(\hat\theta)
 $$
 
-여기서 $\hat\theta$: 관심 모수의 추정값, $\operatorname{SE}(\hat\theta)$: 그 표준오차, $t_{0.975,\nu}$: 자유도 $\nu$인 t분포의 상위 2.5% 지점(자유도 28이면 2.048)
+**기호**
+
+<ul>
+<li>$\hat\theta$: 관심 모수의 추정값, $\operatorname{SE}(\hat\theta)$: 그 표준오차</li>
+<li>$t_{0.975,\nu}$: 자유도 $\nu$ 인 t분포의 상위 2.5% 지점. 자유도 28이면 2.048</li>
+</ul>
 
 ::: {.callout-warning appearance="minimal"}
-**주의**
+<i class="fa-solid fa-triangle-exclamation"></i> **주의**
 
 <ul>
 <li>확률은 **구간**에 붙지 참값에 붙지 않음. 참값은 고정된 미지의 상수이며 구간이 표본마다 움직임</li>
-<li>"이 구간 안에 참값이 있을 확률이 95%"는 잘못된 서술임</li>
-<li>구간이 좁으면 정밀한 추정, 넓으면 정보가 부족한 추정임</li>
+<li>"이 구간 안에 참값이 있을 확률이 95%"는 잘못된 서술</li>
+<li>구간이 좁으면 정밀한 추정, 넓으면 정보가 부족한 추정</li>
 </ul>
 :::
 
@@ -890,9 +901,9 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **귀무가설** $H_0$ : 반증되기 전까지 참이라고 두는 기본 가정. 보통 "효과가 없다", "차이가 없다" 쪽에 놓는다.
+> **귀무가설** $H_0$: 반증되기 전까지 참이라고 두는 기본 가정. 보통 "효과가 없다", "차이가 없다" 쪽에 놓는다.
 >
-> **대립가설** $H_1$ : 자료로 입증하고자 하는 주장. 보통 "효과가 있다" 쪽이다.
+> **대립가설** $H_1$: 자료로 입증하고자 하는 주장. 보통 "효과가 있다" 쪽이다.
 
 ### <i class="fa-solid fa-list-check"></i> 절차
 
@@ -906,7 +917,7 @@ $$
 검정의 결론은 $H_0$의 **기각** 또는 **기각하지 못함** 두 가지뿐. "$H_0$를 채택한다"는 표현은 쓰지 않음
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 각 설명변수마다 $H_0:\beta_j=0$(그 변수의 기여가 없음) 대 $H_1:\beta_j\neq 0$의 검정
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 각 설명변수마다 $H_0:\beta_j=0$(그 변수의 기여가 없음) 대 $H_1:\beta_j\neq 0$의 검정
 :::
 
 ::: notes
@@ -924,7 +935,7 @@ $$
 ::::
 
 :::: {.column width="42%"}
-> **p-value** : 귀무가설이 참이라고 가정할 때, 실제로 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률.
+> **p-value**: 귀무가설이 참이라고 가정할 때, 실제로 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률.
 
 $$
 p=P\left(|T|\ge 2.20 \mid H_0\right)=0.0362
@@ -940,7 +951,7 @@ p가 작다 = 관측된 자료가 $H_0$ 아래에서 보기 드문 결과. 이�
 앞서 본 95% 신뢰구간이 0을 포함하지 않는 것과 양측 검정의 $p<0.05$는 동일한 판정
 
 ::: {.callout-tip appearance="minimal"}
-**회귀에서의 쓰임** · 계수표의 p-value 열이 각 계수에 대한 이 확률
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 계수표의 p-value 열이 각 계수에 대한 이 확률
 :::
 
 ::: notes
@@ -952,7 +963,7 @@ p-value를 그림 하나로 이해해 보겠습니다. 귀무가설이 참이라
 ### <i class="fa-solid fa-triangle-exclamation"></i> 네 가지 오독
 
 ::: {.callout-warning appearance="minimal"}
-**p-value가 아닌 것**
+<i class="fa-solid fa-triangle-exclamation"></i> **p-value가 아닌 것**
 
 <ol>
 <li>**p는 귀무가설이 참일 확률이 아님.** $H_0$가 참이라는 조건을 붙이고 계산한 자료 쪽의 확률. 조건과 결론을 맞바꾸어 읽으면 안 됨</li>

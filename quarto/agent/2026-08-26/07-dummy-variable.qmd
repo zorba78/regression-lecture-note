@@ -46,11 +46,11 @@ editor_options:
 ### <i class="fa-solid fa-lightbulb"></i> Introduction 장 복습: 변수의 유형
 
 ::: {.callout-note appearance="minimal"}
-**앞 장에서 여기까지** · 관측별 신뢰도를 가중치로 반영. **이 장의 질문** · 숫자가 아닌 범주 정보를 설계행렬에 어떻게 넣는가
+<i class="fa-solid fa-link"></i> **앞 장에서 여기까지**: 관측별 신뢰도를 가중치로 반영. <i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 숫자가 아닌 범주 정보를 설계행렬에 어떻게 넣는가
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**Types of variables**
+<i class="fa-solid fa-table"></i> **Types of variables**
 
 <ul>
 <li>양적 변수(quantitative): 온도, 가격, 소득처럼 수치로 측정되어 크기와 간격이 정의되는 변수</li>
@@ -158,7 +158,7 @@ Introduction 장에서 변수를 두 종류로 나눴던 것을 떠올려 주십
 ### <i class="fa-solid fa-triangle-exclamation"></i> 가변수를 $k$개 모두 넣으면
 
 ::: {.callout-note appearance="minimal"}
-**유도**
+<i class="fa-solid fa-pen-to-square"></i> **유도**
 
 범주 수만큼 가변수를 만들어 year = 0을 나타내는 $d_{i0}$까지 설계행렬에 넣으면, 모든 관측에서
 
@@ -197,7 +197,14 @@ $$
 y_i = \beta_0 + \beta_1 x_i + \beta_2 d_{i1} + \beta_3 d_{i2} + \varepsilon_i
 $$
 
-여기서 $y_i$: $i$번째 기간의 아이스크림 소비량(IC), $x_i$: 온도(temp), $d_{i1}, d_{i2}$: 관측 연차가 각각 year = 1, year = 2일 때 1이 되는 가변수, $\beta_0$: 기준 연차(year = 0)의 절편, $\beta_1$: 세 연차가 공유하는 온도의 기울기, $\beta_2, \beta_3$: 기준 연차 대비 절편의 차이, $\varepsilon_i$: 평균 0, 분산 $\sigma^2$ 인 오차
+**기호**
+
+<ul>
+<li>$y_i$: $i$번째 기간의 아이스크림 소비량(IC), $x_i$: 온도(temp)</li>
+<li>$d_{i1}, d_{i2}$: 관측 연차가 각각 year = 1, year = 2일 때 1이 되는 가변수</li>
+<li>$\beta_0$: 기준 연차(year = 0)의 절편, $\beta_1$: 세 연차가 공유하는 온도의 기울기</li>
+<li>$\beta_2, \beta_3$: 기준 연차 대비 절편의 차이, $\varepsilon_i$: 평균 0, 분산 $\sigma^2$ 인 오차</li>
+</ul>
 
 :::
 
@@ -350,7 +357,7 @@ $$
 ### <i class="fa-solid fa-screwdriver-wrench"></i> ASTM E900-15
 
 ::: {.callout-tip appearance="minimal"}
-**Variables in the ASTM E900-15 embrittlement trend curve**
+<i class="fa-solid fa-table"></i> **Variables in the ASTM E900-15 embrittlement trend curve**
 
 <ul>
 <li>반응변수: 중성자 조사에 따른 샤르피 41 J 천이온도 변화량(transition temperature shift, TTS)</li>
@@ -393,7 +400,7 @@ Introduction 장 첫머리에서 보여 드린 조사취화 예측식으로 돌�
 :::
 
 ::: {.callout-note appearance="minimal"}
-**다음 장** · Summary: 여덟 장을 관통한 공식과 기호를 한자리에 모으고, 현장에서 사용할 실무 체크리스트로 정리
+<i class="fa-solid fa-link"></i> **다음 장**: Summary: 여덟 장을 관통한 공식과 기호를 한자리에 모으고, 현장에서 사용할 실무 체크리스트로 정리
 :::
 
 ::: notes

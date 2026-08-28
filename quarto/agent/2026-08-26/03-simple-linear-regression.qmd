@@ -65,7 +65,7 @@ editor_options:
 >
 > $$\bar y=\frac{1}{n}\sum_{i=1}^{n} y_i,\qquad \bar x=\frac{1}{n}\sum_{i=1}^{n} x_i$$
 
-여기서 $y_i$는 $i$번째 관측의 반응변수, $x_i$는 같은 관측의 설명변수, $n$은 관측 수, $\bar y$와 $\bar x$는 표본평균(값을 모두 더해 개수로 나눈 값)임.
+여기서 $y_i$: $i$번째 관측의 반응변수, $x_i$: 같은 관측의 설명변수, $n$: 관측 수, $\bar y,\bar x$: 표본평균(값을 모두 더해 개수로 나눈 값)
 
 ::: {.callout-tip appearance="minimal"}
 숫자 요약보다 **산점도**(관측 하나를 가로축 $x$, 세로축 $y$의 점 하나로 찍은 그림)를 먼저 볼 것
@@ -100,7 +100,7 @@ editor_options:
 ::: {.column width="60%"}
 
 ::: {.callout-tip appearance="minimal"}
-**부호의 논리**
+<i class="fa-solid fa-lightbulb"></i> **부호의 논리**
 
 <ul>
 <li>두 평균선이 평면을 넷으로 나눔</li>
@@ -128,7 +128,7 @@ editor_options:
 ::: {.column width="50%"}
 
 ::: {.callout-tip appearance="minimal"}
-**양의 연관성**
+<i class="fa-solid fa-chart-line"></i> **양의 연관성**
 
 <ul>
 <li>1, 3사분면에 점이 많음</li>
@@ -142,7 +142,7 @@ editor_options:
 ::: {.column width="50%"}
 
 ::: {.callout-tip appearance="minimal"}
-**음의 연관성**
+<i class="fa-solid fa-chart-line"></i> **음의 연관성**
 
 <ul>
 <li>2, 4사분면에 점이 많음</li>
@@ -161,7 +161,7 @@ editor_options:
 
 ::: {.callout-note appearance="minimal"}
 <ul>
-<li>$(y_i-\bar y)$ : $y$ 가 평균에서 떨어진 거리, $(x_i-\bar x)$ : $x$ 가 평균에서 떨어진 거리</li>
+<li>$(y_i-\bar y)$: $y$ 가 평균에서 떨어진 거리, $(x_i-\bar x)$: $x$ 가 평균에서 떨어진 거리</li>
 <li>두 편차의 곱을 모두 더해 $n-1$ 로 나눔. 모집단 공분산과 구별하여 <b>표본공분산</b>이라 부름</li>
 </ul>
 :::
@@ -177,7 +177,11 @@ editor_options:
 
 > 상수 $a,b,c,d$에 대해 $\operatorname{cov}(ay+b,\;cx+d)=ac\,\operatorname{cov}(y,x)$ 가 성립한다.
 
-$y$의 단위를 바꾸어 값에 $a$를 곱하면 공분산도 $a$배. 키를 cm로 재느냐 inch로 재느냐에 따라 연관성의 크기가 달라진다면 곤란함. 공분산은 **부호는 믿을 수 있으나 크기는 단위에 좌우**되는 척도임
+<ul>
+<li>$y$ 의 단위를 바꾸어 값에 $a$ 를 곱하면 공분산도 $a$ 배</li>
+<li>키를 cm로 재느냐 inch로 재느냐에 따라 연관성의 크기가 달라진다면 곤란</li>
+<li>공분산은 <b>부호는 믿을 수 있으나 크기는 단위에 좌우</b>되는 척도</li>
+</ul>
 
 ### <i class="fa-solid fa-pen-to-square"></i> 해결: 표준화
 
@@ -205,7 +209,7 @@ $$z_i=\frac{y_i-\bar y}{s_y},\qquad s_y=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\b
 <li>측정 단위를 바꾸어도 값이 변하지 않음: $\operatorname{corr}(ay+b,\;cx+d)=\operatorname{corr}(y,x)$ ($ac>0$)</li>
 <li>$-1\le r\le 1$ (Cauchy-Schwarz 부등식)</li>
 <li>부호는 방향, 절댓값은 강도. $1$ 또는 $-1$에 가까울수록 강한 <b>선형</b>관계</li>
-<li>$\operatorname{corr}(y,x)=\operatorname{corr}(x,y)$ : 두 변수의 역할 구분이 없음</li>
+<li>$\operatorname{corr}(y,x)=\operatorname{corr}(x,y)$: 두 변수의 역할 구분이 없음</li>
 </ul>
 :::
 
@@ -230,7 +234,7 @@ $$z_i=\frac{y_i-\bar y}{s_y},\qquad s_y=\sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\b
 
 ::: {.callout-tip appearance="minimal"}
 <ul>
-<li>상관계수는 <b>선형</b> 연관성만 재는 척도임</li>
+<li>상관계수는 <b>선형</b> 연관성만 재는 척도</li>
 <li>$r=0$ 은 "선형관계가 없다"는 뜻이지 "관계가 없다"는 뜻이 아님</li>
 <li>따라서 숫자보다 산점도를 먼저 볼 것</li>
 </ul>
@@ -321,7 +325,13 @@ $$\operatorname{cov}(y,x)=0.838,\qquad r=\frac{\operatorname{cov}(y,x)}{s_y\,s_x
 
 > $$y_i=\beta_0+\beta_1 x_i+\varepsilon_i,\qquad i=1,\dots,n$$
 
-여기서 $y_i$: 반응변수, $x_i$: 설명변수, $\beta_0$: 절편, $\beta_1$: 기울기, $\varepsilon_i$: 직선으로 설명되지 않는 오차(평균 0, 분산 $\sigma^2$). $\beta_0,\beta_1$ 은 값을 모르지만 고정된 상수이고, $y_i$ 가 흔들리는 원인은 오직 $\varepsilon_i$
+**기호**
+
+<ul>
+<li>$y_i$: 반응변수, $x_i$: 설명변수, $\beta_0$: 절편, $\beta_1$: 기울기</li>
+<li>$\varepsilon_i$: 직선으로 설명되지 않는 오차(평균 0, 분산 $\sigma^2$)</li>
+<li>$\beta_0,\beta_1$ 은 값을 모르지만 <b>고정된 상수</b>. $y_i$ 가 흔들리는 원인은 오직 $\varepsilon_i$</li>
+</ul>
 
 ### <i class="fa-solid fa-lightbulb"></i> 계수의 뜻
 
@@ -329,7 +339,7 @@ $$\operatorname{cov}(y,x)=0.838,\qquad r=\frac{\operatorname{cov}(y,x)}{s_y\,s_x
 <ul>
 <li>$\beta_1$ (기울기): $x$가 1단위 커질 때 $y$가 <b>평균적으로</b> 변하는 양</li>
 <li>$\beta_0$ (절편): $x=0$일 때 예측되는 $y$의 평균</li>
-<li>적합된 직선은 조건부 기댓값 $E(y\mid x)=\beta_0+\beta_1x$의 추정이므로, 개별 관측이 아닌 <b>평균</b>에 관한 진술임</li>
+<li>적합된 직선은 조건부 기댓값 $E(y\mid x)=\beta_0+\beta_1x$의 추정이므로, 개별 관측이 아닌 <b>평균</b>에 관한 진술</li>
 <li>$x=0$이 자료 범위 밖이면 절편을 물리적으로 해석하지 않는 편이 안전함</li>
 </ul>
 :::
@@ -439,7 +449,7 @@ $$\operatorname{cov}(y,x)=0.838,\qquad r=\frac{\operatorname{cov}(y,x)}{s_y\,s_x
 ::::
 
 ::: {.callout-note appearance="minimal"}
-**제곱합을 표준으로 삼는 근거**
+<i class="fa-solid fa-lightbulb"></i> **제곱합을 표준으로 삼는 근거**
 
 <ul>
 <li><b>해가 닫힌 형태로 존재</b>: $S(b)$ 가 $b$ 의 이차함수이자 아래로 볼록이므로 미분해 0으로 놓으면 유일한 최소점을 얻음(다음 장)</li>
@@ -517,14 +527,14 @@ $$\hat\beta_1=\frac{S_{xy}}{S_{xx}},\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **최대가능도법**(maximum likelihood, 최대우도법) : 지금 손에 있는 자료가 나올 법함을 가장 크게 만드는 모수값을 추정값으로 삼는 방법.
+> **최대가능도법**(maximum likelihood, 최대우도법): 지금 손에 있는 자료가 나올 법함을 가장 크게 만드는 모수값을 추정값으로 삼는 방법.
 
 확률을 말하려면 오차에 분포가 필요. $\varepsilon_i\stackrel{\text{iid}}{\sim}N(0,\sigma^2)$ 이면 $y_i\sim N(\beta_0+\beta_1x_i,\;\sigma^2)$ (iid: 서로 독립이고 같은 분포)
 
 ![The normal-error model (left) and the log-likelihood over candidate slopes (right)](../../../output/agent/2026-08-27/fig-s01-likelihood.png){width=100% .nostretch}
 
 ::: {.callout-tip appearance="minimal"}
-왼쪽은 관측마다 종이 하나씩 있고 중심만 직선을 따라 움직인다는 가정. 오른쪽 곡선의 꼭대기 $\hat\beta_1=0.00311$ 은 앞서 본 제곱합 곡선의 바닥과 같은 자리 — **위아래로 뒤집은 모양**
+왼쪽은 관측마다 종이 하나씩 있고 중심만 직선을 따라 움직인다는 가정. 오른쪽 곡선의 꼭대기 $\hat\beta_1=0.00311$ 은 앞서 본 제곱합 곡선의 바닥과 같은 자리. **위아래로 뒤집은 모양**
 :::
 
 ::: notes
@@ -591,31 +601,25 @@ $\sigma^2$ 에 대해서는 $\dfrac{\partial\ell}{\partial\sigma^2}=-\dfrac{n}{2
 
 여기서 $\operatorname{var}(x)=s_x^2$: $x$의 표본분산, $r$: 표본상관계수
 
+**유도: 약분 두 번**
+
+<ul>
+<li>$S_{xy}=(n-1)\operatorname{cov}(y,x)$, $S_{xx}=(n-1)\operatorname{var}(x)$ 이므로 $(n-1)$ 이 약분
+$$\frac{S_{xy}}{S_{xx}}=\frac{(n-1)\operatorname{cov}(y,x)}{(n-1)\operatorname{var}(x)}=\frac{\operatorname{cov}(y,x)}{\operatorname{var}(x)}$$</li>
+<li>$\operatorname{cov}(y,x)=r\,s_y s_x$, $\operatorname{var}(x)=s_x^2$ 이므로 $s_x$ 가 한 번 더 약분
+$$\frac{\operatorname{cov}(y,x)}{\operatorname{var}(x)}=\frac{r\,s_y s_x}{s_x^2}=r\,\frac{s_y}{s_x}$$</li>
+</ul>
+
+**읽는 법**
+
 <ul>
 <li>기울기 = 상관계수 $\times$ 흩어짐 비율 $s_y/s_x$</li>
 <li>방향과 강도는 상관계수가, 단위와 눈금은 표준편차 비율이 결정</li>
-<li>따라서 상관계수는 무단위, 기울기의 단위는 ($y$의 단위)/($x$의 단위)</li>
+<li>상관계수는 무단위, 기울기의 단위는 ($y$의 단위)/($x$의 단위)</li>
 </ul>
 
 ::: notes
-이 슬라이드가 이 장의 앞부분과 뒷부분을 이어 주는 다리입니다. 앞에서 배운 공분산과 상관계수, 그리고 방금 구한 회귀 기울기가 사실 같은 것이었다는 이야기입니다. 세 표현이 나란히 적혀 있지만 전부 같은 값입니다. 하나만 미리 짚겠습니다. 상관계수는 0.776인데 기울기는 0.00311입니다. 왜 이렇게 차이가 날까요. 단위 때문입니다. 소비량의 흔들림이 0.066, 온도의 흔들림이 16.4니 비율이 아주 작습니다. 기울기 숫자가 작다고 관계가 약한 것이 아닙니다. 강도는 상관계수로, 변화량은 기울기로 읽으셔야 합니다.
-:::
-
-
-## 세 표현이 같은 이유: 유도 {.smaller}
-
-### <i class="fa-solid fa-pen-to-square"></i> 약분 두 번
-
-$S_{xy}=(n-1)\operatorname{cov}(y,x)$, $S_{xx}=(n-1)\operatorname{var}(x)$ 이므로 분자와 분모의 $(n-1)$이 약분됨
-
-$$\frac{S_{xy}}{S_{xx}}=\frac{(n-1)\operatorname{cov}(y,x)}{(n-1)\operatorname{var}(x)}=\frac{\operatorname{cov}(y,x)}{\operatorname{var}(x)}$$
-
-또 $\operatorname{cov}(y,x)=r\,s_y s_x$ 이고 $\operatorname{var}(x)=s_x^2$ 이므로
-
-$$\frac{\operatorname{cov}(y,x)}{\operatorname{var}(x)}=\frac{r\,s_y s_x}{s_x^2}=r\,\frac{s_y}{s_x}$$
-
-::: notes
-유도라고 해 봐야 약분 두 번입니다. 첫 번째 등호는 위아래에서 $n$ 빼기 1이 똑같이 나오니 지워집니다. 두 번째 등호는 공분산 자리에 상관계수 곱하기 두 표준편차를 넣고 정리하면 나옵니다. 새로 배우는 계산은 없습니다. 이미 아는 세 가지를 서로 바꿔 쓴 것뿐입니다.
+이 슬라이드가 이 장의 앞부분과 뒷부분을 이어 주는 다리입니다. 앞에서 배운 공분산과 상관계수, 그리고 방금 구한 회귀 기울기가 사실은 같은 것이었다는 이야기입니다. 세 표현이 나란히 적혀 있지만 전부 같은 값입니다. 유도라고 해 봐야 약분 두 번입니다. 첫 줄은 위아래에서 $n$ 빼기 1이 똑같이 나오니 지워집니다. 둘째 줄은 공분산 자리에 상관계수 곱하기 두 표준편차를 넣고 정리하면 $s_x$ 가 하나 더 지워집니다. 새로 배우는 계산은 없고, 이미 아는 세 가지를 서로 바꿔 쓴 것뿐입니다. 마지막으로 하나만 짚겠습니다. 상관계수는 0.776인데 기울기는 0.00311입니다. 왜 이렇게 차이가 날까요. 단위 때문입니다. 소비량의 흔들림이 0.066, 온도의 흔들림이 16.4니 비율이 아주 작습니다. 기울기 숫자가 작다고 관계가 약한 것은 아닙니다. 강도는 상관계수로, 변화량은 기울기로 읽으셔야 합니다.
 :::
 
 
@@ -632,7 +636,7 @@ $$\frac{\operatorname{cov}(y,x)}{\operatorname{var}(x)}=\frac{r\,s_y s_x}{s_x^2}
 
 : Four routes to the same slope estimate (ice cream data, IC on temp, n = 30)
 
-계산 경로가 서로 다른데도 네 값이 모두 일치함. 우연이 아니라 항등식이 성립한 결과임.
+계산 경로가 서로 다른데도 네 값이 모두 일치함. 우연이 아니라 항등식이 성립한 결과
 
 ::: notes
 표를 보십시오. 계산 경로가 전혀 다른데 값이 똑같이 나옵니다. 우연이 아니라 앞 슬라이드의 항등식이 그대로 성립한 것입니다. 네 번째 줄은 경로가 조금 다릅니다. 정규방정식의 첫 식, 곧 직선이 평균점을 지난다는 성질에서 바로 기울기를 얻은 것입니다. 어느 길로 가도 같은 곳에 도착합니다.
@@ -710,7 +714,7 @@ $$\hat y=0.207+0.00311\,x$$
 : The coefficient of determination equals the squared correlation (IC on temp, n = 30)
 
 ::: {.callout-note appearance="minimal"}
-**주의**
+<i class="fa-solid fa-triangle-exclamation"></i> **주의**
 
 <ul>
 <li>$R^2$의 적정 수준에는 절대 기준이 없고 분야와 자료 유형에 따라 다름</li>
@@ -724,16 +728,137 @@ $$\hat y=0.207+0.00311\,x$$
 :::
 
 
+## 회귀계수의 불편성: 증명 {.smaller .stepped}
+
+### <i class="fa-solid fa-pen-to-square"></i> 기울기를 $y$ 의 가중합으로 쓰면 끝난다
+
+<ol>
+<li><b>$\hat\beta_1$ 을 $y$ 의 가중합으로 고쳐 쓴다.</b> $S_{xy}$ 에서 $\bar y$ 가 붙은 항은 $\sum(x_i-\bar x)=0$ 이라 사라짐. 남은 가중치 $c_i$ 는 $x$ 만으로 정해지는 <b>상수</b>
+$$\hat\beta_1=\frac{S_{xy}}{S_{xx}}=\frac{\sum(x_i-\bar x)y_i}{S_{xx}}=\sum_{i=1}^{n}c_iy_i,
+\qquad c_i=\frac{x_i-\bar x}{S_{xx}}$$</li>
+<li><b>가중치의 두 성질을 확인한다.</b> 이 두 줄이 증명의 전부이며, 둘째 등식은 $\sum(x_i-\bar x)x_i=\sum x_i^2-n\bar x^2=S_{xx}$ 에서 나옴
+$$\sum c_i=\frac{\sum(x_i-\bar x)}{S_{xx}}=0,\qquad
+\sum c_ix_i=\frac{\sum(x_i-\bar x)x_i}{S_{xx}}=\frac{S_{xx}}{S_{xx}}=1$$</li>
+<li><b>기댓값을 취한다.</b> 모형이 $E(y_i)=\beta_0+\beta_1x_i$ 이므로 두 성질이 그대로 대입됨
+$$E(\hat\beta_1)=\sum c_iE(y_i)
+=\beta_0\underbrace{\sum c_i}_{=\,0}+\beta_1\underbrace{\sum c_ix_i}_{=\,1}=\beta_1$$</li>
+<li><b>절편은 따라 나온다.</b> $\hat\beta_0=\bar y-\hat\beta_1\bar x$ 이고 $E(\bar y)=\beta_0+\beta_1\bar x$ 이므로
+$$E(\hat\beta_0)=E(\bar y)-\bar x\,E(\hat\beta_1)=(\beta_0+\beta_1\bar x)-\bar x\beta_1=\beta_0$$</li>
+</ol>
+
+::: {.callout-note appearance="minimal"}
+$$E(\hat\beta_0)=\beta_0,\qquad E(\hat\beta_1)=\beta_1$$
+:::
+
+::: notes
+앞에서 얻은 두 공식이 평균적으로 참값을 맞히는지 확인하겠습니다. 증명이라고 하면 겁부터 나실 텐데, 실제로 하는 일은 기울기 공식을 모양만 바꿔 쓰는 것뿐입니다. 첫 단계입니다. 분자를 풀어 보면 y 평균이 붙은 항이 통째로 사라집니다. x에서 평균을 뺀 것을 전부 더하면 0이기 때문입니다. 그러면 기울기는 y들에 정해진 무게를 곱해 더한 값이 됩니다. 무게에는 x만 들어 있고 y는 없다는 점이 중요합니다. 실험 조건은 우리가 정한 것이니 무게는 고정된 숫자입니다. 두 번째 단계에서 그 무게의 성질 둘을 확인합니다. 전부 더하면 0, x를 곱해서 더하면 1. 이 두 줄이 증명의 전부입니다. 세 번째 단계에서 기댓값을 씌웁니다. 모형에 따르면 각 y의 평균은 절편 더하기 기울기 곱하기 x입니다. 이것을 넣으면 절편 쪽에는 첫 성질이 붙어 0이 되고, 기울기 쪽에는 둘째 성질이 붙어 1이 됩니다. 남는 것은 베타 1 하나뿐입니다. 절편은 더 간단합니다. 절편 공식이 y 평균 빼기 기울기 곱하기 x 평균이니, 기댓값을 씌우면 기울기 항이 서로 지워지고 베타 0만 남습니다. 과녁과 화살로 비유하면, 화살이 매번 다른 자리에 꽂히더라도 그 평균 위치는 과녁 중심과 정확히 일치한다는 뜻입니다. 화살 하나가 중심에 꽂힌다는 말은 아닙니다.
+:::
+
+
+## 회귀계수의 분산과 공분산 {.smaller}
+
+### <i class="fa-solid fa-bullseye"></i> 같은 가중치로 분산까지 나온다
+
+> $$\operatorname{Var}(\hat\beta_1)=\frac{\sigma^2}{S_{xx}},\qquad
+\operatorname{Var}(\hat\beta_0)=\sigma^2\!\left(\frac1n+\frac{\bar x^2}{S_{xx}}\right),\qquad
+\operatorname{Cov}(\hat\beta_0,\hat\beta_1)=-\frac{\sigma^2\bar x}{S_{xx}}$$
+
+**유도**: 관측이 서로 무관하고 분산이 모두 $\sigma^2$ 이므로 $\operatorname{Var}(\sum c_iy_i)=\sigma^2\sum c_i^2$ 이고, $\sum c_i^2=\sum(x_i-\bar x)^2/S_{xx}^2=1/S_{xx}$. 절편은 $\operatorname{Cov}(\bar y,\hat\beta_1)=\sigma^2\sum c_i/n=0$ 이라 두 항의 분산이 그대로 더해짐
+
+| Quantity | Formula | Ice cream (IC on temp) |
+|:--|:--|--:|
+| $\hat\sigma^2$ | $SSE/(n-2)$ | 0.0017860 |
+| $\operatorname{se}(\hat\beta_1)$ | $\hat\sigma/\sqrt{S_{xx}}$ | 0.000478 |
+| $\operatorname{se}(\hat\beta_0)$ | $\hat\sigma\sqrt{1/n+\bar x^2/S_{xx}}$ | 0.0247 |
+| $\widehat{\operatorname{Cov}}(\hat\beta_0,\hat\beta_1)$ | $-\hat\sigma^2\bar x/S_{xx}$ | $-1.121\times10^{-5}$ |
+
+: Estimated variability of the two coefficients (n = 30, x-bar = 49.1, Sxx = 7820.7)
+
+::: {.callout-tip appearance="minimal"}
+<ul>
+<li>$S_{xx}$ 가 클수록 기울기의 분산이 작아짐. <b>설명변수를 넓게 잡으라</b>는 설계 지침이 여기서 나옴</li>
+<li>절편의 분산에 $\bar x^2$ 이 들어 있는 이유: 절편은 $x=0$ 에서의 값인데 자료가 그 지점에서 멀수록 불확실. 이 자료의 온도 범위는 24~72 $^\circ$F 로 0을 포함하지 않음</li>
+<li>공분산이 <b>음수</b>: 직선이 평균점 $(\bar x,\bar y)$ 를 반드시 지나므로, 기울기를 크게 잡으면 절편은 작게 잡힘</li>
+</ul>
+:::
+
+::: notes
+불편성이 화살의 평균 위치를 말했다면, 분산은 화살이 얼마나 넓게 퍼지는가를 말합니다. 유도는 앞 슬라이드에서 만든 무게를 그대로 다시 씁니다. 서로 무관한 값들을 더할 때는 분산도 그냥 더해집니다. 무게가 곱해져 있으니 무게의 제곱이 붙습니다. 그 제곱합을 계산하면 정확히 S xx 분의 1이 됩니다. 그래서 기울기의 분산이 시그마 제곱 나누기 S xx입니다. 이 식에서 실험 설계에 관한 교훈이 바로 나옵니다. 분모의 S xx는 x가 얼마나 넓게 퍼져 있는가입니다. 온도를 좁은 구간에서만 측정하면 기울기를 정확히 잡을 수 없습니다. 관측 수를 늘리는 것 못지않게 조건을 넓게 잡는 일이 중요합니다. 절편 쪽 식에 x 평균의 제곱이 들어 있는 것도 이유가 있습니다. 절편은 x가 0일 때의 값인데, 이 자료의 온도는 24도에서 72도 사이입니다. 0도는 관측한 적이 없는 자리이니 그만큼 불확실합니다. 마지막 줄의 공분산이 음수인 것도 그림으로 이해하실 수 있습니다. 직선은 반드시 평균점을 지나야 합니다. 그 점을 축으로 직선을 조금 더 세우면 왼쪽 끝은 내려가고, 조금 더 눕히면 왼쪽 끝은 올라갑니다. 기울기와 절편이 서로 반대로 움직인다는 뜻입니다.
+:::
+
+
+## Gauss-Markov 정리 {.smaller}
+
+### <i class="fa-solid fa-bullseye"></i> 선형 불편추정량 가운데 최소분산
+
+> 오차의 평균이 0이고, 분산이 모두 $\sigma^2$ 로 같으며, 서로 무관하면, 최소제곱 추정량은 **선형 불편추정량 가운데 분산이 가장 작다**(BLUE, Best Linear Unbiased Estimator).
+
+같은 자료로 만든 다른 선형 불편추정량과 견주면 차이가 눈에 보임. 아래는 $x$ 의 중앙값으로 두 집단을 나눠 $(\bar y_H-\bar y_L)/(\bar x_H-\bar x_L)$ 로 기울기를 추정한 것이며, $\sum a_i=0$, $\sum a_ix_i=1$ 이므로 **불편추정량이 맞음**
+
+| Estimator of the slope | Estimate | Standard error | Variance ratio |
+|:--|--:|--:|--:|
+| Least squares | 0.0031074 | 0.000478 | 1.000 |
+| Two group means, split at the median of x | 0.0030767 | 0.000523 | 1.196 |
+
+: Any linear unbiased competitor has larger variance (ice cream data, n = 30)
+
+::: {.callout-note appearance="minimal"}
+<i class="fa-solid fa-triangle-exclamation"></i> **정리가 말하지 않는 것**
+
+<ul>
+<li>'선형'은 $y$ 의 가중합으로 쓸 수 있다는 뜻. 비선형 추정량까지 포함해 최소라는 주장은 아님</li>
+<li>'불편' 조건을 풀면 분산이 더 작은 <b>편향</b>추정량이 있을 수 있음(능형회귀 등)</li>
+<li><b>정규분포 가정은 필요 없음</b>. 정규성은 $t$·$F$ 검정과 구간추정에서 비로소 필요</li>
+<li>등분산이 깨지면 최소제곱은 여전히 불편이지만 최소분산은 아님 $\to$ 6장 가중회귀</li>
+</ul>
+:::
+
+::: notes
+최소제곱을 왜 쓰느냐는 질문에 대한 정식 답이 이 정리입니다. 조건은 셋뿐입니다. 오차의 평균이 0, 분산이 모두 같음, 서로 무관함. 이 셋만 있으면 최소제곱이 선형 불편추정량 가운데 분산이 가장 작습니다. 표를 보시면 말뿐이 아니라는 것을 아실 수 있습니다. 온도를 중앙값으로 갈라 위쪽 집단의 평균과 아래쪽 집단의 평균을 잇는 방법으로도 기울기를 추정할 수 있습니다. 이 방법도 y의 가중합이고 불편추정량입니다. 추정값도 0.00308로 최소제곱의 0.00311과 비슷합니다. 그런데 표준오차가 0.000523으로 더 큽니다. 분산으로 보면 약 20퍼센트 큽니다. 같은 자료를 쓰고도 손해를 보는 셈입니다. 아래 상자가 더 중요합니다. 이 정리가 말하지 않는 것들입니다. 첫째, 선형이라는 울타리 안에서만 최소입니다. 둘째, 불편이라는 울타리를 벗어나면 분산이 더 작은 방법이 있을 수 있습니다. 셋째, 여기 어디에도 정규분포가 없습니다. 정규성은 나중에 검정과 구간을 만들 때 필요하지, 최소제곱이 좋은 추정량이라는 사실 자체와는 무관합니다. 넷째가 6장의 예고입니다. 분산이 서로 다르면 이 정리의 조건이 깨지고, 그때 쓰는 것이 가중회귀입니다.
+:::
+
+
+## Gauss-Markov 정리: 증명 {.smaller .stepped}
+
+### <i class="fa-solid fa-pen-to-square"></i> 어떤 경쟁자도 $\sum d_i^2$ 만큼 손해
+
+<ol>
+<li><b>경쟁자가 만족해야 할 조건을 적는다.</b> 다른 선형추정량 $\tilde\beta_1=\sum a_iy_i$ 가 <b>불편</b>이려면 $E(\tilde\beta_1)=\beta_0\sum a_i+\beta_1\sum a_ix_i=\beta_1$ 이어야 하므로
+$$\sum a_i=0,\qquad \sum a_ix_i=1$$</li>
+<li><b>최소제곱과의 차이를 $d_i$ 로 둔다.</b> $a_i=c_i+d_i$ 로 쓰면 위 조건에서 $\sum d_i=0$, $\sum d_ix_i=0$ 이 되고, 그 결과 교차항이 사라짐
+$$\sum c_id_i=\frac{\sum d_i(x_i-\bar x)}{S_{xx}}
+=\frac{\sum d_ix_i-\bar x\sum d_i}{S_{xx}}=0$$</li>
+<li><b>분산을 전개한다.</b> 교차항이 0이라 제곱합이 그대로 갈라지고, 뒤에 더해지는 몫은 제곱합이므로 <b>항상 0 이상</b>
+$$\operatorname{Var}(\tilde\beta_1)=\sigma^2\sum a_i^2=\sigma^2\Big(\sum c_i^2+\sum d_i^2\Big)
+=\operatorname{Var}(\hat\beta_1)+\sigma^2\sum d_i^2$$</li>
+</ol>
+
+::: {.callout-note appearance="minimal"}
+$$\operatorname{Var}(\tilde\beta_1)\ \ge\ \operatorname{Var}(\hat\beta_1),
+\qquad \text{등호는 모든 } d_i=0,\ \text{곧 } \tilde\beta_1=\hat\beta_1 \text{ 일 때뿐}$$
+:::
+
+::: notes
+증명은 세 줄입니다. 먼저 경쟁자를 하나 데려옵니다. y들에 아무 무게나 곱해 더한 값이면 무엇이든 좋습니다. 다만 불편이어야 한다는 조건을 붙입니다. 기댓값을 씌워 보면 그 조건이 무게에 관한 두 식으로 바뀝니다. 전부 더하면 0, x를 곱해 더하면 1. 앞에서 최소제곱의 무게가 만족하던 바로 그 두 식입니다. 두 번째 단계가 요령입니다. 경쟁자의 무게를 최소제곱의 무게에 차이를 더한 것으로 씁니다. 그러면 방금 두 조건에서 차이 쪽 무게도 전부 더하면 0, x를 곱해 더해도 0이 됩니다. 이 두 가지 때문에 교차항이 정확히 0으로 사라집니다. 세 번째 단계에서 분산을 전개하면 최소제곱의 분산에 차이의 제곱합이 더해진 모양이 됩니다. 제곱을 더한 값은 절대 음수가 될 수 없습니다. 그러니 어떤 경쟁자를 데려와도 분산이 최소제곱보다 작아질 수 없습니다. 같아지는 경우는 차이가 전부 0일 때, 곧 그 경쟁자가 사실은 최소제곱과 같은 것일 때뿐입니다. 앞 슬라이드의 두 집단 평균 방법도 이 계산의 한 예입니다. 차이의 제곱합이 0이 아니었기에 분산이 20퍼센트 컸던 것입니다.
+:::
+
+
 ## 기울기의 표준오차
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 > $$\hat\sigma^2=\frac{SSE}{n-2},\qquad \operatorname{se}(\hat\beta_1)=\frac{\hat\sigma}{\sqrt{S_{xx}}}$$
 
-여기서 $\hat\sigma^2$: 오차분산 $\sigma^2$의 추정값, $\hat\sigma$: 잔차 표준오차, $n-2$: 자유도(관측 $n$개에서 추정한 계수 2개를 뺀 값), $\operatorname{se}(\hat\beta_1)$: **표준오차**, 곧 자료가 바뀔 때 $\hat\beta_1$ 이 흔들리는 폭의 추정값
+**기호**
+
+<ul>
+<li>$\hat\sigma^2$: 오차분산 $\sigma^2$ 의 추정값, $\hat\sigma$: 잔차 표준오차</li>
+<li>$n-2$: 자유도. 관측 $n$ 개에서 추정한 계수 2개를 뺀 값</li>
+<li>$\operatorname{se}(\hat\beta_1)$: <b>표준오차</b>. 자료가 바뀔 때 $\hat\beta_1$ 이 흔들리는 폭의 추정값</li>
+</ul>
 
 ::: {.callout-note appearance="minimal"}
-**아이스크림 자료 계산**
+<i class="fa-solid fa-pen-to-square"></i> **아이스크림 자료 계산**
 
 $\hat\sigma^2=0.00179$, $\hat\sigma=0.0423$, $S_{xx}=(n-1)s_x^2=7820.7$
 
@@ -781,7 +906,7 @@ $t$분포는 정규분포와 비슷하되 꼬리가 더 두꺼운 분포. 자유
 $t=\hat\beta_1/\operatorname{se}(\hat\beta_1)=6.50$. 자유도 28의 $t$분포에서 이 값의 양측 꼬리 면적이 $p$값
 
 ::: {.callout-note appearance="minimal"}
-**$p$값 읽는 법** · $H_0$가 참이라는 **가정 아래** 지금 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률
+<i class="fa-solid fa-lightbulb"></i> **$p$값 읽는 법**: $H_0$가 참이라는 **가정 아래** 지금 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률
 
 <ul>
 <li>$4.8\times 10^{-7}$은 $1/(4.8\times10^{-7})\approx 2.1\times 10^{6}$, 곧 약 200만 번에 한 번꼴</li>
@@ -795,6 +920,69 @@ $t=\hat\beta_1/\operatorname{se}(\hat\beta_1)=6.50$. 자유도 28의 $t$분포�
 :::
 
 
+## 회귀분산분석: 표의 구조 {.smaller}
+
+### <i class="fa-solid fa-table"></i> 제곱합과 자유도를 나란히 놓기
+
+> 앞의 $SST=SSR+SSE$ 를 자유도와 함께 표로 정리하면, 모형 전체를 한꺼번에 검정하는 통계량이 나온다.
+
+| Source | df | Sum of squares | Mean square | $F$ |
+|:--|:--|:--|:--|:--|
+| Regression | 1 | $SSR$ | $MSR=SSR/1$ | $MSR/MSE$ |
+| Residual | $n-2$ | $SSE$ | $MSE=SSE/(n-2)$ | |
+| Total | $n-1$ | $SST$ | | |
+
+: Analysis of variance for simple linear regression
+
+**평균제곱(Mean square)** 은 제곱합을 자유도로 나눈 값, 곧 **자유도 하나당 변동**. 크기가 다른 두 제곱합을 견줄 수 있게 척도를 맞추는 작업이며, $MSE=\hat\sigma^2$ 은 앞에서 쓴 오차분산 추정값과 같은 것
+
+::: {.callout-tip appearance="minimal"}
+<ul>
+<li>가설은 $H_0:\beta_1=0$ 대 $H_1:\beta_1\neq 0$ 로 $t$ 검정과 같음. 단순회귀에서는 설명변수가 하나뿐이라 <b>모형 전체의 검정</b>과 <b>기울기 하나의 검정</b>이 같은 질문</li>
+<li>$H_0$ 가 참이면 $MSR$ 과 $MSE$ 가 모두 $\sigma^2$ 의 불편추정량이 되어 $F$ 는 1 근처. 설명한 몫이 커질수록 $F$ 가 커짐</li>
+<li>$H_0$ 아래에서 $F\sim F(1,\;n-2)$ 이며, 비이므로 <b>오른쪽 한쪽 꼬리만</b> 봄</li>
+</ul>
+:::
+
+::: notes
+같은 자료를 다른 각도에서 한 번 더 보겠습니다. 앞에서 총변동을 설명한 몫과 남은 몫으로 갈랐습니다. 그 두 제곱합에 자유도를 나란히 적어 표로 만든 것이 분산분석표입니다. 자유도부터 보시면 회귀 쪽이 1입니다. 추정한 기울기가 하나이기 때문입니다. 잔차 쪽은 n 빼기 2입니다. 관측 서른 개에서 절편과 기울기 둘을 추정하는 데 정보를 썼기 때문입니다. 둘을 더하면 n 빼기 1, 총 자유도가 됩니다. 세 번째 열의 평균제곱은 제곱합을 자유도로 나눈 값입니다. 왜 나누느냐. 제곱합끼리는 크기를 바로 견줄 수 없기 때문입니다. 자유도 하나당 변동으로 바꿔 놓아야 공정한 비교가 됩니다. 여기서 눈여겨볼 것이 잔차 쪽 평균제곱입니다. 이것이 바로 조금 전에 표준오차를 만들 때 쓴 오차분산 추정값입니다. 새로운 양이 아닙니다. 마지막 열이 두 평균제곱의 비입니다. 귀무가설이 참이라면, 그러니까 온도가 정말 무의미하다면 위아래가 모두 같은 오차분산을 추정하게 되어 비가 1 근처에 머뭅니다. 설명한 몫이 크면 비가 커집니다. 그래서 오른쪽 꼬리만 봅니다.
+:::
+
+
+## 회귀분산분석표: 아이스크림 자료와 $F=t^2$ {.smaller}
+
+### <i class="fa-solid fa-table"></i> 두 검정이 같은 결론
+
+| Source | df | Sum Sq | Mean Sq | $F$ | $p$-value |
+|:--|--:|--:|--:|--:|--:|
+| Regression | 1 | 0.075514 | 0.075514 | 42.28 | $4.8\times10^{-7}$ |
+| Residual | 28 | 0.050009 | 0.001786 | | |
+| Total | 29 | 0.125523 | | | |
+
+: Analysis of variance for the ice cream data (IC on temp, n = 30)
+
+::: {.callout-note appearance="minimal"}
+<i class="fa-solid fa-circle-check"></i> **설명변수가 하나면 두 검정이 완전히 같다**
+
+$$F=t^2:\qquad 6.5023^2=42.280,\qquad
+F(0.95;1,28)=2.0484^2=4.196=\big[t(0.975;28)\big]^2$$
+
+통계량도 임계값도 $p$값$(4.8\times10^{-7})$ 도 모두 일치. 설명변수가 둘 이상이면 이 관계는 깨지고, $F$ 는 계수 전체를 한꺼번에 묻는 별도의 검정이 됨
+:::
+
+::: {.callout-tip appearance="minimal"}
+<ul>
+<li>세로로 더해짐: $0.075514+0.050009=0.125523$, $1+28=29$</li>
+<li>$MSE=0.001786=\hat\sigma^2$ 이고 $\sqrt{MSE}=0.04226=\hat\sigma$ 가 잔차 표준오차</li>
+<li>$R^2=SSR/SST=0.075514/0.125523=0.6016$ 도 이 표에서 바로 읽힘</li>
+</ul>
+:::
+
+::: notes
+표에 실제 숫자를 넣었습니다. 회귀 쪽 제곱합이 0.0755, 잔차 쪽이 0.0500, 합해서 0.1255가 총제곱합입니다. 자유도도 1 더하기 28은 29로 딱 맞습니다. 평균제곱을 구해 비를 취하면 F가 42.28입니다. 자유도 1과 28짜리 F분포에서 5퍼센트 임계값이 4.196이니 크게 넘어섭니다. 그래서 기각합니다. 여기서 재미있는 것이 가운데 상자입니다. 앞 슬라이드에서 t 값이 6.50이었습니다. 이것을 제곱해 보십시오. 42.28, 방금 구한 F와 정확히 같습니다. 임계값도 마찬가지입니다. t의 임계값 2.048을 제곱하면 4.196, F의 임계값과 같습니다. p값도 둘 다 4.8 곱하기 10의 마이너스 7승입니다. 우연이 아닙니다. 설명변수가 하나뿐이면 모형 전체를 묻는 질문과 그 하나의 기울기를 묻는 질문이 같은 질문이기 때문입니다. 그러니 단순회귀에서는 둘 중 아무거나 쓰셔도 됩니다. 다만 다음 장으로 넘어가면 달라집니다. 설명변수가 여럿이면 F는 계수 전체를 한꺼번에 묻고, t는 하나씩 묻습니다. 그때부터 두 검정은 서로 다른 질문이 되고, F는 통과했는데 개별 t는 하나도 유의하지 않은 상황도 생깁니다.
+:::
+
+
 ## 기울기의 신뢰구간
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
@@ -804,7 +992,7 @@ $t=\hat\beta_1/\operatorname{se}(\hat\beta_1)=6.50$. 자유도 28의 $t$분포�
 여기서 $t_{\alpha/2,\,n-2}$: 자유도 $n-2$인 $t$분포의 임계값. 이 구간이 $100(1-\alpha)\%$ **신뢰구간**
 
 ::: {.callout-note appearance="minimal"}
-**아이스크림 자료의 95% 신뢰구간** ($\alpha=0.05$, 자유도 28, $t_{0.025,28}=2.048$)
+<i class="fa-solid fa-pen-to-square"></i> **아이스크림 자료의 95% 신뢰구간** ($\alpha=0.05$, 자유도 28, $t_{0.025,28}=2.048$)
 
 $$0.00311\pm 2.048\times 0.000478=0.00311\pm 0.000979$$
 
@@ -816,7 +1004,7 @@ $$\Rightarrow\quad (0.00213,\;0.00409)$$
 ::: {.callout-tip appearance="minimal"}
 <ul>
 <li>옳은 해석: 같은 절차를 반복해 만든 구간의 약 95%가 참값 $\beta_1$을 포함하도록 설계됨</li>
-<li>틀린 해석: 이번에 계산한 구간 안에 $\beta_1$이 있을 확률이 95%임</li>
+<li>틀린 해석: "이번에 계산한 구간 안에 $\beta_1$이 있을 확률이 95%"</li>
 </ul>
 :::
 
@@ -907,7 +1095,7 @@ t=\frac{\hat\beta_1}{\mathrm{SE}(\hat\beta_1)}=6.50$$
 : Fitted model IC on temp; residual standard error 0.0423 on 28 degrees of freedom, R-squared 0.602
 
 ::: {.callout-tip appearance="minimal"}
-**각 항의 뜻**
+<i class="fa-solid fa-lightbulb"></i> **각 항의 뜻**
 
 <ul>
 <li><b>Estimate</b>: 최소제곱 정규방정식의 해 $\hat\beta_j$</li>
@@ -944,7 +1132,7 @@ t=\frac{\hat\beta_1}{\mathrm{SE}(\hat\beta_1)}=6.50$$
 오차에 정규분포를 가정하면 최소제곱 직선이 곧 **최대가능도 추정**. 회귀계수는 같고 오차분산만 $S/(n-2)$ 와 $S/n$ 으로 갈림
 
 ::: {.callout-note appearance="minimal"}
-**다음 장** · Multiple Linear Regression: 온도 하나로 설명한 60% 외에 남은 40%는 무엇이 설명하는가. 설명변수를 여럿으로 확장
+<i class="fa-solid fa-link"></i> **다음 장**: Multiple Linear Regression: 온도 하나로 설명한 60% 외에 남은 40%는 무엇이 설명하는가. 설명변수를 여럿으로 확장
 :::
 :::
 

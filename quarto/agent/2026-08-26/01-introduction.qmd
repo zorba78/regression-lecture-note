@@ -45,11 +45,11 @@ editor_options:
 ### <i class="fa-solid fa-question"></i> 연구 질문
 
 ::: {.callout-note appearance="minimal"}
-**이 장의 질문**: 회귀분석이란 무엇이며, 어떤 절차로 수행하는가?
+<i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 회귀분석이란 무엇이며, 어떤 절차로 수행하는가?
 :::
 
 ::: {.callout-tip appearance="minimal"}
-**연구 질문**
+<i class="fa-solid fa-circle-question"></i> **연구 질문**
 
 <ul>
 <li>구리 함량과 중성자 조사량이 이 정도일 때 압력용기의 천이온도는 평균적으로 얼마나 올라가는가</li>
@@ -88,7 +88,7 @@ editor_options:
 
 
 ::: {.callout-tip appearance="minimal" style="font-size: 120%"}
-**응용 분야**
+<i class="fa-solid fa-list-check"></i> **응용 분야**
 
 <ul>
 <li><b>자연·공학</b> &nbsp; 물리학, 화학, 공학, 기상학</li>
@@ -118,7 +118,7 @@ editor_options:
 
 ::: {.column width="42%"}
 ::: {.callout-tip appearance="minimal" style="margin-top: 1.5em;"}
-**Sir Francis Galton (England, 1822-1911)**
+<i class="fa-solid fa-book"></i> **Sir Francis Galton (England, 1822-1911)**
 
 <ul>
 <li>회귀(regression)라는 이름을 처음 붙인 사람</li>
@@ -127,7 +127,7 @@ editor_options:
 :::
 
 ::: {.callout-note appearance="minimal" style="margin-top: 0.6em;"}
-**자료에 관한 주의**
+<i class="fa-solid fa-triangle-exclamation"></i> **자료에 관한 주의**
 
 <ul>
 <li>골턴이 직접 모은 <b>가족 기록</b>. 197개 가족의 자녀 898명</li>
@@ -168,7 +168,7 @@ Galton, F. (1886). Regression towards mediocrity in hereditary stature. *Journal
 
 ::: {.column width="50%"}
 ::: {.callout-tip appearance="minimal"}
-**질문 1. 아무 정보 없이 자식 한 명의 키를 예측한다면**
+<i class="fa-solid fa-circle-question"></i> **질문 1. 아무 정보 없이 자식 한 명의 키를 예측한다면**
 
 전체 평균 69.2인치 = 조건을 걸지 않은 **주변분포(marginal distribution)** 의 평균 $E(Y)$
 
@@ -180,7 +180,7 @@ Galton, F. (1886). Regression towards mediocrity in hereditary stature. *Journal
 
 ::: {.column width="50%"}
 ::: {.callout-tip appearance="minimal"}
-**질문 2. 아버지의 키가 72인치라는 조건이 있다면**
+<i class="fa-solid fa-circle-question"></i> **질문 2. 아버지의 키가 72인치라는 조건이 있다면**
 
 조건을 만족하는 집단 안의 평균 = **조건부분포(conditional distribution)** 의 평균 $E(Y \mid X = 72)$
 
@@ -225,23 +225,24 @@ Galton, F. (1886). Regression towards mediocrity in hereditary stature. *Journal
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **회귀(regression)** 란 설명변수 $X = x$ 가 주어졌을 때 반응변수 $Y$ 의 조건부 기댓값
+> **회귀(regression)** 란 설명변수 $X = x$ 가 주어졌을 때 반응변수 $Y$ 의 조건부 기댓값이다.
 > $$E(Y \mid X = x)$$
-> 이다.
 
-:::: {.columns}
-::: {.column width="58%"}
+:::: {.columns style="font-size: 90%; margin-top: 1em;"}
+::: {.column width="55%"}
 ![Regression is the conditional mean of Y given X = x. At each x the conditional distribution of Y is centred on the regression line, with the residual standard deviation estimated from the data.](../../../output/agent/2026-08-24/fig-i04-conditional-expectation.png){width=100%}
 :::
 
-::: {.column width="42%"}
+::: {.column width="45%"}
 <ul>
-<li>$Y$: 반응변수, $X$: 설명변수, $x$: 설명변수가 갖는 특정한 값 하나</li>
-<li>$E(\cdot \mid X = x)$: $X = x$ 라는 조건 아래에서 계산한 평균</li>
+<li>$Y$: 반응변수</li>
+<li>$X$: 설명변수</li>
+<li>$x$: 설명변수가 갖는 특정한 값 하나</li>
+<li>$E(Y \mid X = x)$: $X = x$ 일때 조건부 평균</li>
 </ul>
 
-::: {.callout-tip appearance="minimal"}
-**그림 읽는 법**
+::: {.callout-tip appearance="minimal" style="font-size: 120%"}
+<i class="fa-solid fa-chart-line"></i> **그림 읽는 법**
 
 <ul>
 <li>각 $x$ 마다 $Y$ 의 분포가 하나씩 존재</li>
@@ -249,10 +250,13 @@ Galton, F. (1886). Regression towards mediocrity in hereditary stature. *Journal
 <li>회귀직선은 그 중심들을 이은 선</li>
 </ul>
 :::
-
-두 변수가 함께 종 모양의 좌우대칭 분포(이변량 정규분포)를 이루면, 이 조건부 기댓값은 정확히 직선
 :::
 ::::
+
+:::{.callout-note appearance="minimal" style="font-size: 120%; margin-top: 1em; margin-bottom: 1em;"}
+두 변수가 함께 종 모양의 좌우대칭 분포(이변량 정규분포)를 이루면, 이 조건부 기댓값은 정확히 직선
+:::
+
 
 ::: notes
 이제 오늘 강의에서 가장 중요한 한 문장을 말씀드리겠습니다. 회귀란 설명변수가 특정 값으로 주어졌을 때 반응변수의 평균입니다. 조건부 기댓값이라는 어려운 이름이 붙어 있지만, 뜻은 방금 히스토그램에서 보신 그대로입니다. 조건을 걸고 나서 구한 평균. 그림에는 파란 직선 위에 종 모양 곡선이 세 개 얹혀 있습니다. 각각 아버지 키가 65인치, 69인치, 73인치일 때 아들 키가 어떻게 퍼지는지를 나타냅니다. 세 곡선의 봉우리가 모두 파란 직선 위에 정확히 올라앉아 있습니다. 회귀직선은 이 봉우리들을 이어 놓은 선입니다. 방금 종 모양이라는 말을 썼습니다. 평균을 중심으로 좌우가 대칭이고 가운데가 가장 높은 이 모양을 정규분포라고 부릅니다. 두 변수가 함께 이 모양을 이루면 봉우리들이 정확히 직선을 이룬다는 사실이 수학적으로 증명되어 있습니다. 앞으로 회귀라는 말이 나올 때마다 머릿속에서 이 그림으로 돌아오시면 됩니다.
@@ -263,18 +267,20 @@ Galton, F. (1886). Regression towards mediocrity in hereditary stature. *Journal
 
 ### <i class="fa-solid fa-bullseye"></i> 회귀모형 (regression model)
 
-::: {.callout-tip appearance="minimal" style="font-size: 150%; margin-top: 1em; margin-bottom: 1em;"}
+::: {.callout-tip appearance="minimal" style="font-size: 120%; margin-top: 1em; margin-bottom: 1em;"}
 $$X_1, \; X_2, \; \dots, \; X_p \;\; \longrightarrow \;\; Y, \qquad Y = f(X_1, X_2, \dots, X_p) + \varepsilon$$
 
 <ul>
-<li>$Y$: 반응변수, $X_1, \dots, X_p$: $p$ 개의 설명변수, $\varepsilon$: 확률오차(random error)</li>
+<li>$Y$: 반응변수</li>
+<li>$X_1, \dots, X_p$: $p$ 개의 설명변수</li>
+<li>$\varepsilon$: 확률오차(random error)</li>
 <li>$f$: 설명변수 값이 주어졌을 때 $Y$ 의 조건부 평균, 곧 $f(x) = E(Y \mid X = x)$</li>
 </ul>
 :::
 
 ### <i class="fa-solid fa-bullseye"></i> 선형회귀모형 (linear regression model)
 
-::: {.callout-tip appearance="minimal" style="font-size: 150%; margin-top: 1em; margin-bottom: 1em;"}
+::: {.callout-tip appearance="minimal" style="font-size: 120%; margin-top: 1em; margin-bottom: 1em;"}
 $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 
 <ul>
@@ -283,8 +289,8 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 </ul>
 :::
 
-::: {.callout-note appearance="minimal"}
-**Remark**
+::: {.callout-note appearance="minimal" style="font-size: 120%"}
+<i class="fa-solid fa-circle-info"></i> **Remark**
 
 <ul>
 <li>회귀모수 = 자료에서 추정해야 할 <b>미지의 상수(unknown constants)</b></li>
@@ -320,7 +326,7 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 :::
 
 ::: {.callout-note appearance="minimal" style="font-size: 120%; margin-top: 1em; margin-bottom: 1em;"}
-**표의 용어**
+<i class="fa-solid fa-table"></i> **표의 용어**
 
 <ul>
 <li>표준오차(SE): 같은 조사를 되풀이할 때 추정값이 얼마나 흔들리는지를 재는 값</li>
@@ -349,7 +355,7 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 ![](../../../output/agent/2026-08-25/fig-i06-eight-steps.png){width=100% .nostretch}
 
 ::: {.callout-tip appearance="minimal" style="font-size: 150%; margin-top: 1em; margin-bottom: 1em;"}
-**1단계, 연구 가설과 문제 설정이 가장 중요**
+<i class="fa-solid fa-bullseye"></i> **1단계, 연구 가설과 문제 설정이 가장 중요**
 :::
 
 ::: notes
@@ -362,7 +368,7 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 ### <i class="fa-solid fa-circle-question"></i> 날씨가 더워지면 아이스크림이 정말 더 팔릴까
 
 ::: {.callout-note appearance="minimal" style="font-size: 120%; margin-top: 1em; margin-bottom: 1em;"}
-### **1단계: 문제의 진술**
+### <i class="fa-solid fa-pen-to-square"></i> **1단계: 문제의 진술**
 
 <ul>
 <li>답해야 할 질문을 한 문장으로 확정: <b>기온이 오르면 1인당 소비량의 평균이 올라가는가</b></li>
@@ -399,7 +405,11 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 
 ## 3단계 자료 수집: 아이스크림 자료 {.smaller}
 
-### <i class="fa-solid fa-table"></i> 자료 구조 — 4주 단위로 30개 기간 수집
+### <i class="fa-solid fa-table"></i> 4주 단위 30개 기간, 변수 6개
+
+:::: {.columns}
+
+::: {.column width="38%"}
 
 | period | IC | price | income | temp | year |
 |---:|---:|---:|---:|---:|---:|
@@ -408,64 +418,40 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 | 3 | 0.393 | 0.277 | 81 | 63 | 0 |
 | 4 | 0.425 | 0.280 | 80 | 68 | 0 |
 | 5 | 0.406 | 0.272 | 76 | 69 | 0 |
-| 6 | 0.344 | 0.262 | 78 | 65 | 0 |
-| 7 | 0.327 | 0.275 | 82 | 61 | 0 |
-| 8 | 0.288 | 0.267 | 79 | 47 | 0 |
-| 9 | 0.269 | 0.265 | 76 | 32 | 0 |
-| 10 | 0.256 | 0.277 | 79 | 24 | 0 |
 
-: First ten rows of the ice cream consumption data. The full data set has n = 30 four-week periods and 6 variables.
+: First five of the n = 30 four-week periods
 
-행 = 관측(4주 단위의 한 기간), 열 = 변수. 전체 규모는 $n = 30$ 개 기간, 변수 6개
-
-::: notes
-오늘 강의에서 계속 따라다닐 자료를 소개하겠습니다. 아이스크림 소비량 자료입니다. 원자력과는 아무 상관이 없어 보입니다. 그래서 오히려 좋습니다. 전문 지식 없이도 결과가 말이 되는지 안 되는지 바로 판단하실 수 있으니까요. 화면은 자료의 앞 열 줄입니다. 가로 한 줄이 4주짜리 기간 하나이고, 이런 기간이 모두 30개 있습니다. 세로 한 칸은 변수 하나입니다. 자료를 표로 본다는 것이 무슨 뜻인지만 눈에 익혀 두십시오.
 :::
 
-
-## 아이스크림 자료: 변수 설명 {.smaller}
-
-### <i class="fa-solid fa-list-check"></i> 여섯 열이 각각 무엇인가
-
-| Variable | 설명 | 단위 | 역할 |
-|:--|:--|:--|:--|
-| period | 관측 기간 번호 (4주 단위) | n.a. | 식별자 |
-| IC | 아이스크림 섭취량 | pint | 반응변수 $y$ |
-| price | 아이스크림 가격 | dollar | 설명변수 |
-| income | 가족의 월수입 | dollar | 설명변수 |
-| temp | 평균기온 | fahrenheit | 설명변수 |
-| year | 관측 연차 (0, 1, 2) | n.a. | 질적 설명변수 |
-
-: Variables of the ice cream consumption data.
-
-`year` 는 계절이 아니라 **관측 연차**. 30개 기간이 세 해에 걸쳐 수집되었음을 뜻하며, Dummy Variable 장에서 가변수로 바꾸어 넣음
-
-::: notes
-변수 설명을 정리했습니다. 우리가 알고 싶은 값은 아이스크림 섭취량, 파인트 단위입니다. 이걸 설명할 재료로 가격, 가족의 월수입, 평균기온을 씁니다. 기온 단위가 화씨라는 점만 주의하십시오. 24에서 72 사이 값이 나옵니다. 마지막 year 변수는 오해하기 쉽습니다. 계절이 아니라 몇 년째인지를 가리키고, 0, 1, 2 세 값을 갖습니다. 숫자처럼 보이지만 실은 종류를 나누는 변수라서 그대로 넣으면 안 됩니다. 어떻게 넣는지는 Dummy Variable 장에서 다루겠습니다.
+::: {.column width="3%"}
+&nbsp;
 :::
 
+::: {.column width="59%"}
 
-## 아이스크림 자료: 수식 기호 {.smaller}
+| Variable | Symbol | 설명 (단위) | Range | 역할 |
+|:--|:--|:--|--:|:--|
+| period | | 기간 번호 | 1 – 30 | 식별자 |
+| IC | $y_i$ | 섭취량 (pint) | 0.256 – 0.548 | 반응변수 |
+| price | $x_{i1}$ | 가격 (dollar) | 0.260 – 0.292 | 설명변수 |
+| income | $x_{i2}$ | 월수입 (dollar) | 76 – 96 | 설명변수 |
+| temp | $x_{i3}$ | 평균기온 ($^\circ$F) | 24 – 72 | 설명변수 |
+| year | | 연차 (0, 1, 2) | 0 – 2 | 질적 설명변수 |
 
-### <i class="fa-solid fa-pen-to-square"></i> 이후 슬라이드에서 쓸 표기
+: Variables of the ice cream consumption data
 
-관측 하나를 기호로 옮기면 네 값의 묶음
+:::
 
-$$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
+::::
 
-| Symbol | Variable | Range in the data |
-|:--|:--|:--|
-| $y_i$ | IC | 0.256 – 0.548 |
-| $x_{i1}$ | price | 0.260 – 0.292 |
-| $x_{i2}$ | income | 76 – 96 |
-| $x_{i3}$ | temp | 24 – 72 |
+행 = 관측(4주 단위의 한 기간), 열 = 변수. 관측 하나는 네 값의 묶음 $(y_i,\;x_{i1},\;x_{i2},\;x_{i3})$, $i=1,\dots,30$ 이며, 이후 모든 슬라이드에서 $y$ 는 IC, $x_1,x_2,x_3$ 은 각각 price, income, temp 를 가리킴
 
-: Notation used throughout the lecture for the ice cream data (n = 30)
-
-이후 모든 슬라이드에서 $y$ 는 IC, $x_1,x_2,x_3$ 은 각각 price, income, temp 를 가리킴
+::: {.callout-note appearance="minimal"}
+<i class="fa-solid fa-triangle-exclamation"></i> **헷갈리기 쉬운 곳**: `year` 는 계절이 아니라 **관측 연차**(0, 1, 2). 30개 기간이 세 해에 걸쳐 수집되었음을 뜻함. 숫자처럼 보이지만 종류를 나누는 변수라 그대로 넣으면 안 되며, Dummy Variable 장에서 가변수로 바꾸어 넣음
+:::
 
 ::: notes
-마지막으로 기호를 약속하고 넘어가겠습니다. 관측 하나는 네 값의 묶음입니다. 알고 싶은 값 하나에 설명할 재료 셋입니다. $i$ 는 몇 번째 기간인지를 가리키고 1부터 30까지 갑니다. 표의 오른쪽 열은 각 변수가 실제로 어느 범위에서 움직이는지입니다. 오늘 남은 시간 동안 $y$ 라고 쓰면 아이스크림 섭취량, $x$ 에 아래첨자 1, 2, 3이 붙으면 각각 가격, 수입, 기온이라고 생각해 주십시오.
+오늘 강의에서 계속 따라다닐 자료를 소개하겠습니다. 아이스크림 소비량 자료입니다. 원자력과는 아무 상관이 없어 보입니다. 그래서 오히려 좋습니다. 전문 지식 없이도 결과가 말이 되는지 안 되는지 바로 판단하실 수 있으니까요. 왼쪽이 자료의 앞 다섯 줄입니다. 가로 한 줄이 4주짜리 기간 하나이고, 이런 기간이 모두 30개 있습니다. 세로 한 칸은 변수 하나입니다. 오른쪽 표에 그 여섯 열이 각각 무엇인지 정리해 두었습니다. 우리가 알고 싶은 값은 아이스크림 섭취량, 파인트 단위입니다. 이걸 설명할 재료로 가격, 가족의 월수입, 평균기온을 씁니다. 기온 단위가 화씨라는 점만 주의하십시오. 24에서 72 사이 값이 나옵니다. 가운데 Symbol 열이 오늘 쓸 약속입니다. 관측 하나는 네 값의 묶음이고, $y$ 라고 쓰면 아이스크림 섭취량, $x$ 에 아래첨자 1, 2, 3이 붙으면 각각 가격, 수입, 기온입니다. 마지막 year 변수는 오해하기 쉬워서 아래에 따로 적었습니다. 계절이 아니라 몇 년째인지를 가리키고 0, 1, 2 세 값을 갖습니다. 숫자처럼 보이지만 실은 종류를 나누는 변수라서 그대로 넣으면 안 됩니다. 어떻게 넣는지는 Dummy Variable 장에서 다루겠습니다.
 :::
 
 
@@ -518,10 +504,11 @@ $$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
 
 ## 4단계 모형 설정: 어떤 선을 그을 것인가 {.smaller .fig-led}
 
-### <i class="fa-solid fa-circle-question"></i> 같은 산점도 위에 그을 수 있는 선은 무한함
+:::{style="font-size: 120%; margin-top: 0.6em; margin-bottom: 1em; font-weight: bold"}
+<i class="fa-solid fa-circle-question"></i> 같은 산점도 위에 그을 수 있는 선은 무한함
+:::
 
-::: {.callout-tip appearance="minimal" style="margin-bottom: 0.6em; font-size: 108%"}
-**기온 하나만 써도 후보는 여럿**
+::: {.callout-tip appearance="minimal" style="margin-bottom: 0.6em; font-size: 120%"}
 
 <ul style="margin-bottom: 0">
 <li style="margin-bottom: 0.15em"><b>직선</b> $E(\text{IC}\mid \text{temp}) = \beta_0 + \beta_1\,\text{temp}$: 기온이 1도 오를 때마다 소비량의 평균이 <b>늘 같은 폭</b>으로 증가</li>
@@ -577,7 +564,7 @@ $$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
 <style>#model-class-table table { margin-left: 0; }</style>
 
 ::: {.callout-note appearance="minimal" style="font-size: 110%"}
-**헷갈리기 쉬운 곳**
+<i class="fa-solid fa-triangle-exclamation"></i> **헷갈리기 쉬운 곳**
 
 <ul style="margin-bottom: 0">
 <li style="margin-bottom: 0.5em">선형인지는 <b>그래프 모양이 아니라 $\beta_j$ 가 들어간 방식</b>으로 판정. 곡선을 그려도 선형모형일 수 있음</li>
@@ -629,7 +616,7 @@ $$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
 : Classification of the six example models.
 
 ::: {.callout-tip appearance="minimal"}
-**해설**
+<i class="fa-solid fa-lightbulb"></i> **해설**
 
 <ul>
 <li>2번은 $\beta_1$ 이 지수 안에 들어가 있어 비선형</li>
@@ -649,12 +636,12 @@ $$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
 ### <i class="fa-solid fa-circle-question"></i> 기준을 정하는 일과 답을 찾는 일은 별개
 
 ::: {.callout-tip appearance="minimal" style="font-size: 120%; margin: 0.8em 0 1.5em 0"}
-**5단계: 무엇을 가장 좋게 만들 것인가 (기준)**
+<i class="fa-solid fa-bullseye"></i> **5단계: 무엇을 가장 좋게 만들 것인가 (기준)**
 
 <ul style="margin-bottom: 0; padding-left: 1.5em">
 <li style="margin-bottom: 0.4em"><b>최소제곱법</b>(least squares): 잔차의 <b>제곱합</b>을 최소로
 <ul style="margin: 0.12em 0 0 0; padding-left: 1.4em; font-size: 0.95em">
-<li>가장 보편적이며 이 강의에서 주로 다룰 내용임</li>
+<li>가장 보편적이며 이 강의에서 주로 다룰 내용</li>
 </ul>
 </li>
 <li style="margin-bottom: 0.4em"><b>최대가능도법</b>(maximum likelihood): 지금 자료가 관측될 <b>가능도</b>를 최대로 만드는 해
@@ -671,7 +658,7 @@ $$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
 :::
 
 ::: {.callout-note appearance="minimal" style="font-size: 120%"}
-**6단계: 그 기준의 최적점을 어떻게 찾을 것인가 (계산)**
+<i class="fa-solid fa-pen-to-square"></i> **6단계: 그 기준의 최적점을 어떻게 찾을 것인가 (계산)**
 
 <ul style="margin-bottom: 0; padding-left: 1.5em">
 <li style="margin-bottom: 0.4em"><b>닫힌 해(closed solution)</b>: 정규방정식을 풀어 한 번에
@@ -712,7 +699,7 @@ $$(y_i,\;x_{i1},\;x_{i2},\;x_{i3}),\qquad i=1,2,\dots,30$$
 ### <i class="fa-solid fa-circle-question"></i> 모형 적합 후 해야할 일
 
 ::: {.callout-tip appearance="minimal" style="font-size: 120%; margin: 0.8em 0 1.5em 0"}
-**확인해야 할 사항**
+<i class="fa-solid fa-list-check"></i> **확인해야 할 사항**
 
 <ul style="margin-bottom: 0">
 <li style="margin-bottom: 0.45em"><b>모형이 자료에 맞는가</b>: 잔차에 굽은 자국이 남아 있지 않은가. 퍼짐이 한쪽에서만 커지지 않는가</li>
@@ -755,7 +742,7 @@ $$\hat y_i = \hat\beta_0 + \hat\beta_1 x_{i1} + \dots + \hat\beta_p x_{ip}, \qqu
 - $x_{ij}$: $i$ 번째 관측의 $j$ 번째 설명변수 값
 
 ::: {.callout-note appearance="minimal" style="margin-top: 1em;"}
-**언제 적합값이고 언제 예측값인가**
+<i class="fa-solid fa-circle-question"></i> **언제 적합값이고 언제 예측값인가**
 
 <ul>
 <li>적합값(fitted value): <b>모형을 적합할 때 쓴 그 자료</b>의 설명변수 값을 다시 넣어 얻은 값 $\hat y_i$</li>
@@ -853,7 +840,7 @@ $$\hat y_i = \hat\beta_0 + \hat\beta_1 x_{i1} + \dots + \hat\beta_p x_{ip}, \qqu
 
 
 ::: {.callout-note appearance="minimal"}
-**다음 장**: Preliminary Knowledge에서 조건부 기댓값을 계산으로 옮기는 데 필요한 도구(공분산과 상관계수, 확률분포와 검정, 행렬 표기)
+<i class="fa-solid fa-link"></i> **다음 장**: Preliminary Knowledge에서 조건부 기댓값을 계산으로 옮기는 데 필요한 도구(공분산과 상관계수, 확률분포와 검정, 행렬 표기)
 :::
 
 ::: notes
