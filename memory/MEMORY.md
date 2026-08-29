@@ -16,7 +16,7 @@
 - [슬라이드 배치 시스템](slide-layout-system.md) — 배치는 lecture.css로 결정. A는 정의 밴드뿐, 바닥 고정은 선택형 .pin. vh 단위 금지
 - [tabset 폐지](tabset-removed-for-pdf.md) — PDF에서 활성 탭만 남으므로 16개 전부 해제. 노트의 "탭" 지시도 함께 정리
 - [슬라이드 스타일 구성](deck-style-decisions.md) — CSS 파일 역할, 참조 덱에서 가져온 것과 버린 것
-- [레이아웃 초과 검출법](slide-overflow-check.md) — 151장 레이아웃 초과 검출법과 실패하는 방식
+- [레이아웃 초과 검출법](slide-overflow-check.md) — 검사는 커밋된 `/run-regression-lecture-note` 스킬로. 넘침 기준선은 0
 - [회귀 명칭의 유래](regression-etymology-sources.md) — reversion→regression 경위. regression 첫 등장은 1886이 아니라 1885
 - [원자력 분야 회귀 실사례](nuclear-regression-cases.md) — 검증된 인용 3건
 - [불확도 이론 요청](regression-uncertainty-content.md) — 표준오차·Gauss-Markov 상세 포함 요청

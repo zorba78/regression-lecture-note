@@ -49,7 +49,9 @@ editor_options:
 <i class="fa-solid fa-link"></i> **앞 장에서 여기까지**: 진단에서 잔차가 깔때기 모양으로 퍼지면 등분산 위반. <i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 그때 어떤 방법을 사용하는가
 :::
 
-> 모든 관측값을 동일한 신뢰도로 취급해야 하는가?
+::: {.highlight-box}
+모든 관측값을 동일한 신뢰도로 취급해야 하는가?
+:::
 
 ### <i class="fa-solid fa-lightbulb"></i> 핵심
 
@@ -62,7 +64,12 @@ editor_options:
 </ul>
 :::
 
-여기서 $w_i$: $i$번째 관측에 부여하는 가중치. 그 관측이 추정에 미치는 영향의 크기를 조절
+**기호**
+
+<ul>
+<li>$w_i$: $i$번째 관측에 부여하는 가중치</li>
+<li>그 관측이 추정에 미치는 영향의 크기를 조절</li>
+</ul>
 
 ::: notes
 같은 시료 하나를 세 가지 저울로 재는 상황을 상상해 보십시오. 정밀 분석저울, 주방 저울, 그리고 낡은 체중계입니다. 세 숫자가 나왔을 때 이 셋을 그냥 산술평균하는 분은 없으실 것입니다. 정밀한 저울 쪽을 더 믿으시겠지요. 여러분 실험실에서도 계측기마다 교정 성적서에 적힌 측정 불확도가 전부 다릅니다. 이 상식을 수식으로 옮긴 것이 가중치, 각 관측값에 주는 발언권입니다. 그러면 낡은 체중계 값은 버리면 되지 않느냐고 물으실 수 있습니다. 버리는 것은 발언권을 0으로 만드는 극단적인 선택입니다. 정보가 조금이라도 있다면 작은 발언권이라도 주는 쪽이 대개 손해가 적습니다. 하나만 더 짚겠습니다. 우리가 찾는 대상은 조건부 기댓값, $x$가 주어졌을 때 $y$의 평균이었습니다. 가중치를 준다고 그 과녁이 옮겨 가지는 않습니다. 과녁은 그대로 두고, 회의실에서 누구 말을 더 크게 들을지만 다시 정하는 것입니다.
@@ -73,9 +80,11 @@ editor_options:
 
 ### <i class="fa-solid fa-bullseye"></i> 아래첨자 $i$ 의 유무
 
-> **등분산(homoscedasticity)**: 모든 $i=1,\dots,n$에 대해 $\operatorname{Var}(\varepsilon_i)=\sigma^2$. 오차의 분산이 공통
->
-> **이분산(heteroscedasticity)**: $\operatorname{Var}(\varepsilon_i)=\sigma_i^2$. 오차의 분산이 관측마다 다름
+::: {.highlight-box}
+**등분산(homoscedasticity)**: 모든 $i=1,\dots,n$에 대해 $\operatorname{Var}(\varepsilon_i)=\sigma^2$. 오차의 분산이 공통
+
+**이분산(heteroscedasticity)**: $\operatorname{Var}(\varepsilon_i)=\sigma_i^2$. 오차의 분산이 관측마다 다름
+:::
 
 **기호**
 
@@ -127,13 +136,15 @@ editor_options:
 :::
 
 
-## 등분산이 깨지면: Gauss-Markov 복습
+## 등분산 위반: Gauss-Markov 복습
 
 ### <i class="fa-solid fa-lightbulb"></i> OLS가 최선이었던 근거
 
-> **Gauss-Markov 정리**: 다음 두 조건이 성립하면 통상최소제곱 추정량 $\hat{\boldsymbol\beta}_{OLS}$는 BLUE이다.
->
-> $$E(\boldsymbol\varepsilon \mid \mathbf X)=\mathbf 0, \qquad \operatorname{Var}(\boldsymbol\varepsilon \mid \mathbf X)=\sigma^2\mathbf I$$
+::: {.highlight-box}
+**Gauss-Markov 정리**: 다음 두 조건이 성립하면 통상최소제곱 추정량 $\hat{\boldsymbol\beta}_{OLS}$는 BLUE이다.
+
+$$E(\boldsymbol\varepsilon \mid \mathbf X)=\mathbf 0, \qquad \operatorname{Var}(\boldsymbol\varepsilon \mid \mathbf X)=\sigma^2\mathbf I$$
+:::
 
 **기호**
 
@@ -153,11 +164,13 @@ editor_options:
 :::
 
 
-## 등분산이 깨지면: 무너지는 결론
+## 등분산 위반: 무너지는 결론
 
-### <i class="fa-solid fa-triangle-exclamation"></i> 편향은 없으나 최소분산이 아님
+### <i class="fa-solid fa-triangle-exclamation"></i> 불편이나 최소분산 아님
 
-> 이분산에서는 $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I$가 성립하지 않으므로 Gauss-Markov 정리의 전제가 무너진다. $\hat{\boldsymbol\beta}_{OLS}$는 **여전히 불편추정량이지만 더 이상 최소분산이 아니다**.
+::: {.highlight-box}
+이분산에서는 $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I$가 성립하지 않으므로 Gauss-Markov 정리의 전제가 무너진다. $\hat{\boldsymbol\beta}_{OLS}$는 **여전히 불편추정량이지만 더 이상 최소분산이 아니다**.
+:::
 
 ::: {.callout-tip appearance="minimal"}
 <ul>
@@ -185,11 +198,19 @@ editor_options:
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> 가중최소제곱(weighted least squares)은 다음 **가중 잔차제곱합**을 최소화하는 값을 추정량으로 택한다.
->
-> $$\min_{\beta_0,\,\beta_1}\ \sum_{i=1}^{n} w_i\left(y_i-\beta_0-\beta_1 x_i\right)^2$$
+::: {.highlight-box}
+가중최소제곱(weighted least squares)은 다음 **가중 잔차제곱합**을 최소화하는 값을 추정량으로 택한다.
 
-여기서 $y_i$: 반응변수, $x_i$: 설명변수, $\beta_0,\beta_1$: 절편과 기울기, $w_i$: $i$번째 관측의 가중치, $n$: 관측 수
+$$\min_{\beta_0,\,\beta_1}\ \sum_{i=1}^{n} w_i\left(y_i-\beta_0-\beta_1 x_i\right)^2$$
+:::
+
+**기호**
+
+<ul>
+<li>$y_i$: 반응변수, $x_i$: 설명변수</li>
+<li>$\beta_0,\beta_1$: 절편과 기울기</li>
+<li>$w_i$: $i$번째 관측의 가중치, $n$: 관측 수</li>
+</ul>
 
 ### <i class="fa-solid fa-lightbulb"></i> 핵심
 
@@ -209,9 +230,11 @@ editor_options:
 
 ## 가중최소제곱(WLS): 행렬 해
 
-### <i class="fa-solid fa-bullseye"></i> OLS 공식에 $\mathbf W$ 를 넣은 형태
+### <i class="fa-solid fa-bullseye"></i> OLS 공식에 $\mathbf W$ 삽입
 
-> $$\hat{\boldsymbol\beta}_W=(\mathbf X^\top \mathbf W \mathbf X)^{-1}\mathbf X^\top \mathbf W \mathbf y$$
+::: {.highlight-box}
+$$\hat{\boldsymbol\beta}_W=(\mathbf X^\top \mathbf W \mathbf X)^{-1}\mathbf X^\top \mathbf W \mathbf y$$
+:::
 
 **기호**
 
@@ -248,7 +271,12 @@ $$\frac{\partial S_W}{\partial\boldsymbol\beta}=-2\,\mathbf X^\top\mathbf W(\mat
 $\mathbf X^\top\mathbf W\mathbf X$ 가 가역이면 앞 슬라이드의 해
 :::
 
-여기서 $\mathbf x_i^\top$: 설계행렬 $\mathbf X$ 의 $i$번째 행, $S_W(\boldsymbol\beta)$: 가중 잔차제곱합
+**기호**
+
+<ul>
+<li>$\mathbf x_i^\top$: 설계행렬 $\mathbf X$ 의 $i$번째 행</li>
+<li>$S_W(\boldsymbol\beta)$: 가중 잔차제곱합</li>
+</ul>
 
 ::: notes
 유도 절차는 앞 장에서 하셨던 것과 완전히 같습니다. 제곱합을 베타로 미분해서 0으로 놓으면 정규방정식이 나오고, 역행렬을 곱하면 끝납니다. 달라진 것은 식 가운데에 $\mathbf W$가 하나 들어간 것뿐입니다. 미분 과정이 눈에 들어오지 않으셔도 괜찮습니다. 결론만 가져가시면 됩니다. 가중치를 넣어도 푸는 방식은 그대로, 답의 모양도 그대로. 이 두 가지입니다.
@@ -267,11 +295,19 @@ $\mathbf X^\top\mathbf W\mathbf X$ 가 가역이면 앞 슬라이드의 해
 
 : Practical rules for choosing weights (Kutner et al., 2005)
 
-여기서 $\sigma_i^2$: $i$번째 관측의 오차 분산, $n_i$: $y_i$ 를 만들 때 평균한 측정 횟수, $\propto$: "비례한다"는 기호
+**기호**
+
+<ul>
+<li>$\sigma_i^2$: $i$번째 관측의 오차 분산</li>
+<li>$n_i$: $y_i$ 를 만들 때 평균한 측정 횟수</li>
+<li>$\propto$: "비례한다"는 기호</li>
+</ul>
 
 ### <i class="fa-solid fa-lightbulb"></i> 핵심
 
-> 세 규칙은 모두 하나의 원리에서 나온다: **가중치는 분산의 역수**. $n_i$개 측정값을 평균하면 그 평균의 분산이 $\sigma^2/n_i$이므로, 역수를 취하면 $w_i \propto n_i$가 된다.
+::: {.highlight-box}
+세 규칙은 모두 하나의 원리에서 나온다: **가중치는 분산의 역수**. $n_i$개 측정값을 평균하면 그 평균의 분산이 $\sigma^2/n_i$이므로, 역수를 취하면 $w_i \propto n_i$가 된다.
+:::
 
 ::: notes
 그러면 실무에서 가중치를 어떻게 정할까요. 규칙은 하나입니다. 그 관측값의 분산을 알아내서 역수를 취한다. 이것이 전부입니다. 첫째 줄, 교정 성적서나 반복 측정으로 분산을 이미 알고 있다면 그대로 역수를 쓰시면 됩니다. 둘째 줄, $y_i$가 여러 번 측정한 값의 평균이라면 평균의 분산은 측정 횟수만큼 나눠져 작아지니, 가중치는 측정 횟수에 비례하게 줍니다. 다섯 번 잰 평균이 한 번 잰 값보다 다섯 배 믿을 만하다는 뜻입니다. 셋째 줄, 앞의 깔때기 그림처럼 퍼짐이 $x$에 비례해 커진다면 가중치는 $x$의 역수에 비례하게 잡습니다. 분산 정보가 아예 없으면 어떻게 하는가. 그때는 잔차 그림으로 분산이 어느 변수를 따라 커지는지 구조를 먼저 추정하고, 그것으로 가중치를 만들어 다시 적합합니다. 요점은 하나입니다. 가중치에는 근거가 있어야 합니다.
@@ -293,7 +329,12 @@ Introduction 장에서 소개한 사례가 앞 표의 첫째 줄에 해당함
 </ul>
 :::
 
-여기서 $\sigma_i$: $i$번째 측정점 계수율의 표준편차. 계수 통계에서 곧바로 계산되는 값
+**기호**
+
+<ul>
+<li>$\sigma_i$: $i$번째 측정점 계수율의 표준편차</li>
+<li>계수 통계에서 곧바로 계산되는 값</li>
+</ul>
 
 ::: {.aside}
 *Analytical Chemistry* 91(7) (2019), doi:10.1021/acs.analchem.9b00119. / INMM Annual Meeting Proceedings, "Weighted Least Squares Fitting of Gamma Spectroscopy Efficiency Functions".
@@ -306,7 +347,7 @@ Introduction 장에서 소개한 사례가 앞 표의 첫째 줄에 해당함
 
 ## 예제 자료(물리 측정): 자료 구조 {.smaller}
 
-### <i class="fa-solid fa-table"></i> $w$ 는 가중치가 아니라 분산에 비례
+### <i class="fa-solid fa-table"></i> $w$ 는 분산에 비례
 
 | x | y | w |
 |---:|---:|---:|
@@ -332,7 +373,7 @@ Introduction 장에서 소개한 사례가 앞 표의 첫째 줄에 해당함
 
 ## 예제 자료(물리 측정): OLS와 WLS 비교
 
-### <i class="fa-solid fa-chart-line"></i> 두 직선이 갈라지는 이유
+### <i class="fa-solid fa-chart-line"></i> 두 직선의 차이
 
 :::: {.columns}
 
@@ -406,9 +447,9 @@ $\mathbf W=\mathbf I$ 로 두면 두 식이 그대로 OLS의 $(\mathbf X^\top\ma
 :::
 
 
-## 감쇠 곡선: 가중회귀가 필요한 이유 {.smaller}
+## 감쇠 곡선: 문제 설정 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 가중치를 추정할 필요가 없는 문제
+### <i class="fa-solid fa-bullseye"></i> 가중치를 아는 문제
 
 ::: {.callout-note appearance="minimal"}
 <i class="fa-solid fa-pen-to-square"></i> **유도**
@@ -421,7 +462,9 @@ $$N(x)=N_0\,e^{-\mu x}\qquad\Longrightarrow\qquad \ln N(x)=\ln N_0-\mu x$$
 
 $$\operatorname{Var}(\ln N)\;\approx\;\Big(\frac{d\ln N}{dN}\Big)^{2}\operatorname{Var}(N)=\frac{1}{N^{2}}\cdot N=\frac{1}{N}$$
 
-여기서 델타법: 함수 $g(N)$ 의 분산을 $\{g'(N)\}^2\operatorname{Var}(N)$ 로 근사하는 방법
+<ul>
+<li>델타법: 함수 $g(N)$ 의 분산을 $\{g'(N)\}^2\operatorname{Var}(N)$ 로 근사하는 방법</li>
+</ul>
 :::
 
 ::: {.callout-tip appearance="minimal"}
@@ -477,9 +520,9 @@ $$\operatorname{Var}(\ln N)\;\approx\;\Big(\frac{d\ln N}{dN}\Big)^{2}\operatorna
 :::
 
 
-## 감쇠 곡선: 계수가 적을 때의 한계 {.smaller}
+## 감쇠 곡선: WLS의 한계 {.smaller}
 
-### <i class="fa-solid fa-triangle-exclamation"></i> WLS에서 최대가능도로 넘어가는 지점
+### <i class="fa-solid fa-triangle-exclamation"></i> 최대가능도로의 전환
 
 ::: {.callout-tip appearance="minimal"}
 가중치로 쓰는 $N_i$ 가 **관측값 자체**이므로, 계수가 적으면 가중치와 자료가 음의 상관을 갖게 되어 편향이 생김
@@ -510,11 +553,13 @@ $$\operatorname{Var}(\ln N)\;\approx\;\Big(\frac{d\ln N}{dN}\Big)^{2}\operatorna
 
 ## 일반화최소제곱(GLS): 정의
 
-### <i class="fa-solid fa-bullseye"></i> 오차 사이의 상관까지 담으면
+### <i class="fa-solid fa-bullseye"></i> 오차 간 상관의 포함
 
-> 오차의 공분산행렬이 $\operatorname{Var}(\boldsymbol\varepsilon)=\boldsymbol\Sigma$인 선형모형 $\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$에서, 일반화최소제곱 추정량은 다음과 같다.
->
-> $$\hat{\boldsymbol\beta}_{GLS}=(\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf X)^{-1}\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf y$$
+::: {.highlight-box}
+오차의 공분산행렬이 $\operatorname{Var}(\boldsymbol\varepsilon)=\boldsymbol\Sigma$인 선형모형 $\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$에서, 일반화최소제곱 추정량은 다음과 같다.
+
+$$\hat{\boldsymbol\beta}_{GLS}=(\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf X)^{-1}\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf y$$
+:::
 
 **기호**
 
@@ -547,7 +592,12 @@ $$\mathbf P\mathbf y=\mathbf P\mathbf X\boldsymbol\beta+\mathbf P\boldsymbol\var
 변환된 자료는 등분산과 무상관을 모두 만족. 여기에 **통상최소제곱**을 그대로 적용하면 앞 슬라이드의 GLS 해
 :::
 
-여기서 $\mathbf P$: $\boldsymbol\Sigma^{-1}$ 을 분해해 얻는 변환행렬, $\mathbf I$: 항등행렬
+**기호**
+
+<ul>
+<li>$\mathbf P$: $\boldsymbol\Sigma^{-1}$ 을 분해해 얻는 변환행렬</li>
+<li>$\mathbf I$: 항등행렬</li>
+</ul>
 
 ::: notes
 그러면 이 공식은 왜 이렇게 생겼을까요. 유도 상자가 답입니다. 자료를 적절한 행렬 $\mathbf P$로 한 번 변환해 주면 뒤틀려 있던 오차 구조가 반듯하게 펴집니다. 펴진 자료에는 우리가 아는 보통의 최소제곱을 그대로 쓸 수 있습니다. 안경을 바꿔 끼고 나서 원래 방법대로 본다, 이렇게 생각하시면 됩니다. 실제로 GLS 소프트웨어가 내부에서 하는 일이 정확히 이 변환입니다. 새로운 방법을 발명한 것이 아니라, 자료의 좌표만 바꿔서 익숙한 방법으로 돌려놓는 것입니다.
@@ -587,9 +637,9 @@ $\boldsymbol\Sigma$가 대각행렬이면 GLS가 곧 WLS가 됩니다. 오늘 �
 :::
 
 
-## GLS 예제: Lake Huron 수위의 자기상관 {.smaller .fig-led}
+## GLS 예제: Lake Huron 수위 {.smaller .fig-led}
 
-### <i class="fa-solid fa-chart-line"></i> 98년치 연간 계측 기록의 추세 추정
+### <i class="fa-solid fa-chart-line"></i> 98년 연간 기록의 추세
 
 ![(a) Annual lake level 1875-1972 with the OLS and GLS trends and their 95% confidence bands. (b) Residual ACF against the fitted AR(1) curve.](../../../output/agent/2026-08-28/fig-m06-gls-lakehuron.png){width=100% .nostretch}
 
@@ -601,14 +651,18 @@ $\boldsymbol\Sigma$가 대각행렬이면 GLS가 곧 WLS가 됩니다. 오늘 �
 
 : Autocorrelation in the OLS residuals of the Lake Huron trend model (n = 98 annual measurements)
 
-여기서 $d=\sum_{t=2}^{n}(e_t-e_{t-1})^2\big/\sum_{t=1}^{n}e_t^2$: **Durbin-Watson 통계량**. 이웃한 잔차가 무관하면 2 부근, 같은 방향으로 움직이면 2보다 작아짐. 퍼짐은 고르므로 등분산은 유지되고, $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I$ 의 **무상관** 쪽만 깨져 있음
+<ul>
+<li>$d=\sum_{t=2}^{n}(e_t-e_{t-1})^2\big/\sum_{t=1}^{n}e_t^2$: <b>Durbin-Watson 통계량</b></li>
+<li>이웃한 잔차가 무관하면 2 부근, 같은 방향으로 움직이면 2보다 작아짐</li>
+<li>퍼짐은 고르므로 등분산은 유지되고, $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I$ 의 <b>무상관</b> 쪽만 깨져 있음</li>
+</ul>
 
 ::: notes
 가중회귀에서는 공분산행렬의 대각선이 문제였습니다. 이번에는 비대각선이 문제인 자료를 보겠습니다. Lake Huron의 수위를 1875년부터 1972년까지 해마다 잰 기록입니다. 98년치이고, 관측 하나가 1년이니 행 번호가 곧 시간 순서입니다. 이런 장기 감시 자료에서 우리가 알고 싶은 것은 대개 추세입니다. 수위가 해마다 얼마씩 변하는가. 그래서 수위를 연도에 회귀시킵니다. 왼쪽 그림의 회색 선이 실제 수위입니다. 오르락내리락하지만 한 해 오르면 다음 해도 높은 편이고, 한 번 내려가면 몇 년씩 낮게 머뭅니다. 이것이 이웃한 오차가 손을 잡고 있다는 뜻입니다. 오른쪽 그림이 그 정도를 잰 것입니다. 한 해 차이 나는 잔차끼리의 상관이 0.76, 두 해 차이는 0.46, 세 해 차이는 0.26으로 서서히 줄어듭니다. 점선은 우연히 나올 수 있는 범위인데 세 칸이나 그 위로 솟아 있습니다. Durbin-Watson 통계량은 이 이야기를 숫자 하나로 줄인 것입니다. 이웃한 잔차가 무관하면 2 근처가 나오는데 여기서는 0.44입니다. p값이 10의 마이너스 22승이니 우연이라고 볼 수 없습니다. 앞에서 본 물리 측정 자료나 감쇠 곡선과 달리 여기서는 퍼짐 자체는 고릅니다. 등분산은 성립하고 무상관만 깨진 것이니, WLS가 아니라 GLS를 쓸 자리입니다.
 :::
 
 
-## GLS 예제: $\boldsymbol\Sigma$ 를 세우고 푸는 절차 {.smaller .stepped}
+## GLS 예제: 풀이 절차 {.smaller .stepped}
 
 ### <i class="fa-solid fa-pen-to-square"></i> 세 단계
 
@@ -677,7 +731,9 @@ $\boldsymbol\Sigma$ 를 몰라 자료에서 추정해 쓰므로 **실행가능 G
 
 ### <i class="fa-solid fa-screwdriver-wrench"></i> 실무 적용
 
-> 측정 불확도가 기록되어 있다면 그 분산의 역수를 가중치 $w_i=1/\sigma_i^2$ 로 삼는다.
+::: {.highlight-box}
+측정 불확도가 기록되어 있다면 그 분산의 역수를 가중치 $w_i=1/\sigma_i^2$ 로 삼는다.
+:::
 
 기호는 이 장에서 정의한 것과 같음($w_i$ 가중치, $\sigma_i^2$ 관측별 오차 분산, $\mathbf W$ 가중치 대각행렬, $\boldsymbol\Sigma$ 오차 공분산행렬)
 

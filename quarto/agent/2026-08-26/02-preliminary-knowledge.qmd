@@ -57,14 +57,14 @@ $$
 y_1    &= \beta_0+\beta_1 x_{11}+\cdots+\varepsilon_1\\
 y_2    &= \beta_0+\beta_1 x_{21}+\cdots+\varepsilon_2\\
        &\;\;\vdots\\
-y_{30} &= \beta_0+\beta_1 x_{30,1}+\cdots+\varepsilon_{30}
+y_{30} &= \beta_0+\beta_1 x_{30,1}+\cdots+\varepsilon_{n}
 \end{aligned}
 $$
 
 - $y_i$: $i$번째 관측의 반응변수
 - $x_{i1}$: $i$번째 관측의 첫 번째 설명변수 값
 - $\beta_0,\beta_1,\dots$: 모든 관측에 공통인 회귀계수
-- $\varepsilon_i$: $i$번째 관측의 오차, $n=30$: 관측 수
+- $\varepsilon_i$: $i$번째 관측의 오차, $n$: 관측 수
 :::
 
 ::: {.callout-tip appearance="minimal" style="font-size: 80%"}
@@ -86,11 +86,15 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {style="margin-bottom: 0.8em"}
-> **벡터**: 숫자를 세로로 줄 세운 배열. 굵은 소문자 $\mathbf{y}$로 표기한다.
->
-> **행렬**: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 $\mathbf{X}$로 표기한다.
->
-> **차원**: 크기는 항상 "행 $\times$ 열" 순서로 적는다.
+
+::: {.highlight-box}
+**벡터**: 숫자를 세로로 줄 세운 배열. 굵은 소문자 $\mathbf{y}$로 표기한다.
+
+**행렬**: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 $\mathbf{X}$로 표기한다.
+
+**차원**: 크기는 항상 "행 $\times$ 열" 순서로 적는다.
+:::
+
 :::
 
 $$
@@ -142,11 +146,13 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> 관측 $n$개로 이루어진 선형회귀모형은 다음 한 줄로 표현된다.
->
-> $$\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$$
->
-> 여기서 $\mathbf{X}$는 절편열을 포함한 $n\times(p+1)$ 설계행렬이다.
+::: {.highlight-box}
+관측 $n$개로 이루어진 선형회귀모형은 다음 한 줄로 표현된다.
+
+$$\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$$
+
+여기서 $\mathbf{X}$는 절편열을 포함한 $n\times(p+1)$ 설계행렬이다.
+:::
 
 <ul>
 <li>$\mathbf{y}$: 반응변수 $n$개를 모은 $n\times 1$ 벡터</li>
@@ -175,7 +181,7 @@ Matrix formulation follows Kutner et al. (2005), *Applied Linear Statistical Mod
 
 ## 아이스크림 자료: 데이터 구조 {.smaller}
 
-### <i class="fa-solid fa-table"></i> 앞 다섯 행과 변수 구성
+### <i class="fa-solid fa-table"></i> 앞 5행과 변수 구성
 
 | period | IC | price | income | temp | year |
 |---:|---:|---:|---:|---:|---:|
@@ -187,9 +193,10 @@ Matrix formulation follows Kutner et al. (2005), *Applied Linear Statistical Mod
 
 : First five rows of the ice cream data.
 
-::: {.callout-tip appearance="minimal"}
-<i class="fa-solid fa-table"></i> **규모와 변수**
 
+### <i class="fa-solid fa-table"></i> **규모와 변수**
+
+::: {.callout-tip appearance="minimal" style="font-size: 120%"}
 <ul>
 <li>$n=30$개 기간(4주 단위) $\times$ 6개 열: 기간 번호 period와 분석 변수 5개</li>
 <li>IC: 아이스크림 소비량, 반응변수 $y_i$ 자리에 들어감</li>
@@ -204,9 +211,9 @@ Matrix formulation follows Kutner et al. (2005), *Applied Linear Statistical Mod
 
 ## 아이스크림 자료: 설계행렬
 
-### <i class="fa-solid fa-pen-to-square"></i> 표에서 행렬로
+### <i class="fa-solid fa-pen-to-square"></i> 표에서 행렬로 표시
 
-::: {.callout-tip appearance="minimal"}
+:::{.highlight-box}
 <i class="fa-solid fa-table"></i> **Design matrix for the ice cream data**, $n=30$, $p=3$
 
 $$
@@ -224,12 +231,14 @@ $$
 $$
 :::
 
+:::{style="font-size: 80%; margin-top: 0.5em; margin-bottom: 0.5em;"}
 <ul>
 <li>$\mathbf{y}$: 30개 기간의 소비량 IC를 모은 벡터</li>
 <li>$\mathbf{X}$의 1열: 절편 $\beta_0$의 자리를 만들어 주는 1들. 2, 3, 4열: price $x_{i1}$, income $x_{i2}$, temp $x_{i3}$</li>
 <li>첫 행의 실제 값: $x_{11}=0.270$, $x_{12}=78$, $x_{13}=41$, $y_1=0.386$</li>
-<li><b>1열이 전부 1</b>인 이유: 행렬 곱에서 각 행마다 $\beta_0\times 1$이 계산되어 절편이 모든 기간에 똑같이 더해지도록 하기 위함</li>
+<li><b>1열이 전부 1</b>인 이유: 각 행마다 $\beta_0\times 1$을 계산해 절편 표현</li>
 </ul>
+:::
 
 ::: notes
 앞 슬라이드의 표를 그대로 수학 기호로 옮긴 그림입니다. 왼쪽 y는 우리가 맞히고 싶은 서른 개 소비량 묶음. 가운데 큰 X는 엑셀 시트 그대로인데, 맨 앞에 1로만 채워진 열이 하나 추가되어 30 곱하기 4가 되었습니다. 그 옆 베타는 알아내고 싶은 계수 네 개, 마지막 엡실론은 설명되지 않고 남는 오차입니다. 여기서 꼭 나오는 질문이 있습니다. 1열은 왜 전부 1인가. 행렬 곱을 하면 각 행에서 베타영 곱하기 1이 계산되고, 그래서 절편이 모든 기간에 똑같이 더해집니다. 1들의 열은 절편이 앉을 좌석인 셈입니다. 아래에 첫 행의 실제 숫자를 넣어 두었습니다. x11이 0.270, x12가 78, x13이 41. 앞 슬라이드 표 첫 줄과 맞춰 보십시오.
@@ -239,7 +248,9 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **전치** $\mathbf A^\top$: 행과 열을 맞바꾼 행렬. $\mathbf A$ 의 $(i,j)$ 원소가 $\mathbf A^\top$ 의 $(j,i)$ 원소가 된다.
+::: {.highlight-box}
+**전치** $\mathbf A^\top$: 행과 열을 맞바꾼 행렬. $\mathbf A$ 의 $(i,j)$ 원소가 $\mathbf A^\top$ 의 $(j,i)$ 원소가 된다.
+:::
 
 <ul>
 <li>$(\mathbf A^\top)^\top=\mathbf A$, &nbsp; $(\mathbf A+\mathbf B)^\top=\mathbf A^\top+\mathbf B^\top$</li>
@@ -277,7 +288,9 @@ $$\mathbf M=\begin{pmatrix}1&2&3\\ 4&5&6\end{pmatrix}
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **행렬식**(determinant) $\det(\mathbf A)$: 정방행렬 하나에 대응시키는 수 하나. $2\times 2$ 에서는 $ad-bc$ 이며, $|\det(\mathbf A)|$ 는 이 행렬이 넓이를 몇 배로 바꾸는지를 나타낸다.
+::: {.highlight-box}
+**행렬식**(determinant) $\det(\mathbf A)$: 정방행렬 하나에 대응시키는 수 하나. $2\times 2$ 에서는 $ad-bc$ 이며, $|\det(\mathbf A)|$ 는 이 행렬이 넓이를 몇 배로 바꾸는지를 나타낸다.
+:::
 
 $$
 \det\begin{pmatrix}a&b\\ c&d\end{pmatrix}=ad-bc
@@ -323,11 +336,16 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **계수**(rank) $\operatorname{rank}(\mathbf A)$: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.
->
-> **완전계수**(full rank): $\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})$ 인 상태. 정방행렬이 완전계수인 것과 $\det(\mathbf A)\neq 0$ 은 동치이다.
+::: {.highlight-box}
+**계수**(rank) $\operatorname{rank}(\mathbf A)$: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.
 
-여기서 **서로 독립**: 어떤 열도 나머지 열들의 조합으로 만들어지지 않음. 만들어지는 열은 새 정보가 아님
+**완전계수**(full rank): $\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})$ 인 상태. 정방행렬이 완전계수인 것과 $\det(\mathbf A)\neq 0$ 은 동치이다.
+:::
+
+<ul>
+<li><b>서로 독립</b>: 어떤 열도 나머지 열들의 조합으로 만들어지지 않음</li>
+<li>만들어지는 열은 새 정보가 아님</li>
+</ul>
 
 ::: columns
 
@@ -369,24 +387,29 @@ $$\mathbf S=\begin{pmatrix}2&1\\ 4&2\end{pmatrix},\quad \det(\mathbf S)=2\cdot 2
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **역행렬** $\mathbf A^{-1}$: 정방행렬 $\mathbf A$ 에 대해 $\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I$ 를 만족하는 행렬.
->
-> **존재 조건**: $\det(\mathbf A)\neq 0$, 곧 $\mathbf A$ 가 완전계수일 때에만 존재한다.
+::: {.highlight-box}
+**역행렬** $\mathbf A^{-1}$: 정방행렬 $\mathbf A$ 에 대해 $\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I$ 를 만족하는 행렬.
 
-여기서 $\mathbf I$: 주대각선이 1, 나머지가 0인 항등행렬. 행렬에 나눗셈이 없으므로 $\mathbf A\mathbf x=\mathbf b$ 는 $\mathbf x=\mathbf A^{-1}\mathbf b$ 로 풂
+**존재 조건**: $\det(\mathbf A)\neq 0$, 곧 $\mathbf A$ 가 완전계수일 때에만 존재한다.
+:::
 
-::: {.callout-note appearance="minimal"}
-<i class="fa-solid fa-pen-to-square"></i> **$2\times 2$ 로 직접 계산**: 분모 자리에 행렬식
 
-$$
-\mathbf A^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\ -c&a\end{pmatrix}
-=\frac{1}{2\cdot 1-1\cdot 1}\begin{pmatrix}1&-1\\ -1&2\end{pmatrix}
-=\begin{pmatrix}1&-1\\ -1&2\end{pmatrix}
-$$
+<ul>
+<li>$\mathbf I$: 주대각선이 1, 나머지가 0인 항등행렬</li>
+<li>행렬에 나눗셈이 없으므로 $\mathbf A\mathbf x=\mathbf b$ 는 $\mathbf x=\mathbf A^{-1}\mathbf b$ 로 풂</li>
+</ul>
 
-검산: $\mathbf A^{-1}\mathbf A=\begin{pmatrix}1&-1\\ -1&2\end{pmatrix}\begin{pmatrix}2&1\\ 1&1\end{pmatrix}=\begin{pmatrix}1&0\\ 0&1\end{pmatrix}=\mathbf I$
+::: {.highlight-box style="font-size: 90%"}
+<i class="fa-solid fa-list-check"></i> **역행렬의 성질**
 
-계수가 1이어서 $\det=0$ 이었던 $\mathbf S$ 에는 이 계산을 할 수 없음. 분모가 0
+<ul>
+<li><b>유일성</b>: 존재하면 단 하나뿐. $\mathbf B\mathbf A=\mathbf I=\mathbf A\mathbf C$ 이면 $\mathbf B=\mathbf B(\mathbf A\mathbf C)=(\mathbf B\mathbf A)\mathbf C=\mathbf C$</li>
+<li><b>두 번 되돌리면 제자리</b>: $(\mathbf A^{-1})^{-1}=\mathbf A$</li>
+<li><b>곱은 순서가 뒤집힘</b>: $(\mathbf A\mathbf B)^{-1}=\mathbf B^{-1}\mathbf A^{-1}$. 실제로 $(\mathbf A\mathbf B)(\mathbf B^{-1}\mathbf A^{-1})=\mathbf A(\mathbf B\mathbf B^{-1})\mathbf A^{-1}=\mathbf I$</li>
+<li><b>전치와 교환 가능</b>: $(\mathbf A^\top)^{-1}=(\mathbf A^{-1})^\top$</li>
+<li><b>대칭행렬의 역행렬은 대칭</b>: $\mathbf A^\top=\mathbf A$ 이면 $(\mathbf A^{-1})^\top=(\mathbf A^\top)^{-1}=\mathbf A^{-1}$</li>
+<li><b>행렬식은 역수</b>: $\det(\mathbf A^{-1})=1/\det(\mathbf A)$. $\det(\mathbf A)$ 가 0에 가까울수록 역행렬의 원소가 커짐</li>
+</ul>
 :::
 
 ::: {.callout-tip appearance="minimal"}
@@ -394,18 +417,20 @@ $$
 :::
 
 ::: notes
-이제 역행렬입니다. 되돌리기 버튼이라고 생각하시면 됩니다. 숫자에서는 3 곱하기 x가 6이면 3으로 나눠서 x를 구합니다. 그런데 행렬에는 나눗셈이 없습니다. 대신 역행렬을 곱해서 되돌립니다. 존재 조건을 정의 두 번째 줄에 적어 두었습니다. 행렬식이 0이 아닐 때, 곧 완전계수일 때만 있습니다. 앞의 두 슬라이드가 여기로 모이는 셈입니다. 아래 상자에서 직접 계산해 보겠습니다. 대각선 원소를 맞바꾸고 나머지 둘의 부호를 뒤집은 다음 행렬식으로 나눕니다. 분모 자리에 앉은 것이 바로 행렬식입니다. 여기서는 1이니 나누어도 그대로입니다. 곱해 보시면 정확히 항등행렬이 나옵니다. 상자 마지막 줄을 봐 주십시오. 계수가 1이어서 행렬식이 0이었던 S에는 이 계산 자체가 불가능합니다. 분모가 0이니까요. 예상 질문 하나. 그러면 완전계수이기만 하면 안심해도 됩니까. 그렇지는 않습니다. 행렬식이 0은 아닌데 0에 아주 가까운 경우가 있습니다. 두 설명변수가 거의 같은 정보를 담고 있을 때입니다. 계산은 되지만 계수 추정값이 몹시 불안정해집니다. 이 문제도 뒤에 다중공선성이라는 이름으로 다시 만납니다.
+이제 역행렬입니다. 되돌리기 버튼이라고 생각하시면 됩니다. 숫자에서는 3 곱하기 x가 6이면 3으로 나눠서 x를 구합니다. 그런데 행렬에는 나눗셈이 없습니다. 대신 역행렬을 곱해서 되돌립니다. 존재 조건을 정의 두 번째 줄에 적어 두었습니다. 행렬식이 0이 아닐 때, 곧 완전계수일 때만 있습니다. 앞의 두 슬라이드가 여기로 모이는 셈입니다. 아래 상자에는 성질을 모아 두었습니다. 손으로 역행렬을 구하실 일은 없습니다. 계산은 프로그램이 합니다. 그 대신 이 성질들이 뒤에서 수식을 따라가실 때 계속 쓰입니다. 첫째, 역행렬은 있으면 하나뿐입니다. 옆에 적어 둔 한 줄이 증명입니다. 왼쪽에서 되돌리는 행렬과 오른쪽에서 되돌리는 행렬이 결국 같아진다는 이야기입니다. 둘째, 두 번 되돌리면 제자리입니다. 셋째가 실수하기 쉬운 대목입니다. 곱의 역행렬은 순서가 뒤집힙니다. 양말을 신고 신발을 신었으면 벗을 때는 신발부터 벗습니다. 그것과 같습니다. 넷째, 전치와 역행렬은 순서를 바꿔도 됩니다. 다섯째가 오늘 가장 중요한 줄입니다. 대칭행렬의 역행렬은 대칭입니다. 넷째 성질을 그대로 쓴 결과입니다. 우리가 회귀에서 쓰는 역행렬은 X 전치 X의 역행렬 하나뿐인데, X 전치 X가 대칭이므로 그 역행렬도 대칭입니다. 뒤에서 회귀계수의 분산-공분산 행렬이 대칭으로 나오는 이유가 바로 이것입니다. 여섯째, 역행렬의 행렬식은 원래 행렬식의 역수입니다. 그러니 행렬식이 0에 가까워지면 역행렬의 원소가 급격히 커집니다. 맨 아래 상자로 이어집니다. 예상 질문 하나. 그러면 완전계수이기만 하면 안심해도 됩니까. 그렇지는 않습니다. 행렬식이 0은 아닌데 0에 아주 가까운 경우가 있습니다. 두 설명변수가 거의 같은 정보를 담고 있을 때입니다. 계산은 되지만 계수 추정값이 몹시 불안정해집니다. 이 문제도 뒤에 다중공선성이라는 이름으로 다시 만납니다.
 :::
 
 ## 직교벡터와 직교행렬 {.smaller .pin}
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **내적** $\mathbf a^\top\mathbf b=a_1b_1+\cdots+a_nb_n$: 두 벡터를 성분끼리 곱해 모두 더한 수 하나.
->
-> **직교**: $\mathbf a^\top\mathbf b=0$ 이면 두 벡터는 서로 직각이다.
->
-> **직교행렬** $\mathbf Q$: 열들이 서로 직교하고 길이가 모두 1인 정방행렬. $\mathbf Q^\top\mathbf Q=\mathbf I$ 이므로 $\mathbf Q^{-1}=\mathbf Q^\top$.
+::: {.highlight-box}
+**내적** $\mathbf a^\top\mathbf b=a_1b_1+\cdots+a_nb_n$: 두 벡터를 성분끼리 곱해 모두 더한 수 하나.
+
+**직교**: $\mathbf a^\top\mathbf b=0$ 이면 두 벡터는 서로 직각이다.
+
+**직교행렬** $\mathbf Q$: 열들이 서로 직교하고 길이가 모두 1인 정방행렬. $\mathbf Q^\top\mathbf Q=\mathbf I$ 이므로 $\mathbf Q^{-1}=\mathbf Q^\top$.
+:::
 
 ::: columns
 
@@ -445,7 +470,9 @@ $$\|\mathbf a+\mathbf b\|^2=\|\mathbf a\|^2+\|\mathbf b\|^2
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **대각합**(trace) $\operatorname{tr}(\mathbf A)=a_{11}+\cdots+a_{nn}$: 정방행렬의 주대각선 원소를 모두 더한 수 하나.
+::: {.highlight-box}
+**대각합**(trace) $\operatorname{tr}(\mathbf A)=a_{11}+\cdots+a_{nn}$: 정방행렬의 주대각선 원소를 모두 더한 수 하나.
+:::
 
 <ul>
 <li>$\operatorname{tr}(\mathbf A+\mathbf B)=\operatorname{tr}(\mathbf A)+\operatorname{tr}(\mathbf B)$, &nbsp; $\operatorname{tr}(c\mathbf A)=c\operatorname{tr}(\mathbf A)$</li>
@@ -480,7 +507,9 @@ $\operatorname{tr}(\mathbf{AB})=7$, $\operatorname{tr}(\mathbf{BA})=1+0+6=7$. $1
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **고윳값**(eigenvalue) $\lambda$ 와 **고유벡터**(eigenvector) $\mathbf v\neq\mathbf 0$: $\mathbf{Av}=\lambda\mathbf v$ 를 만족하는 짝. 행렬을 곱해도 **방향이 바뀌지 않고 길이만 $\lambda$ 배** 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값이다.
+::: {.highlight-box}
+**고윳값**(eigenvalue) $\lambda$ 와 **고유벡터**(eigenvector) $\mathbf v\neq\mathbf 0$: $\mathbf{Av}=\lambda\mathbf v$ 를 만족하는 짝. 행렬을 곱해도 **방향이 바뀌지 않고 길이만 $\lambda$ 배** 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값이다.
+:::
 
 ::: {.callout-note appearance="minimal"}
 <i class="fa-solid fa-circle-check"></i> **직접 확인** ($\mathbf A$ 는 대칭행렬)
@@ -511,12 +540,19 @@ $\lambda_1=3$ 의 방향은 $(1,1)$, $\lambda_2=1$ 의 방향은 $(1,-1)$. 방�
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **스펙트럴 분해**(spectral decomposition): 대칭행렬 $\mathbf A$ 는 직교행렬 $\mathbf Q$ 와 고윳값을 늘어놓은 대각행렬 $\boldsymbol\Lambda$ 로 항상 다음과 같이 쪼개진다.
->
-> $$\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^\top=\sum_{j=1}^{n}\lambda_j\,\mathbf q_j\mathbf q_j^\top,
-> \qquad \mathbf Q^\top\mathbf Q=\mathbf I$$
+::: {.highlight-box}
+**스펙트럴 분해**(spectral decomposition): 대칭행렬 $\mathbf A$ 는 직교행렬 $\mathbf Q$ 와 고윳값을 늘어놓은 대각행렬 $\boldsymbol\Lambda$ 로 항상 다음과 같이 쪼개진다.
 
-여기서 $\mathbf q_j$: $\mathbf Q$ 의 $j$번째 열이자 $\lambda_j$ 의 고유벡터. 서로 **직교**하며 길이가 1
+$$\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^\top=\sum_{j=1}^{n}\lambda_j\,\mathbf q_j\mathbf q_j^\top,
+\qquad \mathbf Q^\top\mathbf Q=\mathbf I$$
+:::
+
+**기호**
+
+<ul>
+<li>$\mathbf q_j$: $\mathbf Q$ 의 $j$번째 열이자 $\lambda_j$ 의 고유벡터</li>
+<li>고유벡터끼리 서로 <b>직교</b>하며 길이가 1</li>
+</ul>
 
 ::: {.callout-note appearance="minimal"}
 <i class="fa-solid fa-circle-check"></i> **앞 슬라이드의 $\mathbf A$ 로 확인**
@@ -544,7 +580,9 @@ $$\mathbf q_1\mathbf q_1^\top=\frac12\begin{pmatrix}1&1\\ 1&1\end{pmatrix},\quad
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **멱등행렬**(idempotent matrix): $\mathbf A^2=\mathbf A$ 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않는다.
+::: {.highlight-box}
+**멱등행렬**(idempotent matrix): $\mathbf A^2=\mathbf A$ 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않는다.
+:::
 
 ::: columns
 
@@ -589,8 +627,10 @@ $\mathbf A^2$ 자리에 $\mathbf A$ 를 넣으면 $-2\mathbf A+\mathbf A=-\mathb
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> 스칼라 값을 갖는 함수 $f(\mathbf b)$ 를 벡터 $\mathbf b=(b_1,\dots,b_k)^\top$ 로 미분한다는 것은, 성분마다 편미분한 값을 같은 모양으로 쌓는다는 뜻이다.
-> $$\frac{\partial f}{\partial\mathbf b}=\Big(\frac{\partial f}{\partial b_1},\;\dots,\;\frac{\partial f}{\partial b_k}\Big)^\top$$
+::: {.highlight-box}
+스칼라 값을 갖는 함수 $f(\mathbf b)$ 를 벡터 $\mathbf b=(b_1,\dots,b_k)^\top$ 로 미분한다는 것은, 성분마다 편미분한 값을 같은 모양으로 쌓는다는 뜻이다.
+$$\frac{\partial f}{\partial\mathbf b}=\Big(\frac{\partial f}{\partial b_1},\;\dots,\;\frac{\partial f}{\partial b_k}\Big)^\top$$
+:::
 
 ::: columns
 
@@ -638,7 +678,9 @@ $$\mathbf X^\top\mathbf X\hat{\boldsymbol\beta}=\mathbf X^\top\mathbf y$$
 
 ### <i class="fa-solid fa-lightbulb"></i> 핵심
 
-> 자료 $(\mathbf{y},\mathbf{X})$가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현된다.
+::: {.highlight-box}
+자료 $(\mathbf{y},\mathbf{X})$가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현된다.
+:::
 
 $$
 \hat{\boldsymbol{\beta}}=(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
@@ -674,9 +716,11 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> 확률변수 $X$가 평균 $\mu$, 표준편차 $\sigma$인 **정규분포**를 따를 때 $X\sim N(\mu,\sigma^2)$로 적고, 그 밀도함수는 다음과 같다.
->
-> $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\qquad -\infty<x<\infty$$
+::: {.highlight-box}
+확률변수 $X$가 평균 $\mu$, 표준편차 $\sigma$인 **정규분포**를 따를 때 $X\sim N(\mu,\sigma^2)$로 적고, 그 밀도함수는 다음과 같다.
+
+$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\qquad -\infty<x<\infty$$
+:::
 
 <ul>
 <li>$\mu$: 분포의 중심인 평균, $\sigma$: 흩어진 정도인 표준편차, $\sigma^2$: 그 제곱인 분산</li>
@@ -711,9 +755,11 @@ $$
 
 계산: $P(|Z|\le 1)=0.683$, $P(|Z|\le 2)=0.954$, $P(|Z|\le 3)=0.997$. 평균에서 표준편차 3배 넘게 떨어질 확률은 약 0.3%
 
-### <i class="fa-solid fa-lightbulb"></i> 측정오차에 정규분포를 가정하는 이유
+### <i class="fa-solid fa-lightbulb"></i> 정규분포 가정의 근거
 
-> 서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워진다(중심극한정리).
+::: {.highlight-box}
+서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워진다(중심극한정리).
+:::
 
 측정오차 = 온도, 습도, 진동, 판독 습관 등 작은 요인 다수의 합. 따라서 종 모양 분포가 근거 있는 출발점
 
@@ -729,11 +775,13 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **모집단**: 알고 싶은 대상 전체. **표본**: 실제로 관측한 일부.
->
-> **통계량**: 표본에서 계산한 값(표본평균 $\bar X$ 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.
->
-> **표집분포**: 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.
+::: {.highlight-box}
+**모집단**: 알고 싶은 대상 전체. **표본**: 실제로 관측한 일부.
+
+**통계량**: 표본에서 계산한 값(표본평균 $\bar X$ 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.
+
+**표집분포**: 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.
+:::
 
 $X_1,\dots,X_n$이 평균 $\mu$, 분산 $\sigma^2$인 모집단에서 뽑힌 표본일 때, 표본평균 $\bar X=\frac{1}{n}\sum_{i=1}^n X_i$의 표집분포는 다음을 만족
 
@@ -741,7 +789,12 @@ $$
 E(\bar X)=\mu,\qquad \operatorname{SD}(\bar X)=\frac{\sigma}{\sqrt{n}}
 $$
 
-여기서 $E(\bar X)$: 표본평균의 평균(반복해서 뽑았을 때의 중심), $\operatorname{SD}(\bar X)$: 표본평균의 표준편차 곧 **표준오차**(standard error, SE)
+**기호**
+
+<ul>
+<li>$E(\bar X)$: 표본평균의 평균(반복해서 뽑았을 때의 중심)</li>
+<li>$\operatorname{SD}(\bar X)$: 표본평균의 표준편차 곧 <b>표준오차</b>(standard error, SE)</li>
+</ul>
 
 ::: {.callout-tip appearance="minimal"}
 <ul>
@@ -765,9 +818,12 @@ $$
 ::::
 
 :::: {.column width="44%"}
-> 서로 독립인 표준정규 확률변수 $Z_1,\dots,Z_\nu$ 의 제곱을 모두 더하면
-> $$W=\sum_{i=1}^{\nu}Z_i^{2}$$
-> 은 자유도 $\nu$ 의 **카이제곱분포** $\chi^2(\nu)$ 를 따른다.
+
+::: {.highlight-box}
+서로 독립인 표준정규 확률변수 $Z_1,\dots,Z_\nu$ 의 제곱을 모두 더하면
+$$W=\sum_{i=1}^{\nu}Z_i^{2}$$
+은 자유도 $\nu$ 의 **카이제곱분포** $\chi^2(\nu)$ 를 따른다.
+:::
 
 <ul>
 <li>제곱의 합이므로 항상 0 이상</li>
@@ -802,9 +858,12 @@ $$\frac{\mathrm{SSE}}{\sigma^2}\sim\chi^2(n-p-1)$$
 ::::
 
 :::: {.column width="42%"}
-> $\sigma$를 모른 채 표본표준편차 $s$로 대신하면
-> $$T=\frac{\bar X-\mu}{s/\sqrt{n}}$$
-> 는 자유도 $n-1$의 **t분포**를 따른다.
+
+::: {.highlight-box}
+$\sigma$를 모른 채 표본표준편차 $s$로 대신하면
+$$T=\frac{\bar X-\mu}{s/\sqrt{n}}$$
+는 자유도 $n-1$의 **t분포**를 따른다.
+:::
 
 <ul>
 <li>정규분포보다 봉우리가 낮고 꼬리가 두꺼움</li>
@@ -840,9 +899,12 @@ t분포는 정규분포의 사촌쯤 됩니다. 왜 따로 필요할까요. 표�
 ::::
 
 :::: {.column width="44%"}
-> 서로 독립인 두 카이제곱 $W_1\sim\chi^2(\nu_1)$, $W_2\sim\chi^2(\nu_2)$ 를 각자의 자유도로 나눈 뒤 비를 취하면
-> $$F=\frac{W_1/\nu_1}{W_2/\nu_2}$$
-> 은 자유도 $(\nu_1,\nu_2)$ 의 **F분포** 를 따른다.
+
+::: {.highlight-box}
+서로 독립인 두 카이제곱 $W_1\sim\chi^2(\nu_1)$, $W_2\sim\chi^2(\nu_2)$ 를 각자의 자유도로 나눈 뒤 비를 취하면
+$$F=\frac{W_1/\nu_1}{W_2/\nu_2}$$
+은 자유도 $(\nu_1,\nu_2)$ 의 **F분포** 를 따른다.
+:::
 
 <ul>
 <li>두 분산의 비이므로 항상 0 이상</li>
@@ -869,7 +931,9 @@ $$F=\frac{\mathrm{SSR}/p}{\mathrm{SSE}/(n-p-1)}\sim F(p,\;n-p-1)$$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **95% 신뢰구간**: 같은 절차로 표본 추출과 구간 계산을 반복했을 때, 만들어진 구간들 가운데 약 95%가 참값을 포함하도록 설계된 구간.
+::: {.highlight-box}
+**95% 신뢰구간**: 같은 절차로 표본 추출과 구간 계산을 반복했을 때, 만들어진 구간들 가운데 약 95%가 참값을 포함하도록 설계된 구간.
+:::
 
 $$
 \hat\theta \pm t_{0.975,\;\nu}\times \operatorname{SE}(\hat\theta)
@@ -901,9 +965,11 @@ $$
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
-> **귀무가설** $H_0$: 반증되기 전까지 참이라고 두는 기본 가정. 보통 "효과가 없다", "차이가 없다" 쪽에 놓는다.
->
-> **대립가설** $H_1$: 자료로 입증하고자 하는 주장. 보통 "효과가 있다" 쪽이다.
+::: {.highlight-box}
+**귀무가설** $H_0$: 반증되기 전까지 참이라고 두는 기본 가정. 보통 "효과가 없다", "차이가 없다" 쪽에 놓는다.
+
+**대립가설** $H_1$: 자료로 입증하고자 하는 주장. 보통 "효과가 있다" 쪽이다.
+:::
 
 ### <i class="fa-solid fa-list-check"></i> 절차
 
@@ -926,7 +992,7 @@ $$
 
 ## p-value: 정의 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 꼬리 넓이로 읽는 확률
+### <i class="fa-solid fa-bullseye"></i> 꼬리 넓이
 
 ::: columns
 
@@ -935,13 +1001,21 @@ $$
 ::::
 
 :::: {.column width="42%"}
-> **p-value**: 귀무가설이 참이라고 가정할 때, 실제로 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률.
+
+::: {.highlight-box}
+**p-value**: 귀무가설이 참이라고 가정할 때, 실제로 관측된 것만큼 또는 그보다 더 극단적인 결과가 나올 확률.
+:::
 
 $$
 p=P\left(|T|\ge 2.20 \mid H_0\right)=0.0362
 $$
 
-여기서 $T$: 자유도 28의 t분포를 따르는 검정통계량. 계산은 `2 * pt(-2.20, 28) = 0.0362`
+**기호**
+
+<ul>
+<li>$T$: 자유도 28의 t분포를 따르는 검정통계량</li>
+<li>계산은 <code>2 * pt(-2.20, 28) = 0.0362</code></li>
+</ul>
 ::::
 
 :::
@@ -962,15 +1036,21 @@ p-value를 그림 하나로 이해해 보겠습니다. 귀무가설이 참이라
 
 ### <i class="fa-solid fa-triangle-exclamation"></i> 네 가지 오독
 
-::: {.callout-warning appearance="minimal"}
-<i class="fa-solid fa-triangle-exclamation"></i> **p-value가 아닌 것**
+::: {.highlight-box style="font-size: 90%; font-weight:400;"}
 
-<ol>
-<li>**p는 귀무가설이 참일 확률이 아님.** $H_0$가 참이라는 조건을 붙이고 계산한 자료 쪽의 확률. 조건과 결론을 맞바꾸어 읽으면 안 됨</li>
-<li>**p가 크다고 효과 없음이 증명되지는 않음.** 표본이 작거나 측정오차가 크면 실재하는 효과도 드러나지 않음. 증거 없음 $\neq$ 없음의 증거</li>
-<li>**통계적 유의성 $\neq$ 실질적 중요성.** $n$이 매우 크면 실무적으로 무시할 만한 차이도 유의해짐. 효과의 크기를 함께 볼 것</li>
-<li>**p = 0.049와 p = 0.051 사이에 질적 차이 없음.** 0.05는 연속적인 증거의 강도에 그은 임의의 선</li>
-</ol>
+1. **p는 귀무가설이 참일 확률이 아님**: $H_0$가 참이라는 조건을 붙이고 계산한 자료 쪽의 확률
+   - 조건과 결론을 맞바꾸어 읽으면 안 됨
+
+2. **p가 크다고 효과 없음이 증명되지는 않음**: 표본이 작거나 측정오차가 크면 실재하는 효과도 드러나지 않음
+   - 증거 없음 $\neq$ 없음의 증거
+
+3. **통계적 유의성 $\neq$ 실질적 중요성:** $n$이 매우 크면 실무적으로 무시할 만한 차이도 유의해짐
+   - 효과의 크기를 함께 보고
+
+4. **p = 0.049와 p = 0.051 사이에 질적 차이 없음**: 
+   - $p$는 0에서 1까지 **연속으로** 변하는 값이고, 0.05는 관습적인 **기준**
+   - 유의/비유의로 자르지 말고 p 값을 그대로 보고
+
 :::
 
 따라서 p-value는 추정값의 크기, 표준오차, 신뢰구간과 **함께** 보고할 것
@@ -987,7 +1067,7 @@ American Statistical Association (2016), *Statement on Statistical Significance 
 
 ### <i class="fa-solid fa-list-check"></i> Preliminary Knowledge
 
-:::{style="font-size: 90%"}
+:::{style="font-size: 80%"}
 <ul>
 <li>행렬 표기: $n$개의 식을 $\mathbf{y}=\mathbf{X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$ 한 줄로 압축. $\mathbf{X}$의 1열은 절편의 자리</li>
 <li>새로 배운 연산: 전치 $\mathbf{X}^\top$, 행렬식 $\det$, 계수 $\operatorname{rank}$, 역행렬 $\mathbf{A}^{-1}$, 내적, 대각합 $\operatorname{tr}$, 벡터 미분</li>

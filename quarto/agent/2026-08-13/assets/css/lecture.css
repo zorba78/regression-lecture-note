@@ -179,9 +179,12 @@
 }
 
 /* Figure captions italic, matching the reference deck. Size and colour are
-   already set above. */
+   already set above. Centred under the figure: Quarto wraps the image in
+   .quarto-figure-center, but that class centres the image only - the
+   <figcaption> inherits the slide's left alignment unless it is set here. */
 .reveal figcaption {
   font-style: italic;
+  text-align: center;
 }
 
 /* ===========================================================================
@@ -243,6 +246,33 @@
   background: #f4f7f9;
   border-left: 5px solid #3b9ab2;
   padding: 0.5em 0.8em;
+}
+
+/* Opt-in tinted box: `::: {.highlight-box}` ... `:::`. Taken verbatim from
+   references/obesity-pulse-presentation/custom.scss so a slide ported from
+   that deck looks the same; its #3B9AB2 is already this deck's accent.
+   Unlike the blockquote above it carries a full border on all four sides,
+   which is what makes it read as a boxed aside rather than a definition.
+   Only this one class was taken - that file's `.smaller` is 0.68em and would
+   collide with Quarto's own `.smaller` slide class, which this deck uses. */
+.reveal .slides section .highlight-box {
+  background: #eef6f9;
+  border: 2px solid #3b9ab2;
+  border-radius: 8px;
+  padding: 0.5em 0.8em;
+  margin: 0.4em 0;
+  font-weight: 600;
+  /* Carried over from the blockquote rule above, which this box replaced on
+     decks 01-08: definitions were set at 0.95em, and dropping to 1em widened
+     the display math enough to push 상관계수 off the right edge. NOT carried
+     over: that rule's `width: 100%`, which with content-box padding made the
+     tint overhang the slide's right edge on nine slides. */
+  font-size: 0.95em;
+}
+.reveal .slides section.fig-led .highlight-box {
+  font-size: 0.86em;
+  padding: 0.35em 0.7em;
+  margin: 0.25em 0;
 }
 
 /* --- A option: .pin --------------------------------------------------------

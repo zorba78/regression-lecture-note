@@ -49,7 +49,9 @@ editor_options:
 <i class="fa-solid fa-link"></i> **앞 장에서 여기까지**: 온도 하나로 $R^2=0.602$. <i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 설명변수를 여럿으로 늘리면 계수를 어떻게 읽고, 얼마나 믿을 수 있는가
 :::
 
-> 단순선형회귀의 적합 결과는 $R^2=0.602$ 였다. 소비량 변동의 약 40%는 온도 하나로 설명되지 않은 채 남아 있다.
+::: {.highlight-box}
+단순선형회귀의 적합 결과는 $R^2=0.602$ 였다. 소비량 변동의 약 40%는 온도 하나로 설명되지 않은 채 남아 있다.
+:::
 
 | Variable | Meaning | Role in this chapter |
 |:--|:--|:--|
@@ -69,7 +71,7 @@ editor_options:
 
 ## 설명변수 간 관계 파악: 산점도 행렬
 
-### <i class="fa-solid fa-chart-line"></i> 모형 설정에 앞선 자료 탐색
+### <i class="fa-solid fa-chart-line"></i> 사전 자료 탐색
 
 :::: {.columns}
 
@@ -99,10 +101,12 @@ editor_options:
 
 ## 다중선형회귀모형: 정의 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 조건부 기댓값의 설명변수를 여럿으로
+### <i class="fa-solid fa-bullseye"></i> 설명변수의 확장
 
-> 관측 $i=1,\dots,n$ 에 대하여
-> $$y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\cdots+\beta_p x_{ip}+\varepsilon_i$$
+::: {.highlight-box}
+관측 $i=1,\dots,n$ 에 대하여
+$$y_i=\beta_0+\beta_1 x_{i1}+\beta_2 x_{i2}+\cdots+\beta_p x_{ip}+\varepsilon_i$$
+:::
 
 **기호**
 
@@ -132,9 +136,11 @@ Source: Kutner, Nachtsheim, Neter, Li (2005), *Applied Linear Statistical Models
 
 ## 다중선형회귀모형: 행렬 표현
 
-### <i class="fa-solid fa-pen-to-square"></i> 관측 30개를 하나의 식으로
+### <i class="fa-solid fa-pen-to-square"></i> 관측 30개의 한 식 표현
 
-> $$\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$$
+::: {.highlight-box}
+$$\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$$
+:::
 
 $$
 \mathbf X=\begin{pmatrix}
@@ -160,7 +166,7 @@ $$
 
 ## 최소제곱 해와 정규방정식 {.smaller .stepped}
 
-### <i class="fa-solid fa-pen-to-square"></i> 벡터로 미분해 한 번에
+### <i class="fa-solid fa-pen-to-square"></i> 벡터 미분
 
 <ol>
 <li><b>목적함수를 전개한다.</b> 잔차제곱합은 스칼라이므로 전치를 취해도 같은 값. 가운데 두 항이 서로 전치 관계라 하나로 묶임
@@ -183,9 +189,11 @@ $$\therefore\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\
 
 ## 최소제곱 해가 존재할 조건 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> $\mathbf X$ 가 full rank여야 한다
+### <i class="fa-solid fa-bullseye"></i> $\mathbf X$ 의 full rank 조건
 
-> $\mathbf X$ 가 $n\times(p+1)$ 이고 $\operatorname{rank}(\mathbf X)=p+1\;(\le n)$ 일 때, 그리고 그때만 $(\mathbf X^\top\mathbf X)^{-1}$ 가 존재하고 최소제곱 해가 유일하게 정해진다.
+::: {.highlight-box}
+$\mathbf X$ 가 $n\times(p+1)$ 이고 $\operatorname{rank}(\mathbf X)=p+1\;(\le n)$ 일 때, 그리고 그때만 $(\mathbf X^\top\mathbf X)^{-1}$ 가 존재하고 최소제곱 해가 유일하게 정해진다.
+:::
 
 <ul>
 <li>2장에서 본 사슬 그대로. $\operatorname{rank}(\mathbf X^\top\mathbf X)=\operatorname{rank}(\mathbf X)$ 이므로, $\mathbf X$ 가 full rank가 아니면 $\det(\mathbf X^\top\mathbf X)=0$ 이고 역행렬이 없음</li>
@@ -205,11 +213,18 @@ $$\therefore\hat{\boldsymbol\beta}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top\
 
 ## 모자행렬: 정의
 
-### <i class="fa-solid fa-bullseye"></i> 적합값 $\hat{\mathbf y}$ 를 만드는 행렬
+### <i class="fa-solid fa-bullseye"></i> 적합값을 만드는 행렬
 
-> $$\mathbf H=\mathbf X(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top,\qquad \hat{\mathbf y}=\mathbf X\hat{\boldsymbol\beta}=\mathbf H\mathbf y$$
+::: {.highlight-box}
+$$\mathbf H=\mathbf X(\mathbf X^\top\mathbf X)^{-1}\mathbf X^\top,\qquad \hat{\mathbf y}=\mathbf X\hat{\boldsymbol\beta}=\mathbf H\mathbf y$$
+:::
 
-여기서 $\mathbf H$: 설계행렬 $\mathbf X$ 만으로 결정되는 $n\times n$ 행렬, $\hat{\mathbf y}$: 적합값 벡터. $\mathbf y$ 에 곱해 주면 $\mathbf y$ 가 모자를 쓴 $\hat{\mathbf y}$ 가 된다고 해서 **모자행렬(hat matrix)**
+**기호**
+
+<ul>
+<li>$\mathbf H$: 설계행렬 $\mathbf X$ 만으로 결정되는 $n\times n$ 행렬, $\hat{\mathbf y}$: 적합값 벡터</li>
+<li>$\mathbf y$ 에 곱해 주면 $\mathbf y$ 가 모자를 쓴 $\hat{\mathbf y}$ 가 된다고 해서 <b>모자행렬(hat matrix)</b></li>
+</ul>
 
 ::: {.callout-tip appearance="minimal"}
 <i class="fa-solid fa-pen-to-square"></i> **잔차도 같은 방식으로 얻는다**
@@ -292,7 +307,7 @@ Source: Hoaglin, D. C., & Welsch, R. E. (1978). The hat matrix in regression and
 
 ## 모자행렬: 세 성질의 증명 {.smaller}
 
-### <i class="fa-solid fa-pen-to-square"></i> 대칭성 하나에서 셋이 모두 나온다
+### <i class="fa-solid fa-pen-to-square"></i> 대칭성에서 나오는 셋
 
 $\mathbf X^\top\mathbf X$ 가 대칭이므로 그 역행렬도 대칭. 이 사실만으로 세 성질이 모두 나옴
 
@@ -316,7 +331,7 @@ $$
 
 ## 우도함수를 이용한 추정: 유도 {.smaller .stepped}
 
-### <i class="fa-solid fa-pen-to-square"></i> 최소제곱과 같은 답이 나오는 이유
+### <i class="fa-solid fa-pen-to-square"></i> 최소제곱과의 일치
 
 <ol>
 <li><b>결합가능도를 행렬로 적는다.</b> 오차가 서로 독립인 정규분포를 따른다고 가정하면 밀도 $n$개의 곱이 가능도. 지수에 모인 것이 앞 슬라이드의 $S(\boldsymbol\beta)$
@@ -336,9 +351,9 @@ $$\therefore\hat{\boldsymbol\beta}_{ML}=(\mathbf X^\top\mathbf X)^{-1}\mathbf X^
 :::
 
 
-## 우도함수를 이용한 추정: $\sigma^2$ 는 다르다 {.smaller}
+## 우도함수를 이용한 추정: $\sigma^2$ 의 차이 {.smaller}
 
-### <i class="fa-solid fa-triangle-exclamation"></i> 회귀계수는 같고 분산추정량은 다름
+### <i class="fa-solid fa-triangle-exclamation"></i> 분산추정량만 다름
 
 $\ell$ 을 $\sigma^2$ 로 미분해 0으로 놓으면 최대가능도 분산추정량이 나옴. 최소제곱에서 쓰는 불편추정량과 분모가 다름
 
@@ -366,11 +381,13 @@ $E(\hat\sigma^2_{ML})=\dfrac{n-p-1}{n}\sigma^2$ 로 **과소추정**. 표준오�
 
 ## 회귀계수의 해석: 정의
 
-### <i class="fa-solid fa-bullseye"></i> 다른 변수를 고정한 채
+### <i class="fa-solid fa-bullseye"></i> 다른 변수 고정
 
-> $\beta_j$ 는 **다른 설명변수를 모두 고정한 채** $x_j$ 만 한 단위 증가시켰을 때 반응변수 평균의 변화량이다.
->
-> $$\beta_j=E(Y\mid x_j+1,\ \text{나머지 고정})-E(Y\mid x_j,\ \text{나머지 고정})$$
+::: {.highlight-box}
+$\beta_j$ 는 **다른 설명변수를 모두 고정한 채** $x_j$ 만 한 단위 증가시켰을 때 반응변수 평균의 변화량이다.
+
+$$\beta_j=E(Y\mid x_j+1,\ \text{나머지 고정})-E(Y\mid x_j,\ \text{나머지 고정})$$
+:::
 
 ::: {.callout-tip appearance="minimal"}
 <i class="fa-solid fa-triangle-exclamation"></i> **해석에 반드시 붙는 조건절**
@@ -388,7 +405,7 @@ $E(\hat\sigma^2_{ML})=\dfrac{n-p-1}{n}\sigma^2$ 로 **과소추정**. 표준오�
 
 ## 회귀계수의 해석: full model 적합 {.smaller}
 
-### <i class="fa-solid fa-table"></i> 가격, 소득, 온도를 한꺼번에
+### <i class="fa-solid fa-table"></i> 가격·소득·온도
 
 **추정 경로**
 
@@ -412,7 +429,16 @@ $$
 
 $$\hat y_i = 0.193 - 1.03\,x_{i1} + 0.00331\,x_{i2} + 0.00346\,x_{i3}$$
 
-여기서 $\hat y_i$: $i$번째 기간 소비량의 적합값, $x_{i1}$: 가격, $x_{i2}$: 소득, $x_{i3}$: 온도
+::: {style="font-size: 0.62em; line-height: 1.2"}
+
+**기호**
+
+<ul>
+<li>$\hat y_i$: $i$번째 기간 소비량의 적합값</li>
+<li>$x_{i1}$: 가격, $x_{i2}$: 소득, $x_{i3}$: 온도</li>
+</ul>
+
+:::
 
 **계수표**
 
@@ -436,7 +462,9 @@ $$\hat y_i = 0.193 - 1.03\,x_{i1} + 0.00331\,x_{i2} + 0.00346\,x_{i3}$$
 
 ### <i class="fa-solid fa-lightbulb"></i> 추정 결과의 서술
 
-> $\hat\beta_3=0.00346$ (temp): 가격과 소득을 고정한 채 온도만 1도(°F) 상승할 때의 평균 소비량 증가분
+::: {.highlight-box}
+$\hat\beta_3=0.00346$ (temp): 가격과 소득을 고정한 채 온도만 1도(°F) 상승할 때의 평균 소비량 증가분
+:::
 
 ::: {.callout-tip appearance="minimal"}
 <i class="fa-solid fa-lightbulb"></i> **p-value의 뜻**
@@ -455,7 +483,7 @@ temp의 계수 0.00346은 가격과 소득이 그대로일 때 온도만 화씨 
 
 ## '보정'의 의미: 두 단계 {.smaller .stepped}
 
-### <i class="fa-solid fa-lightbulb"></i> 다른 변수를 고정한다는 말의 계산적 정의
+### <i class="fa-solid fa-lightbulb"></i> 고정의 계산적 정의
 
 <ol>
 <li><b>반응변수에서 다른 변수의 몫을 뺀다.</b> $y$ 를 가격과 소득에만 회귀시키고 남은 잔차 $e_{y\cdot(\text{price},\,\text{income})}$, 곧 가격과 소득으로는 설명되지 않는 소비량 부분</li>
@@ -474,7 +502,7 @@ $$\hat\beta_j=\frac{\sum e_{y\cdot\text{others}}\;e_{x_j\cdot\text{others}}}{\su
 
 ## '보정'의 의미: 직접 확인 {.fig-led}
 
-### <i class="fa-solid fa-chart-line"></i> 보정 전과 보정 후의 기울기
+### <i class="fa-solid fa-chart-line"></i> 보정 전후의 기울기
 
 ![Temperature slope before and after adjusting for price and income, ice cream data (n = 30)](../../../output/agent/2026-08-27/fig-m02-added-variable.png){width=100% .nostretch style="max-height: 560px"}
 
@@ -492,7 +520,7 @@ $$\hat\beta_j=\frac{\sum e_{y\cdot\text{others}}\;e_{x_j\cdot\text{others}}}{\su
 
 ## 회귀계수의 해석: 유의하지 않은 계수
 
-### <i class="fa-solid fa-triangle-exclamation"></i> 증거 부족과 효과 없음의 구별
+### <i class="fa-solid fa-triangle-exclamation"></i> 증거 부족과 효과 없음
 
 ::: {.callout-tip appearance="minimal"}
 <i class="fa-solid fa-lightbulb"></i> **p-value가 큰 계수를 읽는 법**
@@ -512,11 +540,13 @@ price를 보십시오. 계수는 마이너스 1.03으로 사장님의 직감과 
 :::
 
 
-## 모형의 설명력: 수정 $R^2$ 가 필요한 이유
+## 모형의 설명력: 수정 $R^2$
 
-### <i class="fa-solid fa-triangle-exclamation"></i> 변수를 더하면 $R^2$ 는 항상 증가
+### <i class="fa-solid fa-triangle-exclamation"></i> $R^2$ 의 단조 증가
 
-> 설명변수를 추가하면 $R^2$ 는 결코 감소하지 않는다. 설명변수 개수가 다른 모형을 $R^2$ 만으로 비교할 수 없는 이유다.
+::: {.highlight-box}
+설명변수를 추가하면 $R^2$ 는 결코 감소하지 않는다. 설명변수 개수가 다른 모형을 $R^2$ 만으로 비교할 수 없는 이유다.
+:::
 
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
@@ -537,7 +567,7 @@ $$\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}$$
 
 ## $R^2$, 수정 $R^2$, SSE의 관계 {.smaller .fig-led}
 
-### <i class="fa-solid fa-chart-line"></i> 변수를 늘릴 때 세 값이 움직이는 방향
+### <i class="fa-solid fa-chart-line"></i> 세 값의 이동 방향
 
 ![Schematic. Only the R-squared curve is stipulated; SSE and adjusted R-squared are derived from it by their definitions with n = 20](../../../output/agent/2026-08-27/fig-m01-r2-adjr2-sse.png){width=100% .nostretch style="max-height: 560px"}
 
@@ -584,9 +614,11 @@ $$\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}$$
 
 ### <i class="fa-solid fa-bullseye"></i> 총변동의 분해
 
-> $$\underbrace{\sum_{i=1}^{n}(y_i-\bar y)^2}_{\mathrm{SST}}
-> =\underbrace{\sum_{i=1}^{n}(\hat y_i-\bar y)^2}_{\mathrm{SSR}}
-> +\underbrace{\sum_{i=1}^{n}(y_i-\hat y_i)^2}_{\mathrm{SSE}}$$
+::: {.highlight-box}
+$$\underbrace{\sum_{i=1}^{n}(y_i-\bar y)^2}_{\mathrm{SST}}
+=\underbrace{\sum_{i=1}^{n}(\hat y_i-\bar y)^2}_{\mathrm{SSR}}
++\underbrace{\sum_{i=1}^{n}(y_i-\hat y_i)^2}_{\mathrm{SSE}}$$
+:::
 
 **유도**
 
@@ -608,7 +640,7 @@ $$\sum(\hat y_i-\bar y)\,e_i=\underbrace{\sum \hat y_i e_i}_{=\,0}-\;\bar y\unde
 
 ## 자유도의 분해 {.smaller .fig-led}
 
-### <i class="fa-solid fa-chart-simple"></i> 제곱합이 갈라지면 자유도도 같이 갈라진다
+### <i class="fa-solid fa-chart-simple"></i> 자유도의 동반 분해
 
 제곱합만 나뉘는 것이 아니라 자유도도 정확히 나뉨: $p+(n-p-1)=n-1$
 
@@ -631,15 +663,24 @@ $$\sum(\hat y_i-\bar y)\,e_i=\underbrace{\sum \hat y_i e_i}_{=\,0}-\;\bar y\unde
 
 ### <i class="fa-solid fa-question"></i> 개별 계수에 앞선 검정
 
-> 개별 계수를 하나씩 따지기 전에 먼저 물어야 할 것: 설명변수를 모두 합쳐도 반응변수를 설명하지 못하는 것은 아닌가?
+::: {.highlight-box}
+개별 계수를 하나씩 따지기 전에 먼저 물어야 할 것: 설명변수를 모두 합쳐도 반응변수를 설명하지 못하는 것은 아닌가?
+:::
 
 ### <i class="fa-solid fa-bullseye"></i> 가설
 
-> $H_0:\ \beta_1=\beta_2=\cdots=\beta_p=0$ (절편을 제외한 모든 회귀계수가 0)
->
-> $H_1:$ 적어도 하나의 $\beta_j$ 는 0이 아니다
+::: {.highlight-box}
+$H_0:\ \beta_1=\beta_2=\cdots=\beta_p=0$ (절편을 제외한 모든 회귀계수가 0)
 
-여기서 $H_0$: 귀무가설(기각 대상이 되는 기본 주장), $H_1$: 대립가설
+$H_1:$ 적어도 하나의 $\beta_j$ 는 0이 아니다
+:::
+
+**기호**
+
+<ul>
+<li>$H_0$: 귀무가설(기각 대상이 되는 기본 주장)</li>
+<li>$H_1$: 대립가설</li>
+</ul>
 
 ::: notes
 개별 선수의 기록을 따지기 전에 팀 전체가 경기를 뛸 실력이 되는지부터 확인해야 합니다. F-검정이 그 팀 전체의 실력 테스트입니다. 귀무가설은 절편을 뺀 모든 회귀계수가 0, 세 재료가 몽땅 무의미하다는 극단적인 주장입니다. 귀무가설이라는 말이 낯설 수 있습니다. 뒤집어엎을 대상으로 일단 세워 두는 기본 주장이라고 생각하시면 됩니다. 대립가설은 그 반대인데, 전부 의미 있다가 아니라 적어도 하나는 의미 있다입니다. 이 차이가 중요합니다. F-검정을 통과했다고 모든 변수가 쓸모 있다는 뜻은 아니라는 결론이 여기서 나옵니다. 순서가 중요한 이유는 단순합니다. 팀이 아예 경기를 못 뛸 수준이면 개별 선수 기록을 따지는 일 자체가 의미 없습니다.
@@ -648,7 +689,7 @@ $$\sum(\hat y_i-\bar y)\,e_i=\underbrace{\sum \hat y_i e_i}_{=\,0}-\;\bar y\unde
 
 ## 모형 전체의 유의성: F 통계량 {.smaller}
 
-### <i class="fa-solid fa-pen-to-square"></i> 설명한 몫과 남은 몫의 비
+### <i class="fa-solid fa-pen-to-square"></i> 설명한 몫과 남은 몫
 
 $$F=\frac{SSR/p}{SSE/(n-p-1)}$$
 
@@ -716,13 +757,21 @@ $R^2$ 가 같아도 $p$ 가 크면 $F$ 는 작아짐. **설명력과 모형의 �
 
 ## 회귀계수 일부에 대한 검정 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 변수 여러 개를 한꺼번에 뺄 수 있는가
+### <i class="fa-solid fa-bullseye"></i> 여러 변수의 동시 제거
 
-> 완전모형(FM)에서 계수 $k$ 개를 0으로 놓은 축소모형(RM)을 세우고, 두 모형의 잔차제곱합 차이를 완전모형의 오차분산으로 잰다.
->
-> $$F=\frac{\{SSE(\text{RM})-SSE(\text{FM})\}/k}{SSE(\text{FM})/(n-p-1)}\ \sim\ F(k,\ n-p-1)\quad(H_0\text{ 아래에서})$$
+::: {.highlight-box}
+완전모형(FM)에서 계수 $k$ 개를 0으로 놓은 축소모형(RM)을 세우고, 두 모형의 잔차제곱합 차이를 완전모형의 오차분산으로 잰다.
 
-여기서 $k$: 0으로 놓은 계수의 개수. $SSE(\text{RM})\ge SSE(\text{FM})$ 은 항상 성립하므로 분자는 음수가 될 수 없으며, **뺀 변수들이 실제로 설명한 몫**을 뜻함
+$$F=\frac{\{SSE(\text{RM})-SSE(\text{FM})\}/k}{SSE(\text{FM})/(n-p-1)}\ \sim\ F(k,\ n-p-1)\quad(H_0\text{ 아래에서})$$
+:::
+
+**기호**
+
+<ul>
+<li>$k$: 0으로 놓은 계수의 개수</li>
+<li>$SSE(\text{RM})\ge SSE(\text{FM})$ 은 항상 성립하므로 분자는 음수가 될 수 없음</li>
+<li>분자는 <b>뺀 변수들이 실제로 설명한 몫</b>을 뜻함</li>
+</ul>
 
 | Quantity | Value |
 |:--|--:|
@@ -742,9 +791,11 @@ $R^2$ 가 같아도 $p$ 가 크면 $F$ 는 작아짐. **설명력과 모형의 �
 
 ## 회귀계수의 표집분포: 추정량은 확률변수 {.smaller .stepped}
 
-### <i class="fa-solid fa-lightbulb"></i> 참값과 오차가 전달된 몫
+### <i class="fa-solid fa-lightbulb"></i> 참값과 오차의 몫
 
-> 한 번의 자료에서 계산한 $\hat{\boldsymbol\beta}$ 는 미지 계수 $\boldsymbol\beta$ 를 추정한 표본 결과이며, 자료가 바뀌면 값이 달라지는 **확률변수**이다. 자료를 다시 모아 같은 계산을 반복하면 추정값이 조금씩 달라지며, 그 값들이 이루는 분포가 **표집분포(sampling distribution)**
+::: {.highlight-box}
+한 번의 자료에서 계산한 $\hat{\boldsymbol\beta}$ 는 미지 계수 $\boldsymbol\beta$ 를 추정한 표본 결과이며, 자료가 바뀌면 값이 달라지는 **확률변수**이다. 자료를 다시 모아 같은 계산을 반복하면 추정값이 조금씩 달라지며, 그 값들이 이루는 분포가 **표집분포(sampling distribution)**
+:::
 
 <ol>
 <li><b>정의에서 출발한다.</b> 관측한 $\mathbf y$ 만으로 계산하는 식이며, 이 단계에는 미지의 참값이 아직 등장하지 않음
@@ -768,7 +819,7 @@ $$\hat{\boldsymbol\beta}=\underbrace{\boldsymbol\beta}_{\textstyle \text{고정�
 
 ## 회귀계수의 표집분포: 불편성
 
-### <i class="fa-solid fa-bullseye"></i> 기댓값이 참값과 일치
+### <i class="fa-solid fa-bullseye"></i> 참값과의 일치
 
 ::: {.callout-tip appearance="minimal"}
 <i class="fa-solid fa-list-check"></i> **전제 조건**
@@ -780,7 +831,9 @@ $$\hat{\boldsymbol\beta}=\underbrace{\boldsymbol\beta}_{\textstyle \text{고정�
 </ul>
 :::
 
-> $E(\hat{\boldsymbol\beta}\mid\mathbf X)=\boldsymbol\beta$: 최소제곱 추정량의 기댓값은 참값과 일치한다(불편추정량).
+::: {.highlight-box}
+$E(\hat{\boldsymbol\beta}\mid\mathbf X)=\boldsymbol\beta$: 최소제곱 추정량의 기댓값은 참값과 일치한다(불편추정량).
+:::
 
 | Symbol | Nature | Meaning |
 |:--|:--|:--|
@@ -796,15 +849,23 @@ $$\hat{\boldsymbol\beta}=\underbrace{\boldsymbol\beta}_{\textstyle \text{고정�
 
 ## 회귀계수의 분산: 분산-공분산 행렬 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 오차분산과 설계행렬만으로 결정
+### <i class="fa-solid fa-bullseye"></i> 오차분산과 설계행렬
 
-> 앞의 전제 조건 아래에서 최소제곱 추정량의 분산-공분산 행렬은 오차분산과 설계행렬만으로 결정된다.
+::: {.highlight-box}
+앞의 전제 조건 아래에서 최소제곱 추정량의 분산-공분산 행렬은 오차분산과 설계행렬만으로 결정된다.
+:::
 
 $$
 \operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)=\sigma^2(\mathbf X^\top\mathbf X)^{-1}
 $$
 
-여기서 $\sigma^2$: 오차분산, $(\mathbf X^\top\mathbf X)^{-1}$: 설계정보 행렬의 역행렬. 대각 원소가 각 계수의 분산 $\operatorname{Var}(\hat\beta_j\mid\mathbf X)$, 비대각 원소가 계수 사이의 공분산
+**기호**
+
+<ul>
+<li>$\sigma^2$: 오차분산</li>
+<li>$(\mathbf X^\top\mathbf X)^{-1}$: 설계정보 행렬의 역행렬</li>
+<li>대각 원소가 각 계수의 분산 $\operatorname{Var}(\hat\beta_j\mid\mathbf X)$, 비대각 원소가 계수 사이의 공분산</li>
+</ul>
 
 ::: notes
 이 한 줄이 계수의 흔들림을 무엇이 결정하는지 전부 말해 줍니다. 오른쪽에 등장하는 재료는 두 가지뿐입니다. 측정이 얼마나 시끄러운가를 나타내는 오차분산, 그리고 우리가 자료를 어떻게 모았는가를 담은 설계행렬. 사람의 취향이나 소프트웨어의 임의 설정이 끼어들 자리는 없습니다. 행렬의 대각선에 놓인 숫자가 각 계수의 분산이고, 대각선 바깥은 두 계수가 함께 움직이는 정도입니다. 결과표의 표준오차가 어디서 나온 숫자냐고 물으시면, 이 행렬의 대각선 원소에 제곱근을 취한 값이라고 답하시면 됩니다.
@@ -863,7 +924,7 @@ $$\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)=\sigma^2(\mathbf X^\to
 
 ## 분산식의 유도: 결과 읽기 {.smaller}
 
-### <i class="fa-solid fa-lightbulb"></i> 어느 단계에서 어떤 가정을 썼는가
+### <i class="fa-solid fa-lightbulb"></i> 단계별로 쓰인 가정
 
 | Step | 사용한 가정 | 깨지면 생기는 일 |
 |:--|:--|:--|
@@ -910,7 +971,7 @@ $$\operatorname{Var}(\hat{\boldsymbol\beta}\mid\mathbf X)=\sigma^2(\mathbf X^\to
 
 ## Gauss-Markov 정리: BLUE
 
-### <i class="fa-solid fa-bullseye"></i> 선형 불편 추정량 중 최소분산
+### <i class="fa-solid fa-bullseye"></i> 최소분산 선형 불편추정량
 
 Theorem (Gauss-Markov)
 
@@ -934,7 +995,7 @@ BLUE는 색깔 이름이 아니라 네 단어의 앞글자입니다. 여러 개�
 
 ## Gauss-Markov 정리: 결론별 필요 가정 {.smaller}
 
-### <i class="fa-solid fa-triangle-exclamation"></i> 정규성은 어디에 쓰이는가
+### <i class="fa-solid fa-triangle-exclamation"></i> 정규성의 역할
 
 | Conclusion | Required assumptions |
 |:--|:--|
@@ -960,7 +1021,9 @@ BLUE는 색깔 이름이 아니라 네 단어의 앞글자입니다. 여러 개�
 
 ### <i class="fa-solid fa-bullseye"></i> 자유도 $n-p-1$ 의 $t$ 분포
 
-> 정규오차 가정 아래에서 표준화된 계수 추정량은 자유도 $n-p-1$ 인 $t$ 분포를 따른다.
+::: {.highlight-box}
+정규오차 가정 아래에서 표준화된 계수 추정량은 자유도 $n-p-1$ 인 $t$ 분포를 따른다.
+:::
 
 $$
 \frac{\hat\beta_j-\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{\,n-p-1}
@@ -981,13 +1044,20 @@ $$
 
 ## 회귀계수에 대한 검정과 신뢰구간 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 표준오차는 $(\mathbf X^\top\mathbf X)^{-1}$ 의 대각원소에서
+### <i class="fa-solid fa-bullseye"></i> $(\mathbf X^\top\mathbf X)^{-1}$ 의 대각원소
 
-> $$\operatorname{se}(\hat\beta_j)=\hat\sigma\sqrt{c_{jj}},\qquad
-> t=\frac{\hat\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{\,n-p-1},\qquad
-> \hat\beta_j\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{c_{jj}}$$
+::: {.highlight-box}
+$$\operatorname{se}(\hat\beta_j)=\hat\sigma\sqrt{c_{jj}},\qquad
+t=\frac{\hat\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{\,n-p-1},\qquad
+\hat\beta_j\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{c_{jj}}$$
+:::
 
-여기서 $c_{jj}$: $(\mathbf X^\top\mathbf X)^{-1}$ 의 $j$번째 대각원소, $\hat\sigma^2=SSE/(n-p-1)=0.0013582$, $t_{0.025,\,26}=2.0555$
+**기호**
+
+<ul>
+<li>$c_{jj}$: $(\mathbf X^\top\mathbf X)^{-1}$ 의 $j$번째 대각원소</li>
+<li>$\hat\sigma^2=SSE/(n-p-1)=0.0013582$, $t_{0.025,\,26}=2.0555$</li>
+</ul>
 
 | Term | $\hat\beta_j$ | $c_{jj}$ | $\operatorname{se}$ | $t$ | $p$-value | 95% CI |
 |:--|--:|--:|--:|--:|--:|:--|
@@ -1028,13 +1098,15 @@ $$
 
 ## 반응평균의 신뢰구간과 예측구간: 정의 {.smaller}
 
-### <i class="fa-solid fa-bullseye"></i> 평균을 맞히는 일과 하나를 맞히는 일
+### <i class="fa-solid fa-bullseye"></i> 평균과 개별 관측
 
-> 새 설명변수 조합 $\mathbf x_0=(1,\ x_{01},\dots,x_{0p})^\top$ 에서 적합값은 $\hat y_0=\mathbf x_0^\top\hat{\boldsymbol\beta}$ 로 같으나, 목표가 **조건부 평균**인지 **새 관측 하나**인지에 따라 구간의 폭이 달라진다.
->
-> $$\text{신뢰구간}:\ \hat y_0\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0}$$
->
-> $$\text{예측구간}:\ \hat y_0\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{1+\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0}$$
+::: {.highlight-box}
+새 설명변수 조합 $\mathbf x_0=(1,\ x_{01},\dots,x_{0p})^\top$ 에서 적합값은 $\hat y_0=\mathbf x_0^\top\hat{\boldsymbol\beta}$ 로 같으나, 목표가 **조건부 평균**인지 **새 관측 하나**인지에 따라 구간의 폭이 달라진다.
+
+$$\text{신뢰구간}:\ \hat y_0\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0}$$
+
+$$\text{예측구간}:\ \hat y_0\pm t_{\alpha/2,\,n-p-1}\,\hat\sigma\sqrt{1+\mathbf x_0^\top(\mathbf X^\top\mathbf X)^{-1}\mathbf x_0}$$
+:::
 
 <ul>
 <li>근호 안의 $1$ 이 두 구간을 가르는 전부. 새 관측에는 개별 오차 $\varepsilon_0$ 이 추가로 실리기 때문. 따라서 <b>예측구간이 항상 더 넓음</b></li>
@@ -1048,7 +1120,7 @@ $$
 
 ## 반응평균의 신뢰구간과 예측구간: 수치 {.smaller}
 
-### <i class="fa-solid fa-table"></i> 아이스크림 자료, 새 조건 하나
+### <i class="fa-solid fa-table"></i> 아이스크림 자료, 새 조건
 
 $\mathbf x_0=(1,\ 0.280,\ 85,\ 65)^\top$ 에서 $\hat y_0=0.19270-1.02906\times0.280+0.00331\times85+0.00346\times65=0.41107$
 
