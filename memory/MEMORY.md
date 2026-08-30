@@ -11,7 +11,6 @@
 - [문체 규칙](slide-register-rule.md) — 본문 개조식(정의·정리는 문장 유지) / 노트 경어체, AI 어투는 노트를 먼저 볼 것
 - [노트 문체 기준 원본](notes-style-exemplar-user.md) — 사용자가 쓴 01장 IDX 0·1이 기준. 매우·굉장히·즉은 정상 어휘
 - [노트 대본 일괄 윤문](notes-revision-2026-08-30.md) — 2026-08-30 과장어·상투구 정비. 남긴 것과 검증 스크립트 포함
-- [체크아웃 분기 주의](worktree-divergence-2026-08-30.md) — 메인과 worktree가 갈라짐. 작업 전 양쪽 확인 필수
 - [01장 정리 슬라이드 주석 처리](ch01-summary-slide-commented-out.md) — 01장에만 `이 장의 정리`가 렌더 안 됨. 확인 필요
 - [연결감 장치](slide-flow-devices.md) — 제목 차별화 · 장 브리지 · 이 장의 정리 통일
 - [장별 개별 덱](chapter-split-decks.md) — 장별 덱 8개가 정본. 마스터는 동결, split 스크립트는 다시 돌리지 않음
@@ -29,5 +28,5 @@
 - [06장 GLS 예제 = Lake Huron](gls-example-lakehuron.md) — 아이스크림은 자기상관이 약해 기각. 예제는 효과가 뚜렷한 자료로 고를 것
 - [참고자료 PDF 잠김](reference-pdfs-locked.md) — CNU·DSSI PDF 암호 보호로 읽기 불가, R 예제만 가용
 - [Quarto/R 실행 경로](tooling-paths-windows.md) — quarto는 8.3 단축 경로로 호출 필요
-- [사용자 편집 영역 보존](respect-user-edits.md) — 사용자가 직접 고친 부분은 요청 없이 손대지 않음
+- [사용자 편집 영역 보존](respect-user-edits.md) — 요청 없이 손대지 않음. 사용자 편집은 메인 체크아웃에 있으니 양쪽 확인
 - [split 스크립트의 편집 파괴](split-script-destroys-user-edits.md) — 장별 덱은 통째로 덮어써짐. 실행 전 mtime 확인 필수
