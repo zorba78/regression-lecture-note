@@ -1,0 +1,27 @@
+deck 01 notes: 22
+
+[ 0] L38-40  unchanged    (deck preamble)
+[ 1] L69-71  mine         회귀분석이란
+[ 2] L104-110  mine         회귀의 의미 {.smaller}
+[ 3] L149-161  mine         Galton과 회귀의 기원
+[ 4] L203-205  unchanged    주변분포와 조건부분포 {.smaller}
+[ 5] L226-228  unchanged    국소평균과 회귀직선 {.fig-led}
+[ 6] L270-272  mine         회귀의 정의 {.smaller}
+[ 7] L310-312  unchanged    회귀모형과 선형회귀모형 {.smaller}
+[ 8] L351-357  mine         Galton 자료: 모형 적합 {.smaller}
+[ 9] L370-372  unchanged    회귀분석의 8단계 {.smaller .fig-led}
+[10] L407-413  mine         1·2단계: 연구 질문과 변수 선택 {.smaller}
+[11] L469-471  mine         3단계 자료 수집: 아이스크림 자료 {.smaller}
+[12] L514-522  mine         변수의 유형
+[13] L542-564  mine         4단계 모형 설정: 선의 후보 {.smaller .fig-led}
+[14] L598-600  unchanged    4단계 모형 설정: 모형의 분류 {.smaller}
+[15] L620-622  unchanged    모형의 분류: 연습
+[16] L652-654  unchanged    모형의 분류: 정답과 해설
+[17] L707-717  mine         5·6단계 적합 방법과 모형 적합 {.smaller}
+[18] L737-753  mine         7단계 모형 검증과 비판 {.smaller .fig-led}
+[19] L782-790  unchanged    8단계 선택된 모형의 사용
+[20] L813-827  unchanged    원자력 분야의 회귀분석 사례 {.smaller}
+[21] L846-848  unchanged    강의의 구성 {.smaller}
+
+
+================ USER-EDITED BLOCKS IN FULL ================

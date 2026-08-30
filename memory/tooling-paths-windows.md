@@ -12,3 +12,4 @@ date: 2026-08-13
 - **스크린샷**: `C:\Program Files\Google\Chrome\Application\chrome.exe --headless=new --no-sandbox --disable-gpu --hide-scrollbars --window-size=1280,1024 --virtual-time-budget=15000 --screenshot="out.png" "file:///경로#/N"` (revealjs는 `#/N`으로 N+1번째 슬라이드). 렌더 확인에 유용.
 - **PowerShell 주의**: 네이티브 exe에 `2>&1` / `2>$null` 쓰지 말 것 — 종료 코드가 가짜로 1/255가 됨.
 - **Quarto 렌더 후 cleanup 오류**: `embed-resources` 렌더 시 마지막에 `ERROR: ... remove '<파일>_files\libs' (os error 32)` 가 나며 종료 코드 1이 되지만, **HTML은 정상 생성 완료된 상태**다(IDE가 폴더를 잠금). 종료 코드 대신 HTML 내용으로 검증할 것.
+- **셸 출력의 한글 깨짐(2026-08-29)**: Bash에서 `cat`/`python -c print` 로 한글 파일을 찍으면 콘솔 코드페이지 때문에 **표시만** 깨진다(`memory/*.md` 에서 확인). 파일 내용은 멀쩡하며 Read 도구로는 정상이다. **깨진 출력을 파일 손상으로 판단하지 말 것.** 한글 파일의 확인·수정은 Read/Edit 도구로 할 것 — 되읽어 확인할 수 없는 `sed` 치환은 검증이 불가능하다.

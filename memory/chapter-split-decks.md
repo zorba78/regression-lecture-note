@@ -11,18 +11,16 @@ date: 2026-08-26
 
 **마스터 `quarto/agent/2026-08-13/regression-lecture-note.qmd` 는 분할 시점의 기록으로 동결**한다. 장별 덱과 동기화하지 않는다. 2026-08-26 16:33 분할 시점까지의 내용(자료 10행, 4단계 모형 설정 재배치, 변수의 유형 이동, 콜아웃 리스트 스타일)은 양쪽이 일치한다.
 
-| 파일 | 장 | H2 슬라이드 |
-|:--|:--|--:|
-| 01-introduction | Introduction | 22 |
-| 02-preliminary-knowledge | Preliminary Knowledge | 24 |
-| 03-simple-linear-regression | Simple Linear Regression | 23 |
-| 04-multiple-linear-regression | Multiple Linear Regression | 31 |
-| 05-diagnosis-variable-selection | Diagnosis & Variable Selection | 20 |
-| 06-weighted-regression | Weighted Regression | 22 |
-| 07-dummy-variable | Dummy Variable | 14 |
-| 08-summary | Summary | 7 |
+**슬라이드 수는 여기 적어 두지 말고 그때그때 셀 것.** 덱은 계속 분할·증설되므로 적어 둔 숫자는 며칠이면 틀린다(2026-08-26에 적어 둔 표는 사흘 만에 8개 장 중 6개가 어긋났다). 세는 명령:
 
-기준은 `grep -c '^## '` 값이며 각 장 끝의 참고문헌 슬라이드를 포함한다(2026-08-26 실측). 표지 H1과 렌더 시 붙는 첫 장 때문에 화면 하단 번호는 이 값보다 크다.
+```bash
+cd quarto/agent/2026-08-26
+for f in *.qmd; do printf "%-38s %4d\n" "$f" "$(grep -cE '^## ' "$f")"; done
+```
+
+기준은 `grep -c '^## '` 값이며 각 장 끝의 참고문헌 슬라이드를 포함한다. 표지 H1과 렌더 시 붙는 첫 장 때문에 화면 하단 번호는 이 값보다 크다.
+
+참고용 실측 이력(그 시점의 값일 뿐, 현재값이 아님): 2026-08-26 합계 163(22/24/23/31/20/22/14/7) → 2026-08-29 합계 **211**(22/28/39/43/31/25/16/7).
 
 **경로 규칙 두 가지 (분할 때 스크립트가 처리해 둔 것. 이제는 각 덱에 이미 반영되어 있음)**
 - YAML의 `assets/...` → `../2026-08-13/assets/...` 로 재작성. CSS·폰트를 복제하지 않고 마스터 것을 공유한다.

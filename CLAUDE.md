@@ -105,3 +105,10 @@
 - 작업 중 agent가 생성한 데이터는 data/derived-data 에 agent 폴더 생성 후 날짜 별로 생성
 
 
+# 세션 시작 규칙
+
+1. `memory/MEMORY.md` 를 먼저 읽는다(위 **memory** 항목).
+2. **첫 도구 호출 전에** `one-skill-to-rule-them-all-main` 스킬을 실행한다.
+3. 그 스킬의 관찰 로그는 `~/.claude/projects/G--Projects-regression-lecture-note/skill-observations/` 에 둔다. 작업 폴더가 `.claude/worktrees/` 아래의 일회성 worktree일 수 있으므로 **저장소 안에 만들지 말 것** — worktree가 정리될 때 함께 사라진다.
+
+

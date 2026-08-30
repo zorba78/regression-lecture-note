@@ -1,0 +1,5 @@
+# Numbers intentionally removed from speaker notes during the 2026-08-30 revision.
+# Format: <deck file> <note index> <token>   # reason
+# Only rhetorical numbers belong here. A measured value must never be listed.
+
+03-simple-linear-regression.qmd 6 3   # "3초 만에 알 수 있는" -> "바로 알 수 있는"; rhetorical, not a measurement

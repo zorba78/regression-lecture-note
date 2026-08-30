@@ -3,12 +3,16 @@
 세션 시작 시 이 파일을 먼저 읽는다. 각 항목은 `memory/` 아래 파일 하나(사실 1건)를 가리킨다.
 형식: `- [제목](파일명.md) — 한 줄 요약`
 
-- [특강 진행 상황](lecture-draft-progress.md) — 2026-08-24 R 제거·이론 강화본(141슬라이드) 현황과 산출물 위치
+- [특강 진행 상황](lecture-draft-progress.md) — 내용 이력과 산출물 위치. 정본·슬라이드 수는 [장별 개별 덱](chapter-split-decks.md)을 볼 것
 - [확정 장 구성](lecture-chapter-structure.md) — 사용자가 지정한 영문 7개 장과 배치·표기 지시
 - [8단계와 각 장의 대응](eight-step-chapter-mapping.md) — 절차 축. Introduction의 대응표와 함께 유지할 것
 - [슬라이드 눈높이 원칙](slide-level-feedback.md) — 본문은 전문적, 쉬운 설명은 노트에
 - [R 코드 금지·이론 우선](no-r-code-theory-first.md) — 청강자가 R을 모름. 계산은 수식으로 제시
 - [문체 규칙](slide-register-rule.md) — 본문 개조식(정의·정리는 문장 유지) / 노트 경어체, AI 어투는 노트를 먼저 볼 것
+- [노트 문체 기준 원본](notes-style-exemplar-user.md) — 사용자가 쓴 01장 IDX 0·1이 기준. 매우·굉장히·즉은 정상 어휘
+- [노트 대본 일괄 윤문](notes-revision-2026-08-30.md) — 2026-08-30 과장어·상투구 정비. 남긴 것과 검증 스크립트 포함
+- [체크아웃 분기 주의](worktree-divergence-2026-08-30.md) — 메인과 worktree가 갈라짐. 작업 전 양쪽 확인 필수
+- [01장 정리 슬라이드 주석 처리](ch01-summary-slide-commented-out.md) — 01장에만 `이 장의 정리`가 렌더 안 됨. 확인 필요
 - [연결감 장치](slide-flow-devices.md) — 제목 차별화 · 장 브리지 · 이 장의 정리 통일
 - [장별 개별 덱](chapter-split-decks.md) — 장별 덱 8개가 정본. 마스터는 동결, split 스크립트는 다시 돌리지 않음
 - [행렬 도구의 장 분업](matrix-toolbox-ch2-vs-ch4.md) — 정의는 02장, 적용은 04장. 양쪽에 같은 내용을 쓰지 않음
