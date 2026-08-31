@@ -30,3 +30,4 @@
 - [Quarto/R 실행 경로](tooling-paths-windows.md) — quarto는 8.3 단축 경로로 호출 필요
 - [사용자 편집 영역 보존](respect-user-edits.md) — 요청 없이 손대지 않음. 사용자 편집은 메인 체크아웃에 있으니 양쪽 확인
 - [split 스크립트의 편집 파괴](split-script-destroys-user-edits.md) — 장별 덱은 통째로 덮어써짐. 실행 전 mtime 확인 필수
+- [.fig-led 캡션 겹침 함정](fig-led-caption-maxheight-trap.md) — 그림에 인라인 max-height 금지. 캡션이 콜아웃 위로 겹침

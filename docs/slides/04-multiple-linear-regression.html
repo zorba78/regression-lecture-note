@@ -1619,17 +1619,6 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <p>단순회귀와 달라진 것은 열의 개수뿐. 공식 자체는 그대로</p>
 <p><strong>적합식</strong></p>
 <p><span class="math display">\[\hat y_i = 0.193 - 1.03\,x_{i1} + 0.00331\,x_{i2} + 0.00346\,x_{i3}\]</span></p>
-<div style="font-size: 0.62em; line-height: 1.2">
-<p><strong>기호</strong></p>
-<ul>
-<li>
-<span class="math inline">\(\hat y_i\)</span>: <span class="math inline">\(i\)</span>번째 기간 소비량의 적합값
-</li>
-<li>
-<span class="math inline">\(x_{i1}\)</span>: 가격, <span class="math inline">\(x_{i2}\)</span>: 소득, <span class="math inline">\(x_{i3}\)</span>: 온도
-</li>
-</ul>
-</div>
 <p><strong>계수표</strong></p>
 <table class="caption-top">
 <caption>Full model fit (n = 30, <span class="math inline">\(R^2\)</span> = 0.719, adjusted <span class="math inline">\(R^2\)</span> = 0.686)</caption>
@@ -1644,7 +1633,7 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <tr class="odd">
 <td style="text-align: left;">(Intercept)</td>
 <td style="text-align: right;">0.193</td>
-<td style="text-align: right;">n.a.</td>
+<td style="text-align: right;">0.480</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">price (<span class="math inline">\(x_{i1}\)</span>)</td>
@@ -1663,7 +1652,6 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 </tr>
 </tbody>
 </table>
-<p>절편의 p-value는 해석 대상이 아니므로 <code>n.a.</code> 로 표기함.</p>
 
 </section>
 <section id="회귀계수의-해석-계수와-p-value" class="slide level2">
@@ -1675,13 +1663,13 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p><i class="fa-solid fa-lightbulb"></i> <strong>p-value의 뜻</strong></p>
+<p><i class="fa-solid fa-lightbulb"></i> <strong>읽는 법</strong></p>
 <ul>
 <li>
-“이 계수는 사실 0이다”라는 주장이 옳다고 가정했을 때, 지금 자료에서 얻은 것만큼 또는 그보다 더 극단적인 추정값이 나올 확률
+<span class="math inline">\(p\)</span>-value 의 뜻과 오독 네 가지는 2장 <b>p-value: 정의 · 해석의 함정</b> 참조. 다중회귀에서도 <b>계수 하나</b>에 대한 확률이라는 점은 같음
 </li>
 <li>
-값이 작을수록 그 주장을 우연으로 설명하기 어려움. 흔히 0.05를 기준으로 삼고, 그보다 작으면 <strong>유의하다</strong>고 말함
+달라지는 것은 <b>가설의 내용</b>: “다른 변수를 고정했을 때 이 계수가 0이다”이며, 고정할 변수가 바뀌면 <span class="math inline">\(p\)</span> 도 바뀜
 </li>
 <li>
 단순회귀의 기울기 0.00311이 여기서 0.00346으로 바뀐 이유: 다른 변수가 들어오며 온도의 몫을 다시 나누었기 때문
@@ -1697,19 +1685,21 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <h3 id="고정의-계산적-정의"><i class="fa-solid fa-lightbulb"></i> 고정의 계산적 정의</h3>
 <ol>
 <li>
-<b>반응변수에서 다른 변수의 몫을 뺀다.</b> <span class="math inline">\(y\)</span> 를 가격과 소득에만 회귀시키고 남은 잔차 <span class="math inline">\(e_{y\cdot(\text{price},\,\text{income})}\)</span>, 곧 가격과 소득으로는 설명되지 않는 소비량 부분
+<b>반응변수에서 다른 변수의 몫을 뺀다.</b> <span class="math inline">\(y\)</span> 를 가격과 소득에만 회귀시키고 남은 잔차 <span class="math inline">\(\tilde y\)</span>, 곧 가격과 소득으로는 설명되지 않는 소비량 부분 <span class="math display">\[\tilde y_i=y_i-\big(\hat\gamma_0+\hat\gamma_1x_{i,\text{price}}+\hat\gamma_2x_{i,\text{income}}\big)\]</span>
 </li>
 <li>
-<b>관심 변수에서도 똑같이 뺀다.</b> <span class="math inline">\(x_{\text{temp}}\)</span> 를 가격과 소득에 회귀시키고 남은 잔차 <span class="math inline">\(e_{\text{temp}\cdot(\text{price},\,\text{income})}\)</span>, 곧 가격과 소득으로는 설명되지 않는 온도 부분
+<b>관심 변수에서도 똑같이 뺀다.</b> <span class="math inline">\(x_{\text{temp}}\)</span> 를 <b>같은 두 변수</b>에 회귀시키고 남은 잔차 <span class="math inline">\(\tilde x\)</span>, 곧 가격·소득과 겹치지 않는 온도 부분 <span class="math display">\[\tilde x_i=x_{i,\text{temp}}-\big(\hat\delta_0+\hat\delta_1x_{i,\text{price}}+\hat\delta_2x_{i,\text{income}}\big)\]</span>
 </li>
 <li>
-<b>남은 것끼리 단순회귀한다.</b> 두 잔차를 산점도에 찍고 직선을 그으면, 그 기울기가 <b>다중회귀의 <span class="math inline">\(\hat\beta_{\text{temp}}\)</span> 와 정확히 일치</b>
+<b>남은 것끼리 단순회귀한다.</b> 그 기울기가 다중회귀의 <span class="math inline">\(\hat\beta_{\text{temp}}\)</span> 와 <b>정확히</b> 일치 (Frisch–Waugh–Lovell) <span class="math display">\[\hat\beta_{\text{temp}}=\frac{\sum\tilde x_i\,\tilde y_i}{\sum\tilde x_i^{2}}=\frac{23.696}{6844.6}=0.003462\]</span>
 </li>
 </ol>
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p><span class="math display">\[\hat\beta_j=\frac{\sum e_{y\cdot\text{others}}\;e_{x_j\cdot\text{others}}}{\sum e_{x_j\cdot\text{others}}^{2}}\]</span></p>
+<p><span class="math display">\[\beta_{\text{temp}}=\frac{\partial\,E(y\mid \mathbf x)}{\partial\,x_{\text{temp}}}
+=E(y\mid t+1,\,p,\,m)-E(y\mid t,\,p,\,m)\]</span></p>
+<p>가격이 <span class="math inline">\(p\)</span>, 소득이 <span class="math inline">\(m\)</span> 으로 <strong>똑같은</strong> 조건으로 고정되어 있을 때, 온도만 <span class="math inline">\(1^\circ\)</span>F 높은 쪽의 평균 소비량이 얼마나 큰가</p>
 </div>
 </div>
 </div>
@@ -2519,31 +2509,13 @@ t=\frac{\hat\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{\,n-p-1},\qquad
 </tr>
 </tbody>
 </table>
-
-</section>
-<section id="신뢰구간-해석의-주의" class="slide level2">
-<h2>신뢰구간 해석의 주의</h2>
-<h3 id="확률이-붙는-대상"><i class="fa-solid fa-triangle-exclamation"></i> 확률이 붙는 대상</h3>
 <div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p><i class="fa-solid fa-lightbulb"></i> <strong>95% 신뢰구간을 읽는 법</strong></p>
-<ul>
-<li>
-옳은 해석: 같은 절차를 반복해 만든 구간의 약 95%가 진짜 <span class="math inline">\(\beta_j\)</span> 를 포함하도록 설계됨
-</li>
-<li>
-틀린 해석: “이번에 계산한 구간 안에 <span class="math inline">\(\beta_j\)</span> 가 있을 확률이 95%
-</li>
-<li>
-확률은 계수가 아니라 구간을 만드는 절차에 붙음
-</li>
-</ul>
+<p><i class="fa-solid fa-screwdriver-wrench"></i> <b>보고 항목</b>: 추정값, 표준오차, 95% 신뢰구간, 분석에 쓴 가정과 표본 범위. 구간이 0을 포함하면 그 계수는 유의하지 않음(price가 그 경우). 95%가 붙는 대상은 계수가 아니라 <b>구간을 만드는 절차</b>이며, 자세한 해석은 2장 <b>신뢰구간</b> 참조</p>
 </div>
 </div>
 </div>
-<h3 id="실무-적용"><i class="fa-solid fa-screwdriver-wrench"></i> 실무 적용</h3>
-<p>보고 항목: 추정값, 표준오차, 95% 신뢰구간, 분석에 쓴 가정과 표본 범위. 구간은 <span class="math inline">\(\hat\beta_j\pm t_{\alpha/2,\,n-p-1}\,\mathrm{SE}(\hat\beta_j)\)</span> 로 계산</p>
 
 </section>
 <section id="반응평균의-신뢰구간과-예측구간-정의" class="slide level2 smaller">

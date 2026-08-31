@@ -3,37 +3,37 @@
 <div class="num">CHAPTER 01</div>
 <div class="name">Introduction</div>
 <div class="ko">회귀가 무엇이며 어떤 절차로 수행하는가</div>
-<div class="stat">22개 슬라이드 · 5.0 MB</div>
+<div class="stat">23개 슬라이드 · 5.0 MB</div>
 <div class="links">
 <a class="view" href="slides/01-introduction.html">슬라이드</a>
-<a class="pdf" href="pdf/01-introduction.pdf">PDF 1.2 MB</a>
+<a class="pdf" href="pdf/01-introduction.pdf">PDF 1.3 MB</a>
 </div>
 </div>
 <div class="chapter-card">
 <div class="num">CHAPTER 02</div>
 <div class="name">Preliminary Knowledge</div>
 <div class="ko">행렬 표기와 확률분포, 검정의 기초</div>
-<div class="stat">29개 슬라이드 · 4.8 MB</div>
+<div class="stat">31개 슬라이드 · 4.8 MB</div>
 <div class="links">
 <a class="view" href="slides/02-preliminary-knowledge.html">슬라이드</a>
-<a class="pdf" href="pdf/02-preliminary-knowledge.pdf">PDF 1.2 MB</a>
+<a class="pdf" href="pdf/02-preliminary-knowledge.pdf">PDF 1.4 MB</a>
 </div>
 </div>
 <div class="chapter-card">
 <div class="num">CHAPTER 03</div>
 <div class="name">Simple Linear Regression</div>
 <div class="ko">설명변수 하나로 직선을 긋고 검정하기</div>
-<div class="stat">39개 슬라이드 · 5.0 MB · 자료 ice.csv</div>
+<div class="stat">40개 슬라이드 · 5.7 MB · 자료 ice.csv</div>
 <div class="links">
 <a class="view" href="slides/03-simple-linear-regression.html">슬라이드</a>
-<a class="pdf" href="pdf/03-simple-linear-regression.pdf">PDF 1.4 MB</a>
+<a class="pdf" href="pdf/03-simple-linear-regression.pdf">PDF 1.8 MB</a>
 </div>
 </div>
 <div class="chapter-card">
 <div class="num">CHAPTER 04</div>
 <div class="name">Multiple Linear Regression</div>
 <div class="ko">설명변수를 여럿 넣고 계수를 읽는 법</div>
-<div class="stat">45개 슬라이드 · 4.8 MB · 자료 ice.csv</div>
+<div class="stat">44개 슬라이드 · 4.8 MB · 자료 ice.csv</div>
 <div class="links">
 <a class="view" href="slides/04-multiple-linear-regression.html">슬라이드</a>
 <a class="pdf" href="pdf/04-multiple-linear-regression.pdf">PDF 1.3 MB</a>
