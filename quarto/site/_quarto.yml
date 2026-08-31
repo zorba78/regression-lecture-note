@@ -27,7 +27,7 @@ website:
         aria-label: GitHub
   page-footer:
     background: "#f4f7f9"
-    left: "구본초 · 한국한의학연구원 디지털헬스연구부"
+    left: "구본초 · 한국한의학연구원 디지털임상연구부"
     right: "2026-09-01"
 
 format:
