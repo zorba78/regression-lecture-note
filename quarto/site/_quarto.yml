@@ -1,0 +1,39 @@
+# -----------------------------------------------------------------------------
+# Date    : 2026-08-31
+# Purpose : Landing site for the KINS regression lecture. Publishes to /docs on
+#           main so GitHub Pages can serve it without a second branch.
+# File    : quarto/site/_quarto.yml
+# -----------------------------------------------------------------------------
+
+project:
+  type: website
+  output-dir: ../../docs
+
+lang: ko
+
+website:
+  title: "회귀분석 특강"
+  description: "한국원자력안전기술원 연구원 대상 회귀분석 특강 자료"
+  navbar:
+    background: "#14324a"
+    left:
+      - text: "강의"
+        href: index.qmd
+      - text: "자료"
+        href: data.qmd
+    right:
+      - icon: github
+        href: https://github.com/zorba78/regression-lecture-note
+        aria-label: GitHub
+  page-footer:
+    background: "#f4f7f9"
+    left: "구본초 · 한국한의학연구원 디지털헬스연구부"
+    right: "2026-09-01"
+
+format:
+  html:
+    theme: cosmo
+    css: assets/site.css
+    toc: false
+    anchor-sections: false
+    link-external-newwindow: true

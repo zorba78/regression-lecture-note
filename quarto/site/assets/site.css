@@ -1,0 +1,180 @@
+/* ---------------------------------------------------------------------------
+   Date    : 2026-08-31
+   Purpose : Landing-site styling. Tokens are taken from the deck stylesheets
+             (lecture.css, monash.scss) so the site and the slides read as one
+             set: navy #14324a for structure, teal #3b9ab2 for accents.
+   File    : quarto/site/assets/site.css
+   --------------------------------------------------------------------------- */
+
+:root {
+  --navy: #14324a;
+  --slate: #27374a;
+  --teal: #3b9ab2;
+  --link: #027eb6;
+  --tint: #f4f7f9;
+  --tint-2: #eef6f9;
+  --rule: #cfd8dd;
+  --ink: #191919;
+  --muted: #6b6a66;
+}
+
+body { color: var(--ink); }
+a { color: var(--link); }
+
+/* --- hero ---------------------------------------------------------------- */
+
+.hero {
+  background: linear-gradient(180deg, var(--tint-2) 0%, var(--tint) 100%);
+  border-bottom: 1px solid var(--rule);
+  margin: -1.5rem -100vw 2.5rem;      /* bleed to the window edges */
+  padding: 3.25rem 100vw 2.75rem;
+}
+.hero h1 {
+  color: var(--navy);
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin: 0 0 .5rem;
+  letter-spacing: -0.01em;
+}
+.hero .lead {
+  color: var(--slate);
+  font-size: 1.12rem;
+  margin: 0 0 .35rem;
+}
+.hero .meta {
+  color: var(--muted);
+  font-size: .93rem;
+  margin: 0 0 1.5rem;
+}
+.hero .actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+
+.btn-lec {
+  display: inline-block;
+  padding: .5rem 1.05rem;
+  border-radius: 6px;
+  font-size: .95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--navy);
+  transition: background .12s ease, color .12s ease;
+}
+.btn-lec.primary { background: var(--navy); color: #fff; }
+.btn-lec.primary:hover { background: #0d2436; color: #fff; }
+.btn-lec.ghost { background: #fff; color: var(--navy); }
+.btn-lec.ghost:hover { background: var(--tint); }
+
+/* --- chapter cards ------------------------------------------------------- */
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 2.5rem;
+}
+.chapter-card {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.05rem 1.15rem 1rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.chapter-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 2px 10px rgba(20, 50, 74, .09);
+}
+.chapter-card .num {
+  color: var(--teal);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+}
+.chapter-card .name {
+  color: var(--navy);
+  font-size: 1.12rem;
+  font-weight: 650;
+  line-height: 1.25;
+  margin: .18rem 0 .1rem;
+}
+.chapter-card .ko { color: var(--slate); font-size: .95rem; margin-bottom: .55rem; }
+.chapter-card .stat {
+  color: var(--muted);
+  font-size: .84rem;
+  border-top: 1px dashed var(--rule);
+  padding-top: .55rem;
+  margin-top: auto;
+}
+.chapter-card .links { display: flex; gap: .45rem; margin-top: .6rem; }
+.chapter-card .links a {
+  flex: 1 1 auto;
+  text-align: center;
+  padding: .34rem .5rem;
+  font-size: .87rem;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+}
+.chapter-card .links .view { background: var(--navy); color: #fff; }
+.chapter-card .links .view:hover { background: #0d2436; }
+.chapter-card .links .pdf { background: var(--tint); color: var(--navy); border: 1px solid var(--rule); }
+.chapter-card .links .pdf:hover { background: var(--tint-2); border-color: var(--teal); }
+.chapter-card .links .pdf.disabled {
+  background: #fafafa; color: #a8a8a8; border-color: #e6e6e6;
+  pointer-events: none;
+}
+
+/* --- section headings ---------------------------------------------------- */
+
+h2.sec {
+  color: var(--navy);
+  font-size: 1.32rem;
+  border-bottom: 2px solid var(--teal);
+  display: inline-block;
+  padding-bottom: .18rem;
+  margin: 2.2rem 0 .35rem;
+}
+.sec-note { color: var(--muted); font-size: .93rem; margin-bottom: .4rem; }
+
+/* --- data table ---------------------------------------------------------- */
+
+table.data-table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+table.data-table th {
+  background: var(--tint);
+  color: var(--navy);
+  text-align: left;
+  padding: .55rem .7rem;
+  border-bottom: 2px solid var(--rule);
+  white-space: nowrap;
+}
+table.data-table td {
+  padding: .55rem .7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+table.data-table tr:hover td { background: #fbfdfe; }
+table.data-table caption {
+  caption-side: bottom;
+  color: var(--muted);
+  font-size: .86rem;
+  text-align: center;
+  padding-top: .6rem;
+}
+table.data-table td code {
+  background: var(--tint-2);
+  color: var(--slate);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: .04rem .34rem;
+  font-size: .86rem;
+}
+.badge-r {
+  display: inline-block; background: var(--tint-2); color: var(--slate);
+  border: 1px solid var(--rule); border-radius: 4px;
+  padding: .06rem .4rem; font-size: .82rem; font-family: var(--bs-font-monospace);
+}
+
+@media (max-width: 575px) {
+  .hero h1 { font-size: 1.85rem; }
+  .chapter-grid { grid-template-columns: 1fr; }
+}
