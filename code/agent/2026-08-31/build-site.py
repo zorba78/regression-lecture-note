@@ -97,6 +97,37 @@ def card(c):
     )
 
 
+def strip_notes(page: str) -> tuple[str, int]:
+    """Remove every <aside class="notes"> element, nesting included.
+
+    Scans forward counting <aside ...> opens against </aside> closes rather
+    than matching a non-greedy pair, so a nested aside inside a note cannot
+    truncate the removal and leave half the script on the page.
+    """
+    out, i, removed = [], 0, 0
+    while True:
+        start = page.find('<aside class="notes"', i)
+        if start == -1:
+            out.append(page[i:])
+            return "".join(out), removed
+        out.append(page[i:start])
+        depth, j = 0, start
+        while j < len(page):
+            nxt_open = page.find("<aside", j)
+            nxt_close = page.find("</aside>", j)
+            if nxt_close == -1:
+                return "".join(out) + page[start:], removed   # malformed: keep as-is
+            if nxt_open != -1 and nxt_open < nxt_close:
+                depth += 1
+                j = nxt_open + 6
+            else:
+                depth -= 1
+                j = nxt_close + 8
+                if depth == 0:
+                    break
+        i, removed = j, removed + 1
+
+
 def main():
     chs = chapters()
     (SITE / "_chapters.md").write_text(
@@ -111,21 +142,21 @@ def main():
         r = subprocess.run([QUARTO, "render"], cwd=SITE)
         print(f"quarto render exit={r.returncode}")
 
-    # Copy after rendering, never before. The deck is published exactly as it
-    # renders, speaker notes included: reveal's speaker window (the "s" key, or
-    # Tools > Speaker View in the slide menu) reads them out of the page, so
-    # they have to be in the published copy to be readable on the site.
+    # Copy after rendering, never before. Speaker notes are the presenter's
+    # script and are not published, so they are removed on the way out.
     (DOCS / "slides").mkdir(parents=True, exist_ok=True)
     for c in chs:
         src = DECKS / f'{c["stem"]}.html'
         if not src.exists():
             continue
+        page = src.read_text(encoding="utf-8")
+        page, removed = strip_notes(page)
         dst = DOCS / "slides" / src.name
-        shutil.copyfile(src, dst)
-        kept = dst.read_text(encoding="utf-8").count('<aside class="notes"')
-        print(f'  {c["stem"]:38s} notes={kept}')
-        if not kept:
-            sys.exit(f"{src.name}: published copy carries no speaker notes")
+        dst.write_text(page, encoding="utf-8")
+        left = page.count('class="notes"')
+        print(f'  {c["stem"]:38s} notes removed={removed} remaining={left}')
+        if left:
+            sys.exit(f'{src.name}: {left} notes block(s) survived the strip')
 
     # docs/data is written by export-data.R; this only checks it is there.
     expected = ["ice.csv", "galton.csv", "trees.csv", "lake-huron.csv",

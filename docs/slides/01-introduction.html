@@ -1022,20 +1022,7 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <section>
 <section id="introduction" class="title-slide slide level1 center">
 <h1>Introduction</h1>
-<aside class="notes">
-<p>지금부터 회귀분석 특강을 시작하겠습니다. 아마 여러분들은 연구현장에서 이미 회귀분석을 수행한 경험이 모두 있으실 것이라고 생각합니다. 현재 여기 계신 분들은 어떤 문제를 해결하기 위해 회귀분석이라는 도구를 연구 분석에 사용하고 계신가요?</p>
-<p>사실 회귀분석에서 사용하는 아이디어는 매우 다양한 분야에 적용되기 때문에, 통계학을 전공하지 않은 연구자들도 이미 회귀분석을 수행한 경험이 있을 수 있습니다. 특히 의학, 생명과학, 공학 분야에서 회귀분석은 두 변수 사이의 관계를 기술하고 예측하는 도구로 널리 사용되고 있고, 최근에는 인공지능과 기계학습 분야에서도 회귀분석의 아이디어가 활용되고 있습니다. 오늘 강의는 회귀분석의 기본 개념과 절차를 이해하는 데 초점을 맞추고 있습니다. 굉장히 많은 슬라이드를 준비했는데 사실 2-3시간 동안 이 내용을 모두 상세하게 다루기는 어렵기 때문에 오늘 강의는 회귀분석의 기본 개념과 절차를 이해하는 데 초점을 맞도록 하겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="회귀분석이란" class="slide level2">
 <h2>회귀분석이란</h2>
@@ -1076,21 +1063,7 @@ display:block!important;
 회귀분석 = 흩어짐을 인정한 채 조건과 결과의 관계를 하나의 식으로 요약
 </li>
 </ul>
-<aside class="notes">
-<p>먼저 여러분들한데 질문을 하나 드리겠습니다. 여러분들이 어떤 값을 맞혀야 하는데 아무 정보가 없다면, 상식적으로 어떤 값을 말하는 것이 최선일까요? 예를 들어 대한민국 사람의 키를 이야기 할 때 우리는 자연스럽게 전체 평균을 말합니다. 아무 정보가 없으면 170cm 정도라고 말하는 것이 최선입니다. 그런데 어떤 정보가 하나 주어지면 어떻게 될까요? 예를 들어 아버지의 키가 180cm라는 힌트를 받으면, 우리는 그 힌트에 해당하는 대상만 골라내서 그 안의 평균을 말하는 편이 낫습니다. 아버지가 180cm인 집안의 자식들의 평균 키는 전체 평균보다 조금 더 클 것입니다. 오늘 배울 내용은 방금 말씀 드린 내용을 조금 더 정밀하게 다루는 것입니다.</p>
-<p>슬라이드에 적어 놓은 연구 질문은 제가 주로 다루는 분야는 아니지만 인터넷 검색을 통해 본 기관과 연관성이 있을 것 같은 연구 질문을 세 가지 골라서 가져왔습니다.</p>
-<p>이 질문은 보시면 내용은 다르지만 한 가지 공통적인 내용을 담고 있습니다. 즉, 특정 조건이 주어졌을 때 결과의 평균을 알고 싶어 한다는 점입니다. 여기서 한 가지 질문을 드리겠습니다. 왜 평균일까요? 왜 특정 조건이 주어졌을 때 결과의 평균을 알고 싶어 하는 것일까요? 그 이유는 조건이 아무리 같아도 결과는 매번 조금씩 다르게 나오기 때문입니다. 같은 재료, 같은 조사량이라도 시험 또는 관찰 값이 변동합니다. 그래서 답 하나를 콕 집어 말할 수가 없습니다. 대신 그 흔들림의 무게중심은 우리가 해당 조건이 주어졌을 때의 평균으로 말할 수 있습니다. 즉, 회귀분석은 측정 및 관찰에서 발생할 수 있는 오차를 인정하고, 특정 조건이 주어졌을 때 결과의 평균을 추정하는 방법입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="회귀의-의미" class="slide level2 smaller">
 <h2>회귀의 의미</h2>
@@ -1151,22 +1124,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>아마 여러분들은 도대체 회귀라는 용어가 어떻게 유래되었는지 궁금하실 수 있을 것 같습니다. 회귀는 우리말로 직역하면 “되돌아간다” 라는 의미입니다. 그렇다면 회귀분석은 아까 전 슬라이드에서 설명 드렸던 것 처럼 단순히 특정 조건이 주어졌을 때 관심 특징의 결과를 추정하는 것과 어떤 관계가 있을까요? 통계학에서 회귀는 평균으로 되돌아간다는 의미를 가지고 있습니다. 개념 상으로는 변수들 사이의 함수 관계를 자료로부터 탐색하는 것이 회귀분석입니다. 즉, 관심이 있는 특정 변수가 다른 변수와 어떤 관계를 갖고 있고, 그 관계를 도식화 하거나 수식으로 나타내는 것이 회귀분석입니다.</p>
-<p>그럼 여기에서 관심이 있는 특정 변수를 통계학에서는 반응변수라고 표현합니다. 이 반응변수와 관계를 갖고 있는 다른 변수를 설명변수라고 합니다. 그런데 이 두 변수의 이름이 분야마다 조금씩 다릅니다. 여기 테이블에 보시는 것 처럼 반응변수는 종속변수, 출력변수, 목표변수 등으로 불리고, 설명변수는 독립변수, 입력변수, 예측변수, 공변량(covariate), 회귀자(regressor), 요인(factor), 운반체(carrier) 등으로 불립니다.</p>
-<p>앞서 말씀드린 것처럼 회귀분석은 다양한 분야에서 활용되고 있습니다. 자연과학, 공학, 생명과학, 의학, 사회과학, 경제학, 교육학 등 다양한 분야에서 회귀분석이 활용되고 있습니다. 따라서 이 강의에서는 반응변수와 설명변수라는 이름을 사용하겠습니다.</p>
-<p>이 회귀라는 용어를 처음 사용한 사람은 진화론으로 유명한 찰스 다윈의 사촌인 프랜시스 골턴이라는 사람입니다. 아시다시피 진화론이 처음 대두되었던 1800년대 중후반은 유전학이 막 시작되던 시기였고, 이를 계기로 우생학이라는 분야가 생겨났습니다. 골턴은 우생학의 선구자이자 통계학의 선구자이기도 했습니다. 골턴은 부모와 자식의 신체적 특징이 어떻게 이어지는지에 대해 관심을 가지고 연구를 진행했습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="galton과-회귀의-기원" class="slide level2">
 <h2>Galton과 회귀의 기원</h2>
@@ -1222,20 +1180,7 @@ display:block!important;
 </div>
 </div></div>
 
-<aside class="notes">
-<p>아까 프랜시스 골턴은 우생학의 선구자라고 말씀 드렸습니다. 골턴이 관심을 가졌던 질문은 인간에게서 지능과 성격, 신체적 특징이 부모로부터 자녀로 전달될까? 그리고 전달된다면 어느 정도로 전달될까? 였습니다. 골턴이 특히 관심을 가졌던 것은 천재성이 유전되는가 였었고 그 관계를 숫자와 데이터로 확인하고자 했습니다. 하지만 당시만 하더라도 지능을 측정할만한 지표가 없었기 때문에, 골턴은 지능보다는 신체적 특징을 먼저 살펴보기로 했습니다. 그 중에서도 가장 쉽게 측정할 수 있는 것이 바로 키였습니다. 키는 측정이 쉬울 뿐 아니라 성인이 되면 안정적이고 부모와 자녀 사이의 유전적 관계를 살펴보기에도 적합한 특징이었습니다.</p>
-<p>골턴의 논문에는 205쌍의 부모와 그 부모의 자녀 928명의 키를 조사했습니다. 현재 슬라이드에 사용한 자료는 전체 205쌍 928명의 자녀가 아니라 197쌍 898명의 자녀만을 사용했습니다. 31명의 자녀는 아버지와 어머니의 키가 모두 기록되어 있지 않아서 제외했습니다. 골턴이 본인의 연구 가설을 검증하기 위해 사용한 자료로부터 제일 먼저 한 일은 어머니의 키에 1.08을 곱해서 아버지와 같은 척도로 맞춘 후 중간부모라는 값을 계산하는 것이었습니다. 예를 들어 아버지의 키가 70인치이고 어머니의 키가 60인치라면, 중간부모는 (70 + 60*1.08)/2 = 68.4인치가 됩니다. 여기에서 골턴이 관심을 가졌던 것은 단순히 키 자체가 아니라 키가 전체 평균에서 얼마나 벗어나 있는가, 즉 편차였습니다. 예를 들어 부모세대의 전체 평균이 68 인치라고 하고 어떤 부모의 중간 부모키가 72 인치였다면, 이 부모는 평균보다 4인치 더 큰 부모입니다. 골턴의 질문은 이 부모의 자녀들들은 평균보다 얼마나 더 클까? 만약 부모의 키가 그대로 자녀에게 전달된다면, 자녀의 키도 평균보다 4인치 더 클 것입니다. 하지만 골턴은 실제로는 그렇지 않다는 것을 발견했습니다. 부모가 평균보다 4인치 더 크다면, 자녀는 평균보다 2.7인치 더 큰 정도였습니다. 만약 부모를 닮는 정도가 1이라면 키가 큰 부모의 자녀는 부모만큼 크고, 키가 작은 부모의 자녀는 부모만큼 작을 것입니다. 이렇게 되면 몇세대만 지나도 키가 극단적으로 커지거나 작아질 것입니다. 하지만 슬라이드의 그래프에서 보이는 것 처럼 빨간 선이 나타내는 1:1 대응 관계보다는 완만한 기울기를 갖는 파란 선이 나타내는 관계가 실제로 관찰되었습니다. 즉, 실제로는 부모를 닮는 정도가 1보다 작기 때문에, 키가 큰 부모의 자녀는 부모만큼 크지는 않고, 키가 작은 부모의 자녀는 부모만큼 작지 않습니다. 그래서 평균으로 되돌아간다는 의미에서 회귀라는 이름이 붙었습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 <aside><div>
 <p>Galton, F. (1886). Regression towards mediocrity in hereditary stature. <em>Journal of the Anthropological Institute of Great Britain and Ireland</em>, 15, 246-263. / Pearson, K. and Lee, A. (1903). On the laws of inheritance in man. <em>Biometrika</em>, 2, 357-462. All female statures (mothers and daughters) are multiplied by 1.08.</p>
 </div></aside></section>
@@ -1279,21 +1224,7 @@ display:block!important;
 <div class="highlight-box">
 <p>질문 1 (marginal)에서 질문 2 (conditional)로의 전환이 회귀분석의 시작</p>
 </div>
-<aside class="notes">
-<p>이번에는 같은 자료를 조금 다른 각도에서 보겠습니다. 왼쪽 히스토그램은 부모가 누구인지는 전혀 따지지 않고 자녀 898명의 키만 모아 놓은 것인데, 전체 평균이 69.2인치입니다. 오른쪽은 여기에 “부모 중간 키가 72인치” 라는 조건하에서, 즉 중간부모 키가 대략 72인치인 집안만 추출해서 계산한 자녀의 키 평균은 70.8인치로 올라가 있습니다.</p>
-<p>아무 정보 없이 자녀 한 명의 키를 맞혀야 한다면 아까 말씀 드린 것 처럼 전체 평균인 69인치를 말하는 것이 최선입니다. 그런데 중간부모가 72인치라는 정보를 알고 있다면 여전히 69인치라고 답하시겠습니까? 아마 70인치대 초반으로 고쳐 말씀하시는 편이 나을 것입니다. 즉, 앞에서 말씀드린 조건부 평균이 바로 이런 상황을 말합니다.</p>
-<p>여기에서 숫자가 두 개 나오는데 이 둘은 구분해 두시면 좋겠습니다. 구간 안에 실제로 들어온 자녀들의 평균이 70.8인치이고, 자료 전체로 그은 직선에서 읽은 값이 71.3인치입니다. 앞의 값은 62명만 평균 낸 것이라 흔들림이 있고, 뒤의 값은 자녀 898명 전체를 사용해서 그은 선 위에서 읽은 값입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="국소평균과-회귀직선" class="slide level2 fig-led">
 <h2>국소평균과 회귀직선</h2>
@@ -1319,20 +1250,7 @@ display:block!important;
 <div class="highlight-box">
 <p>국소평균들이 거의 하나의 직선 위에 놓임 <span class="math inline">\(\rightarrow\)</span> <strong>최소제곱 회귀직선</strong></p>
 </div>
-<aside class="notes">
-<p>그럼 부모 중간 키의 조건을 65, 66, 67, … 이렇게 여러 개로 늘려 보겠습니다. 중간부모 키를 1인치 단위로 잘라 칸을 여러 개 만들고, 각 칸에 속한 자녀들의 평균 키를 하나씩 구했습니다. 슬라이드 그림에서 주황색 마름모가 그 값이고, 이것을 국소평균이라고 부릅니다.</p>
-<p>결과가 어떻게 나왔을까요? 따로따로 계산한 이 평균들이 흩어지지 않고 거의 일직선 위에 줄을 서 있습니다. 파란 직선은 자료 전체에 맞춘 회귀직선인데 마름모들 사이를 잘 지나가고 있습니다. 즉, 조건부 평균이 중간부모 키에 따라 직선으로 움직인다는 뜻입니다. 회귀직선을 왜 직선으로 그리는지, 그리고 그 직선이 무엇을 이어 놓은 선인지를 한 장으로 보여 주는 그림입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="회귀의-정의" class="slide level2 smaller">
 <h2>회귀의 정의</h2>
@@ -1393,21 +1311,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>즉 회귀란 설명변수가 특정 값으로 주어졌을 때 반응변수의 평균입니다. 조건부 기댓값이라는 다소 어려운 용어로 나타내긴 하지만, 방금 히스토그램에서 보신 그대로 조건을 걸고 나서 구한 평균입니다.</p>
-<p>그림을 보시면 파란 직선 위에 종 모양 곡선이 세 개 얹혀 있습니다. 각각 중간부모 키가 65인치, 69인치, 73인치일 때 자녀의 키가 어떻게 퍼지는지를 나타낸 것입니다. 그런데 세 곡선의 봉우리가 모두 파란 직선 위에 정확히 올라앉아 있습니다. 즉, 회귀직선은 바로 이 봉우리들을 이어 놓은 선입니다.</p>
-<p>방금 종 모양이라는 말을 썼는데, 평균을 중심으로 좌우가 대칭이고 가운데가 가장 높은 이 모양을 정규분포라고 부릅니다. 두 변수가 함께 이 모양을 이루면 봉우리들이 정확히 직선을 이룬다는 사실이 수학적으로 증명되어 있습니다. 앞으로 회귀라는 말이 나올 때마다 머릿속에서 이 그림으로 돌아오시면 좋겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="회귀모형과-선형회귀모형" class="slide level2 smaller">
 <h2>회귀모형과 선형회귀모형</h2>
@@ -1470,21 +1374,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>방금 정의한 조건부 평균에 이름을 붙여 함수 f라고 쓰겠습니다. 그러면 반응변수는 이 함수에 오차를 더한 것으로 적을 수 있습니다. f가 신호이고 엡실론이 잡음이라고 생각하시면 됩니다. 즉, 우리가 얻는 관측값은 항상 신호와 잡음의 합입니다.</p>
-<p>그런데 문제는 f의 모양을 우리가 모른다는 점입니다. 세상의 모든 함수를 다 시도해 볼 수는 없기 때문에, 가장 단순한 모양부터 가정해 보는 것이 자연스럽습니다. 그 단순한 모양이 각 설명변수에 계수를 곱해서 더하는 형태이고, 이것을 선형회귀모형이라고 부릅니다.</p>
-<p>즉 우리의 목적은 이러한 선형회귀모형에서 회귀계수, 곧 베타들을 자료로부터 추정하는 것입니다. 여기서 베타는 회귀모수, 즉 값은 정해져 있지만 우리가 모르는 상수입니다. 베타가 상수라는 의미는 새로운 자료로 똑같은 절차를 통해 베타를 추정한다고 했을 때 그 참값은 변하지 않는다는 뜻입니다. 하지만 자료가 바뀌면 추정값은 달라집니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="galton-자료-모형-적합" class="slide level2 smaller">
 <h2>Galton 자료: 모형 적합</h2>
@@ -1580,21 +1470,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>방금 세운 모형을 골턴의 자료에 실제로 맞춘 결과입니다. 위 표에서 두 줄만 보시면 됩니다. 절편이 18.8이고 기울기가 0.729입니다. 그러면 기울기 0.729는 무슨 뜻일까요? 중간부모 키가 1인치 더 큰 집안으로 옮겨 가면 자녀 키의 평균은 0.729인치만 더 크다는 뜻입니다. 1인치를 그대로 따라오는 것이 아니라 4분의 3 정도만 따라옵니다. 바로 이 현상 때문에 골턴이 회귀, 곧 평균으로 되돌아간다는 이름을 붙였습니다. 즉, 키가 큰 부모의 자녀는 여전히 큰 편이지만 부모만큼은 아니고 전체 평균 쪽으로 조금 끌려오는 것입니다.</p>
-<p>아까 골턴이 발표한 값이 3분의 2라고 말씀 드렸는데, 이 표의 0.729는 그 값과 같은 계열의 숫자입니다. 골턴이 사용한 계산 방법과 오늘 우리가 쓰는 최소제곱법이 다르기 때문에 두 값이 정확히 같지는 않습니다. 그런데 여기에서 한 가지 더 확인해 보실 것이 있습니다. 만약 설명변수를 중간부모가 아니라 아버지 한 사람의 키로 바꾸면 어떻게 될까요? 같은 파일로 계산해 보면 기울기가 0.448까지 내려갑니다. 왜 이렇게 차이가 날까요? 중간부모는 두 사람을 평균한 값이라 개인차가 상쇄되어 정보가 더 정확하고, 그만큼 자녀의 키를 더 강하게 끌어당기기 때문입니다. 즉, 설명변수를 무엇으로 두느냐가 기울기를 바꾼다는 뜻입니다.</p>
-<p>나머지 칸의 용어는 아래 상자에 풀어 두었습니다. 표준오차는 이 추정값의 변동성을 측정한 값입니다. t 값은 추정값을 그 흔들림으로 나눈 것이니, 흔들림에 비해 추정값이 얼마나 큰지를 재는 셈입니다. p 값은 기울기가 사실은 0인데 우연히 이런 결과가 나올 확률인데 0.001보다도 작습니다. 즉, 우연으로 보기는 어렵다는 뜻입니다. 아래 표는 전체 변동을 직선으로 설명된 부분과 남은 부분으로 쪼갠 것인데, 자세한 해석은 Simple Linear Regression 장에서 하겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="회귀분석의-8단계" class="slide level2 smaller fig-led">
 <h2>회귀분석의 8단계</h2>
@@ -1609,21 +1485,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>그럼 회귀분석은 어떤 절차로 진행될까요? 회귀분석은 여덟 단계로 정리할 수 있는데, 순서를 외우실 필요는 없고 화면의 세 덩어리만 보시면 됩니다. 왼쪽 파란 묶음은 연구문제 설정부터 자료 수집 단계, 가운데 초록 묶음은 모형을 설정하고 적합하는 단계, 오른쪽 주황 묶음은 구축한 모형을 평가하고 사용한는 단계 입니다.</p>
-<p>여기에서 제가 강조하고 싶은 것은 1단계입니다. 연구 현장에서 분석이 실패하는 가장 흔한 이유가 무엇일까요? 계산을 틀려서가 아니라 애초에 질문 자체가 애매모호한 경우가 많습니다. 무엇을 알고 싶은지를 명확하게 하지 않으면 어떤 기법을 쓰더라도 소용이 없습니다. 즉, 목적지를 정하지 않고 출발하면 아무리 빨리 달려도 도착할 수 없는 것과 같습니다.</p>
-<p>이러한 회귀분석을 할 때, 처음 설정한 모형이 항상 자료를 적확하게 설명하는 것은 아닙니다. 여러 가지 절차를 통해 모형을 검증하는데, 이 검증 단계에서 어떤 문제를 발견하면 다시 4단계 모형을 재설정하는 작업을 되풀이 할 수도 있습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-연구-질문과-변수-선택" class="slide level2 smaller">
 <h2>1·2단계: 연구 질문과 변수 선택</h2>
@@ -1701,22 +1563,7 @@ display:block!important;
 </tbody>
 </table>
 </div>
-<aside class="notes">
-<p>그럼 앞서 소개한 회귀에서 사용할 아이스크림 소비량 자료를 통해 이 8단계 절자가 어떻게 적용되는지 살펴보겠습니다.</p>
-<p>1단계는 문제 및 가설 설정입니다. 이번 여름 날씨가 무척 더웠습니다. 여름이면 주기적으로 아이스크림 할인점에서 몇 만원씩 아이스크림을 쟁여놓고 먹습니다. 그런데 모든 사람들이 저랑 비슷하게 여름만 되면 아이스크림을 더 많이 사먹을까요? 이것이 제 연구실문의 시작입니다. 그러면 이 질문을 조금 가다듬어 보겠습니다. “기온이 오르면 1인당 아이스크림 소비량의 평균이 올라가는가?” 여기서 우리의 관심 사항은 개인들의 아이스크림 소비량이 아니라 평균입니다. 왜 평균일까요? 기온이 똑같이 30도인 기간이 여러 번 있어도 소비량은 매번 다르게 나오기 때문입니다. 그러니 30도일 때 얼마나 팔리느냐가 아니라, 30도일 때 평균 얼마나 팔리느냐를 묻는 것입니다. 즉, 앞에서 정의한 조건부 기댓값이 바로 이 질문의 형태입니다.</p>
-<p>다음은 2단계입니다. 기온만 재면 될까요? 잠깐만 생각해 보아도 그렇지 않습니다. 예를 들어 아이스크림 값이 오르면 덜 사 먹을 것이고, 주머니 사정이 넉넉하면 더 사 먹을 것입니다. 해가 바뀌면서 입맛이나 유행이 달라졌을 수도 있습니다. 그래서 표에 있는 네 가지를 함께 재기로 했습니다. 기온, 가격, 소득, 그리고 이러한 패턴이 해마다 달라질 수 있으므로 연차를 함께 재기로 했습니다.</p>
-<p>여기에서 순서를 눈여겨봐 주시기 바랍니다. 자료를 먼저 모아 놓고 무엇을 넣을까 고민한 것이 아니라, 무엇이 소비량을 바꿀 만한지 먼저 따져 보고 그것을 재러 나간 것입니다. 마지막 연차는 성격이 조금 다릅니다. 0, 1, 2라는 숫자가 붙어 있지만 크기를 재는 값이 아니라 종류를 나누는 값이기 때문입니다. 이런 변수를 어떻게 다루는지는 가변수 장에서 따로 배우겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-자료-수집-아이스크림-자료" class="slide level2 smaller">
 <h2>3단계 자료 수집: 아이스크림 자료</h2>
@@ -1864,21 +1711,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>이러한 연구 가설과 질문, 그리고 수집할 변수 목록이 정해지면 실제 데이터를 수집합니다.</p>
-<p>가로 한 줄이 4주짜리 기간 하나이고, 이런 기간이 모두 30개 있습니다. 세로 한 칸은 변수 하나이고, 오른쪽 표에 그 여섯 열이 각각 무엇인지 정리해 두었습니다. 우리가 알고 싶은 값은 아이스크림 섭취량이고 단위는 파인트입니다. 이것을 설명할 재료로는 가격, 가족의 월수입, 평균기온을 사용합니다. 즉, 관측 하나는 네 값의 묶음이고, <span class="math inline">\(y\)</span> 라고 쓰면 아이스크림 섭취량, <span class="math inline">\(x\)</span> 에 아래첨자 1, 2, 3이 붙으면 각각 가격, 수입, 기온을 가리킵니다.</p>
-<p>마지막 year는 조심하셔야 합니다. 우리가 흔히 쓰는 연도가 아니라 조사 연차를 뜻하며 0, 1, 2 세 값을 갖습니다. 숫자처럼 보이지만 사실은 종류를 나누는 변수라서 그대로 넣으면 안 됩니다. 어떻게 넣는지는 Dummy Variable 장에서 다루겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="변수의-유형" class="slide level2">
 <h2>변수의 유형</h2>
@@ -1951,22 +1784,7 @@ display:block!important;
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>방금 본 아이스크림 자료의 열을 다시 보겠습니다. 기온, 가격, 소득은 숫자로 재는 값입니다. 그런데 마지막 year는 0, 1, 2라는 숫자로 기록을 했어도 이 수치는 년차를 구분하기 위한 목적으로 사용할 뿐 정량적 값이 아닙니다. 1년째와 2년째 사이의 간격이 얼마라고 말할 수 없기 때문입니다. 즉, 종류를 나누는 값일 뿐입니다.</p>
-<p>변수는 이렇게 두 종류로 나뉩니다. 숫자로 재는 양적 변수와 종류를 나누는 질적 변수입니다. 기온이나 가격은 양적 변수이고, 제품 형태나 합격 여부는 질적 변수입니다. 질적 변수도 회귀모형에 넣을 수 있는데, 다만 그대로는 넣지 못하고 0과 1로 바꾸어 넣습니다. 이것을 가변수라고 부르고, 뒤에서 따로 한 장을 할애해서 다루겠습니다.</p>
-<p>여기에서 중요한 점은 회귀분석에서 반응변수는 반드시 양적 변수여야 하고, 설명변수 쪽은 양적이든 질적이든 상관없다는 것입니다.</p>
-<p>아래 표는 참고로만 보시면 되고 오늘 다루는 내용은 아닙니다. 다만 여러분들이 통계학에서 다른 이름으로 배우셨던 방법들이, 알고 보면 변수의 유형을 어떻게 조합하느냐에 따라 붙은 이름일 뿐이라는 점은 알아 두시면 도움이 됩니다. 예를 들어 설명변수가 전부 질적이면 분산분석, 양적과 질적이 섞여 있으면 공분산분석이라고 부르고, 반응변수가 질적이면 로지스틱 회귀가 됩니다. 즉, 이름은 달라 보여도 뿌리는 하나입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-모형-설정-선의-후보" class="slide level2 smaller fig-led">
 <h2>4단계 모형 설정: 선의 후보</h2>
@@ -1998,27 +1816,7 @@ display:block!important;
 <figcaption>Three candidate shapes fitted to the same 30 observations: a straight line, a quadratic in temperature, and a log transform of temperature.</figcaption>
 </figure>
 </div>
-<aside class="notes">
-<p>이제 자료 수집을 완료했고 실질적인 분석을 수행해야 합니다. 여러분들이 이 데이터를 직접 분석한다고 생각해 보시기 바랍니다. 가장 먼저 해야 할일은 그럼 온도와 소비량의 관계를 어떤 형태로 모델링 할 지를 정하는 것입니다.</p>
-<p>기온이 올라가면 소비량이 올라간다고 했는데, 그러면 그 관계를 어떤 모양으로 그리시겠습니까? 화면에 후보를 세 가지 적어 두었습니다.</p>
-<p>첫째는 직선입니다. 기온이 1도 오를 때마다 소비량 평균이 늘 같은 폭으로 늘어난다는 뜻입니다. 예를 들어 20도에서 21도로 갈 때나 30도에서 31도로 갈 때나 증가 폭이 똑같다는 이야기인데, 과연 그럴까요?</p>
-<p>둘째는 이차항을 넣은 곡선입니다. 어느 기온을 넘어서면 더는 늘지 않거나 오히려 줄어드는 모양을 그릴 수 있습니다. 너무 더우면 밖에 나가지 않을 테니까요.</p>
-<p>셋째는 로그를 씌운 곡선입니다. 서늘할 때는 1도만 올라도 많이 늘고, 이미 더운 상태에서는 1도 더 올라 봐야 별 차이가 없는 모양입니다.</p>
-<p>정답을 지금 말씀드리지는 않겠습니다. 여러분들이라면 어느 쪽을 고르시겠습니까? 잠깐 생각해 보시기 바랍니다.</p>
-<p>아직 정하지 않은 것이 더 있습니다. 기온 하나만 쓰시겠습니까? 앞에서 힘들게 모은 가격과 소득은 어떻게 하시겠습니까? 그리고 연차 변수, 숫자가 아니라 종류를 나누는 그 변수는 어떤 형태로 집어넣어야 할까요?</p>
-<p>아래 그림을 보시면 서른 개 점 위에 방금 말씀드린 세 모양을 실제로 얹어 놓았습니다. 파란 실선이 직선, 주황 파선이 이차항, 초록 점선이 로그입니다. 어느 것이 맞아 보이십니까?</p>
-<p>사실 눈으로는 고를 수가 없습니다. 세 곡선이 자료가 있는 구간 안에서는 거의 붙어 있기 때문입니다. 이 대목에서 제가 드리고 싶은 말씀이 바로 그것입니다. 모양을 눈대중으로 고를 수는 없고, 어느 것이 더 낫다고 말하려면 좋고 나쁨을 측정할 수 있는 도구가 있어야 합니다. 즉, 그 측정도구를 정하는 일이 5단계이고 조금 뒤에 나옵니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-모형-설정-모형의-분류" class="slide level2 smaller">
 <h2>4단계 모형 설정: 모형의 분류</h2>
@@ -2081,21 +1879,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>아까 4단계가 모형 설정이라고 말씀드렸습니다. 그런데 모형을 세운다는 것이 구체적으로 무엇을 정하는 일일까요? 조건부 기댓값을 어떤 형태의 수식으로 표현할 지를 정하는 일입니다. 아이스크림 자료에서는 일차식을 골랐습니다만, 고를 수 있는 형태가 그것뿐일 리는 없습니다.</p>
-<p>그래서 모형을 세 가지 기준으로 나누어 보겠습니다. 첫째는 선형이냐 아니냐입니다. 여기에서 오해가 가장 많이 생기는데, 선형이라는 말은 그림이 직선이라는 뜻이 아닙니다. 모수 베타가 들어가는 방식이 곱하고 더하는 형태냐를 묻는 것입니다. 둘째 잣대는 모형에 들어간 설명항이 몇 개냐이고, 셋째 잣대는 반응변수가 몇 개냐입니다. 설명항이 하나면 단순, 둘 이상이면 다중이라고 부르고, 반응변수가 하나면 일변량, 여럿이면 다변량이라고 부릅니다.</p>
-<p>여기에 단서를 하나 달아 두겠습니다. 같은 원변수를 변환한 항도 별개의 설명항으로 셉니다. 예를 들어 로그를 씌운 항과 제곱을 한 항이 각각 하나씩입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="모형의-분류-연습" class="slide level2">
 <h2>모형의 분류: 연습</h2>
@@ -2127,20 +1911,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>이번에는 여러분들이 직접 해 보실 차례입니다. 여섯 개 모형을 앞의 세 기준으로 하나씩 판정해 보시기 바랍니다. 순서를 정해 두시면 헷갈리지 않습니다. 먼저 베타가 어디에 어떻게 들어가 있는지를 보고 선형인지 비선형인지 정하고, 그다음 더해진 설명항이 몇 개인지 세고, 마지막으로 좌변의 반응변수가 몇 개인지 보시면 됩니다.</p>
-<p>2번을 특히 눈여겨보시기 바랍니다. 베타 1이 어디에 앉아 있습니까? 지수 안에 갇혀 있습니다. 6번도 함정입니다. 원변수는 X 하나뿐인데 항은 몇 개일까요? 30초 드리겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="모형의-분류-정답과-해설" class="slide level2">
 <h2>모형의 분류: 정답과 해설</h2>
@@ -2201,21 +1972,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>답을 맞추어 보겠습니다. 비선형은 2번 하나입니다. 베타 1이 지수 안에 갇혀 있어서 곱하고 더하는 형태로 풀어낼 수가 없기 때문입니다.</p>
-<p>5번은 로그가 붙어 있어서 비선형처럼 보이지만, 변환된 것은 설명변수이지 모수가 아니기 때문에 선형입니다. 6번도 마찬가지입니다. 그림을 그리면 포물선이 나오는데도 선형모형입니다. 대신 6번은 설명항이 X와 X 제곱 두 개이므로 다중으로 분류합니다. 아까 말씀 드린 것처럼 원변수 개수가 아니라 항의 개수를 센다는 점을 여기에서 확인해 두시기 바랍니다. 4번은 좌변에 Y가 두 개라 유일한 다변량 모형입니다.</p>
-<p>그런데 이 구분이 왜 중요할까요? 선형이기만 하면 우리가 아는 표준 절차 하나로 전부 처리되기 때문입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-적합-방법과-모형-적합" class="slide level2 smaller">
 <h2>5·6단계 적합 방법과 모형 적합</h2>
@@ -2296,24 +2053,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>지금까지 우리는 데이터가 주어졌을 때 어떤 모형으로 설명할지, 어떤 변수를 넣을지, 그리고 그 모형이 선형인지 비선형인지, 단순인지 다중인지, 일변량인지 다변량인지를 정했습니다. 그 다음 해야 할 단계는 이러한 모형으로 데이터를 얼마나 잘 설명하는지, 즉 모형을 적합(fit)하는 일입니다. 점 서른 개를 종이에 찍어 놓고 자를 대 보시면, 그럴듯한 선이 몇 개나 그어질까요? 무수히 많습니다. 그중 하나를 골라야 하는데 무엇을 기준으로 고르시겠습니까?</p>
-<p>가장 데이터를 잘 설명하는 모형은 모든 점들을 통과하는 선을 만들면 됩니다. 하지만 이 경우 매우 심각한 문제가 생기는데 이러한 모형은 어떤 점을 고려하지 않았을까요? 첫 번째로 반응변수가 랜덤이라는 점입니다. 점 하나하나가 랜덤하게 튀어 나왔는데, 그 점들을 모두 통과하는 선을 그리면 그 선은 단 한 번의 관측에만 맞는 선이 됩니다. 즉, 이 선은 다른 자료를 설명하지 못합니다. 또한 만약 4단계에서 우리가 하나의 직선으로 데이터를 설명하기로 했다면, 우리가 추정해야할 모수는 절편과 기울기 두 개 뿐입니다. 그런데 점 서른 개를 모두 통과하는 선을 그리려면, 점 하나하나마다 모수가 필요합니다. 즉, 모수가 서른 개가 필요합니다. 그러면 우리가 추정해야 할 모수는 절편과 기울기 두 개뿐인데, 모수가 서른 개가 필요하니 모수가 너무 많아져서 오히려 설명력이 떨어집니다.</p>
-<p>그래서 우리는 점들을 모두 통과하는 선이 아니라, 점들을 가장 잘 설명할 수 있는 선을 찾습니다. 점들을 가장 잘 설명하는 선은 어떻게 찾을까요? 아까 말씀드린 대로 이전 산점도에서 내가 그릴 수 있는 직선은 무수히 많습니다. 그럼 어떤 직선이 최선일까요? 우리가 임의의 직선을 산점도 위에 그어 놨다면, 우리는 그 직선과 점 사이의 거리를 측정할 수 있는데, 이 거리가 나타내는 것이 바로 오차입니다. 그럼 상식적으로 이 오차를 가장 작게 만드는 선을 고르면 되겠지요? 그런데 오차를 그냥 더하면 위로 벗어난 점과 아래로 벗어난 점이 서로 상쇄되어 버립니다. 그래서 오차를 제곱해서 다 더한 값, 즉 오차제곱합을 가장 작게 만드는 선을 고르는 것이 최소제곱법입니다.</p>
-<p>최소제곱법은 계산이 간편하고 이론적 정리가 깔끔하기 때문에 가장 널리 사용하지만, 이 직선을 적합하는 방법은 최소제곱법만 있는 것은 아닙니다. 주어진 데이터의 가능도, 즉 지금 내 손에 있는 자료가 나올 확률을 가장 크게 만드는 모수값을 찾는 최대가능도법, 그리고 오차의 절댓값 합을 최소로 만드는 최소절대편차법도 있습니다. 이 세 가지 방법은 모두 점과 선 사이의 어긋남을 측정하는 방법이 다를 뿐, 결국은 점들을 가장 잘 설명하는 선을 찾는다는 목표는 같습니다. 또한 최소제곱에 특정 제약조건을 추가해 모수를 추정하는 방법도 있습니다. 예를 들어 모수의 절댓값 합을 최소로 하는 라쏘(lasso)나, 모수의 제곱합을 최소로 하는 능형(ridge) 회귀가 있습니다. 이들은 모두 점과 선 사이의 어긋남을 측정하는 방법이 다를 뿐, 결국은 점들을 가장 잘 설명하는 선을 찾는다는 목표는 같습니다.</p>
-<p>흔히 최소제곱법과 경사하강법을 나란히 놓고 어느 쪽을 쓰느냐고 묻습니다. 그런데 이 둘은 같은 층위의 물음이 아닙니다. 최소제곱은 무엇을 가장 좋게 만들 것이냐, 곧 기준이고, 경사하강은 그 기준의 최적점을 어떻게 찾아갈 것이냐, 곧 계산 방법입니다.</p>
-<p>다행히 선형모형의 경우 답을 한 번에 주는 공식이 있기 때문입니다. 화면의 저 행렬식이 그것인데, 지금은 낯설겠지만 두 장 뒤면 익숙해지실 것입니다. 공식이 있으니 굳이 더듬어 내려갈 필요가 없습니다. 그런데 공식이 없는 모형도 많고, 자료가 지나치게 커서 저 역행렬을 구하지 못하는 경우도 있습니다. 그럴 때 기울기를 따라 조금씩 내려가며 답을 찾아가는 것이 경사하강법이고, 최근 딥러닝에서 사용하는 방법이 바로 이것입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-모형-검증과-비판" class="slide level2 smaller fig-led">
 <h2>7단계 모형 검증과 비판</h2>
@@ -2344,25 +2084,7 @@ display:block!important;
 <figcaption>Simple regression of ice cream consumption on temperature (n = 30): the fitted line with every residual drawn as a vertical drop (left), and residual versus fitted with a lowess curve (right).</figcaption>
 </figure>
 </div>
-<aside class="notes">
-<p>모형을 적합했으면 적합한 모형이 자료를 잘 설명하는지, 즉 모형이 자료에 맞는지 확인해야 합니다. 또한 모형을 적합할 때 사용한 자료 중 한두 관측이 결과를 좌우하지는 않는지도 살펴야 합니다. 마지막으로 모형에 사용한 변수 모두가 필요한지도 점검해야 합니다. 이 세 가지를 확인하는 것이 7단계입니다.</p>
-<p>첫 번째로 확인해야 할 사항은 이 모형이 자료에 맞게 적절히 적합되었는가를 평가해야 합니다. 최소제곱법을 사용하면 잔차의 제곱합이 최소가 되도록 모형을 적합합니다. 그런데 잔차의 제곱합이 최소가 되었다고 해서 그 모형이 자료를 잘 설명한다고 말할 수는 없습니다. 왜냐하면 잔차의 제곱합이 최소가 되도록 모형을 적합하는 것은 점과 선 사이의 어긋남을 측정하는 방법일 뿐, 그 어긋남이 어떤 패턴을 갖는지까지는 고려하지 않기 때문입니다. 그래서 모형을 적합한 뒤에는 잔차, 즉 모형으로 설명한 나머지 부분을 그림으로 확인하고, 거기에 어떤 패턴이 남아 있는지를 주의깊게 살펴 보아야 합니다.</p>
-<p>화면 왼쪽이 바로 그 이야기입니다. 지금까지 따라다닌 아이스크림 자료에 기온 하나로 소비량을 설명하는 직선을 그은 것입니다. 절편이 0.207이고 기울기가 0.0031이니 기온이 1도 오를 때마다 소비량 평균이 0.0031파인트씩 늘어난다는 뜻이고, 결정계수는 0.60입니다. 점에서 선까지 세로로 내려 그은 주황색 선분 서른 개가 보이실 텐데, 그 길이 하나하나가 잔차입니다. 최소제곱법은 이 길이들을 제곱해서 더한 값이 가장 작아지도록 선을 놓은 것입니다.</p>
-<p>오른쪽은 그 잔차만 따로 떼어서 적합값에 대해 다시 찍은 그림입니다. 왼쪽에서는 점들이 선을 따라 올라가기 때문에 어긋남이 어느 쪽으로 치우쳤는지 눈으로 가늠하기 어렵지만, 선을 수평으로 눕혀 놓으면 남은 무늬가 그대로 드러납니다. 파란 곡선은 점들의 흐름을 따라 그린 것인데 0 근처에서 거의 평평합니다. 즉, 이 자료에 대해서는 직선으로 놓은 설정에 특별히 걸리는 것이 없다는 뜻입니다.</p>
-<p>둘째, 이 결과가 몇몇 관측에 휘둘리고 있지는 않은가입니다. 예를 들어 서른 개 중 한 점을 빼고 다시 계산했더니 기울기가 크게 달라진다면, 그 결론은 자료 전체가 아니라 그 한 점이 만든 것입니다.</p>
-<p>세 번째는 불편할 수도 있는데 우리가 힘들게 모은 변수 중에 실은 필요 없는 것이 섞여 있다면 어떻게 알아채시겠습니까? 앞의 두 물음이 모형 진단이고 세 번째가 변수 선택인데, 이 두 가지를 Diagnosis and Variable Selection 장에서 함께 다루겠습니다.</p>
-<p>마지막으로 하나만 더 말씀드리겠습니다. 만약 여기에서 문제가 드러나면 그다음에는 어디로 가야 할까요? 앞으로 갈 수는 없고 4단계로 되돌아가서 모형을 다시 세워야 합니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-문제가-되는-잔차" class="slide level2 smaller fig-led">
 <h2>7단계: 문제가 되는 잔차</h2>
@@ -2393,22 +2115,7 @@ display:block!important;
 <figcaption>Three residual shapes that signal a problem, simulated at the scale of the ice cream data (n = 30, set.seed(2026)): curvature a straight line could not follow (left), spread that grows with the fitted value (centre), and a single distant observation (right).</figcaption>
 </figure>
 </div>
-<aside class="notes">
-<p>앞 장에서 본 아이스크림 잔차에는 패턴이 없었습니다. 그러면 패턴이 남았다는 것은 도대체 어떤 형태를 말하는 것일까요? 자주 만나게 되는 세 가지를 나란히 놓았습니다. 다만 이 세 그림은 아이스크림 자료가 아닙니다. 아이스크림 자료의 단순회귀에서는 이런 패턴이 나타나지 않기 때문에, 기온 값과 소비량 눈금만 그대로 두고 자료를 만들어 붙인 것입니다. 축이 앞 장과 같으니 나란히 놓고 보시면 됩니다.</p>
-<p>왼쪽은 활 모양입니다. 가운데가 위로 솟고 양 끝이 아래로 내려가 있습니다. 이차 곡선 형태입니다. 이럴 때는 계산을 다시 할 일이 아니라 4단계로 되돌아가서 곡선을 쓰든 변환을 하든 모형의 모양 자체를 바꾸어야 합니다.</p>
-<p>가운데는 나팔 모양입니다. 왼쪽에서는 점들이 0 근처에 모여 있는데 오른쪽으로 갈수록 위아래로 벌어집니다. 앞쪽 절반과 뒤쪽 절반의 잔차 표준편차를 재 보면 0.021과 0.046으로 두 배 넘게 차이가 납니다. 어떤 구간에서는 예측이 잘 맞고 어떤 구간에서는 크게 어긋난다는 뜻인데, 최소제곱법은 이 둘을 똑같은 무게로 취급합니다. 즉, 잘 맞는 관측과 못 맞는 관측을 구별해 주어야 하고, 그것이 Weighted Regression 장에서 다룰 가중회귀입니다.</p>
-<p>오른쪽은 한 점만 위로 뚝 떨어져 나가 있습니다. 이 점은 기온이 가운데쯤인 자리에 있어서 빼고 다시 계산해도 기울기가 2퍼센트도 달라지지 않습니다. 그런데 똑같은 크기의 어긋남을 기온이 가장 높은 끝자리로 옮겨 놓으면 기울기가 13퍼센트 넘게 흔들립니다. 즉, 얼마나 멀리 벗어났느냐만이 아니라 어디에서 벗어났느냐가 함께 중요하다는 뜻이고, 이 이야기가 Diagnosis 장의 이상점과 레버리지입니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="단계-선택된-모형의-사용" class="slide level2">
 <h2>8단계 선택된 모형의 사용</h2>
@@ -2447,22 +2154,7 @@ display:block!important;
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>마지막 8단계입니다. 검증까지 통과한 모형을 이제 사용합니다. 그런데 사용한다는 것이 무슨 뜻일까요? 두 가지로 나뉩니다.</p>
-<p>하나는 모형을 만들 때 썼던 그 자료를 다시 식에 넣는 경우입니다. 예를 들어 서른 개 기간의 기온과 소득을 그대로 넣어 소비량을 계산해 보는 것인데, 이렇게 나온 값을 적합값이라고 부릅니다. 말하자면 답을 아는 문제를 다시 풀어 본 셈입니다. 실제 관측값이 있으니 비교할 수 있고, 그 차이가 잔차입니다.</p>
-<p>다른 하나는 이 모형을 다른 자료에 가져다 쓰는 경우입니다. 내년 여름의 기온이나 다른 지역의 소득처럼 우리 자료에는 없던 값입니다. 이렇게 나온 값은 예측값이라고 부르고, 맞았는지는 지금 알 수가 없습니다.</p>
-<p>계산식은 똑같고 무엇을 집어넣었느냐만 다릅니다. 그런데 이 구분이 왜 중요할까요? 모형이 얼마나 좋은지 평가할 때 적합값만 보면 지나치게 낙관하게 되기 때문입니다. 이미 본 문제를 다시 푸는 일은 원래 쉽습니다. 그리고 예측할 때는 자료의 범위를 크게 벗어난 곳까지 함부로 나가지 않는 것이 원칙입니다. 얼마나 빗나갈 수 있는지를 구간으로 말하는 방법은 단순선형회귀 장에서 다루겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="원자력-분야의-회귀분석-사례" class="slide level2 smaller">
 <h2>원자력 분야의 회귀분석 사례</h2>
@@ -2510,25 +2202,7 @@ display:block!important;
 <div class="highlight-box">
 <p>세 사례는 재료, 계측, 역학으로 분야가 다르지만 모두 설명변수가 주어졌을 때 반응변수의 조건부 기댓값 <span class="math inline">\(E(Y \mid X = x)\)</span> 를 추정하는 문제임</p>
 </div>
-<aside class="notes">
-<p>여기까지 아이스크림 자료만 붙들고 왔습니다. 그러면 이런 생각이 드실 것입니다. 우리가 다루는 자료는 이렇게 만만하지 않은데, 하는 생각입니다.</p>
-<p>맞습니다. 사실 예제를 일부러 그렇게 골랐습니다. 원자력과 아무 상관이 없어야 전문 지식 없이도 결과가 말이 되는지 안 되는지 바로 판단하실 수 있기 때문입니다. 그렇다고 절차가 달라지지는 않습니다. 화면에 여러분들 분야의 사례 세 건을 적어 두었는데, 모두 오늘 배운 여덟 단계를 그대로 밟는 문제입니다.</p>
-<p>첫째는 원자로압력용기 조사취화 예측식입니다. 중성자를 오래 맞으면 취성이 커지는데 그 정도를 샤르피 41줄 천이온도로 잽니다. 화학 조성과 조사량이 설명변수로 들어가고, 용접재냐 판재냐 하는 제품 형태도 들어갑니다. 숫자가 아닌 변수를 어떻게 넣느냐는 문제인데, 오늘 배울 가변수 장의 내용입니다.</p>
-<p>둘째는 감마선 분광기 효율 검교정입니다. 이 사례에는 특별한 점이 있습니다. 계수 통계로 각 측정점의 분산을 이미 알고 있다는 점입니다. 즉, 관측마다 신뢰도가 다르다는 뜻이니 같은 무게로 다루면 안 됩니다. 가중회귀 장의 문제입니다.</p>
-<p>셋째는 원폭 생존자 수명연구입니다. 방사선방호 선량한도의 근거가 되는 자료인데, 여성은 직선이 잘 맞고 남성은 선형-이차가 더 잘 맞습니다. 같은 자료인데 집단에 따라 세워야 할 모형이 달라지는 것입니다. 어느 모형을 고를 것이냐는 문제이고, 진단과 변수선택 장의 내용입니다.</p>
-<p>반응변수 칸만 다시 보시기 바랍니다. 천이온도 변화량, 검출 효율, 초과상대위험입니다. 학회도 저널도 쓰는 용어도 모두 다릅니다. 그런데 묻고 있는 것은 하나같이 똑같습니다. 조건이 이러이러할 때 이 값의 평균이 얼마인가입니다. 즉, 오늘 첫머리에 세워 둔 조건부 기댓값 한 문장입니다.</p>
-<p>세 건 모두 해당 장의 실무 적용 슬라이드에서 자료와 수치를 갖추어 다시 보겠습니다. 지금은 오늘 배울 도구가 어디에 가서 쓰이는지만 확인해 두시면 충분합니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 </section>
 <section id="강의의-구성" class="slide level2 smaller">
 <h2>강의의 구성</h2>
@@ -2580,21 +2254,7 @@ display:block!important;
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>왼쪽이 여덟 단계이고 오른쪽이 그 단계를 실제로 다루는 장입니다. 앞의 세 단계, 그러니까 문제를 진술하고 변수를 고르고 자료를 모으는 일은 지금 이 장에서 이야기했습니다.</p>
-<p>4단계 모형 설정은 여러 장에 걸쳐 나옵니다. 행렬로 적는 법을 익히고, 설명변수가 하나일 때와 여럿일 때를 차례로 보고, 마지막에 범주형 변수를 넣습니다. 5단계, 어떤 방법으로 맞출지는 보통 최소제곱입니다. 관측마다 신뢰도가 다르면 가중최소제곱을 쓰고 그것이 Weighted Regression 장입니다. 7단계 검증은 Diagnosis 장이 통째로 담당하고, 마지막 8단계 만든 모형을 사용하는 일은 구간추정과 예측에서 나옵니다.</p>
-<p>강의를 따라오시다가 길을 잃었다 싶으시면 이 표로 돌아오시면 됩니다. 방금 아이스크림 자료로 여덟 단계를 한 바퀴 돌아 보았으니, 어느 단계가 어느 장에 들어 있는지가 이제 눈에 들어오실 것입니다. 즉, 오늘 남은 시간은 이 표의 오른쪽 칸을 위에서 아래로 하나씩 채워 나가는 일이 되겠습니다.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
+
 <!-- ## 이 장의 정리
 
 ### <i class="fa-solid fa-list-check"></i> Introduction
