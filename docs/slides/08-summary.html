@@ -1022,7 +1022,21 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <section>
 <section id="summary" class="title-slide slide level1 center">
 <h1>Summary</h1>
-
+<aside class="notes">
+<p>본론은 여기까지입니다. 남은 몇 장은 새로 배우는 내용이 아니라 지금까지 지나온 길을 한 번 더 훑어보는 자리입니다.</p>
+<p>오늘 우리는 답하고 싶은 질문을 한 문장으로 적는 데서 출발했고, 변수를 고르고 자료를 모으고 모형을 세우고 적합 방법을 정하고 실제로 맞추고 검증하고 마지막에 그 모형을 썼습니다. 여덟 걸음입니다. 즉, 그 순서만 기억하셔도 오늘 강의의 절반은 챙기신 셈입니다.</p>
+<p>남은 슬라이드에는 공식 일곱 개, 체크리스트 여덟 줄, 그리고 참고문헌이 들어 있는데 외우실 필요는 전혀 없습니다. 나중에 막혔을 때 어느 장을 펴면 되는지, 그것만 알아 두시면 충분합니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="핵심-공식-정리-적합의-뼈대" class="slide level2 smaller">
 <h2>핵심 공식 정리: 적합의 뼈대</h2>
@@ -1082,7 +1096,22 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 4번 식의 대각원소에 제곱근을 취한 값이 각 계수의 <b>표준오차</b>
 </li>
 </ul>
-
+<aside class="notes">
+<p>공식 일곱 개면 오늘 여정이 다 담기는데 그중 앞의 네 개가 모형을 맞추는 뼈대입니다.</p>
+<p>첫 번째 식은 직선을 어디에 그을까라는 질문의 답입니다. 점과 직선 사이 세로 거리를 제곱해서 다 더한 값을 벌점으로 삼고 그 벌점을 가장 작게 만들자는 약속이었습니다. 두 번째 식은 그 벌점을 최소로 만드는 계수를 행렬 계산 한 번으로 뽑아 줍니다.</p>
+<p>세 번째 모자행렬은 관측값 <span class="math inline">\(y\)</span>에 모자를 씌워 적합값으로 바꿔 주는 장치라서 이름이 그렇습니다. 관측 30개가 놓인 자리를 설명변수가 만드는 낮은 차원의 공간 위로 수직으로 눌러 내리는 그림자 만들기라고 보시면 됩니다.</p>
+<p>네 번째는 그렇게 얻은 계수가 얼마나 믿을 만한지를 알려 줍니다. 자료를 다시 모으면 계수도 조금씩 달라지는데 그 흔들림의 크기가 여기서 나오고, 이 값이 작아야 기울기가 0은 아니라고 자신 있게 말할 수 있습니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="핵심-공식-정리-평가와-확장" class="slide level2 smaller">
 <h2>핵심 공식 정리: 평가와 확장</h2>
@@ -1139,7 +1168,23 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 <span class="math inline">\(k\)</span>: 추정하는 모수의 개수. AIC는 값이 작을수록 선호
 </li>
 </ul>
-
+<aside class="notes">
+<p>뒤의 세 개는 맞춘 모형을 평가하고 넓히는 도구입니다.</p>
+<p>다섯 번째 결정계수는 성적표입니다. 자료의 출렁임 중 몇 퍼센트를 직선이 설명했는지 알려 주는데, 단순회귀에서는 이 값이 상관계수의 제곱과 정확히 같았습니다. 아이스크림 자료에서 상관 0.776을 제곱하면 0.602이고 회귀에서 나온 <span class="math inline">\(R^2\)</span>와 일치했습니다. 우연이 아니라 항등식입니다.</p>
+<p>여섯 번째가 오늘 특히 강조한 가중회귀입니다. 정밀한 측정에는 큰 발언권, 흔들리는 측정에는 작은 발언권입니다. 계측 자료를 다루시는 분들께는 이 한 줄이 가장 실용적일 것입니다.</p>
+<p>일곱 번째 AIC는 저울입니다. 변수를 자꾸 넣으면 겉보기 성적은 계속 올라가지만 모형은 무거워지는데 그 둘을 한 숫자로 견주게 해 주는 장치입니다.</p>
+<p>이것을 다 외워야 할까요? 아닙니다. 계산은 프로그램이 합니다. 각 식이 무엇을 하려는 물건인지, 그 뜻만 남기시면 됩니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="기호-정리" class="slide level2 smaller">
 <h2>기호 정리</h2>
@@ -1198,7 +1243,22 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 </tr>
 </tbody>
 </table>
-
+<aside class="notes">
+<p>공식에 나온 기호를 한자리에 모았습니다. 하루 종일 쓴 약속이라 새로울 것은 없지만 나중에 슬라이드를 다시 펴실 때 이 한 장만 옆에 두시면 나머지가 다 읽힙니다.</p>
+<p><span class="math inline">\(y\)</span>는 맞히고 싶은 값이고 <span class="math inline">\(x\)</span>는 그것을 설명해 줄 후보입니다. 베타는 우리가 모르는 참값이고 모자를 쓴 베타는 자료로 추정한 값입니다. 잔차는 관측값에서 적합값을 뺀 것, 곧 모형이 놓친 부분인데 진단 그림에서 계속 들여다본 주인공이었습니다.</p>
+<p>대문자 X는 설명변수를 표처럼 한 덩어리로 묶은 것인데 맨 앞에 1로만 채운 절편열이 하나 붙기 때문에 열 개수가 <span class="math inline">\(p+1\)</span>이 됩니다. W는 관측마다 다른 발언권을 대각선에 늘어놓은 행렬이고 발언권이 모두 1이면 그냥 최소제곱이 됩니다.</p>
+<p>첫 장에서 회귀를 조건부 기댓값으로 정의했던 것을 다시 떠올려 주시면 좋겠습니다. 즉, 오늘 나온 모든 식은 결국 그 조건부 평균선을 자료에서 그려 내는 방법이었습니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="강의-구성-요약" class="slide level2 smaller">
 <h2>강의 구성 요약</h2>
@@ -1255,7 +1315,21 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 </tr>
 </tbody>
 </table>
-
+<aside class="notes">
+<p>오늘 걸어온 순서를 한 표에 담았습니다. 1장에서 회귀가 무엇인지 정의했는데 조건부 기댓값, 곧 <span class="math inline">\(x\)</span>를 고정했을 때 <span class="math inline">\(y\)</span>의 평균이라는 정의였습니다. 2장에서는 그 정의를 계산으로 옮기기 위한 준비물인 공분산과 상관 그리고 행렬을 다뤘습니다.</p>
+<p>3장에서 설명변수 하나짜리 직선을 그어서 온도만으로 소비량 변동의 약 60퍼센트를 설명했고, 4장에서 변수를 늘렸더니 약 72퍼센트까지 올라갔습니다. 5장은 그 모형이 건강한지 진단하고 필요 없는 변수를 걸러 내는 자리였는데 가격이 여기서 빠졌습니다. 6장은 관측마다 정밀도가 다를 때 쓰는 가중회귀였고 7장은 숫자가 아닌 범주를 스위치로 바꿔 넣는 가변수였습니다.</p>
+<p>표의 오른쪽 숫자는 복습용 표지판 정도로 보시면 됩니다. 값 자체를 외우실 필요는 없고 어느 장에서 무엇을 했는지가 떠오르면 충분합니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="실무-체크리스트-14단계" class="slide level2 smaller">
 <h2>실무 체크리스트: 1~4단계</h2>
@@ -1297,7 +1371,21 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 </tr>
 </tbody>
 </table>
-
+<aside class="notes">
+<p>이제 내일 아침 연구실에서 바로 쓰실 체크리스트입니다. 오늘의 8단계 순서 그대로 배열했으니 위에서 아래로 읽으시면 그것이 곧 분석 순서입니다.</p>
+<p>1단계, 답하려는 질문을 한 문장으로 적어 보시기 바랍니다. 이것이 써지지 않으면 어떤 기법을 써도 소용이 없습니다. 분석이 실패하는 가장 흔한 이유는 계산 실수가 아니라 흐릿한 질문입니다. 2단계에서는 변수를 고르는데 재고 싶지만 못 재는 변수는 후보가 될 수 없습니다. 3단계, 자료는 한 행이 한 관측이고 한 열이 한 변수인 직사각형 표로 만드시고 단위가 섞여 있거나 빈칸이 있으면 여기서 잡으셔야 합니다.</p>
+<p>4단계가 특히 중요합니다. 모형을 돌리기 전에 반드시 그림을 그려 보시기 바랍니다. 앤스컴이 만든 네 자료는 모두 절편 3.00, 기울기 0.500이라는 똑같은 직선을 주는데 그려 보면 네 개가 완전히 딴판이었습니다. 즉, 숫자만 믿으면 이런 자료를 놓칩니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="실무-체크리스트-58단계" class="slide level2 smaller">
 <h2>실무 체크리스트: 5~8단계</h2>
@@ -1339,7 +1427,22 @@ Boncho Ku, Ph.D. in Statistics <a href="https://orcid.org/0000-0001-5520-9782" 
 </tr>
 </tbody>
 </table>
-
+<aside class="notes">
+<p>5단계가 오늘 강의의 핵심 중 하나였습니다. 어떤 방법으로 맞출지 고르는 자리인데 관측마다 측정 불확도가 다르면 가중치를 넣으시면 됩니다. 그러면 그 가중치는 어디서 얻을까요? 반복 측정의 분산이나 계측기 사양서의 불확도에서 얻는 경우가 많고 분산의 역수를 쓰는 것이 기본이었습니다.</p>
+<p>6단계에서는 계수만 보고 결론 내리지 마시기 바랍니다. 옆에 붙은 표준오차, 곧 그 계수가 얼마나 흔들리는지를 함께 보셔야 합니다.</p>
+<p>7단계는 건강검진이라 잔차 그림 네 장을 반드시 확인하셔야 하는데 여기서 자주 놓치는 것이 하나 있습니다. 변수선택으로 모형이 바뀌었으면 진단을 처음부터 다시 해야 한다는 점입니다. 모형이 바뀌면 잔차도 함께 바뀌기 때문에 예전 진단 결과를 그대로 믿으시면 안 됩니다.</p>
+<p>마지막 8단계, 다중회귀 계수는 반드시 다른 변수를 고정했을 때라는 조건을 붙여 읽으시고, 자료가 없던 범위까지 직선을 늘여서 예측하는 일은 피하시는 편이 안전합니다. 이 여덟 줄만 지키셔도 흔한 함정 대부분은 피하실 수 있습니다.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="참고문헌" class="slide level2 smaller">
 <h2>참고문헌</h2>
