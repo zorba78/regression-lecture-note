@@ -1,0 +1,110 @@
+"slide","quantity","value"
+"요약통계량이 같은 네 자료","data set 1: intercept",3.00009090909091
+"요약통계량이 같은 네 자료","data set 1: slope",0.500090909090909
+"요약통계량이 같은 네 자료","data set 2: intercept",3.00090909090909
+"요약통계량이 같은 네 자료","data set 2: slope",0.5
+"요약통계량이 같은 네 자료","data set 3: intercept",3.00245454545454
+"요약통계량이 같은 네 자료","data set 3: slope",0.499727272727273
+"요약통계량이 같은 네 자료","data set 4: intercept",3.00172727272727
+"요약통계량이 같은 네 자료","data set 4: slope",0.499909090909091
+"잔차: 모형이 설명하지 못한 나머지","tr(I - H) = n - (p + 1)",26
+"진단 그림 4종 읽는 법","[notes] Scale-Location smoother at fitted = 0.30",0.679104253188275
+"진단 그림 4종 읽는 법","[notes] Scale-Location smoother at fitted = 0.35",0.657682985602826
+"진단 그림 4종 읽는 법","[notes] Scale-Location smoother at fitted = 0.40",0.731429147882311
+"진단 그림 4종 읽는 법","[notes] Scale-Location smoother at the largest fitted value",1.2962487970805
+"진단 그림 4종 읽는 법","[notes] number of points with fitted value > 0.42",2
+"진단 그림 4종 읽는 법","[notes] observation with fitted value > 0.42",29
+"진단 그림 4종 읽는 법","[notes] observation with fitted value > 0.42",30
+"진단 그림 4종 읽는 법","[notes] observation with the largest sqrt|r_i| among them",30
+"진단 그림 4종 읽는 법","[notes] Breusch-Pagan (Koenker, lmtest default) p-value",0.0710550758837044
+"레버리지 $h_{ii}$","tr(H) = p + 1",4
+"레버리지 $h_{ii}$","average leverage (p+1)/n",0.133333333333333
+"레버리지 $h_{ii}$","rule of thumb 2(p+1)/n",0.266666666666667
+"레버리지 $h_{ii}$","largest h_ii",0.277710894246838
+"레버리지 $h_{ii}$","observation with the largest h_ii",9
+"스튜던트화 잔차","max |rstandard - e/(sigma-hat sqrt(1-h))|",0
+"이상치, 레버리지, 영향점: 그림 비교","(outlier) leverage h of the added point",0.0477583734326842
+"이상치, 레버리지, 영향점: 그림 비교","(outlier) studentized (deleted) residual",5.6829578903611
+"이상치, 레버리지, 영향점: 그림 비교","(outlier) Cook's distance",0.305943555110877
+"이상치, 레버리지, 영향점: 그림 비교","(outlier) slope change, % of the base slope",0.582694296111089
+"이상치, 레버리지, 영향점: 그림 비교","(leverage) leverage h of the added point",0.574060068739845
+"이상치, 레버리지, 영향점: 그림 비교","(leverage) studentized (deleted) residual",0.684144027766769
+"이상치, 레버리지, 영향점: 그림 비교","(leverage) Cook's distance",0.324493912865108
+"이상치, 레버리지, 영향점: 그림 비교","(leverage) slope change, % of the base slope",4.31194225756774
+"이상치, 레버리지, 영향점: 그림 비교","(influential) leverage h of the added point",0.574060068739845
+"이상치, 레버리지, 영향점: 그림 비교","(influential) studentized (deleted) residual",-5.32112021596377
+"이상치, 레버리지, 영향점: 그림 비교","(influential) Cook's distance",7.82750644015094
+"이상치, 레버리지, 영향점: 그림 비교","(influential) slope change, % of the base slope",-33.5373286699712
+"이상치, 레버리지, 영향점: 그림 비교","mean leverage 2/21 for n = 21",0.0952380952380952
+"이상치, 레버리지, 영향점: Cook 거리","largest |r_i| (studentized residual)",2.45815945649539
+"이상치, 레버리지, 영향점: Cook 거리","observation with the largest |r_i|",30
+"이상치, 레버리지, 영향점: Cook 거리","largest h_ii",0.277710894246838
+"이상치, 레버리지, 영향점: Cook 거리","observation with the largest h_ii",9
+"이상치, 레버리지, 영향점: Cook 거리","largest Cook's distance D_i",0.474911749043098
+"이상치, 레버리지, 영향점: Cook 거리","observation with the largest D_i",30
+"이상점 검정","largest |t_i|",2.7512338617458
+"이상점 검정","observation with the largest |t_i|",30
+"이상점 검정","[notes] upper-tail probability alpha/(2n) = 0.05/60",0.000833333333333333
+"이상점 검정","df = n - p - 2",25
+"이상점 검정","critical value t_{0.05/60, 25}",3.52295271584135
+"다중공선성과 VIF: 아이스크림 자료","R_j^2 (price on the other two)",0.0331089837409537
+"다중공선성과 VIF: 아이스크림 자료","1 - R_j^2 (price)",0.966891016259046
+"다중공선성과 VIF: 아이스크림 자료","VIF (price)",1.03424272558561
+"다중공선성과 VIF: 아이스크림 자료","R_j^2 (income on the other two)",0.125730648785116
+"다중공선성과 VIF: 아이스크림 자료","1 - R_j^2 (income)",0.874269351214884
+"다중공선성과 VIF: 아이스크림 자료","VIF (income)",1.14381225718413
+"다중공선성과 VIF: 아이스크림 자료","R_j^2 (temp on the other two)",0.124814843534195
+"다중공선성과 VIF: 아이스크림 자료","1 - R_j^2 (temp)",0.875185156465805
+"다중공선성과 VIF: 아이스크림 자료","VIF (temp)",1.14261535700425
+"다중공선성과 VIF: 아이스크림 자료","[notes] c_jj of price, (X'X)^{-1}[price, price]",507.678541913125
+"다중공선성과 VIF: 아이스크림 자료","[notes] S_pp = sum((price - mean)^2)",0.00203719999999999
+"다중공선성과 VIF: 아이스크림 자료","[notes] 1 / S_pp (value with no overlap)",490.869821323386
+"다중공선성과 VIF: 아이스크림 자료","[notes] VIF(price) / S_pp",507.678541913222
+"다중공선성과 VIF: 아이스크림 자료","[notes] VIF(price) - 1 (share added by overlap)",0.0342427255856137
+"보정 1: Box-Cox 적용 예","n (islands)",30
+"보정 1: Box-Cox 적용 예","R2, y = Species",0.765846944681233
+"보정 1: Box-Cox 적용 예","R2, y = sqrt(Species)",0.782697660626049
+"보정 1: Box-Cox 적용 예","Shapiro-Wilk p, y = Species",0.0182592264759705
+"보정 1: Box-Cox 적용 예","Shapiro-Wilk p, y = sqrt(Species)",0.286704900064171
+"보정 1: Box-Cox 적용 예","Breusch-Pagan p, y = Species",0.0812292232334977
+"보정 1: Box-Cox 적용 예","Breusch-Pagan p, y = sqrt(Species)",0.245824716459313
+"보정 1: Box-Cox 적용 예","residual SD ratio, upper/lower fitted half, y = Species",2.31816822038242
+"보정 1: Box-Cox 적용 예","residual SD ratio, upper/lower fitted half, y = sqrt(Species)",1.07725829254472
+"보정 1: Box-Cox 적용 예","lambda-hat (grid step 0.005)",0.315
+"보정 1: Box-Cox 적용 예","95% CI lower for lambda",0.12
+"보정 1: Box-Cox 적용 예","95% CI upper for lambda",0.505
+"아이스크림 자료: 후보 모형 비교","R2, M1 (price, income, temp)",0.718676571735729
+"아이스크림 자료: 후보 모형 비교","adjusted R2, M1 (price, income, temp)",0.686216176166774
+"아이스크림 자료: 후보 모형 비교","AIC, M1 (price, income, temp)",-107.205018370417
+"아이스크림 자료: 후보 모형 비교","R2, M2 (income, temp)",0.702058911550102
+"아이스크림 자료: 후보 모형 비교","adjusted R2, M2 (income, temp)",0.679989201294554
+"아이스크림 자료: 후보 모형 비교","AIC, M2 (income, temp)",-107.483294986012
+"아이스크림 자료: 후보 모형 비교","R2, M3 (temp)",0.60159345787831
+"아이스크림 자료: 후보 모형 비교","adjusted R2, M3 (temp)",0.587364652802536
+"아이스크림 자료: 후보 모형 비교","AIC, M3 (temp)",-100.765979905001
+"아이스크림 자료: 후보 모형 비교","constant n(1 + ln 2 pi)",85.1363119922804
+"아이스크림 자료: 후보 모형 비교","SSE, M1",0.0353126638379398
+"아이스크림 자료: 후보 모형 비교","SSE, M2",0.0373985684905623
+"아이스크림 자료: 후보 모형 비교","n ln(SSE/n), M1 (exact SSE)",-202.341330362698
+"아이스크림 자료: 후보 모형 비교","n ln(SSE/n), M2 (exact SSE)",-200.619606978293
+"아이스크림 자료: 후보 모형 비교","30 ln(0.0353/30) as printed",-202.352090901151
+"아이스크림 자료: 후보 모형 비교","30 ln(0.0374/30) as printed",-200.618458686714
+"아이스크림 자료: 후보 모형 비교","AIC(M1) = n ln(SSE/n) + 2*5 + n(1 + ln 2 pi)",-107.205018370417
+"아이스크림 자료: 후보 모형 비교","AIC(M2) = n ln(SSE/n) + 2*4 + n(1 + ln 2 pi)",-107.483294986012
+"아이스크림 자료: 후보 모형 비교","p-value of price in the full model",0.226313290463955
+"후진제거법: 탐색 경로","AIC*, start: price, income, temp",-194.341330362698
+"후진제거법: 탐색 경로","AIC*, drop price",-194.619606978293
+"후진제거법: 탐색 경로","AIC*, drop income",-188.30694694204
+"후진제거법: 탐색 경로","AIC*, drop temp",-160.31366076193
+"후진제거법: 탐색 경로","AIC*, step 2: drop income too (temp only)",-187.902291897282
+"후진제거법: 탐색 경로","AIC*, step 2: drop temp too (income only)",-160.362835275879
+"후진제거법: 탐색 경로","AIC - AIC* = 2 + n(1 + ln 2 pi)",87.1363119922804
+"후진제거법: 탐색 경로","AIC*(M2) - AIC*(M1)",-0.278276615594905
+"후진제거법: 탐색 경로","AIC(M2) - AIC(M1)",-0.278276615594905
+"후진제거법: 탐색 경로","-194.62 - (-194.34) as printed",-0.280000000000001
+"후진제거법: 탐색 경로","-107.48 - (-107.21) as printed",-0.27000000000001
+"선택 후 재진단","intercept",-0.11319515728119
+"선택 후 재진단","income coefficient (x_i2)",0.00353016727482471
+"선택 후 재진단","temp coefficient (x_i3)",0.00354330629662635
+"선택 후 재진단","R2",0.702058911550102
+"선택 후 재진단","adjusted R2",0.679989201294554

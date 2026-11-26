@@ -1,0 +1,37 @@
+"slide","quantity","value"
+"전치","y_1 (IC of period 1)",0.386
+"전치","y_2 (IC of period 2)",0.374
+"전치","y_3 (IC of period 3)",0.393
+"행렬식: 넓이와 부피","det(X'X), full model, X is 30 x 4",467658.501195113
+"행렬식: 넓이와 부피","det(X2'X2), Celsius column appended (30 x 5)",1.5359244661082e-06
+"행렬의 계수","rows of X",30
+"행렬의 계수","columns of X",4
+"행렬의 계수","rank(X)",4
+"행렬의 계수","columns of X2 (Celsius appended)",5
+"행렬의 계수","rank(X2)",4
+"행렬의 계수","rank(X'X)",4
+"행렬의 계수","rank(X2'X2)",4
+"멱등행렬","eigenvalues of H equal to 1",4
+"멱등행렬","eigenvalues of H equal to 0",26
+"멱등행렬","tr(H) (= p + 1)",3.99999999999979
+"멱등행렬","tr(I - H) (= n - p - 1)",26.0000000000002
+"벡터와 행렬의 미분","notes: number of positive eigenvalues of X'X",4
+"벡터와 행렬의 미분","notes: smallest eigenvalue of X'X",0.00180754736722871
+"정규분포: 68-95-99.7 규칙","P(|Z| <= 1)",0.682689492137086
+"정규분포: 68-95-99.7 규칙","P(|Z| <= 2)",0.954499736103642
+"정규분포: 68-95-99.7 규칙","P(|Z| <= 3)",0.99730020393674
+"정규분포: 68-95-99.7 규칙","P(|Z| > 3) (about 0.3%)",0.00269979606326019
+"카이제곱분포","residual df of the ice cream full model, n - p - 1",26
+"t분포","t(0.975; 3)",3.18244630528371
+"t분포","t(0.975; 10)",2.22813885198627
+"t분포","t(0.975; 28)",2.04840714179524
+"t분포","z(0.975), standard normal",1.95996398454005
+"t분포","df of the simple regression, n - 2",28
+"F분포","F(0.95; 3, 26), 5% critical value",2.97515396397339
+"F분포","notes: t of the simple regression slope",6.50230500910473
+"F분포","notes: t^2",42.2799704314285
+"F분포","notes: F of the simple regression",42.2799704314285
+"점추정: 추정량과 추정값","estimate of beta0 (IC on temp)",0.206862147889575
+"점추정: 추정량과 추정값","estimate of beta1 (IC on temp)",0.00310735611901748
+"신뢰구간","t(0.975; 28)",2.04840714179524
+"p-value: 정의","two-sided p-value, |t| = 2.20, 28 df",0.0362254847788378

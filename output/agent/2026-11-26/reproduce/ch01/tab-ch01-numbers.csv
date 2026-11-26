@@ -1,0 +1,50 @@
+"slide","quantity","value"
+"Galton과 회귀의 기원","children in the file (n)",898
+"Galton과 회귀의 기원","families in the file",197
+"Galton과 회귀의 기원","child deviation for mid-parent +4 in, Galton 2/3 law (4*2/3)",2.66666666666667
+"Galton과 회귀의 기원","child deviation for mid-parent +4 in, least squares (4*b1)",2.91622478070221
+"주변분포와 조건부분포","mean child height, all children (E(Y))",69.233714922049
+"주변분포와 조건부분포","children with mid-parent in 72 +/- 0.75 in (n)",62
+"주변분포와 조건부분포","mean child height in that slice",70.7889032258065
+"주변분포와 조건부분포","fitted intercept b0",18.7669821084077
+"주변분포와 조건부분포","fitted slope b1",0.729056195175551
+"주변분포와 조건부분포","fitted E(Y | X = 72) = b0 + b1*72",71.2590281610474
+"Galton 자료: 모형 적합","intercept estimate b0",18.7669821084077
+"Galton 자료: 모형 적합","intercept SE",2.84062068258565
+"Galton 자료: 모형 적합","intercept t value",6.60664840732105
+"Galton 자료: 모형 적합","intercept p-value",6.73552809122794e-11
+"Galton 자료: 모형 적합","slope estimate b1",0.729056195175551
+"Galton 자료: 모형 적합","slope SE",0.0410222557834005
+"Galton 자료: 모형 적합","slope t value",17.7722112363836
+"Galton 자료: 모형 적합","slope p-value",9.22450506077139e-61
+"Galton 자료: 모형 적합","ANOVA df, x",1
+"Galton 자료: 모형 적합","ANOVA Sum Sq, x",1575.38271076177
+"Galton 자료: 모형 적합","ANOVA Mean Sq, x",1575.38271076177
+"Galton 자료: 모형 적합","ANOVA F value",315.851492230638
+"Galton 자료: 모형 적합","ANOVA p-value",9.22450506077139e-61
+"Galton 자료: 모형 적합","ANOVA df, residuals",896
+"Galton 자료: 모형 적합","ANOVA Sum Sq, residuals",4469.0082002583
+"Galton 자료: 모형 적합","ANOVA Mean Sq, residuals",4.98773236635971
+"Galton 자료: 모형 적합","R-squared",0.260635477412542
+"Galton 자료: 모형 적합","residual SD (sigma-hat, inches)",2.2333231665748
+"Galton 자료: 모형 적합","notes: father -> son slope (sons only)",0.447747917603031
+"Galton 자료: 모형 적합","notes: number of father-son pairs",465
+"3단계 자료 수집: 아이스크림 자료","number of periods (n)",30
+"3단계 자료 수집: 아이스크림 자료","number of variables",6
+"3단계 자료 수집: 아이스크림 자료","IC minimum",0.256
+"3단계 자료 수집: 아이스크림 자료","IC maximum",0.548
+"3단계 자료 수집: 아이스크림 자료","price minimum",0.26
+"3단계 자료 수집: 아이스크림 자료","price maximum",0.292
+"3단계 자료 수집: 아이스크림 자료","income minimum",76
+"3단계 자료 수집: 아이스크림 자료","income maximum",96
+"3단계 자료 수집: 아이스크림 자료","temp minimum",24
+"3단계 자료 수집: 아이스크림 자료","temp maximum",72
+"3단계 자료 수집: 아이스크림 자료","year minimum",0
+"3단계 자료 수집: 아이스크림 자료","year maximum",2
+"7단계 모형 검증과 비판","notes: intercept b0 (IC on temp)",0.206862147889575
+"7단계 모형 검증과 비판","notes: slope b1 (IC on temp)",0.00310735611901748
+"7단계 모형 검증과 비판","notes: R-squared (IC on temp)",0.60159345787831
+"7단계: 문제가 되는 잔차","notes: funnel residual SD, cool half",0.020460021313386
+"7단계: 문제가 되는 잔차","notes: funnel residual SD, warm half",0.0462832314987737
+"7단계: 문제가 되는 잔차","notes: slope change when the middle outlier is dropped (%)",-1.65208844759379
+"7단계: 문제가 되는 잔차","notes: slope change when the same shift sits at the edge (%)",13.3844109110675
