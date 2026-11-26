@@ -250,7 +250,7 @@ $$
 :::
 
 ::: {.callout-tip appearance="minimal"}
-<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 오차의 분산-공분산 구조를 $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I_n$ 한 줄로 적음(대각선은 모두 $\sigma^2$, 나머지는 0 = 등분산·무상관). 가중회귀의 가중행렬 $\mathbf W=\operatorname{diag}(w_1,\dots,w_n)$ 도 대각행렬이며 $\mathbf W=\mathbf I$ 이면 보통최소제곱과 같아짐
+<i class="fa-solid fa-screwdriver-wrench"></i> **회귀에서의 쓰임**: 오차의 분산-공분산 구조를 $\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I_n$ 한 줄로 표기함(대각선은 모두 $\sigma^2$, 나머지는 0 = 등분산·무상관). 가중회귀의 가중행렬 $\mathbf W=\operatorname{diag}(w_1,\dots,w_n)$ 도 대각행렬이며 $\mathbf W=\mathbf I$ 이면 보통최소제곱과 같아짐
 :::
 
 ::: notes
@@ -935,7 +935,7 @@ $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\
 <ul>
 <li>$\mu$를 중심으로 좌우대칭인 종 모양이고, 평균과 중앙값이 같음</li>
 <li>모수 두 개($\mu$, $\sigma$)만 정하면 분포 전체가 결정됨. $\mu$는 위치, $\sigma$는 폭을 조절</li>
-<li>$\mu=0$, $\sigma=1$인 경우를 표준정규분포라 하고 $N(0,1)$로 적음</li>
+<li>$\mu=0$, $\sigma=1$인 경우를 표준정규분포라 하고 $N(0,1)$로 표기함</li>
 </ul>
 :::
 
@@ -1356,7 +1356,7 @@ $$
 
 :::
 
-p가 작다 = 관측된 자료가 $H_0$ 아래에서 보기 드문 결과. 이때 $H_0$를 기각. 관례적 기준 $\alpha=0.05$는 학문 공동체의 약속일 뿐 자연법칙이 아님
+p가 작음 = 관측된 자료가 $H_0$ 아래에서 보기 드문 결과. 이때 $H_0$를 기각. 관례적 기준 $\alpha=0.05$는 학문 공동체의 약속일 뿐 자연법칙이 아님
 
 앞서 본 95% 신뢰구간이 0을 포함하지 않는 것과 양측 검정의 $p<0.05$는 동일한 판정
 

@@ -83,7 +83,7 @@ editor_options:
 ### <i class="fa-solid fa-bullseye"></i> 용어의 기원
 
 ::: {.highlight-box}
-회귀(regression, 回歸)는 본래 이전 상태로 되돌아감을 뜻하며, 통계학에서는 **평균(mean)으로의 회귀**을 의미
+회귀(regression, 回歸)는 본래 이전 상태로 되돌아감을 뜻하며, 통계학에서는 **평균(mean)으로의 회귀**를 의미
 
 회귀분석은 변수들 사이의 함수 관계를 자료로부터 탐색
 :::

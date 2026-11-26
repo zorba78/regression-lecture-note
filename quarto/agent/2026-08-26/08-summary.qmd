@@ -154,7 +154,7 @@ $y$는 맞히고 싶은 값이고 $x$는 그것을 설명해 줄 후보입니다
 | 2 | Preliminary Knowledge | 공분산과 상관, 행렬 표현. ice 자료 $\operatorname{cov}=0.838$, $r=0.776$ |
 | 3 | Simple Linear Regression | $\hat{y}=0.207+0.00311\,\text{temp}$, $R^2=0.602=r^2$ |
 | 4 | Multiple Linear Regression | full model $R^2=0.719$, adj. $R^2=0.686$ |
-| 5 | Diagnosis and Variable Selection | 진단 4패널, 최대 Cook 거리 0.475. 최종 모형 `IC ~ income + temp` |
+| 5 | Diagnosis and Variable Selection | 진단 4패널, 최대 Cook 거리 0.475. 최종 모형은 income, temp 두 변수 모형 |
 | 6 | Weighted Regression | 물리 측정 자료 WLS $\hat{y}=144.8+549.5x$, $R^2=0.929$ |
 | 7 | Dummy Variable | 관측 연차 가변수 2개 투입, $R^2=0.790$, adj. $R^2=0.765$ |
 

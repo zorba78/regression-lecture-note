@@ -307,9 +307,9 @@ $\mathbf X$ 가 $n\times(p+1)$ 이고 $\operatorname{rank}(\mathbf X)=p+1\;(\le 
 </ul>
 
 ::: {.callout-note appearance="minimal"}
-<i class="fa-solid fa-table"></i> **아이스크림 완전모형**: $n=30$, $p=3$ 이므로 $\mathbf X$ 는 $30\times 4$. $\operatorname{rank}(\mathbf X)=4=p+1$ 로 full rank이며 해가 유일하게 정해짐
+<i class="fa-solid fa-table"></i> **아이스크림 완전모형**(설명변수를 모두 넣은 모형, full model): $n=30$, $p=3$ 이므로 $\mathbf X$ 는 $30\times 4$. $\operatorname{rank}(\mathbf X)=4=p+1$ 로 full rank이며 해가 유일하게 정해짐
 
-잔차제곱합은 두 가지로 같게 계산됨: $\mathbf e^\top\mathbf e=\mathbf y^\top\mathbf y-\hat{\boldsymbol\beta}^\top\mathbf X^\top\mathbf y=0.035313$
+잔차제곱합은 두 가지로 같게 계산됨: $S(\hat{\boldsymbol\beta})=\mathbf y^\top\mathbf y-\hat{\boldsymbol\beta}^\top\mathbf X^\top\mathbf y=0.035313$
 :::
 
 ::: notes
@@ -493,9 +493,9 @@ Source: Hoaglin, D. C., & Welsch, R. E. (1978). The hat matrix in regression and
 :::
 
 
-## 모자행렬: 세 성질의 증명 {.smaller}
+## 모자행렬: 증명 {.smaller}
 
-### <i class="fa-solid fa-pen-to-square"></i> 대칭성에서 나오는 셋
+### <i class="fa-solid fa-pen-to-square"></i> 대칭성에 기인한 세 가지 성질
 
 $\mathbf X^\top\mathbf X$ 가 대칭이므로 그 역행렬도 대칭. 이 사실만으로 세 성질이 모두 나옴
 
@@ -547,7 +547,7 @@ $$\beta_j=E(Y\mid x_j+1,\ \text{나머지 고정})-E(Y\mid x_j,\ \text{나머지
 :::
 
 
-## 회귀계수의 해석: full model 적합 {.smaller}
+## 회귀계수의 해석: 완전모형 적합 {.smaller}
 
 ### <i class="fa-solid fa-table"></i> 가격·소득·온도
 
@@ -762,11 +762,11 @@ $$\bar R^2 = 1-\frac{SSE/(n-p-1)}{SST/(n-1)}$$
 
 ### <i class="fa-solid fa-table"></i> 벌점을 적용한 비교
 
-| Model | $R^2$ | Adjusted $R^2$ |
+| Predictors | $R^2$ | Adjusted $R^2$ |
 |:--|---:|---:|
-| IC ~ temp | 0.602 | 0.587 |
-| IC ~ income + temp | 0.702 | 0.680 |
-| IC ~ price + income + temp | 0.719 | 0.686 |
+| temp | 0.602 | 0.587 |
+| income, temp | 0.702 | 0.680 |
+| price, income, temp | 0.719 | 0.686 |
 
 : $R^2$ and adjusted $R^2$ for three nested models (n = 30)
 
@@ -963,7 +963,7 @@ $R^2$ 가 같아도 $p$ 가 크면 $F$ 는 작아짐. **설명력과 모형의 �
 ### <i class="fa-solid fa-bullseye"></i> 여러 변수의 동시 제거
 
 ::: {.highlight-box}
-완전모형(FM)에서 계수 $k$ 개를 0으로 놓은 축소모형(RM)을 세우고, 두 모형의 잔차제곱합 차이를 완전모형의 오차분산으로 나눔
+완전모형(FM)에서 계수 $k$ 개를 0으로 놓은 축소모형(RM)을 세우고, 두 모형의 잔차제곱합 차이를 $k$ 로 나눈 값을 완전모형의 오차분산 추정값으로 나눔
 
 $$F=\frac{\{SSE(\text{RM})-SSE(\text{FM})\}/k}{SSE(\text{FM})/(n-p-1)}\ \sim\ F(k,\ n-p-1)\quad(H_0\text{ 아래에서})$$
 :::
@@ -1325,7 +1325,7 @@ t=\frac{\hat\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{\,n-p-1},\qquad
 :::
 
 ::: notes
-앞 슬라이드의 식에 실제 숫자를 넣은 것이 이 표입니다. 표준오차가 어디서 오는지부터 보겠습니다. 오차분산의 추정값에 X 전치 X 역행렬의 대각원소를 곱하고 제곱근을 취하는데, 그 대각원소가 표의 세 번째 열입니다. 가격의 값이 507로 유독 큽니다. 그래서 가격의 표준오차만 0.83으로 다른 것보다 훨씬 큰데, 이 숫자가 큰 이유는 뒤 장에서 다중공선성으로 다시 다루겠습니다.
+앞 슬라이드의 식에 실제 숫자를 넣은 것이 이 표입니다. 표준오차가 어디서 오는지부터 보겠습니다. 오차분산의 추정값에 X 전치 X 역행렬의 대각원소를 곱하고 제곱근을 취하는데, 그 대각원소가 표의 세 번째 열입니다. 가격의 값이 507로 유독 큽니다. 그래서 가격의 표준오차만 0.83으로 다른 것보다 훨씬 큰데, 이 숫자가 큰 것은 가격의 변동 폭이 작기 때문이고, 설명변수끼리 정보가 겹치는 다중공선성 때문이 아니라는 점은 다음 장에서 VIF로 확인하겠습니다.
 
 t 값은 추정값을 그 표준오차로 나눈 것입니다. 온도는 7.77로 흔들림의 여덟 배 가까이 되고 소득은 2.83, 가격은 마이너스 1.24입니다. 임계값이 2.0555이니 온도와 소득은 넘고 가격은 못 넘습니다.
 

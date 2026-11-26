@@ -1468,8 +1468,8 @@ display:block!important;
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
 <div class="callout-content">
-<p><i class="fa-solid fa-table"></i> <strong>아이스크림 완전모형</strong>: <span class="math inline">\(n=30\)</span>, <span class="math inline">\(p=3\)</span> 이므로 <span class="math inline">\(\mathbf X\)</span> 는 <span class="math inline">\(30\times 4\)</span>. <span class="math inline">\(\operatorname{rank}(\mathbf X)=4=p+1\)</span> 로 full rank이며 해가 유일하게 정해짐</p>
-<p>잔차제곱합은 두 가지로 같게 계산됨: <span class="math inline">\(\mathbf e^\top\mathbf e=\mathbf y^\top\mathbf y-\hat{\boldsymbol\beta}^\top\mathbf X^\top\mathbf y=0.035313\)</span></p>
+<p><i class="fa-solid fa-table"></i> <strong>아이스크림 완전모형</strong>(설명변수를 모두 넣은 모형, full model): <span class="math inline">\(n=30\)</span>, <span class="math inline">\(p=3\)</span> 이므로 <span class="math inline">\(\mathbf X\)</span> 는 <span class="math inline">\(30\times 4\)</span>. <span class="math inline">\(\operatorname{rank}(\mathbf X)=4=p+1\)</span> 로 full rank이며 해가 유일하게 정해짐</p>
+<p>잔차제곱합은 두 가지로 같게 계산됨: <span class="math inline">\(S(\hat{\boldsymbol\beta})=\mathbf y^\top\mathbf y-\hat{\boldsymbol\beta}^\top\mathbf X^\top\mathbf y=0.035313\)</span></p>
 </div>
 </div>
 </div>
@@ -1759,9 +1759,9 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="모자행렬-세-성질의-증명" class="slide level2 smaller">
-<h2>모자행렬: 세 성질의 증명</h2>
-<h3 id="대칭성에서-나오는-셋"><i class="fa-solid fa-pen-to-square"></i> 대칭성에서 나오는 셋</h3>
+<section id="모자행렬-증명" class="slide level2 smaller">
+<h2>모자행렬: 증명</h2>
+<h3 id="대칭성에-기인한-세-가지-성질"><i class="fa-solid fa-pen-to-square"></i> 대칭성에 기인한 세 가지 성질</h3>
 <p><span class="math inline">\(\mathbf X^\top\mathbf X\)</span> 가 대칭이므로 그 역행렬도 대칭. 이 사실만으로 세 성질이 모두 나옴</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -1827,8 +1827,8 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="회귀계수의-해석-full-model-적합" class="slide level2 smaller">
-<h2>회귀계수의 해석: full model 적합</h2>
+<section id="회귀계수의-해석-완전모형-적합" class="slide level2 smaller">
+<h2>회귀계수의 해석: 완전모형 적합</h2>
 <h3 id="가격소득온도"><i class="fa-solid fa-table"></i> 가격·소득·온도</h3>
 <p><strong>추정 경로</strong></p>
 <p>설계행렬 <span class="math inline">\(\mathbf X\)</span> 의 네 열은 절편, price, income, temp</p>
@@ -2143,24 +2143,24 @@ display:block!important;
 <caption><span class="math inline">\(R^2\)</span> and adjusted <span class="math inline">\(R^2\)</span> for three nested models (n = 30)</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Predictors</th>
 <th style="text-align: right;"><span class="math inline">\(R^2\)</span></th>
 <th style="text-align: right;">Adjusted <span class="math inline">\(R^2\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">IC ~ temp</td>
+<td style="text-align: left;">temp</td>
 <td style="text-align: right;">0.602</td>
 <td style="text-align: right;">0.587</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">IC ~ income + temp</td>
+<td style="text-align: left;">income, temp</td>
 <td style="text-align: right;">0.702</td>
 <td style="text-align: right;">0.680</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">IC ~ price + income + temp</td>
+<td style="text-align: left;">price, income, temp</td>
 <td style="text-align: right;">0.719</td>
 <td style="text-align: right;">0.686</td>
 </tr>
@@ -2458,7 +2458,7 @@ display:block!important;
 <h2>회귀계수 일부에 대한 검정</h2>
 <h3 id="여러-변수의-동시-제거"><i class="fa-solid fa-bullseye"></i> 여러 변수의 동시 제거</h3>
 <div class="highlight-box">
-<p>완전모형(FM)에서 계수 <span class="math inline">\(k\)</span> 개를 0으로 놓은 축소모형(RM)을 세우고, 두 모형의 잔차제곱합 차이를 완전모형의 오차분산으로 나눔</p>
+<p>완전모형(FM)에서 계수 <span class="math inline">\(k\)</span> 개를 0으로 놓은 축소모형(RM)을 세우고, 두 모형의 잔차제곱합 차이를 <span class="math inline">\(k\)</span> 로 나눈 값을 완전모형의 오차분산 추정값으로 나눔</p>
 <p><span class="math display">\[F=\frac{\{SSE(\text{RM})-SSE(\text{FM})\}/k}{SSE(\text{FM})/(n-p-1)}\ \sim\ F(k,\ n-p-1)\quad(H_0\text{ 아래에서})\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -3084,7 +3084,7 @@ t=\frac{\hat\beta_j}{\operatorname{se}(\hat\beta_j)}\sim t_{\,n-p-1},\qquad
 </div>
 </div>
 <aside class="notes">
-<p>앞 슬라이드의 식에 실제 숫자를 넣은 것이 이 표입니다. 표준오차가 어디서 오는지부터 보겠습니다. 오차분산의 추정값에 X 전치 X 역행렬의 대각원소를 곱하고 제곱근을 취하는데, 그 대각원소가 표의 세 번째 열입니다. 가격의 값이 507로 유독 큽니다. 그래서 가격의 표준오차만 0.83으로 다른 것보다 훨씬 큰데, 이 숫자가 큰 이유는 뒤 장에서 다중공선성으로 다시 다루겠습니다.</p>
+<p>앞 슬라이드의 식에 실제 숫자를 넣은 것이 이 표입니다. 표준오차가 어디서 오는지부터 보겠습니다. 오차분산의 추정값에 X 전치 X 역행렬의 대각원소를 곱하고 제곱근을 취하는데, 그 대각원소가 표의 세 번째 열입니다. 가격의 값이 507로 유독 큽니다. 그래서 가격의 표준오차만 0.83으로 다른 것보다 훨씬 큰데, 이 숫자가 큰 것은 가격의 변동 폭이 작기 때문이고, 설명변수끼리 정보가 겹치는 다중공선성 때문이 아니라는 점은 다음 장에서 VIF로 확인하겠습니다.</p>
 <p>t 값은 추정값을 그 표준오차로 나눈 것입니다. 온도는 7.77로 흔들림의 여덟 배 가까이 되고 소득은 2.83, 가격은 마이너스 1.24입니다. 임계값이 2.0555이니 온도와 소득은 넘고 가격은 못 넘습니다.</p>
 <p>맨 오른쪽이 신뢰구간입니다. 여기서 규칙 하나를 알려 드리겠습니다. 신뢰구간이 0을 품고 있으면 그 계수는 유의하지 않습니다. 가격의 구간을 보시면 마이너스 2.7에서 플러스 0.68까지 0을 포함하는데, p값 0.226과 정확히 같은 이야기입니다. 즉, 검정과 구간은 같은 계산을 두 가지로 표현한 것일 뿐입니다.</p>
 <style type="text/css">

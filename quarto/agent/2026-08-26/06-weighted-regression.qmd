@@ -48,7 +48,7 @@ editor_options:
 ### <i class="fa-solid fa-question"></i> 질문
 
 ::: {.callout-note appearance="minimal"}
-<i class="fa-solid fa-link"></i> **앞 장에서 여기까지**: 진단에서 잔차가 깔때기 모양으로 퍼지면 등분산 위반. <i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 그때 어떤 방법을 사용하는가
+<i class="fa-solid fa-link"></i> **앞 장에서 여기까지**: 진단에서 잔차가 깔때기 모양으로 퍼지면 등분산 위반, 이웃한 잔차끼리 상관이 있으면 자기상관. <i class="fa-solid fa-circle-question"></i> **이 장의 질문**: 각 경우에 어떤 방법을 사용하는가(자기상관은 이 장 후반의 일반화최소제곱, GLS)
 :::
 
 ::: {.highlight-box}
