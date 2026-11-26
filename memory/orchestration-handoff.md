@@ -10,9 +10,9 @@ date: 2026-11-25
 | 항목 | 값 |
 |:--|:--|
 | active | none |
-| updated | 2026-11-26 15:11 |
+| updated | 2026-11-26 19:10 |
 | updated_by | claude |
-| stop_reason | 잔여 수정 완료, 사용자 검토 대기 |
+| stop_reason | 06장 정정 문단 삭제·자료 안내 페이지 수정 완료, 사용자 지시 대기 |
 
 `active` 는 `claude` / `fallback` / `none` 중 하나, `updated` 는 현지 시각 `YYYY-MM-DD HH:MM`, `updated_by` 는 `claude` / `copilot`.
 
@@ -35,6 +35,11 @@ date: 2026-11-25
 
 ## 다음 단계
 
+- 완료·검증됨(2026-11-26, 미커밋; 사용자 지시 "1은 그대로, 2 수정. 사이트 자료 안내 페이지 수정. 참고문헌 무시"): (a) 06장 물리 예제 노트의 "예전 판의 이 슬라이드는…" 정정 문단 삭제(2줄, 다른 장 qmd 변경 0) (b) quarto/site/data.qmd 50·53·81행(측정 표준편차(SD), 144 B, 출처 Weisberg 1978/2014) 수정 후 사이트 재빌드. 06 clipped 0 / overflow 0(워커 실행), docs/slides/06 동일, docs/pdf 0건. 적합결여 기호 X² 유지, 참고문헌 `datasets::LakeHuron` 그대로 두기로 확정. 남은 불일치: 원자료 논문 끝 쪽 2887 — 06장 참고문헌(1092행)은 `2875-2887`, data.qmd 는 `2875` 만 적음(2887은 alr4 패키지 문서에만 있고 APS 페이지에서 미확인). 사용자 결정 대기.
+
+- 06장 보강 완료·검증됨(2026-11-26, 미커밋): H2 30·노트 30, clipped 0 / overflow 0, 다른 장 qmd 변경 0, docs/slides 동일. 남은 일: (1) 08-summary.qmd:158 의 옛 물리 수치(144.8+549.5x, R² 0.929 → 148.5+530.8x, R²_w 0.940) — 사용자가 "나중에"라고 함 (2) quarto/site/data.qmd 50·53·81행의 "측정분산", "143 B", 출처 (3) 사용자 결정: 적합결여 통계량 기호 X²(01장에서 변수 X의 제곱으로도 씀), 물리 예제 노트의 "예전 판은 1/SD를 썼다" 문단 유지 여부, 참고문헌 `datasets::LakeHuron` (4) 최종 확인 후 PDF 8개.
+- 06장 보강(2026-11-26 사용자 요청: WLS 검교정 중심, 물리 측정 자료에 2차식+가중치, 잔차로 1차→2차 근거). 사용자 승인(2026-11-26): 제안대로 보강, 결정 1~4 제안대로(원본 자료·1/SD², GLS 3장 정도로 축소, 역추정 1~2장 추가, 감쇠 곡선 유지), 08장 요약 수치는 나중에. `lecture-worker` 에 위임해 진행 중. 스냅샷 scratchpad `r11-before/`. 상세는 memory/physics-data-source-and-weights.md. 오케스트레이터 확인 사실: 물리 자료는 alr4 `physics`(Weisberg 2014; 원자료 Weisberg et al. 1978 Phys Rev D 17:2875). CRAN alr4 1.0.7 원본과 대조하니 (1) 덱·CNU 코드의 4번째 x 0.255 는 원본 0.225 의 오기, (2) 셋째 열은 분산이 아니라 표준편차 SD 라서 가중치는 1/SD^2 (덱은 1/w 사용). 수정 자료 기준 WLS: 1차 148.47(8.08), 530.84(47.55), R2 0.940, 가중 RSS 21.95(df 8); 2차 183.83, 0.97, 1597.50, R2 0.991, 가중 RSS 3.23(df 7); F=40.64 p=0.00038.
+- 잔여 항목 1-4 완료·검증됨(2026-11-26, 미커밋): 03 노트 강의노트 문장·중복 문단 삭제, 06 캡션 CNU 표기 삭제(원 출처 미확인)·"앞 장에서" 3곳→"4장에서", 05 "주된 근거 자료", 08 완전모형, 02 R 코드→수식 `2P(T≤−2.20|H0)=0.0362`, 04:277 "정규방정식이 됨.". 02~06·08 clipped 0 / overflow 0, docs/slides 동일. 워커가 범위 밖에서 발견(미수정, 사용자 결정 대기): 06:175 "앞 장으로", 01:889 "선량한도의 근거가 되는 자료", 02:1215 캡션 "UST lecture note", 02:750 `lm()` 표기, 06:866 `datasets::LakeHuron`, 03:1048·1050 체언 종결 소제목 2개, 06 physics 자료 원 출처.
 - 잔여 수정 완료·검증됨(2026-11-26, 미커밋): 그림 안 제목 물결표 제거, 04 `완전모형 적합` 제목·표 Predictors 열, 06:51 브리지, 08 `IC ~`, 기존 `적음` 3곳, 02 `p가 작음 =`, 04 e'e→S(β̂)·/k, 오탈자 2곳, 05 이론 진술 3건(선량한도는 ICRP 103 근거로 축소, 참고문헌 1줄 추가). 01~06·08 clipped 0 / overflow 0, docs/slides 동일. 보류: 03:314 노트 "예전 강의노트" 문장과 06:396 캡션 "(CNU lecture note, Example 8.1)"은 인용이 아닌 출처 표기라 미수정 — 사용자 결정 대기. 그 밖의 미결정: 08:156 "full model", 02:1353 R 코드, 05:1146·1171 "선량한도의 근거 자료" 표현, 명사구 소제목 종결, 03 노트 중복, 06 "앞 장에서" 3곳.
 - 05장 2차 완료·검증됨(2026-11-26, 미커밋): 제안 19건 전부 반영(보류 0), 04장 제목 `모자행렬: 증명`·소제목 `대칭성에 기인한 세 가지 성질`·04:1328 노트(가격 표준오차 원인). 새 그림 3개 output/agent/2026-11-26/, 스크립트 code/agent/2026-11-26/. 04·05 clipped 0 / overflow 0, docs/slides 동일. 사용자 결정 대기: 새 그림 PNG 안 제목의 물결표(`IC ~ …`) 문구, 06:51 브리지, 04장 H2 "full model 적합"과 `IC ~` 3건.
 - 05장 1차 완료·검증됨(2026-11-26, 미커밋): 64줄(본문 10, 노트 54) 추상 표현 34줄·연결 38줄. clipped 0 / overflow 0, docs/slides/05 동일. 구조 변경 제안 19건은 사용자 승인 대기(워커 보고 참조: r_i 용어 통일, Scale-Location 판독, 그림 제목 겹침, 04:1328 다중공선성 예고와 price VIF 1.034 충돌, 후진제거 2단계 등). 새 파일 code/agent/2026-11-26/check-ch05-links.R.
@@ -48,4 +53,4 @@ date: 2026-11-25
 
 ## 미커밋 변경
 
-- 01~06·08장 qmd·html, docs/slides, code/agent/2026-11-26/, output/agent/2026-11-26/, memory/orchestration-handoff.md. docs/pdf 는 수정 전 판 그대로.
+- 01~06·08장 qmd·html, docs/slides, docs/data/physical-measurement.csv, docs/index.html, docs/search.json, quarto/site/_chapters.md·_totals.md, code/agent/2026-08-31/export-data.R, code/agent/2026-11-26/, output/agent/2026-11-26/, memory/. docs/pdf 는 수정 전 판 그대로.

@@ -32,3 +32,4 @@
 - [split 스크립트의 편집 파괴](split-script-destroys-user-edits.md) — 장별 덱은 통째로 덮어써짐. 실행 전 mtime 확인 필수
 - [.fig-led 캡션 겹침 함정](fig-led-caption-maxheight-trap.md) — 그림에 인라인 max-height 금지. 캡션이 콜아웃 위로 겹침
 - [작업 인계 상태](orchestration-handoff.md) — Claude와 대체 경로(Copilot+Codex) 사이의 현재 작업 상태. 재개할 때 먼저 볼 것
+- [06장 물리 자료의 출처와 가중치](physics-data-source-and-weights.md) — alr4 physics. x4=0.225, 셋째 열은 SD, 가중치 1/SD². 06장은 WLS 검교정 중심으로 보강

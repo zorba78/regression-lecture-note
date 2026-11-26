@@ -274,7 +274,7 @@ $$S(\boldsymbol\beta)=(\mathbf y-\mathbf X\boldsymbol\beta)^\top(\mathbf y-\math
 =\mathbf y^\top\mathbf y-2\boldsymbol\beta^\top\mathbf X^\top\mathbf y+\boldsymbol\beta^\top\mathbf X^\top\mathbf X\boldsymbol\beta$$</li>
 <li><b>2장의 미분 공식 둘을 그대로 씀.</b> $\dfrac{\partial(\boldsymbol\beta^\top\mathbf a)}{\partial\boldsymbol\beta}=\mathbf a$ 와 $\dfrac{\partial(\boldsymbol\beta^\top\mathbf A\boldsymbol\beta)}{\partial\boldsymbol\beta}=2\mathbf A\boldsymbol\beta$ ($\mathbf A$ 가 대칭일 때). 첫 항은 $\boldsymbol\beta$ 가 없으므로 사라짐
 $$\frac{\partial S}{\partial\boldsymbol\beta}=-2\mathbf X^\top\mathbf y+2\mathbf X^\top\mathbf X\boldsymbol\beta$$</li>
-<li><b>$\mathbf 0$ 으로 놓으면 정규방정식.</b> $\mathbf X$ 가 full rank이면 $(\mathbf X^\top\mathbf X)^{-1}$ 가 존재하므로 양변 왼쪽에 곱해 해를 얻음
+<li><b>$\mathbf 0$ 으로 놓으면 정규방정식이 됨.</b> $\mathbf X$ 가 full rank이면 $(\mathbf X^\top\mathbf X)^{-1}$ 가 존재하므로 양변 왼쪽에 곱해 해를 얻음
 $$\mathbf X^\top\mathbf X\boldsymbol\beta=\mathbf X^\top\mathbf y$$</li>
 </ol>
 

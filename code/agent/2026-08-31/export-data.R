@@ -53,11 +53,13 @@ if (file.exists(gala_rda)) {
   cat("gala.rda missing - gala.csv not written\n")
 }
 
-## ---- physical measurement example (ch 06, known measurement variance) ---
-# Values as used in code/agent/2026-08-11/make-lecture-figures.R.
+## ---- physical measurement example (ch 06, known measurement standard deviation) ---
+# Values of alr4::physics (Weisberg 2014), checked against the CRAN alr4 1.0.7
+# data file on 2026-11-26: the 4th x is 0.225 (0.255 was a typo inherited from
+# make-lecture-figures.R), and the third column is the standard deviation of y.
 phys <- data.frame(
-  x = c(0.345, 0.287, 0.251, 0.255, 0.207, 0.186, 0.161, 0.132, 0.084, 0.060),
+  x = c(0.345, 0.287, 0.251, 0.225, 0.207, 0.186, 0.161, 0.132, 0.084, 0.060),
   y = c(367, 311, 295, 268, 253, 239, 220, 213, 193, 192),
-  w = c(17, 9, 9, 7, 7, 6, 6, 6, 5, 5)
+  SD = c(17, 9, 9, 7, 7, 6, 6, 6, 5, 5)
 )
 w(phys, "physical-measurement.csv")
