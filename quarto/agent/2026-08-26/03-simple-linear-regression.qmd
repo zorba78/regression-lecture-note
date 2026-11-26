@@ -199,7 +199,7 @@ $$\operatorname{cov}(y,x)=\frac{1}{n-1}\sum_{i=1}^{n}(y_i-\bar y)(x_i-\bar x)$$
 ### <i class="fa-solid fa-triangle-exclamation"></i> 주의: 단위 의존성
 
 ::: {.highlight-box}
-상수 $a,b,c,d$에 대해 $\operatorname{cov}(ay+b,\;cx+d)=ac\,\operatorname{cov}(y,x)$ 가 성립한다.
+상수 $a,b,c,d$에 대해 $\operatorname{cov}(ay+b,\;cx+d)=ac\,\operatorname{cov}(y,x)$ 가 성립
 :::
 
 :::{style="font-size: 90%; margin-top: 1em; margin-bottom: 1em;"}
@@ -280,7 +280,7 @@ $$r=\operatorname{corr}(y,x)=\frac{1}{n-1}\sum_{i=1}^{n}\left(\frac{y_i-\bar y}{
 ::: {.column width="42%"}
 
 ::: {.highlight-box}
-$y=50-x^2$ 는 $x$가 정해지면 $y$가 완전히 결정되는 관계이나, 표본상관계수는 $r=0$ 이다.
+$y=50-x^2$ 는 $x$가 정해지면 $y$가 완전히 결정되는 관계이나, 표본상관계수는 $r=0$
 :::
 
 ::: {.callout-tip appearance="minimal"}
@@ -609,11 +609,11 @@ $$
 ### <i class="fa-solid fa-pen-to-square"></i> 두 식, 두 미지수
 
 <ol>
-<li><b>첫 식에서 절편이 바로 나온다.</b> 괄호를 풀어 항별로 더하면 $\sum y_i=n\beta_0+\beta_1\sum x_i$. 양변을 $n$ 으로 나누면 평균끼리의 관계가 되고, 이것이 곧 절편의 식
+<li><b>첫 식에서 절편이 바로 나옴.</b> 괄호를 풀어 항별로 더하면 $\sum y_i=n\beta_0+\beta_1\sum x_i$. 양변을 $n$ 으로 나누면 평균끼리의 관계가 되고, 이것이 곧 절편의 식
 $$\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)=0\;\Longrightarrow\;\bar y=\beta_0+\beta_1\bar x\;\Longrightarrow\;\hat\beta_0=\bar y-\hat\beta_1\bar x$$</li>
-<li><b>그 절편을 둘째 식에 대입한다.</b> 둘째 식은 $\sum x_iy_i=\beta_0\sum x_i+\beta_1\sum x_i^2$. 여기에 $\beta_0=\bar y-\beta_1\bar x$ 와 $\sum x_i=n\bar x$ 를 넣고 $\beta_1$ 이 든 항만 한쪽으로 모음
+<li><b>그 절편을 둘째 식에 대입함.</b> 둘째 식은 $\sum x_iy_i=\beta_0\sum x_i+\beta_1\sum x_i^2$. 여기에 $\beta_0=\bar y-\beta_1\bar x$ 와 $\sum x_i=n\bar x$ 를 넣고 $\beta_1$ 이 든 항만 한쪽으로 모음
 $$\sum x_iy_i-n\bar x\bar y=\beta_1\!\left(\sum x_i^2-n\bar x^2\right)$$</li>
-<li><b>양변이 편차의 제곱합이다.</b> 괄호를 전개하면 $\sum x_iy_i-n\bar x\bar y=S_{xy}$, $\;\sum x_i^2-n\bar x^2=S_{xx}$ 이므로 양변을 $S_{xx}$ 로 나누면 기울기가 나옴</li>
+<li><b>양변이 편차의 제곱합임.</b> 괄호를 전개하면 $\sum x_iy_i-n\bar x\bar y=S_{xy}$, $\;\sum x_i^2-n\bar x^2=S_{xx}$ 이므로 양변을 $S_{xx}$ 로 나누면 기울기가 나옴</li>
 </ol>
 
 ::: {.callout-note appearance="minimal"}
@@ -685,15 +685,15 @@ $$\hat\beta_1=\frac{S_{xy}}{S_{xx}},\qquad \hat\beta_0=\bar y-\hat\beta_1\bar x$
 ### <i class="fa-solid fa-pen-to-square"></i> 가능도에서 정규방정식까지
 
 <ol>
-<li><b>밀도를 모두 곱한다.</b> 관측이 서로 독립이므로 정규밀도 $n$개의 곱이 <b>가능도</b>. 자료를 고정하고 모수를 변수로 본 함수이며, 지수를 모으면 앞 슬라이드의 제곱합 $S(\beta_0,\beta_1)=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)^2$ 이 저절로 등장
+<li><b>밀도를 모두 곱함.</b> 관측이 서로 독립이므로 정규밀도 $n$개의 곱이 <b>가능도</b>. 자료를 고정하고 모수를 변수로 본 함수이며, 지수를 모으면 앞 슬라이드의 제곱합 $S(\beta_0,\beta_1)=\sum_{i=1}^{n}(y_i-\beta_0-\beta_1x_i)^2$ 이 저절로 등장
 $$\begin{aligned}
 L(\beta_0,\beta_1,\sigma^2)&=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^2}}
 \exp\!\left\{-\frac{(y_i-\beta_0-\beta_1x_i)^2}{2\sigma^2}\right\}\\[2pt]
 &=(2\pi\sigma^2)^{-n/2}\exp\!\left\{-\frac{S(\beta_0,\beta_1)}{2\sigma^2}\right\}
 \end{aligned}$$</li>
-<li><b>로그를 취한다.</b> 로그는 증가함수이므로 최대점의 위치가 바뀌지 않음. $\beta_0,\beta_1$ 이 들어 있는 항은 마지막 하나뿐
+<li><b>로그를 취함.</b> 로그는 증가함수이므로 최대점의 위치가 바뀌지 않음. $\beta_0,\beta_1$ 이 들어 있는 항은 마지막 하나뿐
 $$\ell(\beta_0,\beta_1,\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln\sigma^2-\frac{1}{2\sigma^2}S(\beta_0,\beta_1)$$</li>
-<li><b>계수 앞의 부호를 본다.</b> 그 계수 $-\dfrac{1}{2\sigma^2}$ 는 항상 <b>음수</b>이므로, $\ell$ 을 $\beta_0,\beta_1$ 로 미분해 0으로 놓으면 앞 슬라이드의 <b>정규방정식이 그대로 나옴</b></li>
+<li><b>계수 앞의 부호를 봄.</b> 그 계수 $-\dfrac{1}{2\sigma^2}$ 는 항상 <b>음수</b>이므로, $\ell$ 을 $\beta_0,\beta_1$ 로 미분해 0으로 놓으면 앞 슬라이드의 <b>정규방정식이 그대로 나옴</b></li>
 </ol>
 
 ::: {.callout-note appearance="minimal"}
@@ -701,7 +701,7 @@ $$\ell \text{ 을 최대화}\;\Longleftrightarrow\;S(\beta_0,\beta_1)\text{ 을 
 :::
 
 ::: notes
-그리고 관측치들이 서로 독립이면 관측치의 결합분포는 보시는 식과 같이 평균이 $\beta_0+\beta_1x_i$, 분산이 $\sigma^2$인 정규분포들의 곱으로 나타낼 수 있습니다. 이것이 이변량 데이터에 대한 결합우도함수이고, 이 결합우도함수를 최대화하는 모수값을 찾는 것이 바로 최대가능도법입니다. 
+그리고 관측치들이 서로 독립이면 관측치의 결합분포는 보시는 식과 같이 평균이 $\beta_0+\beta_1x_i$, 분산이 $\sigma^2$인 정규분포들의 곱으로 나타낼 수 있습니다. 이것이 이변량 데이터에 대한 결합가능도함수이고, 이 결합가능도함수를 최대화하는 모수값을 찾는 것이 바로 최대가능도법입니다. 
 
 여기서 주의해야 할 점은 가능도 함수와 확률밀도 함수의 관점이 다르다는 것입니다. 확률밀도 함수는 모수를 고정하고 자료가 변수인 함수인 반면, 가능도 함수는 자료를 고정하고 모수가 변수인 함수입니다.
 
@@ -858,7 +858,7 @@ $$\hat y=0.207+0.00311\,x$$
 ### <i class="fa-solid fa-bullseye"></i> 최소분산 선형 불편추정량
 
 ::: {.highlight-box}
-오차의 평균이 0이고, 분산이 모두 $\sigma^2$ 로 같으며, 서로 무관하면, 최소제곱 추정량은 **선형 불편추정량 가운데 분산이 가장 작다**(BLUE, Best Linear Unbiased Estimator).
+오차의 평균이 0이고, 분산이 모두 $\sigma^2$ 로 같으며, 서로 무관하면, 최소제곱 추정량은 **선형 불편추정량 가운데 분산이 가장 작음**(BLUE, Best Linear Unbiased Estimator)
 :::
 
 <!-- 다음 세 장에서 이 주장을 차례로 확인. ① 최소제곱 추정량이 **불편**함 ② 그 **분산**의 공식 ③ 어떤 선형 불편추정량도 그보다 분산이 작을 수 없음 -->
@@ -931,16 +931,16 @@ $$\begin{aligned}
 ### <i class="fa-solid fa-pen-to-square"></i> 기울기의 가중합 표현
 
 <ol>
-<li><b>$\hat\beta_1$ 을 $y$ 의 가중합으로 고쳐 쓴다.</b> $S_{xy}$ 에서 $\bar y$ 가 붙은 항은 $\sum(x_i-\bar x)=0$ 이라 사라짐. 남은 가중치 $c_i$ 는 $x$ 만으로 정해지는 <b>상수</b>
+<li><b>$\hat\beta_1$ 을 $y$ 의 가중합으로 고쳐 씀.</b> $S_{xy}$ 에서 $\bar y$ 가 붙은 항은 $\sum(x_i-\bar x)=0$ 이라 사라짐. 남은 가중치 $c_i$ 는 $x$ 만으로 정해지는 <b>상수</b>
 $$\hat\beta_1=\frac{S_{xy}}{S_{xx}}=\frac{\sum(x_i-\bar x)y_i}{S_{xx}}=\sum_{i=1}^{n}c_iy_i,
 \qquad c_i=\frac{x_i-\bar x}{S_{xx}}$$</li>
-<li><b>가중치의 두 성질을 확인한다.</b> 이 두 줄이 증명의 전부이며, 둘째 등식은 $\sum(x_i-\bar x)x_i=\sum x_i^2-n\bar x^2=S_{xx}$ 에서 나옴
+<li><b>가중치의 두 성질을 확인함.</b> 이 두 줄이 증명의 전부이며, 둘째 등식은 $\sum(x_i-\bar x)x_i=\sum x_i^2-n\bar x^2=S_{xx}$ 에서 나옴
 $$\sum c_i=\frac{\sum(x_i-\bar x)}{S_{xx}}=0,\qquad
 \sum c_ix_i=\frac{\sum(x_i-\bar x)x_i}{S_{xx}}=\frac{S_{xx}}{S_{xx}}=1$$</li>
-<li><b>기댓값을 취한다.</b> 모형이 $E(y_i)=\beta_0+\beta_1x_i$ 이므로 두 성질이 그대로 대입됨
+<li><b>기댓값을 취함.</b> 모형이 $E(y_i)=\beta_0+\beta_1x_i$ 이므로 두 성질이 그대로 대입됨
 $$E(\hat\beta_1)=\sum c_iE(y_i)
 =\beta_0\underbrace{\sum c_i}_{=\,0}+\beta_1\underbrace{\sum c_ix_i}_{=\,1}=\beta_1$$</li>
-<li><b>절편은 따라 나온다.</b> $\hat\beta_0=\bar y-\hat\beta_1\bar x$ 이고 $E(\bar y)=\beta_0+\beta_1\bar x$ 이므로
+<li><b>절편은 따라 나옴.</b> $\hat\beta_0=\bar y-\hat\beta_1\bar x$ 이고 $E(\bar y)=\beta_0+\beta_1\bar x$ 이므로
 $$E(\hat\beta_0)=E(\bar y)-\bar x\,E(\hat\beta_1)=(\beta_0+\beta_1\bar x)-\bar x\beta_1=\beta_0$$</li>
 </ol>
 
@@ -1008,16 +1008,16 @@ $$\operatorname{Var}(\hat\beta_1)=\frac{\sigma^2}{S_{xx}},\qquad
 ### <i class="fa-solid fa-pen-to-square"></i> 경쟁자의 손해 $\sum d_i^2$
 
 <ol>
-<li><b>경쟁자가 만족해야 할 조건을 적는다.</b> 다른 선형추정량 $\tilde\beta_1=\sum a_iy_i$ 가 <b>불편</b>이려면
+<li><b>경쟁자가 만족해야 할 조건을 표기함.</b> 다른 선형추정량 $\tilde\beta_1=\sum a_iy_i$ 가 <b>불편</b>이려면
 $$E(\tilde\beta_1)=\beta_0\sum a_i+\beta_1\sum a_ix_i=\beta_1
 \;\Longrightarrow\;\sum a_i=0,\qquad \sum a_ix_i=1$$</li>
-<li><b>최소제곱과의 차이를 $d_i$ 로 둔다.</b> $a_i=c_i+d_i$ 로 쓰면 위 조건과 $\sum c_i=0$, $\sum c_ix_i=1$ 에서 $d$ 쪽 두 성질이 나오고, 그것이 교차항을 없앰
+<li><b>최소제곱과의 차이를 $d_i$ 로 둠.</b> $a_i=c_i+d_i$ 로 쓰면 위 조건과 $\sum c_i=0$, $\sum c_ix_i=1$ 에서 $d$ 쪽 두 성질이 나오고, 그것이 교차항을 없앰
 $$\sum d_i=0,\quad \sum d_ix_i=0
 \;\Longrightarrow\;\sum c_id_i=\frac{\sum d_ix_i-\bar x\sum d_i}{S_{xx}}=0$$</li>
-<li><b>가중치 제곱합을 전개한다.</b> $a_i=c_i+d_i$ 를 제곱해 더하면 세 덩어리가 나오는데, 가운데가 방금 구한 교차항이라 통째로 사라짐
+<li><b>가중치 제곱합을 전개함.</b> $a_i=c_i+d_i$ 를 제곱해 더하면 세 덩어리가 나오는데, 가운데가 방금 구한 교차항이라 통째로 사라짐
 $$\sum a_i^2=\sum(c_i+d_i)^2=\sum c_i^2+2\underbrace{\sum c_id_i}_{=\,0}+\sum d_i^2
 =\sum c_i^2+\sum d_i^2$$</li>
-<li><b>분산으로 옮긴다.</b> $\sigma^2\sum c_i^2$ 이 곧 최소제곱의 분산이고, 뒤에 더해지는 몫은 제곱합이므로 <b>항상 0 이상</b>
+<li><b>분산으로 옮김.</b> $\sigma^2\sum c_i^2$ 이 곧 최소제곱의 분산이고, 뒤에 더해지는 몫은 제곱합이므로 <b>항상 0 이상</b>
 $$\operatorname{Var}(\tilde\beta_1)=\sigma^2\sum a_i^2
 =\underbrace{\sigma^2\sum c_i^2}_{=\;\operatorname{Var}(\hat\beta_1)}+\;\sigma^2\sum d_i^2$$</li>
 </ol>
@@ -1045,13 +1045,13 @@ $$\operatorname{Var}(\tilde\beta_1)\ \ge\ \operatorname{Var}(\hat\beta_1),
 ### <i class="fa-solid fa-pen-to-square"></i> 증명
 
 <ol>
-<li><b>잔차를 편차의 꼴로 바꾼다.</b> $\hat\beta_0=\bar y-\hat\beta_1\bar x$ 를 넣으면 $e_i=(y_i-\bar y)-\hat\beta_1(x_i-\bar x)$, 제곱해 더한 뒤 $S_{xy}=\hat\beta_1S_{xx}$ 를 쓰면
+<li><b>잔차를 편차의 꼴로 바꿈.</b> $\hat\beta_0=\bar y-\hat\beta_1\bar x$ 를 넣으면 $e_i=(y_i-\bar y)-\hat\beta_1(x_i-\bar x)$, 제곱해 더한 뒤 $S_{xy}=\hat\beta_1S_{xx}$ 를 쓰면
 $$SSE=S_{yy}-2\hat\beta_1S_{xy}+\hat\beta_1^2S_{xx}=S_{yy}-\hat\beta_1^2S_{xx}$$</li>
 <li><b>앞 항의 기댓값.</b> 모형을 넣으면 $y_i-\bar y=\beta_1(x_i-\bar x)+(\varepsilon_i-\bar\varepsilon)$ 이고, 교차항의 기댓값은 0
 $$E(S_{yy})=\beta_1^2S_{xx}+\underbrace{E\textstyle\sum(\varepsilon_i-\bar\varepsilon)^2}_{=\,(n-1)\sigma^2}=\beta_1^2S_{xx}+(n-1)\sigma^2$$</li>
 <li><b>뒤 항의 기댓값.</b> $E(Z^2)=\operatorname{Var}(Z)+[E(Z)]^2$ 에 <b>앞 두 장의 결과</b> $\operatorname{Var}(\hat\beta_1)=\sigma^2/S_{xx}$, $E(\hat\beta_1)=\beta_1$ 을 대입
 $$E\!\left(\hat\beta_1^2S_{xx}\right)=\left(\frac{\sigma^2}{S_{xx}}+\beta_1^2\right)S_{xx}=\sigma^2+\beta_1^2S_{xx}$$</li>
-<li><b>빼면 $\beta_1$ 항이 상쇄된다.</b> $\bar y$ 에서 자유도 하나, $\hat\beta_1$ 에서 하나가 더 빠져 $n-2$
+<li><b>빼면 $\beta_1$ 항이 상쇄됨.</b> $\bar y$ 에서 자유도 하나, $\hat\beta_1$ 에서 하나가 더 빠져 $n-2$
 $$E(SSE)=\big[\beta_1^2S_{xx}+(n-1)\sigma^2\big]-\big[\sigma^2+\beta_1^2S_{xx}\big]=(n-2)\sigma^2$$</li>
 </ol>
 
@@ -1206,7 +1206,7 @@ $$SST=SSR+SSE,\qquad R^2=\frac{SSR}{SST}=1-\frac{SSE}{SST}$$
 ### <i class="fa-solid fa-lightbulb"></i> $R^2=r^2$
 
 ::: {.highlight-box}
-설명변수가 하나인 단순선형회귀에서 결정계수는 표본상관계수의 제곱과 같다.
+설명변수가 하나인 단순선형회귀에서 결정계수는 표본상관계수의 제곱과 같음
 
 $$R^2=\left[\operatorname{corr}(y,x)\right]^2=\left[\operatorname{corr}(y,\hat y)\right]^2$$
 :::
@@ -1247,7 +1247,7 @@ $$R^2=\left[\operatorname{corr}(y,x)\right]^2=\left[\operatorname{corr}(y,\hat y
 ### <i class="fa-solid fa-table"></i> 제곱합과 자유도
 
 ::: {.highlight-box}
-앞의 $SST=SSR+SSE$ 를 자유도와 함께 표로 정리하면, 모형 전체를 한꺼번에 검정하는 통계량이 나온다.
+앞의 $SST=SSR+SSE$ 를 자유도와 함께 표로 정리하면, 모형 전체를 한꺼번에 검정하는 통계량이 나옴
 :::
 
 | Source | df | Sum of squares | Mean square | $F$ |
@@ -1292,7 +1292,7 @@ $$R^2=\left[\operatorname{corr}(y,x)\right]^2=\left[\operatorname{corr}(y,\hat y
 : Analysis of variance for the ice cream data (IC on temp, n = 30)
 
 ::: {.callout-note appearance="minimal"}
-<i class="fa-solid fa-circle-check"></i> **설명변수가 하나면 두 검정이 완전히 같다**
+<i class="fa-solid fa-circle-check"></i> **설명변수가 하나면 두 검정이 완전히 같음**
 
 $$F=t^2:\qquad 6.5023^2=42.280,\qquad
 F(0.95;1,28)=2.0484^2=4.196=\big[t(0.975;28)\big]^2$$
@@ -1488,7 +1488,7 @@ t=\frac{\hat\beta_1}{\mathrm{SE}(\hat\beta_1)}=6.50$$
 ### <i class="fa-solid fa-list-check"></i> Simple Linear Regression
 
 ::: {.highlight-box}
-**관계를 잰다**(공분산과 상관계수로 방향과 강도) $\to$ **직선을 긋는다**(수직 간격의 제곱 합이 최소) $\to$ **계수를 읽는다**($x$ 1단위당 $y$의 평균 변화) $\to$ **불확실성을 확인한다**($R^2$, $t$검정, 구간).
+**관계를 측정함**(공분산과 상관계수로 방향과 강도) $\to$ **직선을 적합함**(수직 간격의 제곱 합이 최소) $\to$ **계수를 읽음**($x$ 1단위당 $y$의 평균 변화) $\to$ **불확실성을 확인함**($R^2$, $t$검정, 구간)
 :::
 
 | Concept | Formula | Ice cream data |

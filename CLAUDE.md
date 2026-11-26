@@ -112,3 +112,36 @@
 3. 그 스킬의 관찰 로그는 `~/.claude/projects/G--Projects-regression-lecture-note/skill-observations/` 에 둔다. 작업 폴더가 `.claude/worktrees/` 아래의 일회성 worktree일 수 있으므로 **저장소 안에 만들지 말 것** — worktree가 정리될 때 함께 사라진다.
 
 
+
+# 오케스트레이션 규칙
+
+| 역할 | 실행 주체 | 모델 | Effort | 설정 위치 |
+|---|---|---|---|---|
+| 오케스트레이터 | 메인 세션 | Fable 5.2 | medium | `.claude/settings.json` |
+| 워커 | `lecture-worker` 서브에이전트 | Opus 5.5 | xhigh | `.claude/agents/lecture-worker.md` |
+
+1. **분담**: 오케스트레이터는 요청 해석, 계획, 워커 지시, 결과 검증, 사용자 보고를 맡는다. 강의자료(qmd 본문·발표 대본, R 스크립트, 그림)를 만들거나 고치는 작업은 `lecture-worker` 에 위임한다. 상태 확인, 질문 답변, 설정·memory 정리처럼 강의자료를 고치지 않는 작업은 오케스트레이터가 직접 한다.
+2. **지시문에 반드시 넣을 것**: 목표와 완료 기준 / 대상 파일과 범위(슬라이드 제목 또는 노트 IDX) / 사용할 스킬 / 건드리지 말 것 / 읽어야 할 memory 파일.
+3. **슬라이드 문구와 발표 대본 수정에는 humanizer-kr 스킬을 사용한다.** 슬라이드 본문 문구나 `::: notes` 대본을 고치는 지시문에는 아래를 명시한다.
+   - 실행할 스킬: `humanizer-kr:humanizer-kr`
+   - 발표 대본(`::: notes`): Voice rewrite로 수행. 저장된 문체 프로필이 없는 동안에는 `memory/notes-style-exemplar-user.md` 가 지정한 사용자 작성 노트 블록을 문체 샘플로 넘긴다.
+   - 슬라이드 본문: Clean up(최소 수정)으로 수행. 개조식 종결과 정의·정리의 완결 문장은 `memory/slide-register-rule.md` 대로 유지한다.
+   - humanizer-kr의 일반 규칙과 memory의 사용자 결정이 다르면 memory를 따른다(`slide-register-rule.md`, `notes-style-exemplar-user.md`).
+   - 수식·수치·기호·인용은 바꾸지 않는다. 수정 전후로 숫자·수식 토큰이 보존되었는지 대조한 결과를 보고에 포함한다.
+4. **검증**: 오케스트레이터는 워커 보고를 받은 뒤 `git diff` 로 변경 범위가 지시와 일치하는지 확인하고, 워커가 실행하지 않은 검증은 실행하지 않았다고 사용자에게 보고한다.
+5. 워커는 세션 시작 규칙의 2·3번을 수행하지 않는다. 스킬 관찰 로그는 오케스트레이터가 맡는다.
+
+## 세션 한계 시 대체 경로
+
+| 순위 | 오케스트레이터 | 워커 | 시작 방법 |
+|---|---|---|---|
+| 1 (기본) | Claude Code 메인 세션 (Fable 5.2, medium) | `lecture-worker` (Opus 5.5, xhigh) | 평소대로 |
+| 2 (대체) | GitHub Copilot CLI, 모델 `gpt-6.2-astra` | Codex CLI, 모델 `gpt-6.1-terra` | `bash code/agent/2026-11-25/start-fallback-orchestrator.sh` |
+
+1. **인계 파일**: `memory/orchestration-handoff.md`. 어느 경로의 오케스트레이터든 (a) 강의자료 작업을 시작할 때, (b) 워커 보고를 검증한 직후, (c) 멈추기 직전에 갱신한다. 한계는 예고 없이 오므로 (b)를 빠뜨리지 않는다.
+2. **Claude 한계 → 대체 경로**: Claude 세션이 사용 한계로 멈추면 대체 경로가 인계 파일의 "다음 단계"부터 이어간다. 대체 경로 오케스트레이터는 시작할 때 인계 파일, `git status`, `git diff` 를 읽고 `active` 를 `fallback` 으로 기록한다. 분담·지시문·검증은 위 1~4번을 그대로 따른다.
+3. **대체 경로의 워커 호출**: `codex exec -m gpt-6.1-terra -s workspace-write "<지시문>"`. 워커는 `.claude/agents/lecture-worker.md` 본문의 작업 규칙과 보고 형식을 따른다.
+4. **대체 경로의 humanizer-kr**: Copilot과 Codex에는 이 스킬이 설치되어 있지 않다. 워커가 `~/.claude/plugins/cache/humanizer-kr-marketplace/humanizer-kr/*/skills/humanizer-kr/SKILL.md` 를 직접 읽고 위 3번 항목대로 수행하도록 지시문에 적는다.
+5. **대체 경로 한계 → Claude 재개**: 대체 경로도 한계로 이어갈 수 없으면, 멈추기 전에 가능한 한 인계 파일에 `active: none` 과 `stop_reason` 을 적는다. Claude 세션은 `.claude/settings.json` 의 `autoContinueAtUsageLimit` 로 한도 재설정 시각에 재개한다(세션이 열려 있어야 함). 세션을 닫았으면 재설정 시각 이후 `claude --continue` 로 연다.
+6. **Claude가 재개할 때 첫 행동**: 인계 파일과 `git status` 를 읽는다. `active` 가 `fallback` 이고 `updated` 가 30분 이내이면 대체 경로가 작업 중인 것으로 보고 강의자료를 고치지 않으며, 그 사실을 사용자에게 보고한다. 그 밖의 경우에는 `active` 를 `claude` 로 바꾸고, 대체 경로가 바꾼 파일을 다시 읽은 뒤 "다음 단계"부터 이어간다.
+7. 커밋과 푸시는 어느 경로에서든 사용자가 요청할 때만 한다.

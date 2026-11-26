@@ -1195,7 +1195,7 @@ display:block!important;
 <h2>등분산 위반: Gauss-Markov 복습</h2>
 <h3 id="ols가-최선이었던-근거"><i class="fa-solid fa-lightbulb"></i> OLS가 최선이었던 근거</h3>
 <div class="highlight-box">
-<p><strong>Gauss-Markov 정리</strong>: 다음 두 조건이 성립하면 통상최소제곱 추정량 <span class="math inline">\(\hat{\boldsymbol\beta}_{OLS}\)</span>는 BLUE이다.</p>
+<p><strong>Gauss-Markov 정리</strong>: 다음 두 조건이 성립하면 통상최소제곱 추정량 <span class="math inline">\(\hat{\boldsymbol\beta}_{OLS}\)</span>는 BLUE</p>
 <p><span class="math display">\[E(\boldsymbol\varepsilon \mid \mathbf X)=\mathbf 0, \qquad \operatorname{Var}(\boldsymbol\varepsilon \mid \mathbf X)=\sigma^2\mathbf I\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -1240,7 +1240,7 @@ display:block!important;
 <h2>등분산 위반: 무너지는 결론</h2>
 <h3 id="불편이나-최소분산-아님"><i class="fa-solid fa-triangle-exclamation"></i> 불편이나 최소분산 아님</h3>
 <div class="highlight-box">
-<p>이분산에서는 <span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I\)</span>가 성립하지 않으므로 Gauss-Markov 정리의 전제가 무너진다. <span class="math inline">\(\hat{\boldsymbol\beta}_{OLS}\)</span>는 <strong>여전히 불편추정량이지만 더 이상 최소분산이 아니다</strong>.</p>
+<p>이분산에서는 <span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon)=\sigma^2\mathbf I\)</span>가 성립하지 않으므로 Gauss-Markov 정리의 전제가 무너짐. <span class="math inline">\(\hat{\boldsymbol\beta}_{OLS}\)</span>는 <strong>여전히 불편추정량이지만 더 이상 최소분산이 아님</strong></p>
 </div>
 <div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">
@@ -1294,7 +1294,7 @@ display:block!important;
 <h2>가중최소제곱(WLS): 목적함수</h2>
 <h3 id="정의"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p>가중최소제곱(weighted least squares)은 다음 <strong>가중 잔차제곱합</strong>을 최소화하는 값을 추정량으로 택한다.</p>
+<p>가중최소제곱(weighted least squares)은 다음 <strong>가중 잔차제곱합</strong>을 최소화하는 값을 추정량으로 택함</p>
 <p><span class="math display">\[\min_{\beta_0,\,\beta_1}\ \sum_{i=1}^{n} w_i\left(y_i-\beta_0-\beta_1 x_i\right)^2\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -1473,7 +1473,7 @@ display:block!important;
 </ul>
 <h3 id="핵심-2"><i class="fa-solid fa-lightbulb"></i> 핵심</h3>
 <div class="highlight-box">
-<p>세 규칙은 모두 하나의 원리에서 나온다: <strong>가중치는 분산의 역수</strong>. <span class="math inline">\(n_i\)</span>개 측정값을 평균하면 그 평균의 분산이 <span class="math inline">\(\sigma^2/n_i\)</span>이므로, 역수를 취하면 <span class="math inline">\(w_i \propto n_i\)</span>가 된다.</p>
+<p>세 규칙은 모두 하나의 원리에서 나옴: <strong>가중치는 분산의 역수</strong>. <span class="math inline">\(n_i\)</span>개 측정값을 평균하면 그 평균의 분산이 <span class="math inline">\(\sigma^2/n_i\)</span>이므로, 역수를 취하면 <span class="math inline">\(w_i \propto n_i\)</span>가 됨</p>
 </div>
 <aside class="notes">
 <p>그러면 실무에서 가중치를 어떻게 정할까요? 규칙은 하나입니다. 그 관측값의 분산을 알아내서 역수를 취하는 것, 이것이 전부입니다.</p>
@@ -1990,7 +1990,7 @@ display:block!important;
 <h2>일반화최소제곱(GLS): 정의</h2>
 <h3 id="오차-간-상관의-포함"><i class="fa-solid fa-bullseye"></i> 오차 간 상관의 포함</h3>
 <div class="highlight-box">
-<p>오차의 공분산행렬이 <span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon)=\boldsymbol\Sigma\)</span>인 선형모형 <span class="math inline">\(\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon\)</span>에서, 일반화최소제곱 추정량은 다음과 같다.</p>
+<p>오차의 공분산행렬이 <span class="math inline">\(\operatorname{Var}(\boldsymbol\varepsilon)=\boldsymbol\Sigma\)</span>인 선형모형 <span class="math inline">\(\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon\)</span>에서, 일반화최소제곱 추정량은 다음과 같음</p>
 <p><span class="math display">\[\hat{\boldsymbol\beta}_{GLS}=(\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf X)^{-1}\mathbf X^\top\boldsymbol\Sigma^{-1}\mathbf y\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -2191,13 +2191,13 @@ display:block!important;
 <h3 id="세-단계"><i class="fa-solid fa-pen-to-square"></i> 세 단계</h3>
 <ol>
 <li>
-<b>구조를 고른다.</b> 앞 슬라이드의 AR(1)을 그대로 씀. 관측이 98개면 공분산행렬의 칸이 9604개이므로, 모양을 정해 추정할 값을 <span class="math inline">\(\rho\)</span> 하나로 줄임 <span class="math display">\[\boldsymbol\Sigma=\sigma^2\mathbf V,\qquad V_{ij}=\rho^{\,|i-j|}\]</span>
+<b>구조를 선택함.</b> 앞 슬라이드의 AR(1)을 그대로 씀. 관측이 98개면 공분산행렬의 칸이 9604개이므로, 모양을 정해 추정할 값을 <span class="math inline">\(\rho\)</span> 하나로 줄임 <span class="math display">\[\boldsymbol\Sigma=\sigma^2\mathbf V,\qquad V_{ij}=\rho^{\,|i-j|}\]</span>
 </li>
 <li>
-<b><span class="math inline">\(\rho\)</span> 를 추정한다.</b> 서로 다른 세 방법이 거의 같은 값을 줌: Cochrane-Orcutt 반복 0.768, 최대가능도 0.783, 제한최대가능도 0.825. <b>추정 방법이 결과를 좌우하지 않는다는 확인</b>이며, 이후 계산은 <span class="math inline">\(\hat\rho=0.825\)</span> 를 사용
+<b><span class="math inline">\(\rho\)</span> 를 추정함.</b> 서로 다른 세 방법이 거의 같은 값을 줌: Cochrane-Orcutt 반복 0.768, 최대가능도 0.783, 제한최대가능도 0.825. <b>추정 방법이 결과를 좌우하지 않는다는 확인</b>이며, 이후 계산은 <span class="math inline">\(\hat\rho=0.825\)</span> 를 사용
 </li>
 <li>
-<b>공식에 넣는다.</b> <span class="math inline">\(\hat{\boldsymbol\beta}_{GLS}=(\mathbf X^\top\mathbf V^{-1}\mathbf X)^{-1}\mathbf X^\top\mathbf V^{-1}\mathbf y\)</span> 로 계산. <span class="math inline">\(\rho=0\)</span> 을 검정하는 가능도비는 <span class="math inline">\(\chi^2_1=89.6\)</span>, <span class="math inline">\(p&lt;0.0001\)</span> 로 자기상관 항을 넣을 근거가 뚜렷함
+<b>공식에 넣음.</b> <span class="math inline">\(\hat{\boldsymbol\beta}_{GLS}=(\mathbf X^\top\mathbf V^{-1}\mathbf X)^{-1}\mathbf X^\top\mathbf V^{-1}\mathbf y\)</span> 로 계산. <span class="math inline">\(\rho=0\)</span> 을 검정하는 가능도비는 <span class="math inline">\(\chi^2_1=89.6\)</span>, <span class="math inline">\(p&lt;0.0001\)</span> 로 자기상관 항을 넣을 근거가 뚜렷함
 </li>
 </ol>
 <div class="callout callout-note no-icon callout-style-simple">
@@ -2340,7 +2340,7 @@ display:block!important;
 </div>
 <h3 id="실무-적용"><i class="fa-solid fa-screwdriver-wrench"></i> 실무 적용</h3>
 <div class="highlight-box">
-<p>측정 불확도가 기록되어 있다면 그 분산의 역수를 가중치 <span class="math inline">\(w_i=1/\sigma_i^2\)</span> 로 삼는다.</p>
+<p>측정 불확도가 기록되어 있다면 그 분산의 역수를 가중치 <span class="math inline">\(w_i=1/\sigma_i^2\)</span> 로 삼음</p>
 </div>
 <p>기호는 이 장에서 정의한 것과 같음(<span class="math inline">\(w_i\)</span> 가중치, <span class="math inline">\(\sigma_i^2\)</span> 관측별 오차 분산, <span class="math inline">\(\mathbf W\)</span> 가중치 대각행렬, <span class="math inline">\(\boldsymbol\Sigma\)</span> 오차 공분산행렬)</p>
 <div class="callout callout-note no-icon callout-style-simple">

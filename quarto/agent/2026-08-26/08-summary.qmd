@@ -116,7 +116,7 @@ editor_options:
 ### <i class="fa-solid fa-bullseye"></i> 표기
 
 ::: {.highlight-box}
-기호는 각 장에서 정의한 것과 같다.
+기호는 각 장에서 정의한 것과 같음
 :::
 
 | 기호 | 뜻 |

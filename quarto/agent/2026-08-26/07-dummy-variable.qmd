@@ -66,7 +66,7 @@ editor_options:
 ### <i class="fa-solid fa-question"></i> 질문
 
 ::: {.highlight-box}
-질적 변수의 범주에는 덧셈과 곱셈이 정의되지 않는다. 이 정보를 어떻게 $\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$의 설계행렬 $\mathbf X$의 열로 만들 것인가?
+질적 변수의 범주에는 덧셈과 곱셈이 정의되지 않음. 이 정보를 어떻게 $\mathbf y=\mathbf X\boldsymbol\beta+\boldsymbol\varepsilon$의 설계행렬 $\mathbf X$의 열로 만들 것인가?
 :::
 
 ::: {style="font-size: 0.78em"}
@@ -297,7 +297,7 @@ Kutner, Nachtsheim, Neter & Li (2005), *Applied Linear Statistical Models*, 5th 
 ### <i class="fa-solid fa-bullseye"></i> 조건부 기댓값 표현
 
 ::: {.highlight-box}
-회귀를 조건부 기댓값 $E(Y\mid X=x)$로 정의하였으므로, 가변수를 포함한 모형도 연차별 조건부 기댓값으로 읽는다.
+회귀를 조건부 기댓값 $E(Y\mid X=x)$로 정의하였으므로, 가변수를 포함한 모형도 연차별 조건부 기댓값으로 읽음
 
 $$
 \begin{aligned}
@@ -399,7 +399,7 @@ p값의 뜻은 아래 한 줄에 다시 적어 두었습니다. 계수가 진짜
 ### <i class="fa-solid fa-triangle-exclamation"></i> 주의: 평행선 모형의 숨은 가정
 
 ::: {.highlight-box}
-평행선 모형은 관측 연차가 **절편만** 바꾼다고 가정한다. 온도에 대한 민감도, 즉 기울기는 세 연차가 동일하다고 강제한다.
+평행선 모형은 관측 연차가 **절편만** 바꾼다고 가정. 온도에 대한 민감도, 즉 기울기는 세 연차가 동일하다고 강제
 :::
 
 ### <i class="fa-solid fa-bullseye"></i> 상호작용 모형
@@ -509,8 +509,8 @@ $$
 | 계수 개수 | 4 | 6 | |
 | $R^2$ | 0.7896 | 0.8093 | 항을 넣으면 항상 오름 |
 | 수정 $R^2$ | 0.7653 | 0.7696 | 거의 그대로 |
-| AIC | $\mathbf{-115.91}$ | $-114.87$ | 평행선 모형이 낫다 |
-| Partial $F(2,\,24)$ | | 1.243 ($p=0.307$) | 기울기 차이는 유의하지 않다 |
+| AIC | $\mathbf{-115.91}$ | $-114.87$ | 평행선 모형이 나음 |
+| Partial $F(2,\,24)$ | | 1.243 ($p=0.307$) | 기울기 차이는 유의하지 않음 |
 
 : Parallel-lines model vs interaction model on the ice cream data.
 
@@ -568,7 +568,7 @@ Introduction 장 첫머리에서 보여 드린 조사취화 예측식으로 돌�
 ### <i class="fa-solid fa-list-check"></i> Dummy Variable
 
 ::: {.highlight-box}
-**한 줄 요약**: 범주 정보는 0/1 가변수 $k-1$개로 모형에 들어간다. 가변수는 절편을 바꾸고(평행선 모형), $x$와 곱해 넣으면 기울기까지 바꾼다(상호작용 모형).
+**한 줄 요약**: 범주 정보는 0/1 가변수 $k-1$개로 모형에 들어감. 가변수는 절편을 바꾸고(평행선 모형), $x$와 곱해 넣으면 기울기까지 바꿈(상호작용 모형)
 :::
 
 ::: {.callout-tip appearance="minimal"}

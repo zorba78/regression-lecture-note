@@ -23,7 +23,7 @@
 <div class="num">CHAPTER 03</div>
 <div class="name">Simple Linear Regression</div>
 <div class="ko">설명변수 하나로 직선을 긋고 검정하기</div>
-<div class="stat">40개 슬라이드 · 5.7 MB · 자료 ice.csv</div>
+<div class="stat">40개 슬라이드 · 5.6 MB · 자료 ice.csv</div>
 <div class="links">
 <a class="view" href="slides/03-simple-linear-regression.html">슬라이드</a>
 <a class="pdf" href="pdf/03-simple-linear-regression.pdf">PDF 1.8 MB</a>

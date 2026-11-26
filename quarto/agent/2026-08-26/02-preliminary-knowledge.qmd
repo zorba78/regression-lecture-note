@@ -92,11 +92,11 @@ $$
 ::: {style="margin-bottom: 0.8em"}
 
 ::: {.highlight-box}
-**벡터**: 숫자를 세로로 줄 세운 배열. 굵은 소문자 $\mathbf{y}$로 표기한다.
+**벡터**: 숫자를 세로로 줄 세운 배열. 굵은 소문자 $\mathbf{y}$로 표기.
 
-**행렬**: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 $\mathbf{X}$로 표기한다.
+**행렬**: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 $\mathbf{X}$로 표기.
 
-**차원**: 크기는 항상 "행 $\times$ 열" 순서로 적는다.
+**차원**: 크기는 항상 "행 $\times$ 열" 순서로 표기.
 :::
 
 :::
@@ -154,11 +154,11 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**덧셈·뺄셈**: 크기가 같은 두 행렬끼리만 정의되며, 같은 자리의 성분끼리 더하거나 뺀다.
+**덧셈·뺄셈**: 크기가 같은 두 행렬끼리만 정의되며, 같은 자리의 성분끼리 더하거나 뺌.
 
-**스칼라 곱** $c\mathbf A$: 모든 성분에 같은 수 $c$ 를 곱한다.
+**스칼라 곱** $c\mathbf A$: 모든 성분에 같은 수 $c$ 를 곱함.
 
-**행렬 곱** $\mathbf{AB}$: $\mathbf A$ 의 열 수와 $\mathbf B$ 의 행 수가 같을 때만 정의되며, $(i,j)$ 성분은 $\mathbf A$ 의 $i$ 행과 $\mathbf B$ 의 $j$ 열을 짝지어 곱한 뒤 모두 더한 값이다.
+**행렬 곱** $\mathbf{AB}$: $\mathbf A$ 의 열 수와 $\mathbf B$ 의 행 수가 같을 때만 정의되며, $(i,j)$ 성분은 $\mathbf A$ 의 $i$ 행과 $\mathbf B$ 의 $j$ 열을 짝지어 곱한 뒤 모두 더한 값.
 :::
 
 $$
@@ -269,7 +269,7 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**전치** $\mathbf A^\top$: 행과 열을 맞바꾼 행렬. $\mathbf A$ 의 $(i,j)$ 원소가 $\mathbf A^\top$ 의 $(j,i)$ 원소가 된다.
+**전치** $\mathbf A^\top$: 행과 열을 맞바꾼 행렬. $\mathbf A$ 의 $(i,j)$ 원소가 $\mathbf A^\top$ 의 $(j,i)$ 원소가 됨.
 :::
 
 <ul>
@@ -315,7 +315,7 @@ $$\mathbf M=\begin{pmatrix}1&2&3\\ 4&5&6\end{pmatrix}
 ### <i class="fa-solid fa-bullseye"></i> 여인수 전개
 
 ::: {.highlight-box}
-**행렬식**(determinant) $\det(\mathbf A)$: $n\times n$ 정방행렬 하나에 대응시키는 수 하나. $1\times 1$ 이면 $\det(a_{11})=a_{11}$ 이고, $n\ge 2$ 이면 **여인수 전개**(cofactor expansion)로 한 단계씩 작은 행렬식으로 내려가며 정의된다.
+**행렬식**(determinant) $\det(\mathbf A)$: $n\times n$ 정방행렬 하나에 대응시키는 수 하나. $1\times 1$ 이면 $\det(a_{11})=a_{11}$ 이고, $n\ge 2$ 이면 **여인수 전개**(cofactor expansion)로 한 단계씩 작은 행렬식으로 내려가며 정의됨.
 :::
 
 $$
@@ -375,7 +375,7 @@ $$
 ### <i class="fa-solid fa-lightbulb"></i> 핵심
 
 ::: {.highlight-box}
-$|\det(\mathbf A)|$ 는 $\mathbf A$ 의 행들이 만드는 도형의 크기이다. $2\times 2$ 이면 두 행이 만드는 평행사변형의 **넓이**, $3\times 3$ 이면 세 행이 만드는 평행육면체의 **부피**, 일반적으로 $n\times n$ 이면 $n$ 차원 부피에 해당한다. 행렬식이 0이라는 것은 그 크기가 0, 곧 도형이 한 차원 낮게 납작하게 눌렸다는 뜻이다.
+$|\det(\mathbf A)|$ 는 $\mathbf A$ 의 행들이 만드는 도형의 크기. $2\times 2$ 이면 두 행이 만드는 평행사변형의 **넓이**, $3\times 3$ 이면 세 행이 만드는 평행육면체의 **부피**, 일반적으로 $n\times n$ 이면 $n$ 차원 부피에 해당. 행렬식이 0이라는 것은 그 크기가 0, 곧 도형이 한 차원 낮게 납작하게 눌렸다는 뜻.
 :::
 
 ::: columns
@@ -441,9 +441,9 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**계수**(rank) $\operatorname{rank}(\mathbf A)$: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.
+**계수**(rank) $\operatorname{rank}(\mathbf A)$: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나옴.
 
-**완전계수**(full rank): $\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})$ 인 상태. 정방행렬이 완전계수인 것과 $\det(\mathbf A)\neq 0$ 은 동치이다.
+**완전계수**(full rank): $\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})$ 인 상태. 정방행렬이 완전계수인 것과 $\det(\mathbf A)\neq 0$ 은 동치.
 :::
 
 <ul>
@@ -500,7 +500,7 @@ $$
 ::: {.highlight-box}
 **역행렬** $\mathbf A^{-1}$: 정방행렬 $\mathbf A$ 에 대해 $\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I$ 를 만족하는 행렬.
 
-**존재 조건**: $\det(\mathbf A)\neq 0$, 곧 $\mathbf A$ 가 완전계수일 때에만 존재한다.
+**존재 조건**: $\det(\mathbf A)\neq 0$, 곧 $\mathbf A$ 가 완전계수일 때에만 존재.
 :::
 
 
@@ -542,7 +542,7 @@ $$
 ::: {.highlight-box}
 **내적** $\mathbf a^\top\mathbf b=a_1b_1+\cdots+a_nb_n$: 두 벡터를 성분끼리 곱해 모두 더한 수 하나.
 
-**직교**: $\mathbf a^\top\mathbf b=0$ 이면 두 벡터는 서로 직각이다.
+**직교**: $\mathbf a^\top\mathbf b=0$ 이면 두 벡터는 서로 직각.
 
 **직교행렬** $\mathbf Q$: 열들이 서로 직교하고 길이가 모두 1인 정방행렬. $\mathbf Q^\top\mathbf Q=\mathbf I$ 이므로 $\mathbf Q^{-1}=\mathbf Q^\top$.
 :::
@@ -633,7 +633,7 @@ $\operatorname{tr}(\mathbf{AB})=7$, $\operatorname{tr}(\mathbf{BA})=1+0+6=7$. $1
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**고윳값**(eigenvalue) $\lambda$ 와 **고유벡터**(eigenvector) $\mathbf v\neq\mathbf 0$: $\mathbf{Av}=\lambda\mathbf v$ 를 만족하는 짝. 행렬을 곱해도 **방향이 바뀌지 않고 길이만 $\lambda$ 배** 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값이다.
+**고윳값**(eigenvalue) $\lambda$ 와 **고유벡터**(eigenvector) $\mathbf v\neq\mathbf 0$: $\mathbf{Av}=\lambda\mathbf v$ 를 만족하는 짝. 행렬을 곱해도 **방향이 바뀌지 않고 길이만 $\lambda$ 배** 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값.
 :::
 
 ::: {.callout-note appearance="minimal"}
@@ -672,7 +672,7 @@ $\lambda_1=3$ 의 방향은 $(1,1)$, $\lambda_2=1$ 의 방향은 $(1,-1)$. 방�
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**스펙트럴 분해**(spectral decomposition): 대칭행렬 $\mathbf A$ 는 직교행렬 $\mathbf Q$ 와 고윳값을 늘어놓은 대각행렬 $\boldsymbol\Lambda$ 로 항상 다음과 같이 쪼개진다.
+**스펙트럴 분해**(spectral decomposition): 대칭행렬 $\mathbf A$ 는 직교행렬 $\mathbf Q$ 와 고윳값을 늘어놓은 대각행렬 $\boldsymbol\Lambda$ 로 항상 다음과 같이 쪼개짐.
 
 $$\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^\top=\sum_{j=1}^{n}\lambda_j\,\mathbf q_j\mathbf q_j^\top,
 \qquad \mathbf Q^\top\mathbf Q=\mathbf I$$
@@ -722,7 +722,7 @@ $$\mathbf q_1\mathbf q_1^\top=\frac12\begin{pmatrix}1&1\\ 1&1\end{pmatrix},\quad
 
 **하삼각행렬**(lower triangular matrix): 주대각선 **위** 성분이 모두 0인 정방행렬.
 
-상삼각이면서 동시에 하삼각인 행렬이 곧 대각행렬이다.
+상삼각이면서 동시에 하삼각인 행렬이 곧 대각행렬.
 :::
 
 $$
@@ -765,7 +765,7 @@ Default fitting method of `lm()` in R is QR decomposition (`method = "qr"`; R Co
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**멱등행렬**(idempotent matrix): $\mathbf A^2=\mathbf A$ 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않는다.
+**멱등행렬**(idempotent matrix): $\mathbf A^2=\mathbf A$ 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않음.
 :::
 
 ::: columns
@@ -818,7 +818,7 @@ $\mathbf A^2$ 자리에 $\mathbf A$ 를 넣으면 $-2\mathbf A+\mathbf A=-\mathb
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-스칼라 값을 갖는 함수 $f(\mathbf b)$ 를 벡터 $\mathbf b=(b_1,\dots,b_k)^\top$ 로 미분한다는 것은, 성분마다 편미분한 값을 같은 모양으로 쌓는다는 뜻이다.
+스칼라 값을 갖는 함수 $f(\mathbf b)$ 를 벡터 $\mathbf b=(b_1,\dots,b_k)^\top$ 로 미분한다는 것은, 성분마다 편미분한 값을 같은 모양으로 쌓는다는 뜻.
 $$\frac{\partial f}{\partial\mathbf b}=\Big(\frac{\partial f}{\partial b_1},\;\dots,\;\frac{\partial f}{\partial b_k}\Big)^\top$$
 :::
 
@@ -877,7 +877,7 @@ $$\mathbf X^\top\mathbf X\hat{\boldsymbol\beta}=\mathbf X^\top\mathbf y$$
 ### <i class="fa-solid fa-lightbulb"></i> 핵심
 
 ::: {.highlight-box}
-자료 $(\mathbf{y},\mathbf{X})$가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현된다.
+자료 $(\mathbf{y},\mathbf{X})$가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현됨.
 :::
 
 $$
@@ -919,7 +919,7 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-확률변수 $X$가 평균 $\mu$, 표준편차 $\sigma$인 **정규분포**를 따를 때 $X\sim N(\mu,\sigma^2)$로 적고, 그 밀도함수는 다음과 같다.
+확률변수 $X$가 평균 $\mu$, 표준편차 $\sigma$인 **정규분포**를 따를 때 $X\sim N(\mu,\sigma^2)$로 적고, 그 밀도함수는 다음과 같음.
 
 $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\qquad -\infty<x<\infty$$
 :::
@@ -968,7 +968,7 @@ $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\
 ### <i class="fa-solid fa-lightbulb"></i> 정규분포 가정의 근거
 
 ::: {.highlight-box}
-서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워진다(중심극한정리).
+서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워짐(중심극한정리).
 :::
 
 측정오차 = 온도, 습도, 진동, 판독 습관 등 작은 요인 다수의 합. 따라서 종 모양 분포가 근거 있는 출발점
@@ -992,7 +992,7 @@ $$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\
 ::: {.highlight-box}
 **모집단**: 알고 싶은 대상 전체. **표본**: 실제로 관측한 일부.
 
-**통계량**: 표본에서 계산한 값(표본평균 $\bar X$ 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.
+**통계량**: 표본에서 계산한 값(표본평균 $\bar X$ 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수.
 
 **표집분포**: 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.
 :::
@@ -1040,7 +1040,7 @@ $$
 ::: {.highlight-box}
 서로 독립인 표준정규 확률변수 $Z_1,\dots,Z_\nu$ 의 제곱을 모두 더하면
 $$W=\sum_{i=1}^{\nu}Z_i^{2}$$
-은 자유도 $\nu$ 의 **카이제곱분포** $\chi^2(\nu)$ 를 따른다.
+은 자유도 $\nu$ 의 **카이제곱분포** $\chi^2(\nu)$ 를 따름.
 :::
 
 <ul>
@@ -1086,7 +1086,7 @@ $$\frac{\mathrm{SSE}}{\sigma^2}\sim\chi^2(n-p-1)$$
 ::: {.highlight-box}
 $\sigma$를 모른 채 표본표준편차 $s$로 대신하면
 $$T=\frac{\bar X-\mu}{s/\sqrt{n}}$$
-는 자유도 $n-1$의 **t분포**를 따른다.
+는 자유도 $n-1$의 **t분포**를 따름.
 :::
 
 <ul>
@@ -1131,7 +1131,7 @@ t분포는 정규분포의 사촌쯤 됩니다. 그런데 왜 따로 필요할�
 ::: {.highlight-box}
 서로 독립인 두 카이제곱 $W_1\sim\chi^2(\nu_1)$, $W_2\sim\chi^2(\nu_2)$ 를 각자의 자유도로 나눈 뒤 비를 취하면
 $$F=\frac{W_1/\nu_1}{W_2/\nu_2}$$
-은 자유도 $(\nu_1,\nu_2)$ 의 **F분포** 를 따른다.
+은 자유도 $(\nu_1,\nu_2)$ 의 **F분포** 를 따름.
 :::
 
 <ul>
@@ -1296,9 +1296,9 @@ $$
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**귀무가설** $H_0$: 반증되기 전까지 참이라고 두는 기본 가정. 보통 "효과가 없다", "차이가 없다" 쪽에 놓는다.
+**귀무가설** $H_0$: 반증되기 전까지 참이라고 두는 기본 가정. 보통 "효과가 없다", "차이가 없다" 쪽에 놓음.
 
-**대립가설** $H_1$: 자료로 입증하고자 하는 주장. 보통 "효과가 있다" 쪽이다.
+**대립가설** $H_1$: 자료로 입증하고자 하는 주장. 보통 "효과가 있다" 쪽.
 :::
 
 ### <i class="fa-solid fa-list-check"></i> 절차

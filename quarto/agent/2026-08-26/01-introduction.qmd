@@ -243,7 +243,7 @@ Galton, F. (1886). Regression towards mediocrity in hereditary stature. *Journal
 ### <i class="fa-solid fa-bullseye"></i> 정의
 
 ::: {.highlight-box}
-**회귀(regression)** 란 설명변수 $X = x$ 가 주어졌을 때 반응변수 $Y$ 의 조건부 기댓값이다.
+**회귀(regression)** 란 설명변수 $X = x$ 가 주어졌을 때 반응변수 $Y$ 의 조건부 기댓값
 $$E(Y \mid X = x)$$
 :::
 
@@ -359,7 +359,7 @@ $$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \varepsilon$$
 
 <ul>
 <li>표준오차(SE): 같은 조사를 되풀이할 때 추정값이 얼마나 흔들리는지를 재는 값</li>
-<li>$t$ 값: 추정값을 그 표준오차로 나눈 값. 절댓값이 클수록 추정값이 0에서 멀다</li>
+<li>$t$ 값: 추정값을 그 표준오차로 나눈 값. 절댓값이 클수록 추정값이 0에서 멀리 떨어짐</li>
 <li>$p$ 값: 참값이 0이라고 할 때, 지금 자료에서 나온 것만큼 크거나 더 큰 값이 우연히 나올 확률</li>
 </ul>
 

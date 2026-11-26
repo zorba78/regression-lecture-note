@@ -114,3 +114,12 @@
 - 작업 중 agent가 생성한 데이터는 data/derived-data 에 agent 폴더 생성 후 날짜 별로 생성
 
 
+
+
+## 오케스트레이션
+
+Claude 세션이 사용 한계로 멈추면 이 저장소의 작업은 대체 경로(오케스트레이터 GitHub Copilot CLI `gpt-6.2-astra`, 워커 Codex CLI `gpt-6.1-terra`)가 이어받는다. 규칙은 한 곳에만 둔다.
+
+1. `CLAUDE.md` 의 "오케스트레이션 규칙" 절 전체를 읽고 따른다.
+2. `codex exec` 로 호출된 Codex는 워커다. `.claude/agents/lecture-worker.md` 본문의 작업 규칙과 보고 형식을 따른다.
+3. 현재 작업 상태는 `memory/orchestration-handoff.md` 에 있다.

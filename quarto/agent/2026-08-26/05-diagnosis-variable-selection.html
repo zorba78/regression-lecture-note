@@ -1058,7 +1058,7 @@ display:block!important;
 </div>
 </div><div class="column" style="width:45%;">
 <div class="highlight-box">
-<p>서로 다른 네 자료에 최소제곱 직선을 적합하면 네 경우 모두 같은 직선이 나온다.</p>
+<p>서로 다른 네 자료에 최소제곱 직선을 적합하면 네 경우 모두 같은 직선이 나옴</p>
 <p><span class="math display">\[\hat y_i = 3.00 + 0.500\,x_i\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -1300,7 +1300,7 @@ display:block!important;
 <h2>레버리지 <span class="math inline">\(h_{ii}\)</span></h2>
 <h3 id="정의-2"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p>레버리지 <span class="math inline">\(h_{ii}\)</span>는 모자행렬 <span class="math inline">\(\mathbf H\)</span>의 <span class="math inline">\(i\)</span>번째 대각원소이며, <span class="math inline">\(i\)</span>번째 관측이 설명변수 공간에서 얼마나 바깥에 놓여 있는지를 나타낸다.</p>
+<p>레버리지 <span class="math inline">\(h_{ii}\)</span>는 모자행렬 <span class="math inline">\(\mathbf H\)</span>의 <span class="math inline">\(i\)</span>번째 대각원소이며, <span class="math inline">\(i\)</span>번째 관측이 설명변수 공간에서 얼마나 바깥에 놓여 있는지를 나타냄</p>
 <p><span class="math display">\[\sum_{i=1}^{n} h_{ii} = \operatorname{tr}(\mathbf H) = p+1, \qquad \bar h = \frac{p+1}{n}\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -1363,7 +1363,7 @@ display:block!important;
 <h2>스튜던트화 잔차</h2>
 <h3 id="정의-3"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p>잔차의 분산이 관측마다 다르므로 그대로 비교할 수 없다. 각자의 표준편차로 나눈 값이 <strong>스튜던트화 잔차</strong>다.</p>
+<p>잔차의 분산이 관측마다 다르므로 그대로 비교할 수 없음. 각자의 표준편차로 나눈 값이 <strong>스튜던트화 잔차</strong></p>
 <p><span class="math display">\[\operatorname{Var}(e_i)=\sigma^2(1-h_{ii}),\qquad r_i=\frac{e_i}{\hat\sigma\sqrt{1-h_{ii}}}\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -1417,7 +1417,7 @@ display:block!important;
 <h2>외적 스튜던트화 잔차</h2>
 <h3 id="hatsigma-부풀림-문제"><i class="fa-solid fa-triangle-exclamation"></i> <span class="math inline">\(\hat\sigma\)</span> 부풀림 문제</h3>
 <div class="highlight-box">
-<p><span class="math inline">\(i\)</span>번째 관측을 <strong>빼고</strong> 추정한 오차분산 <span class="math inline">\(\hat\sigma_{(i)}^2\)</span> 로 나눈 값을 <strong>외적 스튜던트화 잔차</strong>(스튜던트화 제외 잔차)라 한다.</p>
+<p><span class="math inline">\(i\)</span>번째 관측을 <strong>빼고</strong> 추정한 오차분산 <span class="math inline">\(\hat\sigma_{(i)}^2\)</span> 로 나눈 값을 <strong>외적 스튜던트화 잔차</strong>(스튜던트화 제외 잔차)라 함</p>
 <p><span class="math display">\[t_i=\frac{e_i}{\hat\sigma_{(i)}\sqrt{1-h_{ii}}}\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -1714,13 +1714,13 @@ display:block!important;
 <h3 id="제외-후-예측"><i class="fa-solid fa-pen-to-square"></i> 제외 후 예측</h3>
 <ol>
 <li>
-<b>그 관측을 빼고 적합한다.</b> <span class="math inline">\(i\)</span>번째를 제외한 <span class="math inline">\(n-1\)</span>개로 <span class="math inline">\(\hat{\boldsymbol\beta}_{(i)}\)</span> 와 <span class="math inline">\(\hat\sigma_{(i)}^2\)</span> 을 구함. 자유도는 <span class="math inline">\(n-p-2\)</span>
+<b>그 관측을 빼고 적합함.</b> <span class="math inline">\(i\)</span>번째를 제외한 <span class="math inline">\(n-1\)</span>개로 <span class="math inline">\(\hat{\boldsymbol\beta}_{(i)}\)</span> 와 <span class="math inline">\(\hat\sigma_{(i)}^2\)</span> 을 구함. 자유도는 <span class="math inline">\(n-p-2\)</span>
 </li>
 <li>
-<b>뺀 관측을 예측한다.</b> <span class="math inline">\(\hat y_{(i)}=\mathbf x_i^\top\hat{\boldsymbol\beta}_{(i)}\)</span>. 적합에 쓰이지 않았으므로 <span class="math inline">\(y_i\)</span> 와 서로 <b>독립</b>이며, 이 독립성이 다음 단계의 <span class="math inline">\(t\)</span>분포를 성립시킴
+<b>뺀 관측을 예측함.</b> <span class="math inline">\(\hat y_{(i)}=\mathbf x_i^\top\hat{\boldsymbol\beta}_{(i)}\)</span>. 적합에 쓰이지 않았으므로 <span class="math inline">\(y_i\)</span> 와 서로 <b>독립</b>이며, 이 독립성이 다음 단계의 <span class="math inline">\(t\)</span>분포를 성립시킴
 </li>
 <li>
-<b>예측오차를 표준화한다.</b> <span class="math inline">\(y_i\)</span> 가 이상점이 아니라면 <span class="math inline">\(E(y_i-\hat y_{(i)})=0\)</span> 이므로 <span class="math display">\[t_i=\frac{y_i-\hat y_{(i)}}{\hat\sigma_{(i)}\sqrt{1+\mathbf x_i^\top(\mathbf X_{(i)}^\top\mathbf X_{(i)})^{-1}\mathbf x_i}}
+<b>예측오차를 표준화함.</b> <span class="math inline">\(y_i\)</span> 가 이상점이 아니라면 <span class="math inline">\(E(y_i-\hat y_{(i)})=0\)</span> 이므로 <span class="math display">\[t_i=\frac{y_i-\hat y_{(i)}}{\hat\sigma_{(i)}\sqrt{1+\mathbf x_i^\top(\mathbf X_{(i)}^\top\mathbf X_{(i)})^{-1}\mathbf x_i}}
 =\frac{e_i}{\hat\sigma_{(i)}\sqrt{1-h_{ii}}}\ \sim\ t(n-p-2)\]</span>
 </li>
 </ol>
@@ -1780,16 +1780,16 @@ display:block!important;
 <p><i class="fa-solid fa-screwdriver-wrench"></i> <strong>이 순서로 확인</strong></p>
 <ol>
 <li>
-<b>데이터 입력 오류를 검사한다.</b> 단위, 소수점, 자릿수 밀림처럼 기록 단계의 잘못인지 원자료와 대조
+<b>데이터 입력 오류를 검사함.</b> 단위, 소수점, 자릿수 밀림처럼 기록 단계의 잘못인지 원자료와 대조
 </li>
 <li>
-<b>그 관측이 나온 상황을 알아본다.</b> 그날의 장비 상태, 시료, 작업 조건처럼 표에 적히지 않은 사정을 확인
+<b>그 관측이 나온 상황을 알아봄.</b> 그날의 장비 상태, 시료, 작업 조건처럼 표에 적히지 않은 사정을 확인
 </li>
 <li>
-<b>제거하고 분석하되 반드시 밝힌다.</b> 어떤 관측을 왜 뺐는지를 결과에 함께 적음. <b>새 모형을 적합할 때는 뺐던 관측을 되돌려 넣고 다시 판단</b>
+<b>제거하고 분석하되 반드시 밝힘.</b> 어떤 관측을 왜 뺐는지를 결과에 함께 적음. <b>새 모형을 적합할 때는 뺐던 관측을 되돌려 넣고 다시 판단</b>
 </li>
 <li>
-<b>실제로 가능한 값이면 제거하지 않는다.</b> 이상점을 포함한 채 견딜 수 있는 모형, 예를 들어 로버스트 회귀를 찾음
+<b>실제로 가능한 값이면 제거하지 않음.</b> 이상점을 포함한 채 견딜 수 있는 모형, 예를 들어 로버스트 회귀를 찾음
 </li>
 </ol>
 </div>
@@ -1825,7 +1825,7 @@ display:block!important;
 <h2>다중공선성과 VIF: 정의</h2>
 <h3 id="설명변수-간-정보-중복"><i class="fa-solid fa-bullseye"></i> 설명변수 간 정보 중복</h3>
 <div class="highlight-box">
-<p>설명변수끼리 정보가 겹치는 현상을 다중공선성이라 하며, 이때 회귀계수 추정값 <span class="math inline">\(\hat\beta_j\)</span>가 불안정해진다.</p>
+<p>설명변수끼리 정보가 겹치는 현상을 다중공선성이라 하며, 이때 회귀계수 추정값 <span class="math inline">\(\hat\beta_j\)</span>가 불안정해짐</p>
 <p><span class="math display">\[\mathrm{VIF}_j = \frac{1}{1-R_j^{2}}\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -2071,7 +2071,7 @@ display:block!important;
 <h2>보정 1: Box-Cox 변환</h2>
 <h3 id="거듭제곱의-선택"><i class="fa-solid fa-bullseye"></i> 거듭제곱의 선택</h3>
 <div class="highlight-box">
-<p><strong>Box-Cox 변환</strong>: 반응변수를 아래 형태로 바꾸어, 변환 뒤의 오차가 정규분포에 가까워지도록 하는 <span class="math inline">\(\lambda\)</span> 를 찾는다.</p>
+<p><strong>Box-Cox 변환</strong>: 반응변수를 아래 형태로 바꾸어, 변환 뒤의 오차가 정규분포에 가까워지도록 하는 <span class="math inline">\(\lambda\)</span> 를 찾음</p>
 <p><span class="math display">\[y^{(\lambda)}=\begin{cases}\dfrac{y^{\lambda}-1}{\lambda}, &amp; \lambda\neq 0\\[4pt] \ln y, &amp; \lambda=0\end{cases}\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -2190,7 +2190,7 @@ display:block!important;
 <div class="callout-body">
 <div class="callout-content">
 <p><i class="fa-solid fa-pen-to-square"></i> <strong>유도</strong></p>
-<p><span class="math inline">\(\mu=E(y)\)</span> 이고 분산이 평균의 함수 <span class="math inline">\(\operatorname{Var}(y)=g(\mu)\)</span> 라 하자. 함수 <span class="math inline">\(h\)</span> 를 씌운 뒤의 분산을 델타법으로 근사하면</p>
+<p><span class="math inline">\(\mu=E(y)\)</span> 이고 분산이 평균의 함수 <span class="math inline">\(\operatorname{Var}(y)=g(\mu)\)</span> 라 둠. 함수 <span class="math inline">\(h\)</span> 를 씌운 뒤의 분산을 델타법으로 근사하면</p>
 <p><span class="math display">\[\operatorname{Var}\{h(y)\}\ \approx\ \{h&#39;(\mu)\}^2\,g(\mu)\]</span></p>
 <p>이 값이 <span class="math inline">\(\mu\)</span> 와 무관해지려면 <span class="math inline">\(h&#39;(\mu)\propto 1/\sqrt{g(\mu)}\)</span>, 곧 <span class="math inline">\(h(\mu)=\displaystyle\int \frac{d\mu}{\sqrt{g(\mu)}}\)</span></p>
 </div>
@@ -2385,7 +2385,7 @@ display:block!important;
 <h2>모형 선택 기준: AIC의 정의</h2>
 <h3 id="적합도와-벌점"><i class="fa-solid fa-bullseye"></i> 적합도와 벌점</h3>
 <div class="highlight-box">
-<p><strong>AIC (Akaike Information Criterion)</strong>: 모형의 적합도 항과 모수 개수에 매기는 벌점 항을 더한 모형 선택 기준. 같은 자료로 적합한 모형들 사이에서 값이 <strong>작을수록 선호</strong>된다 (Akaike, 1974).</p>
+<p><strong>AIC (Akaike Information Criterion)</strong>: 모형의 적합도 항과 모수 개수에 매기는 벌점 항을 더한 모형 선택 기준. 같은 자료로 적합한 모형들 사이에서 값이 <strong>작을수록 선호</strong>됨 (Akaike, 1974)</p>
 <p><span class="math display">\[\mathrm{AIC} = -2\log\hat L + 2k\]</span></p>
 </div>
 <p><strong>기호</strong></p>
@@ -2795,7 +2795,7 @@ display:block!important;
 <h2>이 장의 정리</h2>
 <h3 id="diagnosis-variable-selection-1"><i class="fa-solid fa-list-check"></i> Diagnosis &amp; Variable Selection</h3>
 <div class="highlight-box">
-<p>진단은 모형이 자료와 맞는지 확인하는 절차이고, 변수선택은 설명력과 단순함의 균형점을 찾는 절차이며, 두 절차는 번갈아 반복된다.</p>
+<p>진단은 모형이 자료와 맞는지 확인하는 절차이고, 변수선택은 설명력과 단순함의 균형점을 찾는 절차이며, 두 절차는 번갈아 반복됨</p>
 </div>
 <div class="callout callout-tip no-icon callout-style-simple">
 <div class="callout-body">

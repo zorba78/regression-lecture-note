@@ -1108,9 +1108,9 @@ display:block!important;
 <h3 id="정의"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div style="margin-bottom: 0.8em">
 <div class="highlight-box">
-<p><strong>벡터</strong>: 숫자를 세로로 줄 세운 배열. 굵은 소문자 <span class="math inline">\(\mathbf{y}\)</span>로 표기한다.</p>
-<p><strong>행렬</strong>: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 <span class="math inline">\(\mathbf{X}\)</span>로 표기한다.</p>
-<p><strong>차원</strong>: 크기는 항상 “행 <span class="math inline">\(\times\)</span> 열” 순서로 적는다.</p>
+<p><strong>벡터</strong>: 숫자를 세로로 줄 세운 배열. 굵은 소문자 <span class="math inline">\(\mathbf{y}\)</span>로 표기.</p>
+<p><strong>행렬</strong>: 숫자를 행과 열의 격자로 배열한 것. 굵은 대문자 <span class="math inline">\(\mathbf{X}\)</span>로 표기.</p>
+<p><strong>차원</strong>: 크기는 항상 “행 <span class="math inline">\(\times\)</span> 열” 순서로 표기.</p>
 </div>
 </div>
 <p><span class="math display">\[
@@ -1186,9 +1186,9 @@ display:block!important;
 <h2>행렬 연산</h2>
 <h3 id="정의-1"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>덧셈·뺄셈</strong>: 크기가 같은 두 행렬끼리만 정의되며, 같은 자리의 성분끼리 더하거나 뺀다.</p>
-<p><strong>스칼라 곱</strong> <span class="math inline">\(c\mathbf A\)</span>: 모든 성분에 같은 수 <span class="math inline">\(c\)</span> 를 곱한다.</p>
-<p><strong>행렬 곱</strong> <span class="math inline">\(\mathbf{AB}\)</span>: <span class="math inline">\(\mathbf A\)</span> 의 열 수와 <span class="math inline">\(\mathbf B\)</span> 의 행 수가 같을 때만 정의되며, <span class="math inline">\((i,j)\)</span> 성분은 <span class="math inline">\(\mathbf A\)</span> 의 <span class="math inline">\(i\)</span> 행과 <span class="math inline">\(\mathbf B\)</span> 의 <span class="math inline">\(j\)</span> 열을 짝지어 곱한 뒤 모두 더한 값이다.</p>
+<p><strong>덧셈·뺄셈</strong>: 크기가 같은 두 행렬끼리만 정의되며, 같은 자리의 성분끼리 더하거나 뺌.</p>
+<p><strong>스칼라 곱</strong> <span class="math inline">\(c\mathbf A\)</span>: 모든 성분에 같은 수 <span class="math inline">\(c\)</span> 를 곱함.</p>
+<p><strong>행렬 곱</strong> <span class="math inline">\(\mathbf{AB}\)</span>: <span class="math inline">\(\mathbf A\)</span> 의 열 수와 <span class="math inline">\(\mathbf B\)</span> 의 행 수가 같을 때만 정의되며, <span class="math inline">\((i,j)\)</span> 성분은 <span class="math inline">\(\mathbf A\)</span> 의 <span class="math inline">\(i\)</span> 행과 <span class="math inline">\(\mathbf B\)</span> 의 <span class="math inline">\(j\)</span> 열을 짝지어 곱한 뒤 모두 더한 값.</p>
 </div>
 <p><span class="math display">\[
 \underbrace{\mathbf A}_{n\times k}\;\underbrace{\mathbf B}_{k\times m}=\underbrace{\mathbf{AB}}_{n\times m},
@@ -1313,7 +1313,7 @@ display:block!important;
 <h2>전치</h2>
 <h3 id="정의-3"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>전치</strong> <span class="math inline">\(\mathbf A^\top\)</span>: 행과 열을 맞바꾼 행렬. <span class="math inline">\(\mathbf A\)</span> 의 <span class="math inline">\((i,j)\)</span> 원소가 <span class="math inline">\(\mathbf A^\top\)</span> 의 <span class="math inline">\((j,i)\)</span> 원소가 된다.</p>
+<p><strong>전치</strong> <span class="math inline">\(\mathbf A^\top\)</span>: 행과 열을 맞바꾼 행렬. <span class="math inline">\(\mathbf A\)</span> 의 <span class="math inline">\((i,j)\)</span> 원소가 <span class="math inline">\(\mathbf A^\top\)</span> 의 <span class="math inline">\((j,i)\)</span> 원소가 됨.</p>
 </div>
 <ul>
 <li>
@@ -1375,7 +1375,7 @@ display:block!important;
 <h2>행렬식: 정의</h2>
 <h3 id="여인수-전개"><i class="fa-solid fa-bullseye"></i> 여인수 전개</h3>
 <div class="highlight-box">
-<p><strong>행렬식</strong>(determinant) <span class="math inline">\(\det(\mathbf A)\)</span>: <span class="math inline">\(n\times n\)</span> 정방행렬 하나에 대응시키는 수 하나. <span class="math inline">\(1\times 1\)</span> 이면 <span class="math inline">\(\det(a_{11})=a_{11}\)</span> 이고, <span class="math inline">\(n\ge 2\)</span> 이면 <strong>여인수 전개</strong>(cofactor expansion)로 한 단계씩 작은 행렬식으로 내려가며 정의된다.</p>
+<p><strong>행렬식</strong>(determinant) <span class="math inline">\(\det(\mathbf A)\)</span>: <span class="math inline">\(n\times n\)</span> 정방행렬 하나에 대응시키는 수 하나. <span class="math inline">\(1\times 1\)</span> 이면 <span class="math inline">\(\det(a_{11})=a_{11}\)</span> 이고, <span class="math inline">\(n\ge 2\)</span> 이면 <strong>여인수 전개</strong>(cofactor expansion)로 한 단계씩 작은 행렬식으로 내려가며 정의됨.</p>
 </div>
 <p><span class="math display">\[
 \det(\mathbf A)=\sum_{j=1}^{n}(-1)^{1+j}\,a_{1j}\,\det(\mathbf A_{1j})
@@ -1439,7 +1439,7 @@ display:block!important;
 <h2>행렬식: 넓이와 부피</h2>
 <h3 id="핵심"><i class="fa-solid fa-lightbulb"></i> 핵심</h3>
 <div class="highlight-box">
-<p><span class="math inline">\(|\det(\mathbf A)|\)</span> 는 <span class="math inline">\(\mathbf A\)</span> 의 행들이 만드는 도형의 크기이다. <span class="math inline">\(2\times 2\)</span> 이면 두 행이 만드는 평행사변형의 <strong>넓이</strong>, <span class="math inline">\(3\times 3\)</span> 이면 세 행이 만드는 평행육면체의 <strong>부피</strong>, 일반적으로 <span class="math inline">\(n\times n\)</span> 이면 <span class="math inline">\(n\)</span> 차원 부피에 해당한다. 행렬식이 0이라는 것은 그 크기가 0, 곧 도형이 한 차원 낮게 납작하게 눌렸다는 뜻이다.</p>
+<p><span class="math inline">\(|\det(\mathbf A)|\)</span> 는 <span class="math inline">\(\mathbf A\)</span> 의 행들이 만드는 도형의 크기. <span class="math inline">\(2\times 2\)</span> 이면 두 행이 만드는 평행사변형의 <strong>넓이</strong>, <span class="math inline">\(3\times 3\)</span> 이면 세 행이 만드는 평행육면체의 <strong>부피</strong>, 일반적으로 <span class="math inline">\(n\times n\)</span> 이면 <span class="math inline">\(n\)</span> 차원 부피에 해당. 행렬식이 0이라는 것은 그 크기가 0, 곧 도형이 한 차원 낮게 납작하게 눌렸다는 뜻.</p>
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1505,8 +1505,8 @@ display:block!important;
 <h2>행렬의 계수</h2>
 <h3 id="정의-4"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>계수</strong>(rank) <span class="math inline">\(\operatorname{rank}(\mathbf A)\)</span>: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나온다.</p>
-<p><strong>완전계수</strong>(full rank): <span class="math inline">\(\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})\)</span> 인 상태. 정방행렬이 완전계수인 것과 <span class="math inline">\(\det(\mathbf A)\neq 0\)</span> 은 동치이다.</p>
+<p><strong>계수</strong>(rank) <span class="math inline">\(\operatorname{rank}(\mathbf A)\)</span>: 서로 독립인 열의 최대 개수. 행으로 세어도 같은 값이 나옴.</p>
+<p><strong>완전계수</strong>(full rank): <span class="math inline">\(\operatorname{rank}(\mathbf A)=\min(\text{행 수},\ \text{열 수})\)</span> 인 상태. 정방행렬이 완전계수인 것과 <span class="math inline">\(\det(\mathbf A)\neq 0\)</span> 은 동치.</p>
 </div>
 <ul>
 <li>
@@ -1585,7 +1585,7 @@ display:block!important;
 <h3 id="정의-5"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
 <p><strong>역행렬</strong> <span class="math inline">\(\mathbf A^{-1}\)</span>: 정방행렬 <span class="math inline">\(\mathbf A\)</span> 에 대해 <span class="math inline">\(\mathbf A^{-1}\mathbf A=\mathbf A\mathbf A^{-1}=\mathbf I\)</span> 를 만족하는 행렬.</p>
-<p><strong>존재 조건</strong>: <span class="math inline">\(\det(\mathbf A)\neq 0\)</span>, 곧 <span class="math inline">\(\mathbf A\)</span> 가 완전계수일 때에만 존재한다.</p>
+<p><strong>존재 조건</strong>: <span class="math inline">\(\det(\mathbf A)\neq 0\)</span>, 곧 <span class="math inline">\(\mathbf A\)</span> 가 완전계수일 때에만 존재.</p>
 </div>
 <ul>
 <li>
@@ -1644,7 +1644,7 @@ display:block!important;
 <h3 id="정의-6"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
 <p><strong>내적</strong> <span class="math inline">\(\mathbf a^\top\mathbf b=a_1b_1+\cdots+a_nb_n\)</span>: 두 벡터를 성분끼리 곱해 모두 더한 수 하나.</p>
-<p><strong>직교</strong>: <span class="math inline">\(\mathbf a^\top\mathbf b=0\)</span> 이면 두 벡터는 서로 직각이다.</p>
+<p><strong>직교</strong>: <span class="math inline">\(\mathbf a^\top\mathbf b=0\)</span> 이면 두 벡터는 서로 직각.</p>
 <p><strong>직교행렬</strong> <span class="math inline">\(\mathbf Q\)</span>: 열들이 서로 직교하고 길이가 모두 1인 정방행렬. <span class="math inline">\(\mathbf Q^\top\mathbf Q=\mathbf I\)</span> 이므로 <span class="math inline">\(\mathbf Q^{-1}=\mathbf Q^\top\)</span>.</p>
 </div>
 <div class="columns">
@@ -1754,7 +1754,7 @@ display:block!important;
 <h2>고윳값과 고유벡터</h2>
 <h3 id="정의-8"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>고윳값</strong>(eigenvalue) <span class="math inline">\(\lambda\)</span> 와 <strong>고유벡터</strong>(eigenvector) <span class="math inline">\(\mathbf v\neq\mathbf 0\)</span>: <span class="math inline">\(\mathbf{Av}=\lambda\mathbf v\)</span> 를 만족하는 짝. 행렬을 곱해도 <strong>방향이 바뀌지 않고 길이만 <span class="math inline">\(\lambda\)</span> 배</strong> 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값이다.</p>
+<p><strong>고윳값</strong>(eigenvalue) <span class="math inline">\(\lambda\)</span> 와 <strong>고유벡터</strong>(eigenvector) <span class="math inline">\(\mathbf v\neq\mathbf 0\)</span>: <span class="math inline">\(\mathbf{Av}=\lambda\mathbf v\)</span> 를 만족하는 짝. 행렬을 곱해도 <strong>방향이 바뀌지 않고 길이만 <span class="math inline">\(\lambda\)</span> 배</strong> 되는 특별한 방향이 고유벡터이고, 그 배율이 고윳값.</p>
 </div>
 <div class="callout callout-note no-icon callout-style-simple">
 <div class="callout-body">
@@ -1806,7 +1806,7 @@ display:block!important;
 <h2>스펙트럴 분해</h2>
 <h3 id="정의-9"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>스펙트럴 분해</strong>(spectral decomposition): 대칭행렬 <span class="math inline">\(\mathbf A\)</span> 는 직교행렬 <span class="math inline">\(\mathbf Q\)</span> 와 고윳값을 늘어놓은 대각행렬 <span class="math inline">\(\boldsymbol\Lambda\)</span> 로 항상 다음과 같이 쪼개진다.</p>
+<p><strong>스펙트럴 분해</strong>(spectral decomposition): 대칭행렬 <span class="math inline">\(\mathbf A\)</span> 는 직교행렬 <span class="math inline">\(\mathbf Q\)</span> 와 고윳값을 늘어놓은 대각행렬 <span class="math inline">\(\boldsymbol\Lambda\)</span> 로 항상 다음과 같이 쪼개짐.</p>
 <p><span class="math display">\[\mathbf A=\mathbf Q\boldsymbol\Lambda\mathbf Q^\top=\sum_{j=1}^{n}\lambda_j\,\mathbf q_j\mathbf q_j^\top,
 \qquad \mathbf Q^\top\mathbf Q=\mathbf I\]</span></p>
 </div>
@@ -1867,7 +1867,7 @@ display:block!important;
 <div class="highlight-box">
 <p><strong>상삼각행렬</strong>(upper triangular matrix): 주대각선 <strong>아래</strong> 성분이 모두 0인 정방행렬.</p>
 <p><strong>하삼각행렬</strong>(lower triangular matrix): 주대각선 <strong>위</strong> 성분이 모두 0인 정방행렬.</p>
-<p>상삼각이면서 동시에 하삼각인 행렬이 곧 대각행렬이다.</p>
+<p>상삼각이면서 동시에 하삼각인 행렬이 곧 대각행렬.</p>
 </div>
 <p><span class="math display">\[
 \mathbf U=\begin{pmatrix} 2&amp;3&amp;1\\ 0&amp;5&amp;4\\ 0&amp;0&amp;10\end{pmatrix},\qquad
@@ -1923,7 +1923,7 @@ display:block!important;
 <h2>멱등행렬</h2>
 <h3 id="정의-11"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>멱등행렬</strong>(idempotent matrix): <span class="math inline">\(\mathbf A^2=\mathbf A\)</span> 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않는다.</p>
+<p><strong>멱등행렬</strong>(idempotent matrix): <span class="math inline">\(\mathbf A^2=\mathbf A\)</span> 를 만족하는 정방행렬. 한 번 적용한 결과에 같은 연산을 다시 적용해도 값이 변하지 않음.</p>
 </div>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1985,7 +1985,7 @@ display:block!important;
 <h2>벡터와 행렬의 미분</h2>
 <h3 id="정의-12"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p>스칼라 값을 갖는 함수 <span class="math inline">\(f(\mathbf b)\)</span> 를 벡터 <span class="math inline">\(\mathbf b=(b_1,\dots,b_k)^\top\)</span> 로 미분한다는 것은, 성분마다 편미분한 값을 같은 모양으로 쌓는다는 뜻이다. <span class="math display">\[\frac{\partial f}{\partial\mathbf b}=\Big(\frac{\partial f}{\partial b_1},\;\dots,\;\frac{\partial f}{\partial b_k}\Big)^\top\]</span></p>
+<p>스칼라 값을 갖는 함수 <span class="math inline">\(f(\mathbf b)\)</span> 를 벡터 <span class="math inline">\(\mathbf b=(b_1,\dots,b_k)^\top\)</span> 로 미분한다는 것은, 성분마다 편미분한 값을 같은 모양으로 쌓는다는 뜻. <span class="math display">\[\frac{\partial f}{\partial\mathbf b}=\Big(\frac{\partial f}{\partial b_1},\;\dots,\;\frac{\partial f}{\partial b_k}\Big)^\top\]</span></p>
 </div>
 <div class="columns">
 <div class="column" style="width:48%;">
@@ -2047,7 +2047,7 @@ display:block!important;
 <h2>최소제곱추정량 예고</h2>
 <h3 id="핵심-1"><i class="fa-solid fa-lightbulb"></i> 핵심</h3>
 <div class="highlight-box">
-<p>자료 <span class="math inline">\((\mathbf{y},\mathbf{X})\)</span>가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현된다.</p>
+<p>자료 <span class="math inline">\((\mathbf{y},\mathbf{X})\)</span>가 주어졌을 때 회귀계수의 추정값은 전치와 역행렬만으로 한 줄에 표현됨.</p>
 </div>
 <p><span class="math display">\[
 \hat{\boldsymbol{\beta}}=(\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}
@@ -2098,7 +2098,7 @@ display:block!important;
 <h2>정규분포</h2>
 <h3 id="정의-13"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p>확률변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 표준편차 <span class="math inline">\(\sigma\)</span>인 <strong>정규분포</strong>를 따를 때 <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>로 적고, 그 밀도함수는 다음과 같다.</p>
+<p>확률변수 <span class="math inline">\(X\)</span>가 평균 <span class="math inline">\(\mu\)</span>, 표준편차 <span class="math inline">\(\sigma\)</span>인 <strong>정규분포</strong>를 따를 때 <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span>로 적고, 그 밀도함수는 다음과 같음.</p>
 <p><span class="math display">\[f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\qquad -\infty&lt;x&lt;\infty\]</span></p>
 </div>
 <ul>
@@ -2173,7 +2173,7 @@ display:block!important;
 <p>계산: <span class="math inline">\(P(|Z|\le 1)=0.683\)</span>, <span class="math inline">\(P(|Z|\le 2)=0.954\)</span>, <span class="math inline">\(P(|Z|\le 3)=0.997\)</span>. 평균에서 표준편차 3배 넘게 떨어질 확률은 약 0.3%</p>
 <h3 id="정규분포-가정의-근거"><i class="fa-solid fa-lightbulb"></i> 정규분포 가정의 근거</h3>
 <div class="highlight-box">
-<p>서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워진다(중심극한정리).</p>
+<p>서로 독립인 작은 영향이 여러 개 더해지면 그 합의 분포는 관여한 각 요인의 분포와 무관하게 정규분포에 가까워짐(중심극한정리).</p>
 </div>
 <p>측정오차 = 온도, 습도, 진동, 판독 습관 등 작은 요인 다수의 합. 따라서 종 모양 분포가 근거 있는 출발점</p>
 <div class="callout callout-tip no-icon callout-style-simple">
@@ -2204,7 +2204,7 @@ display:block!important;
 <h3 id="정의-14"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
 <p><strong>모집단</strong>: 알고 싶은 대상 전체. <strong>표본</strong>: 실제로 관측한 일부.</p>
-<p><strong>통계량</strong>: 표본에서 계산한 값(표본평균 <span class="math inline">\(\bar X\)</span> 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수다.</p>
+<p><strong>통계량</strong>: 표본에서 계산한 값(표본평균 <span class="math inline">\(\bar X\)</span> 등). 표본이 바뀌면 값도 바뀌므로 통계량 자체가 확률변수.</p>
 <p><strong>표집분포</strong>: 같은 크기의 표본을 반복해서 뽑을 때 통계량이 갖는 분포.</p>
 </div>
 <p><span class="math inline">\(X_1,\dots,X_n\)</span>이 평균 <span class="math inline">\(\mu\)</span>, 분산 <span class="math inline">\(\sigma^2\)</span>인 모집단에서 뽑힌 표본일 때, 표본평균 <span class="math inline">\(\bar X=\frac{1}{n}\sum_{i=1}^n X_i\)</span>의 표집분포는 다음을 만족</p>
@@ -2263,7 +2263,7 @@ display:block!important;
 </div>
 </div><div class="column" style="width:44%;">
 <div class="highlight-box">
-<p>서로 독립인 표준정규 확률변수 <span class="math inline">\(Z_1,\dots,Z_\nu\)</span> 의 제곱을 모두 더하면 <span class="math display">\[W=\sum_{i=1}^{\nu}Z_i^{2}\]</span> 은 자유도 <span class="math inline">\(\nu\)</span> 의 <strong>카이제곱분포</strong> <span class="math inline">\(\chi^2(\nu)\)</span> 를 따른다.</p>
+<p>서로 독립인 표준정규 확률변수 <span class="math inline">\(Z_1,\dots,Z_\nu\)</span> 의 제곱을 모두 더하면 <span class="math display">\[W=\sum_{i=1}^{\nu}Z_i^{2}\]</span> 은 자유도 <span class="math inline">\(\nu\)</span> 의 <strong>카이제곱분포</strong> <span class="math inline">\(\chi^2(\nu)\)</span> 를 따름.</p>
 </div>
 <ul>
 <li>
@@ -2319,7 +2319,7 @@ display:block!important;
 </div>
 </div><div class="column" style="width:42%;">
 <div class="highlight-box">
-<p><span class="math inline">\(\sigma\)</span>를 모른 채 표본표준편차 <span class="math inline">\(s\)</span>로 대신하면 <span class="math display">\[T=\frac{\bar X-\mu}{s/\sqrt{n}}\]</span> 는 자유도 <span class="math inline">\(n-1\)</span>의 <strong>t분포</strong>를 따른다.</p>
+<p><span class="math inline">\(\sigma\)</span>를 모른 채 표본표준편차 <span class="math inline">\(s\)</span>로 대신하면 <span class="math display">\[T=\frac{\bar X-\mu}{s/\sqrt{n}}\]</span> 는 자유도 <span class="math inline">\(n-1\)</span>의 <strong>t분포</strong>를 따름.</p>
 </div>
 <ul>
 <li>
@@ -2380,7 +2380,7 @@ display:block!important;
 </div>
 </div><div class="column" style="width:44%;">
 <div class="highlight-box">
-<p>서로 독립인 두 카이제곱 <span class="math inline">\(W_1\sim\chi^2(\nu_1)\)</span>, <span class="math inline">\(W_2\sim\chi^2(\nu_2)\)</span> 를 각자의 자유도로 나눈 뒤 비를 취하면 <span class="math display">\[F=\frac{W_1/\nu_1}{W_2/\nu_2}\]</span> 은 자유도 <span class="math inline">\((\nu_1,\nu_2)\)</span> 의 <strong>F분포</strong> 를 따른다.</p>
+<p>서로 독립인 두 카이제곱 <span class="math inline">\(W_1\sim\chi^2(\nu_1)\)</span>, <span class="math inline">\(W_2\sim\chi^2(\nu_2)\)</span> 를 각자의 자유도로 나눈 뒤 비를 취하면 <span class="math display">\[F=\frac{W_1/\nu_1}{W_2/\nu_2}\]</span> 은 자유도 <span class="math inline">\((\nu_1,\nu_2)\)</span> 의 <strong>F분포</strong> 를 따름.</p>
 </div>
 <ul>
 <li>
@@ -2612,8 +2612,8 @@ display:block!important;
 <h2>가설검정의 논리</h2>
 <h3 id="정의-19"><i class="fa-solid fa-bullseye"></i> 정의</h3>
 <div class="highlight-box">
-<p><strong>귀무가설</strong> <span class="math inline">\(H_0\)</span>: 반증되기 전까지 참이라고 두는 기본 가정. 보통 “효과가 없다”, “차이가 없다” 쪽에 놓는다.</p>
-<p><strong>대립가설</strong> <span class="math inline">\(H_1\)</span>: 자료로 입증하고자 하는 주장. 보통 “효과가 있다” 쪽이다.</p>
+<p><strong>귀무가설</strong> <span class="math inline">\(H_0\)</span>: 반증되기 전까지 참이라고 두는 기본 가정. 보통 “효과가 없다”, “차이가 없다” 쪽에 놓음.</p>
+<p><strong>대립가설</strong> <span class="math inline">\(H_1\)</span>: 자료로 입증하고자 하는 주장. 보통 “효과가 있다” 쪽.</p>
 </div>
 <h3 id="절차"><i class="fa-solid fa-list-check"></i> 절차</h3>
 <ol>
